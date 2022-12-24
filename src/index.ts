@@ -73,7 +73,6 @@ const title = (desc: string) => {
   console.log();
   console.log(desc);
   console.log("‾".repeat(desc.length));
-  console.log();
 };
 
 const main = async () => {
@@ -255,7 +254,7 @@ const main = async () => {
           const { ledgers, tokens } = config;
 
           for (const [name, addresses] of Object.entries(ledgers)) {
-            console.log(`Processing ${name}...`);
+            console.log(`Processing "${name}" ledger...`);
 
             ledgerTotals[name] = { amounts: { [ETH]: new Decimal(0) } };
             const ledgerTotal = ledgerTotals[name];
