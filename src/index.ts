@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import yargs from "yargs/yargs";
+import yargs from "yargs";
 
 import crypto from "crypto";
 import Web3 from "web3";
@@ -56,7 +56,7 @@ const decryptConfig = (password: string) => {
 
 // tslint:disable: no-console
 const main = async () => {
-  let web3: Web3;
+  let web3: Web3 = new Web3();
   let password;
   let addresses: Device[];
   let tokens: [];
@@ -179,11 +179,10 @@ const main = async () => {
         }
       )
       .demandCommand()
-      .onFinishCommand(() => {
-        (web3.currentProvider as WebsocketProvider)?.disconnect(0, "OK");
-      })
       .help()
       .parse();
+
+    (web3.currentProvider as WebsocketProvider)?.disconnect(0, "OK");
   } catch (e) {
     console.error(e);
   }
