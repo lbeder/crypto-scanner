@@ -27,6 +27,7 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
+    "coingecko-api-v3": "^0.0.13",
     "decimal.js": "^10.3.1",
     "ethers": "^5.6.9",
     "inquirer": "^8.1.0",
