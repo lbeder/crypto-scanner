@@ -31,39 +31,63 @@ export interface Totals {
   [additionalProperties: string]: Decimal;
 }
 
+export interface DeviceTotals {
+  [device: string]: Totals;
+}
+
 // tslint:disable: no-console
 const main = async () => {
   const totals: Totals = { ETH: new Decimal(0) };
+  const deviceTotals: DeviceTotals = {};
 
   for (const device of DEVICES) {
-    console.log(device.description);
+    console.log("Processing", device.description);
+
+    deviceTotals[device.description] = { ETH: new Decimal(0) };
+    const deviceTotal = deviceTotals[device.description];
 
     for (const address of device.addresses) {
       const ethBalance = await getBalance(address);
       totals.ETH = totals.ETH.add(ethBalance);
-
-      console.log(`  ${address}`);
-      console.log("    ETH:", Number(ethBalance.toFixed()).toLocaleString());
+      deviceTotal.ETH = deviceTotal.ETH.add(ethBalance);
 
       for (const token of TOKENS) {
         const { address: tokenAddress, symbol, decimals } = token;
         if (totals[symbol] === undefined) {
           totals[symbol] = new Decimal(0);
         }
+        if (deviceTotal[symbol] === undefined) {
+          deviceTotal[symbol] = new Decimal(0);
+        }
 
         const tokenBalance = new Decimal((await getTokenBalance(address, tokenAddress, decimals)).toString());
-        console.log(`    ${symbol}:`, Number(tokenBalance.toFixed()).toLocaleString());
         totals[symbol] = totals[symbol].add(tokenBalance);
+        deviceTotal[symbol] = deviceTotal[symbol].add(tokenBalance);
       }
-
-      console.log("");
     }
   }
 
+  console.log("");
   console.log("Totals:");
-  Object.entries(totals).forEach(([symbol, value]) =>
-    console.log(`${symbol}: ${Number(value.toFixed()).toLocaleString()}`)
-  );
+  Object.entries(totals).forEach(([symbol, value]) => {
+    if (!value.isZero()) {
+      console.log(`${symbol}: ${Number(value.toFixed()).toLocaleString()}`);
+    }
+  });
+
+  console.log("");
+  console.log("Device Totals:");
+  Object.entries(deviceTotals).forEach(([description, devTotals]) => {
+    console.log(description);
+
+    Object.entries(devTotals).forEach(([symbol, value]) => {
+      if (!value.isZero()) {
+        console.log(`${symbol}: ${Number(value.toFixed()).toLocaleString()}`);
+      }
+    });
+
+    console.log("");
+  });
 };
 
 main();
