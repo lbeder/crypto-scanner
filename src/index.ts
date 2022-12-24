@@ -121,8 +121,8 @@ const main = async () => {
         config = loadConfig(password);
       })
       .command(
-        "config",
-        "Get the config",
+        "show",
+        "Shows the configuration",
         () => {},
         async () => {
           console.log(config);
@@ -131,8 +131,8 @@ const main = async () => {
         }
       )
       .command(
-        "config-add",
-        "Add addresses to the named ledger",
+        "add-address",
+        "Add an address or a list of addresses to a named ledger",
         {
           name: {
             type: "string",
@@ -161,8 +161,8 @@ const main = async () => {
         }
       )
       .command(
-        "config-remove",
-        "Remove addresses from the named ledger",
+        "remove-address",
+        "Remove an address or a list of addresses from a named ledger",
         {
           name: {
             type: "string",
@@ -191,7 +191,7 @@ const main = async () => {
         }
       )
       .command(
-        "config-add-token",
+        "add-token",
         "Add a token to the config",
         {
           symbol: {
@@ -220,8 +220,8 @@ const main = async () => {
         }
       )
       .command(
-        "config-remove-token",
-        "Remove a token to the config",
+        "remove-token",
+        "Remove a token from the config",
         {
           symbol: {
             type: "string",
@@ -236,8 +236,8 @@ const main = async () => {
         }
       )
       .command(
-        "fetch",
-        "Fetch the data",
+        "query",
+        "Queries all addresses and tokens",
         () => {},
         async ({ verbose }) => {
           const totals: Totals = {
