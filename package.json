@@ -13,25 +13,25 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^3.2.0",
-    "@types/inquirer": "^8.2.1",
-    "@types/node": "^18.0.5",
+    "@trivago/prettier-plugin-sort-imports": "^4.0.0",
+    "@types/inquirer": "^9.0.3",
+    "@types/node": "^18.11.17",
     "@types/underscore": "^1.11.4",
-    "@types/yargs": "^17.0.10",
-    "prettier": "^2.7.1",
-    "prettier-package-json": "^2.6.4",
+    "@types/yargs": "^17.0.17",
+    "prettier": "^2.8.1",
+    "prettier-package-json": "^2.7.0",
     "prettier-tslint": "^0.4.2",
     "tslint": "^6.1.3",
     "tslint-config-airbnb": "^5.11.2",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^4.7.4"
+    "typescript": "^4.9.4"
   },
   "dependencies": {
     "coingecko-api-v3": "^0.0.13",
-    "decimal.js": "^10.3.1",
-    "ethers": "^5.6.9",
+    "decimal.js": "^10.4.3",
+    "ethers": "^5.7.2",
     "inquirer": "^8.1.0",
     "ts-node": "^10.9.1",
-    "yargs": "^17.5.1"
+    "yargs": "^17.6.2"
   }
 }
