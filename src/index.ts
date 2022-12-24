@@ -132,7 +132,7 @@ const main = async () => {
       )
       .command(
         "add-address",
-        "Add an address or a list of addresses to a named ledger",
+        "Add an address or a list of space-separated addresses to a named ledger",
         {
           name: {
             type: "string",
@@ -162,7 +162,7 @@ const main = async () => {
       )
       .command(
         "remove-address",
-        "Remove an address or a list of addresses from a named ledger",
+        "Remove an address or a list of space-separated addresses from a named ledger",
         {
           name: {
             type: "string",

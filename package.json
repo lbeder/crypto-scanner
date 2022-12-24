@@ -6,6 +6,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "start": "ts-node src/index.ts",
+    "cli": "yarn start --help",
+    "query": "yarn start query",
     "lint": "tslint --project tsconfig.json",
     "format": "prettier --check --write src/**/* --config .prettierrc",
     "test": "echo \"Error: no test specified\" && exit 1"
