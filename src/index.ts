@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import yargs from "yargs/yargs";
 import crypto from "crypto";
 import Web3 from "web3";
 import Decimal from "decimal.js";
@@ -12,6 +13,14 @@ import { config } from "dotenv";
 import ERC20_API from "./erc20-abi.json";
 
 config();
+
+const {
+  argv: { getConfig }
+} = yargs(process.argv).option("getConfig", {
+  alias: "g",
+  type: "boolean",
+  description: "Get config"
+});
 
 const { WEB3_PROVIDER = "ws://localhost:8545" } = process.env;
 
@@ -78,6 +87,13 @@ const main = async () => {
     ]);
 
     const { addresses, tokens } = decryptConfig(password);
+
+    if (getConfig) {
+      console.log(addresses);
+      console.log(tokens);
+
+      return;
+    }
 
     const totals: Totals = { ETH: new Decimal(0) };
     const deviceTotals: DeviceTotals = {};
