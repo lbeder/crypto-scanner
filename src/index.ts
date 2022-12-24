@@ -1,21 +1,26 @@
+import ERC20_API from "./erc20-abi.json";
+import { StaticJsonRpcProvider } from "@ethersproject/providers";
+import crypto from "crypto";
+import Decimal from "decimal.js";
+import { Contract, utils } from "ethers";
 import fs from "fs";
+import inquirer from "inquirer";
 import path from "path";
 import yargs from "yargs";
 
-import crypto from "crypto";
-import Web3 from "web3";
-import Decimal from "decimal.js";
-import { WebsocketProvider } from "web3-core";
-import { AbiItem } from "web3-utils";
-import inquirer from "inquirer";
-
-import ERC20_API from "./erc20-abi.json";
-
 const ETH = new Decimal(10 ** 18);
 
-interface Device {
-  description: string;
-  addresses: string[];
+const DATA_DIR = path.resolve(__dirname, "../data");
+const CONFIG_PATH = path.join(DATA_DIR, "config.data");
+
+interface Token {
+  address: string;
+  decimals: number;
+}
+
+interface Config {
+  ledgers: Record<string, string[]>;
+  tokens: Record<string, Token>;
 }
 
 interface Totals {
@@ -23,7 +28,7 @@ interface Totals {
   [additionalProperties: string]: Decimal;
 }
 
-interface DeviceTotals {
+interface LedgerTotals {
   [device: string]: Totals;
 }
 
@@ -38,44 +43,48 @@ const decrypt = (data: string, password: string) => {
 const encrypt = (data: any, password: string, format: boolean = true) => {
   const key = crypto.scryptSync(password, "salt", 32);
   const cipher = crypto.createCipheriv("aes-256-cbc", key, Buffer.alloc(16, 0));
-  let encrypted = cipher.update(format ? JSON.stringify(data, null, 2) : data, "utf8", "hex");
-  encrypted += cipher.final("hex");
-  return encrypted;
+  return cipher.update(format ? JSON.stringify(data, null, 2) : data, "utf8", "hex") + cipher.final("hex");
 };
 
-const decryptConfig = (password: string) => {
-  const dataDir = path.resolve(__dirname, "../data");
-  const addressesDbPath = path.join(dataDir, "addresses.data");
-  const tokensDbPath = path.join(dataDir, "tokens.data");
+const loadConfig = (password: string): Config => {
+  if (!fs.existsSync(CONFIG_PATH)) {
+    return {
+      ledgers: {},
+      tokens: {}
+    };
+  }
 
-  return {
-    addresses: JSON.parse(decrypt(fs.readFileSync(addressesDbPath, "utf8"), password)),
-    tokens: JSON.parse(decrypt(fs.readFileSync(tokensDbPath, "utf8"), password))
-  };
+  return JSON.parse(decrypt(fs.readFileSync(CONFIG_PATH, "utf8"), password)) as Config;
 };
 
-// tslint:disable: no-console
+const saveConfig = (config: Config, password: string) => {
+  const encryptedConfig = encrypt(config, password);
+
+  fs.writeFileSync(CONFIG_PATH, encryptedConfig, "utf8");
+};
+
 const main = async () => {
-  let web3: Web3 = new Web3();
-  let password;
-  let addresses: Device[];
-  let tokens: [];
+  let provider: StaticJsonRpcProvider;
+
+  let password: string;
+  let config: Config;
 
   const getBalance = async (address: string): Promise<Decimal> => {
-    const balance = await web3.eth.getBalance(address);
+    const balance = await provider.getBalance(address);
     return new Decimal(balance.toString()).div(ETH);
   };
 
   const getTokenBalance = async (address: string, token: string, decimals: number): Promise<Decimal> => {
-    const tokenContract = new web3.eth.Contract(ERC20_API as AbiItem[], token);
-    const balance = await tokenContract.methods.balanceOf(address).call();
+    const tokenContract = new Contract(token, ERC20_API, provider);
+    const balance = await tokenContract.balanceOf(address);
 
     return new Decimal(balance.toString()).div(10 ** decimals);
   };
 
   try {
     await yargs(process.argv.slice(2))
-      .option("provider", {
+      .parserConfiguration({ "parse-numbers": false })
+      .option("url", {
         type: "string",
         default: "ws://localhost:8545",
         description: "Web3 provider's URL"
@@ -84,8 +93,8 @@ const main = async () => {
         type: "boolean",
         description: "Verbose mode"
       })
-      .middleware(({ provider }) => {
-        web3 = new Web3(provider);
+      .middleware(({ url }) => {
+        provider = new StaticJsonRpcProvider(url);
       })
       .middleware(async () => {
         ({ password } = await inquirer.prompt([
@@ -96,50 +105,155 @@ const main = async () => {
           }
         ]));
 
-        ({ addresses, tokens } = decryptConfig(password));
+        config = loadConfig(password);
       })
       .command(
         "config",
         "Get the config",
-        () => {}, // tslint:disable-line: no-empty
+        () => {},
         () => {
-          console.log(addresses);
-          console.log(tokens);
+          console.log(config);
 
           console.log();
         }
       )
       .command(
+        "config-add",
+        "Add addresses to the named ledger",
+        {
+          name: {
+            type: "string",
+            required: true,
+            description: "The name of the ledger"
+          },
+          data: {
+            type: "array",
+            required: true,
+            description: "The addresses to add"
+          }
+        },
+        ({ name, data }) => {
+          if (!config.ledgers[name]) {
+            config.ledgers[name] = [];
+          }
+
+          for (const rawAddress of data) {
+            const address = utils.getAddress(rawAddress as string);
+            if (!config.ledgers[name].includes(address)) {
+              config.ledgers[name].push(address);
+            }
+          }
+
+          saveConfig(config, password);
+        }
+      )
+      .command(
+        "config-remove",
+        "Remove addresses from the named ledger",
+        {
+          name: {
+            type: "string",
+            required: true,
+            description: "The name of the ledger"
+          },
+          data: {
+            type: "array",
+            description: "The addresses to remove",
+            default: []
+          }
+        },
+        ({ name, data }) => {
+          if (!config.ledgers[name]) {
+            return;
+          }
+
+          if (data.length === 0) {
+            delete config.ledgers[name];
+          } else {
+            const addresses = data.map((a) => utils.getAddress(a as string));
+            config.ledgers[name] = config.ledgers[name].filter((a) => !addresses.includes(a));
+          }
+
+          saveConfig(config, password);
+        }
+      )
+      .command(
+        "config-add-token",
+        "Add a token to the config",
+        {
+          symbol: {
+            type: "string",
+            required: true,
+            description: "The symbol of the token"
+          },
+          address: {
+            type: "string",
+            required: true,
+            description: "The address of the token"
+          },
+          decimals: {
+            type: "number",
+            description: "The decimals of the token",
+            default: 18
+          }
+        },
+        ({ symbol, address, decimals }) => {
+          config.tokens[symbol] = {
+            address: utils.getAddress(address),
+            decimals
+          };
+
+          saveConfig(config, password);
+        }
+      )
+      .command(
+        "config-remove-token",
+        "Remove a token to the config",
+        {
+          symbol: {
+            type: "string",
+            required: true,
+            description: "The symbol of the token"
+          }
+        },
+        ({ symbol }) => {
+          delete config.tokens[symbol];
+
+          saveConfig(config, password);
+        }
+      )
+      .command(
         "fetch",
         "Fetch the data",
-        () => {}, // tslint:disable-line: no-empty
+        () => {},
         async ({ verbose }) => {
           const totals: Totals = { ETH: new Decimal(0) };
-          const deviceTotals: DeviceTotals = {};
+          const ledgerTotals: LedgerTotals = {};
 
-          for (const device of addresses) {
-            const { description, addresses: deviceAddresses } = device;
-            console.log("Processing", description);
+          const { ledgers, tokens } = config;
 
-            deviceTotals[description] = { ETH: new Decimal(0) };
-            const deviceTotal = deviceTotals[description];
+          for (const [name, addresses] of Object.entries(ledgers)) {
+            console.log("Processing", name);
 
-            for (const address of deviceAddresses) {
+            ledgerTotals[name] = { ETH: new Decimal(0) };
+            const ledgerTotal = ledgerTotals[name];
+
+            for (const address of addresses) {
               const ethBalance = await getBalance(address);
               if (verbose && !ethBalance.isZero()) {
                 console.log(address, ethBalance, "ETH");
               }
 
               totals.ETH = totals.ETH.add(ethBalance);
-              deviceTotal.ETH = deviceTotal.ETH.add(ethBalance);
+              ledgerTotal.ETH = ledgerTotal.ETH.add(ethBalance);
 
-              for (const token of tokens) {
-                const { address: tokenAddress, symbol, decimals } = token;
+              for (const [symbol, token] of Object.entries(tokens)) {
+                const { address: tokenAddress, decimals } = token;
                 if (totals[symbol] === undefined) {
                   totals[symbol] = new Decimal(0);
                 }
-                if (deviceTotal[symbol] === undefined) {
-                  deviceTotal[symbol] = new Decimal(0);
+                if (ledgerTotal[symbol] === undefined) {
+                  ledgerTotal[symbol] = new Decimal(0);
                 }
 
                 const tokenBalance = new Decimal((await getTokenBalance(address, tokenAddress, decimals)).toString());
@@ -148,7 +262,7 @@ const main = async () => {
                 }
 
                 totals[symbol] = totals[symbol].add(tokenBalance);
-                deviceTotal[symbol] = deviceTotal[symbol].add(tokenBalance);
+                ledgerTotal[symbol] = ledgerTotal[symbol].add(tokenBalance);
               }
             }
 
@@ -164,8 +278,8 @@ const main = async () => {
           });
 
           console.log("");
-          console.log("Device Totals:");
-          Object.entries(deviceTotals).forEach(([description, devTotals]) => {
+          console.log("Ledger Totals:");
+          Object.entries(ledgerTotals).forEach(([description, devTotals]) => {
             console.log(description);
 
             Object.entries(devTotals).forEach(([symbol, value]) => {
@@ -182,9 +296,10 @@ const main = async () => {
       .help()
       .parse();
 
-    (web3.currentProvider as WebsocketProvider)?.disconnect(0, "OK");
+    process.exit(0);
   } catch (e) {
     console.error(e);
+    process.exit(1);
   }
 };
 
