@@ -86,7 +86,7 @@ const main = async () => {
       .parserConfiguration({ "parse-numbers": false })
       .option("url", {
         type: "string",
-        default: "ws://localhost:8545",
+        default: "http://localhost:8545",
         description: "Web3 provider's URL"
       })
       .option("verbose", {
@@ -271,6 +271,8 @@ const main = async () => {
 
           console.log("");
           console.log("Totals:");
+          console.log("");
+
           Object.entries(totals).forEach(([symbol, value]) => {
             if (!value.isZero()) {
               console.log(`${symbol}: ${Number(value.toFixed()).toLocaleString()}`);
@@ -279,6 +281,8 @@ const main = async () => {
 
           console.log("");
           console.log("Ledger Totals:");
+          console.log("");
+
           Object.entries(ledgerTotals).forEach(([description, devTotals]) => {
             console.log(description);
 
