@@ -30,5 +30,5 @@ bower_components
 Thumbs.db
 
 dist/
-addresses-eth.json
-tokens-eth.json
+data/addresses.data
+data/tokens.data
