@@ -1,5 +1,6 @@
 import Decimal from "decimal.js";
 import Web3 from "web3";
+import { WebsocketProvider } from "web3-core";
 import { AbiItem } from "web3-utils";
 import { config } from "dotenv";
 
@@ -9,10 +10,10 @@ import ERC20_API from "./erc20-abi.json";
 
 config();
 
-const { WEB3_PROVIDER = "http://localhost:8545" } = process.env;
+const { WEB3_PROVIDER = "ws://localhost:8545" } = process.env;
 
 const ETH = new Decimal(10 ** 18);
-const web3 = new Web3(new Web3.providers.HttpProvider(WEB3_PROVIDER));
+const web3 = new Web3(WEB3_PROVIDER);
 
 const getBalance = async (address: string): Promise<Decimal> => {
   const balance = await web3.eth.getBalance(address);
@@ -87,6 +88,8 @@ const main = async () => {
     });
 
     console.log("");
+
+    (web3.currentProvider as WebsocketProvider)?.disconnect(0, "OK");
   });
 };
 
