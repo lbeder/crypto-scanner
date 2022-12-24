@@ -1,0 +1,12 @@
+[
+    {
+        "symbol": "KIN",
+        "address": "0x818Fc6C2Ec5986bc6E2CBf00939d90556aB12ce5",
+        "decimals": 18
+    },
+    {
+        "symbol": "ORBS",
+        "address": "0xff56Cc6b1E6dEd347aA0B7676C85AB0B3D08B0FA",
+        "decimals": 18
+    }
+]
