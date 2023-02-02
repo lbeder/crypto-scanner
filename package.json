@@ -1,12 +1,13 @@
 {
   "name": "crypto-watcher",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "start": "ts-node src/index.ts",
     "cli": "yarn start --help",
+    "show": "yarn start show",
     "query": "yarn start query",
     "lint": "tslint --project tsconfig.json",
     "format": "prettier --check --write src/**/* --config .prettierrc",

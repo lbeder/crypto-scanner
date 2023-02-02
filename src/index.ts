@@ -190,6 +190,26 @@ const main = async () => {
         }
       )
       .command(
+        "remove-ledger",
+        "Remove an entire named ledger",
+        {
+          name: {
+            type: "string",
+            required: true,
+            description: "The name of the ledger"
+          }
+        },
+        ({ name }) => {
+          if (!config.ledgers[name]) {
+            return;
+          }
+
+          delete config.ledgers[name];
+
+          saveConfig(config, password);
+        }
+      )
+      .command(
         "add-token",
         "Add a token to the config",
         {
