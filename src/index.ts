@@ -269,7 +269,11 @@ const main = async () => {
             Logger.info();
           }
 
-          Logger.title("Total Amounts:");
+          if (price) {
+            Logger.title("Total Amounts and Values:");
+          } else {
+            Logger.title("Total Amounts:");
+          }
 
           let totalValue = new Decimal(0);
 
@@ -292,14 +296,36 @@ const main = async () => {
           if (price) {
             Logger.info(`  Total Value: $${toCSV(totalValue)}`);
             Logger.info();
+
+            Logger.title("Total Values %:");
+
+            Object.entries(totals.amounts).forEach(([symbol, amount]) => {
+              if (!amount.isZero()) {
+                const value = amount.mul(totals.prices[symbol]);
+
+                Logger.info(`  ${symbol}: ${value.mul(100).div(totalValue).toDecimalPlaces(4)}%`);
+              }
+            });
+
+            Logger.info();
           }
 
-          Logger.title("Ledger Totals:");
+          if (price) {
+            Logger.title("Ledger Total Amounts and Values:");
+          } else {
+            Logger.title("Ledger Total Amounts:");
+          }
 
-          Object.entries(ledgerTotals).forEach(([description, ledgerTotals]) => {
+          Object.entries(ledgerTotals).forEach(([name, ledgerTotals]) => {
             let ledgerTotalValue = new Decimal(0);
 
-            Logger.info(description);
+            Logger.subtitle(`${name}:`);
+
+            if (price) {
+              Logger.title("Total Amounts and Values:");
+            } else {
+              Logger.title("Total Amounts:");
+            }
 
             Object.entries(ledgerTotals.amounts).forEach(([symbol, amount]) => {
               if (!amount.isZero()) {
@@ -319,6 +345,18 @@ const main = async () => {
 
             if (price) {
               Logger.info(`  Value: $${toCSV(ledgerTotalValue)}`);
+              Logger.info();
+
+              Logger.title("Total Values %:");
+
+              Object.entries(totals.amounts).forEach(([symbol, amount]) => {
+                if (!amount.isZero()) {
+                  const value = amount.mul(totals.prices[symbol]);
+
+                  Logger.info(`  ${symbol}: ${value.mul(100).div(ledgerTotalValue).toDecimalPlaces(4)}%`);
+                }
+              });
+
               Logger.info();
             }
           });

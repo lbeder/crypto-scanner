@@ -54,4 +54,9 @@ export class Logger {
     Logger.description(title);
     Logger.description("‾".repeat(title.length));
   }
+
+  public static subtitle(title: string) {
+    Logger.notice(title);
+    Logger.notice("‾".repeat(title.length));
+  }
 }
