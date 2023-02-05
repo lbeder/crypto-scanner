@@ -349,7 +349,7 @@ const main = async () => {
 
               Logger.title("Total Values %:");
 
-              Object.entries(totals.amounts).forEach(([symbol, amount]) => {
+              Object.entries(ledgerTotals.amounts).forEach(([symbol, amount]) => {
                 if (!amount.isZero()) {
                   const value = amount.mul(totals.prices[symbol]);
 
