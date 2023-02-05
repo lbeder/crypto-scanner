@@ -15,7 +15,7 @@ interface Totals {
 }
 
 interface LedgerTotals {
-  [device: string]: {
+  [ledger: string]: {
     amounts: Record<string, Decimal>;
   };
 }
@@ -296,19 +296,19 @@ const main = async () => {
 
           Logger.title("Ledger Totals:");
 
-          Object.entries(ledgerTotals).forEach(([description, devTotals]) => {
-            let devTotalValue = new Decimal(0);
+          Object.entries(ledgerTotals).forEach(([description, ledgerTotals]) => {
+            let ledgerTotalValue = new Decimal(0);
 
             Logger.info(description);
 
-            Object.entries(devTotals.amounts).forEach(([symbol, amount]) => {
+            Object.entries(ledgerTotals.amounts).forEach(([symbol, amount]) => {
               if (!amount.isZero()) {
                 if (price) {
                   const value = amount.mul(totals.prices[symbol]);
 
                   Logger.info(`  ${symbol}: ${toCSV(amount)} ($${toCSV(value)})`);
 
-                  devTotalValue = devTotalValue.add(value);
+                  ledgerTotalValue = ledgerTotalValue.add(value);
                 } else {
                   Logger.info(`  ${symbol}: ${toCSV(amount)}`);
                 }
@@ -318,7 +318,7 @@ const main = async () => {
             Logger.info();
 
             if (price) {
-              Logger.info(`  Value: $${toCSV(devTotalValue)}`);
+              Logger.info(`  Value: $${toCSV(ledgerTotalValue)}`);
               Logger.info();
             }
           });
