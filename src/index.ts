@@ -290,7 +290,7 @@ const main = async () => {
           Logger.info();
 
           if (price) {
-            Logger.info(`Total Value: $${toCSV(totalValue)}`);
+            Logger.info(`  Total Value: $${toCSV(totalValue)}`);
             Logger.info();
           }
 
