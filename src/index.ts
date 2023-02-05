@@ -87,6 +87,8 @@ const main = async () => {
           Logger.title("Ledgers:");
           Logger.info(JSON.stringify(ledgers, null, 2));
 
+          Logger.info();
+
           Logger.title("Tokens:");
           Logger.info(JSON.stringify(tokens, null, 2));
 

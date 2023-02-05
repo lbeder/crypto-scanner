@@ -70,6 +70,8 @@ yarn show
 
 Configuration:
 ‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+Ledgers:
+‾‾‾‾‾‾‾‾
 {
   "Binance": [
     "0xBE0eB53F46cd790Cd13851d5EFf43D12404d33E8",
@@ -79,6 +81,9 @@ Configuration:
     "0xDA9dfA130Df4dE4673b89022EE50ff26f6EA73Cf"
   ]
 }
+
+Tokens:
+‾‾‾‾‾‾‾
 {}
 ```
 
@@ -135,6 +140,8 @@ yarn show
 
 Configuration:
 ‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+Ledgers:
+‾‾‾‾‾‾‾‾
 {
   "Binance": [
     "0xBE0eB53F46cd790Cd13851d5EFf43D12404d33E8",
@@ -144,6 +151,9 @@ Configuration:
     "0xDA9dfA130Df4dE4673b89022EE50ff26f6EA73Cf"
   ]
 }
+
+Tokens:
+‾‾‾‾‾‾‾
 {
   "USDT": {
     "address": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
