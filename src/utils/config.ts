@@ -55,6 +55,8 @@ export class Config {
     this.data.ledgers[name] = [];
 
     this.save();
+
+    return this.getLedger(name);
   }
 
   public removeLedger(name: string) {
@@ -68,10 +70,7 @@ export class Config {
   }
 
   public addAddresses(name: string, addresses: string[]) {
-    const ledger = this.data.ledgers[name];
-    if (!ledger) {
-      this.addLedger(name);
-    }
+    const ledger = this.data.ledgers[name] || this.addLedger(name);
 
     for (const address of addresses) {
       const checksummedAddress = getAddress(address);

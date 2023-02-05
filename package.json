@@ -1,6 +1,6 @@
 {
   "name": "crypto-watcher",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,12 +9,14 @@
     "cli": "yarn start --help",
     "show": "yarn start show",
     "query": "yarn start query",
+    "add-addresses": "yarn start add-addresses",
+    "add-token": "yarn start add-token",
     "lint": "yarn eslint src",
     "format": "prettier --check --write src/**/* --config .prettierrc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Leonid Beder",
+  "license": "MIT",
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.0.0",
     "@types/inquirer": "^9.0.3",

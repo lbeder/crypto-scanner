@@ -43,6 +43,7 @@ const main = async () => {
   try {
     await yargs(process.argv.slice(2))
       .parserConfiguration({ "parse-numbers": false })
+      .scriptName("yarn")
       .option("url", {
         type: "string",
         default: "http://localhost:8545",
@@ -51,6 +52,11 @@ const main = async () => {
       .option("verbose", {
         type: "boolean",
         description: "Verbose mode"
+      })
+      .option("price", {
+        type: "boolean",
+        description: "Query prices using Coingecko",
+        default: false
       })
       .middleware(({ url }) => {
         provider = new StaticJsonRpcProvider(url);
@@ -64,6 +70,8 @@ const main = async () => {
           }
         ]));
 
+        Logger.info();
+
         config = new Config(password);
       })
       .command(
@@ -71,13 +79,19 @@ const main = async () => {
         "Show the configuration",
         () => {},
         () => {
-          Logger.info(config);
+          const ledgers = config.getLedgers();
+          const tokens = config.getTokens();
+
+          Logger.title("Configuration:");
+
+          Logger.info(JSON.stringify(ledgers, null, 2));
+          Logger.info(JSON.stringify(tokens, null, 2));
 
           Logger.info();
         }
       )
       .command(
-        "add-address",
+        "add-addresses",
         "Add an address or a list of space-separated addresses to a named ledger",
         {
           name: {
@@ -96,7 +110,7 @@ const main = async () => {
         }
       )
       .command(
-        "remove-address",
+        "remove-addresses",
         "Remove an address or a list of space-separated addresses from a named ledger",
         {
           name: {
@@ -174,7 +188,7 @@ const main = async () => {
         "query",
         "Query all addresses and tokens",
         () => {},
-        async ({ verbose }) => {
+        async ({ verbose, price }) => {
           const totals: Totals = {
             amounts: {
               [ETH]: new Decimal(0)
@@ -183,15 +197,18 @@ const main = async () => {
               [ETH]: new Decimal(0)
             }
           };
+
           const ledgerTotals: LedgerTotals = {};
 
-          totals.prices[ETH] = await coinGecko.ethPrice();
+          if (price) {
+            totals.prices[ETH] = await coinGecko.ethPrice();
+          }
 
           const ledgers = config.getLedgers();
           const tokens = config.getTokens();
 
           for (const [name, addresses] of Object.entries(ledgers)) {
-            Logger.info(`Processing "${name}" ledger...`);
+            Logger.info(`Processing the "${name}" ledger...`);
 
             ledgerTotals[name] = { amounts: { [ETH]: new Decimal(0) } };
             const ledgerTotal = ledgerTotals[name];
@@ -218,7 +235,7 @@ const main = async () => {
 
                 const tokenBalance = new Decimal((await getTokenBalance(address, tokenAddress, decimals)).toString());
                 if (!tokenBalance.isZero()) {
-                  if (!totals.prices[symbol]) {
+                  if (price && !totals.prices[symbol]) {
                     totals.prices[symbol] = await coinGecko.tokenPrice(tokenAddress);
                   }
 
@@ -231,17 +248,21 @@ const main = async () => {
                 ledgerTotal.amounts[symbol] = ledgerTotal.amounts[symbol].add(tokenBalance);
               }
             }
+          }
+
+          Logger.info();
+
+          if (price) {
+            Logger.title("Prices:");
+
+            Object.entries(totals.prices).forEach(([symbol, price]) => {
+              if (!price.isZero()) {
+                Logger.info(`  ${symbol}: $${toCSV(price)}`);
+              }
+            });
 
             Logger.info();
           }
-
-          Logger.title("Prices:");
-
-          Object.entries(totals.prices).forEach(([symbol, price]) => {
-            if (!price.isZero()) {
-              Logger.info(`  ${symbol}: $${toCSV(price)}`);
-            }
-          });
 
           Logger.title("Total Amounts:");
 
@@ -249,16 +270,24 @@ const main = async () => {
 
           Object.entries(totals.amounts).forEach(([symbol, amount]) => {
             if (!amount.isZero()) {
-              const value = amount.mul(totals.prices[symbol]);
+              if (price) {
+                const value = amount.mul(totals.prices[symbol]);
 
-              Logger.info(`  ${symbol}: ${toCSV(amount)} ($${toCSV(value)})`);
+                Logger.info(`  ${symbol}: ${toCSV(amount)} ($${toCSV(value)})`);
 
-              totalValue = totalValue.add(value);
+                totalValue = totalValue.add(value);
+              } else {
+                Logger.info(`  ${symbol}: ${toCSV(amount)}`);
+              }
             }
           });
 
           Logger.info();
-          Logger.info(`Total Value: $${toCSV(totalValue)}`);
+
+          if (price) {
+            Logger.info(`Total Value: $${toCSV(totalValue)}`);
+            Logger.info();
+          }
 
           Logger.title("Ledger Totals:");
 
@@ -269,18 +298,24 @@ const main = async () => {
 
             Object.entries(devTotals.amounts).forEach(([symbol, amount]) => {
               if (!amount.isZero()) {
-                const value = amount.mul(totals.prices[symbol]);
+                if (price) {
+                  const value = amount.mul(totals.prices[symbol]);
 
-                Logger.info(`  ${symbol}: ${toCSV(amount)} ($${toCSV(value)})`);
+                  Logger.info(`  ${symbol}: ${toCSV(amount)} ($${toCSV(value)})`);
 
-                devTotalValue = devTotalValue.add(value);
+                  devTotalValue = devTotalValue.add(value);
+                } else {
+                  Logger.info(`  ${symbol}: ${toCSV(amount)}`);
+                }
               }
             });
 
             Logger.info();
-            Logger.info(`  Value: $${toCSV(devTotalValue)}`);
 
-            Logger.info();
+            if (price) {
+              Logger.info(`  Value: $${toCSV(devTotalValue)}`);
+              Logger.info();
+            }
           });
         }
       )
