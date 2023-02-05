@@ -12,6 +12,7 @@ export class CoinGecko {
   }
 
   public async ethPrice() {
+    // eslint-disable-next-line camelcase
     const price = await this.client.simplePrice({ ids: "ethereum", vs_currencies: "USD" });
 
     return new Decimal(price.ethereum.usd);
@@ -20,7 +21,9 @@ export class CoinGecko {
   public async tokenPrice(address: string) {
     const price = await this.client.simpleTokenPrice({
       id: "ethereum",
+      // eslint-disable-next-line camelcase
       contract_addresses: address,
+      // eslint-disable-next-line camelcase
       vs_currencies: "USD"
     });
 

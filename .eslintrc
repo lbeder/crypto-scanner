@@ -1,0 +1,51 @@
+{
+  "extends": ["standard", "prettier", "plugin:@typescript-eslint/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "env": {
+    "mocha": true
+  },
+  "rules": {
+    "camelcase": [
+      "error",
+      {
+        "ignoreImports": true
+      }
+    ],
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "semi": ["error", "always"],
+    "no-plusplus": "off",
+    "no-await-in-loop": "off",
+    "no-restricted-syntax": "off",
+    "no-continue": "off",
+    "no-console": "error",
+    "arrow-body-style": "off",
+    "no-loop-func": "off",
+    "no-unused-expressions": "off",
+    "require-await": "error",
+    "no-return-await": "error",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_"
+      }
+    ]
+  },
+  "globals": {
+    "assert": true,
+    "expect": true,
+    "artifacts": true,
+    "contract": true,
+    "web3": true
+  }
+}

@@ -1,29 +1,13 @@
-import { CoinGecko } from "./coingecko";
 import ERC20_API from "./erc20-abi.json";
+import { CoinGecko } from "./utils/coingecko";
+import { Config } from "./utils/config";
+import { ETH, ETH_WEI } from "./utils/constants";
+import { Logger } from "./utils/logger";
 import { StaticJsonRpcProvider } from "@ethersproject/providers";
-import crypto from "crypto";
 import Decimal from "decimal.js";
-import { Contract, utils } from "ethers";
-import fs from "fs";
+import { Contract } from "ethers";
 import inquirer from "inquirer";
-import path from "path";
 import yargs from "yargs";
-
-const ETH_WEI = new Decimal(10 ** 18);
-const ETH = "ETH";
-
-const DATA_DIR = path.resolve(__dirname, "../data");
-const CONFIG_PATH = path.join(DATA_DIR, "config.data");
-
-interface Token {
-  address: string;
-  decimals: number;
-}
-
-interface Config {
-  ledgers: Record<string, string[]>;
-  tokens: Record<string, Token>;
-}
 
 interface Totals {
   amounts: Record<string, Decimal>;
@@ -36,44 +20,7 @@ interface LedgerTotals {
   };
 }
 
-const decrypt = (data: string, password: string) => {
-  const key = crypto.scryptSync(password, "salt", 32);
-  const cipher = crypto.createDecipheriv("aes-256-cbc", key, Buffer.alloc(16, 0));
-  let decrypted = cipher.update(data, "hex", "utf8");
-  decrypted += cipher.final("utf8");
-  return decrypted;
-};
-
-const encrypt = (data: any, password: string, format: boolean = true) => {
-  const key = crypto.scryptSync(password, "salt", 32);
-  const cipher = crypto.createCipheriv("aes-256-cbc", key, Buffer.alloc(16, 0));
-  return cipher.update(format ? JSON.stringify(data, null, 2) : data, "utf8", "hex") + cipher.final("hex");
-};
-
-const loadConfig = (password: string): Config => {
-  if (!fs.existsSync(CONFIG_PATH)) {
-    return {
-      ledgers: {},
-      tokens: {}
-    };
-  }
-
-  return JSON.parse(decrypt(fs.readFileSync(CONFIG_PATH, "utf8"), password)) as Config;
-};
-
-const saveConfig = (config: Config, password: string) => {
-  const encryptedConfig = encrypt(config, password);
-
-  fs.writeFileSync(CONFIG_PATH, encryptedConfig, "utf8");
-};
-
 const toCSV = (value: Decimal) => Number(value.toFixed()).toLocaleString();
-
-const title = (desc: string) => {
-  console.log();
-  console.log(desc);
-  console.log("‾".repeat(desc.length));
-};
 
 const main = async () => {
   let provider: StaticJsonRpcProvider;
@@ -117,16 +64,16 @@ const main = async () => {
           }
         ]));
 
-        config = loadConfig(password);
+        config = new Config(password);
       })
       .command(
         "show",
-        "Shows the configuration",
+        "Show the configuration",
         () => {},
-        async () => {
-          console.log(config);
+        () => {
+          Logger.info(config);
 
-          console.log();
+          Logger.info();
         }
       )
       .command(
@@ -145,18 +92,7 @@ const main = async () => {
           }
         },
         ({ name, data }) => {
-          if (!config.ledgers[name]) {
-            config.ledgers[name] = [];
-          }
-
-          for (const rawAddress of data) {
-            const address = utils.getAddress(rawAddress as string);
-            if (!config.ledgers[name].includes(address)) {
-              config.ledgers[name].push(address);
-            }
-          }
-
-          saveConfig(config, password);
+          config.addAddresses(name, data as string[]);
         }
       )
       .command(
@@ -175,18 +111,11 @@ const main = async () => {
           }
         },
         ({ name, data }) => {
-          if (!config.ledgers[name]) {
-            return;
-          }
-
           if (data.length === 0) {
-            delete config.ledgers[name];
+            config.removeLedger(name);
           } else {
-            const addresses = data.map((a) => utils.getAddress(a as string));
-            config.ledgers[name] = config.ledgers[name].filter((a) => !addresses.includes(a));
+            config.removeAddresses(name, data as string[]);
           }
-
-          saveConfig(config, password);
         }
       )
       .command(
@@ -200,13 +129,7 @@ const main = async () => {
           }
         },
         ({ name }) => {
-          if (!config.ledgers[name]) {
-            return;
-          }
-
-          delete config.ledgers[name];
-
-          saveConfig(config, password);
+          config.removeLedger(name);
         }
       )
       .command(
@@ -230,12 +153,7 @@ const main = async () => {
           }
         },
         ({ symbol, address, decimals }) => {
-          config.tokens[symbol] = {
-            address: utils.getAddress(address),
-            decimals
-          };
-
-          saveConfig(config, password);
+          config.addToken(symbol, address, decimals);
         }
       )
       .command(
@@ -249,14 +167,12 @@ const main = async () => {
           }
         },
         ({ symbol }) => {
-          delete config.tokens[symbol];
-
-          saveConfig(config, password);
+          config.removeToken(symbol);
         }
       )
       .command(
         "query",
-        "Queries all addresses and tokens",
+        "Query all addresses and tokens",
         () => {},
         async ({ verbose }) => {
           const totals: Totals = {
@@ -271,10 +187,11 @@ const main = async () => {
 
           totals.prices[ETH] = await coinGecko.ethPrice();
 
-          const { ledgers, tokens } = config;
+          const ledgers = config.getLedgers();
+          const tokens = config.getTokens();
 
           for (const [name, addresses] of Object.entries(ledgers)) {
-            console.log(`Processing "${name}" ledger...`);
+            Logger.info(`Processing "${name}" ledger...`);
 
             ledgerTotals[name] = { amounts: { [ETH]: new Decimal(0) } };
             const ledgerTotal = ledgerTotals[name];
@@ -282,7 +199,7 @@ const main = async () => {
             for (const address of addresses) {
               const ethBalance = await getBalance(address);
               if (verbose && !ethBalance.isZero()) {
-                console.log(address, ethBalance, ETH);
+                Logger.info(address, ethBalance, ETH);
               }
 
               totals.amounts[ETH] = totals.amounts[ETH].add(ethBalance);
@@ -306,7 +223,7 @@ const main = async () => {
                   }
 
                   if (verbose) {
-                    console.log(address, tokenBalance, symbol);
+                    Logger.info(address, tokenBalance, symbol);
                   }
                 }
 
@@ -315,18 +232,18 @@ const main = async () => {
               }
             }
 
-            console.log();
+            Logger.info();
           }
 
-          title("Prices:");
+          Logger.title("Prices:");
 
           Object.entries(totals.prices).forEach(([symbol, price]) => {
             if (!price.isZero()) {
-              console.log(`  ${symbol}: $${toCSV(price)}`);
+              Logger.info(`  ${symbol}: $${toCSV(price)}`);
             }
           });
 
-          title("Total Amounts:");
+          Logger.title("Total Amounts:");
 
           let totalValue = new Decimal(0);
 
@@ -334,36 +251,36 @@ const main = async () => {
             if (!amount.isZero()) {
               const value = amount.mul(totals.prices[symbol]);
 
-              console.log(`  ${symbol}: ${toCSV(amount)} ($${toCSV(value)})`);
+              Logger.info(`  ${symbol}: ${toCSV(amount)} ($${toCSV(value)})`);
 
               totalValue = totalValue.add(value);
             }
           });
 
-          console.log();
-          console.log(`Total Value: $${toCSV(totalValue)}`);
+          Logger.info();
+          Logger.info(`Total Value: $${toCSV(totalValue)}`);
 
-          title("Ledger Totals:");
+          Logger.title("Ledger Totals:");
 
           Object.entries(ledgerTotals).forEach(([description, devTotals]) => {
             let devTotalValue = new Decimal(0);
 
-            console.log(description);
+            Logger.info(description);
 
             Object.entries(devTotals.amounts).forEach(([symbol, amount]) => {
               if (!amount.isZero()) {
                 const value = amount.mul(totals.prices[symbol]);
 
-                console.log(`  ${symbol}: ${toCSV(amount)} ($${toCSV(value)})`);
+                Logger.info(`  ${symbol}: ${toCSV(amount)} ($${toCSV(value)})`);
 
                 devTotalValue = devTotalValue.add(value);
               }
             });
 
-            console.log();
-            console.log(`  Value: $${toCSV(devTotalValue)}`);
+            Logger.info();
+            Logger.info(`  Value: $${toCSV(devTotalValue)}`);
 
-            console.log();
+            Logger.info();
           });
         }
       )
@@ -373,7 +290,12 @@ const main = async () => {
 
     process.exit(0);
   } catch (e) {
-    console.error(e);
+    if (e instanceof Error) {
+      Logger.fatal(e.stack);
+    } else {
+      Logger.fatal(e);
+    }
+
     process.exit(1);
   }
 };
