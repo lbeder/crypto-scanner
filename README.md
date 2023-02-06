@@ -21,6 +21,7 @@ yarn <command>
 
 Commands:
   yarn show              Show the configuration
+  yarn change-password   Change the encryption password
   yarn add-addresses     Add an address or a list of space-separated addresses
                          to a named ledger
   yarn remove-addresses  Remove an address or a list of space-separated

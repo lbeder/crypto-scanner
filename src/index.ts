@@ -70,6 +70,22 @@ const main = async () => {
           }
         ]));
 
+        if (!Config.exists()) {
+          const { password2 } = await inquirer.prompt([
+            {
+              type: "password",
+              name: "password2",
+              message: "Confirm your password for the first time"
+            }
+          ]);
+
+          if (password !== password2) {
+            Logger.error("Passwords don't match or empty. Please try again");
+
+            return;
+          }
+        }
+
         Logger.info();
 
         config = new Config(password);
@@ -93,6 +109,39 @@ const main = async () => {
           Logger.info(JSON.stringify(tokens, null, 2));
 
           Logger.info();
+        }
+      )
+      .command(
+        "change-password",
+        "Change the encryption password",
+        () => {},
+        async () => {
+          const { newPassword } = await inquirer.prompt([
+            {
+              type: "password",
+              name: "newPassword",
+              message: "Enter new password"
+            }
+          ]);
+
+          const { newPassword2 } = await inquirer.prompt([
+            {
+              type: "password",
+              name: "newPassword2",
+              message: "Confirm your new password"
+            }
+          ]);
+
+          if (newPassword !== newPassword2) {
+            Logger.error("Passwords don't match or empty. Please try again");
+
+            return;
+          }
+
+          config.changePassword(newPassword2);
+
+          Logger.info();
+          Logger.info("Password has been successfully changed");
         }
       )
       .command(

@@ -20,7 +20,7 @@ interface Data {
 
 export class Config {
   private data: Data;
-  private readonly password: string;
+  private password: string;
 
   constructor(password: string) {
     this.password = password;
@@ -29,7 +29,7 @@ export class Config {
       fs.mkdirSync(DATA_DIR, { recursive: true });
     }
 
-    if (!fs.existsSync(CONFIG_PATH)) {
+    if (!Config.exists()) {
       this.data = {
         ledgers: {},
         tokens: {}
@@ -38,13 +38,21 @@ export class Config {
       return;
     }
 
-    this.data = JSON.parse(Config.decrypt(fs.readFileSync(CONFIG_PATH, "utf8"), password)) as Data;
+    try {
+      this.data = JSON.parse(Config.decrypt(fs.readFileSync(CONFIG_PATH, "utf8"), password)) as Data;
+    } catch {
+      throw new Error("Invalid password");
+    }
   }
 
-  public save() {
-    const encryptedConfig = Config.encrypt(this.data, this.password);
+  public static exists() {
+    return fs.existsSync(CONFIG_PATH);
+  }
 
-    fs.writeFileSync(CONFIG_PATH, encryptedConfig, "utf8");
+  public changePassword(newPassword: string) {
+    this.password = newPassword;
+
+    this.save();
   }
 
   public getLedgers() {
@@ -132,5 +140,11 @@ export class Config {
     const cipher = crypto.createCipheriv("aes-256-cbc", key, Buffer.alloc(16, 0));
 
     return cipher.update(format ? JSON.stringify(data, null, 2) : data, "utf8", "hex") + cipher.final("hex");
+  }
+
+  private save() {
+    const encryptedConfig = Config.encrypt(this.data, this.password);
+
+    fs.writeFileSync(CONFIG_PATH, encryptedConfig, "utf8");
   }
 }

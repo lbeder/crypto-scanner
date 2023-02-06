@@ -1,6 +1,6 @@
 {
   "name": "crypto-watcher",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,6 +9,7 @@
     "cli": "yarn start --help",
     "show": "yarn start show",
     "query": "yarn start query",
+    "change-password": "yarn start change-password",
     "add-addresses": "yarn start add-addresses",
     "add-token": "yarn start add-token",
     "lint": "yarn eslint src",
