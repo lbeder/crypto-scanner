@@ -3,9 +3,8 @@ import { CoinGecko } from "./utils/coingecko";
 import { Config } from "./utils/config";
 import { ETH, ETH_WEI } from "./utils/constants";
 import { Logger } from "./utils/logger";
-import { StaticJsonRpcProvider } from "@ethersproject/providers";
 import Decimal from "decimal.js";
-import { Contract } from "ethers";
+import { Contract, JsonRpcProvider } from "ethers";
 import inquirer from "inquirer";
 import yargs from "yargs";
 
@@ -23,7 +22,7 @@ interface LedgerTotals {
 const toCSV = (value: Decimal) => Number(value.toFixed()).toLocaleString();
 
 const main = async () => {
-  let provider: StaticJsonRpcProvider;
+  let provider: JsonRpcProvider;
   const coinGecko = new CoinGecko();
   let password: string;
   let config: Config;
@@ -35,7 +34,7 @@ const main = async () => {
 
   const getTokenBalance = async (address: string, token: string, decimals: number): Promise<Decimal> => {
     const tokenContract = new Contract(token, ERC20_API, provider);
-    const balance = await tokenContract.balanceOf(address);
+    const balance = await tokenContract.balanceOf.staticCall(address);
 
     return new Decimal(balance.toString()).div(10 ** decimals);
   };
@@ -59,7 +58,7 @@ const main = async () => {
         default: false
       })
       .middleware(({ url }) => {
-        provider = new StaticJsonRpcProvider(url);
+        provider = new JsonRpcProvider(url);
       })
       .middleware(async () => {
         ({ password } = await inquirer.prompt([

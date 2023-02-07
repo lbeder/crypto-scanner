@@ -1,9 +1,7 @@
 import crypto from "crypto";
-import { utils } from "ethers";
+import { getAddress } from "ethers";
 import fs from "fs";
 import path from "path";
-
-const { getAddress } = utils;
 
 const DATA_DIR = path.resolve(__dirname, "../../data");
 const CONFIG_PATH = path.join(DATA_DIR, "config.data");
@@ -101,7 +99,7 @@ export class Config {
       return;
     }
 
-    const checksummedAddress = addresses.map((a) => utils.getAddress(a as string));
+    const checksummedAddress = addresses.map((a) => getAddress(a as string));
     this.data.ledgers[name] = ledger.filter((a) => !checksummedAddress.includes(a));
 
     this.save();
