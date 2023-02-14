@@ -1,10 +1,11 @@
-import ERC20_API from "./erc20-abi.json";
+import { Balance, Token } from "./modules";
 import { CoinGecko } from "./utils/coingecko";
 import { Config } from "./utils/config";
-import { ETH, ETH_WEI } from "./utils/constants";
+import { ETH } from "./utils/constants";
+import "./utils/csv";
 import { Logger } from "./utils/logger";
 import Decimal from "decimal.js";
-import { Contract, JsonRpcProvider } from "ethers";
+import { JsonRpcProvider } from "ethers";
 import inquirer from "inquirer";
 import yargs from "yargs";
 
@@ -19,25 +20,14 @@ interface LedgerTotals {
   };
 }
 
-const toCSV = (value: Decimal) => Number(value.toFixed()).toLocaleString();
-
 const main = async () => {
   let provider: JsonRpcProvider;
   const coinGecko = new CoinGecko();
   let password: string;
   let config: Config;
 
-  const getBalance = async (address: string): Promise<Decimal> => {
-    const balance = await provider.getBalance(address);
-    return new Decimal(balance.toString()).div(ETH_WEI);
-  };
-
-  const getTokenBalance = async (address: string, token: string, decimals: number): Promise<Decimal> => {
-    const tokenContract = new Contract(token, ERC20_API, provider);
-    const balance = await tokenContract.balanceOf.staticCall(address);
-
-    return new Decimal(balance.toString()).div(10 ** decimals);
-  };
+  let balanceModule: Balance;
+  let tokenModule: Token;
 
   try {
     await yargs(process.argv.slice(2))
@@ -59,6 +49,9 @@ const main = async () => {
       })
       .middleware(({ url }) => {
         provider = new JsonRpcProvider(url);
+
+        balanceModule = new Balance(provider);
+        tokenModule = new Token(provider);
       })
       .middleware(async () => {
         ({ password } = await inquirer.prompt([
@@ -267,7 +260,7 @@ const main = async () => {
             const ledgerTotal = ledgerTotals[name];
 
             for (const address of addresses) {
-              const ethBalance = await getBalance(address);
+              const ethBalance = await balanceModule.getBalance(address);
               if (verbose && !ethBalance.isZero()) {
                 Logger.info(address, ethBalance, ETH);
               }
@@ -286,7 +279,7 @@ const main = async () => {
                   ledgerTotal.amounts[symbol] = new Decimal(0);
                 }
 
-                const tokenBalance = new Decimal((await getTokenBalance(address, tokenAddress, decimals)).toString());
+                const tokenBalance = await tokenModule.getTokenBalance(address, tokenAddress, decimals);
                 if (!tokenBalance.isZero()) {
                   if (price && !totals.prices[symbol]) {
                     totals.prices[symbol] = await coinGecko.tokenPrice(tokenAddress);
@@ -310,7 +303,7 @@ const main = async () => {
 
             Object.entries(totals.prices).forEach(([symbol, price]) => {
               if (!price.isZero()) {
-                Logger.info(`  ${symbol}: $${toCSV(price)}`);
+                Logger.info(`  ${symbol}: $${price.toCSV()}`);
               }
             });
 
@@ -330,11 +323,11 @@ const main = async () => {
               if (price) {
                 const value = amount.mul(totals.prices[symbol]);
 
-                Logger.info(`  ${symbol}: ${toCSV(amount)} ($${toCSV(value)})`);
+                Logger.info(`  ${symbol}: ${amount.toCSV()} ($${value.toCSV()})`);
 
                 totalValue = totalValue.add(value);
               } else {
-                Logger.info(`  ${symbol}: ${toCSV(amount)}`);
+                Logger.info(`  ${symbol}: ${amount.toCSV()}`);
               }
             }
           });
@@ -342,7 +335,7 @@ const main = async () => {
           Logger.info();
 
           if (price) {
-            Logger.info(`  Total Value: $${toCSV(totalValue)}`);
+            Logger.info(`  Total Value: $${totalValue.toCSV()}`);
             Logger.info();
 
             Logger.title("Total Values %:");
@@ -380,11 +373,11 @@ const main = async () => {
                 if (price) {
                   const value = amount.mul(totals.prices[symbol]);
 
-                  Logger.info(`  ${symbol}: ${toCSV(amount)} ($${toCSV(value)})`);
+                  Logger.info(`  ${symbol}: ${amount.toCSV()} ($${value.toCSV()})`);
 
                   ledgerTotalValue = ledgerTotalValue.add(value);
                 } else {
-                  Logger.info(`  ${symbol}: ${toCSV(amount)}`);
+                  Logger.info(`  ${symbol}: ${amount.toCSV()}`);
                 }
               }
             });
@@ -392,7 +385,7 @@ const main = async () => {
             Logger.info();
 
             if (price) {
-              Logger.info(`  Value: $${toCSV(ledgerTotalValue)}`);
+              Logger.info(`  Value: $${ledgerTotalValue.toCSV()}`);
               Logger.info();
 
               Logger.title("Total Values %:");
