@@ -1,7 +1,9 @@
 {
   "name": "crypto-watcher",
   "version": "3.2.0",
-  "description": "",
+  "description": "Crypto Watcher is a privacy-oriented tool used to track Ether and token balances across multiple addresses and groups (ledgers)",
+  "author": "Leonid Beder",
+  "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -14,10 +16,10 @@
     "add-token": "yarn start add-token",
     "lint": "yarn eslint src",
     "format": "prettier --check --write src/**/* --config .prettierrc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepare": "yarn snyk-protect",
+    "snyk-protect": "snyk-protect",
+    "snyk-test": "snyk test"
   },
-  "author": "Leonid Beder",
-  "license": "MIT",
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.0.0",
     "@types/inquirer": "^9.0.3",
@@ -34,6 +36,7 @@
     "typescript": "^4.9.5"
   },
   "dependencies": {
+    "@snyk/protect": "^1.1103.0",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
     "@typescript-eslint/parser": "^5.52.0",
     "coingecko-api-v3": "^0.0.20",

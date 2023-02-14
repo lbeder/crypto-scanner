@@ -385,6 +385,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@snyk/protect@^1.1103.0":
+  version "1.1103.0"
+  resolved "https://registry.yarnpkg.com/@snyk/protect/-/protect-1.1103.0.tgz#0e0bb01a83e7f229b1253bd0c2f374f848a290c3"
+  integrity sha512-sBTX/HLAAuRhBXIKTTD67p1YYU01cf+Ht0VLzkHRiMVgaK+bHqfQvKcCYToJo9Z2s/hjouEwCRZk0/P4eClmSg==
+
 "@trivago/prettier-plugin-sort-imports@^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@trivago/prettier-plugin-sort-imports/-/prettier-plugin-sort-imports-4.0.0.tgz#e0936d87fb8d65865c857e6a6dba644103db1b30"
