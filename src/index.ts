@@ -1,5 +1,4 @@
-import { Balance, Token } from "./modules";
-import { CoinGecko } from "./utils/coingecko";
+import { Balance, Token, Price } from "./modules";
 import { Config } from "./utils/config";
 import { ETH } from "./utils/constants";
 import "./utils/csv";
@@ -22,12 +21,12 @@ interface LedgerTotals {
 
 const main = async () => {
   let provider: JsonRpcProvider;
-  const coinGecko = new CoinGecko();
   let password: string;
   let config: Config;
 
   let balanceModule: Balance;
   let tokenModule: Token;
+  let priceModule: Price;
 
   try {
     await yargs(process.argv.slice(2))
@@ -47,11 +46,15 @@ const main = async () => {
         description: "Query prices using Coingecko",
         default: false
       })
-      .middleware(({ url }) => {
+      .middleware(({ url, price }) => {
         provider = new JsonRpcProvider(url);
 
         balanceModule = new Balance(provider);
         tokenModule = new Token(provider);
+
+        if (price) {
+          priceModule = new Price(provider);
+        }
       })
       .middleware(async () => {
         ({ password } = await inquirer.prompt([
@@ -247,7 +250,7 @@ const main = async () => {
           const ledgerTotals: LedgerTotals = {};
 
           if (price) {
-            totals.prices[ETH] = await coinGecko.ethPrice();
+            totals.prices[ETH] = await priceModule.getETHPrice();
           }
 
           const ledgers = config.getLedgers();
@@ -282,7 +285,7 @@ const main = async () => {
                 const tokenBalance = await tokenModule.getTokenBalance(address, tokenAddress, decimals);
                 if (!tokenBalance.isZero()) {
                   if (price && !totals.prices[symbol]) {
-                    totals.prices[symbol] = await coinGecko.tokenPrice(tokenAddress);
+                    totals.prices[symbol] = await priceModule.getTokenPrice(tokenAddress);
                   }
 
                   if (verbose) {
