@@ -21,6 +21,8 @@
     "snyk-test": "snyk test"
   },
   "devDependencies": {
+    "@lavamoat/allow-scripts": "^2.3.0",
+    "@lavamoat/preinstall-always-fail": "^1.0.0",
     "@trivago/prettier-plugin-sort-imports": "^4.0.0",
     "@types/inquirer": "^9.0.3",
     "@types/node": "^18.13.0",
@@ -53,5 +55,10 @@
     "inquirer": "^8.1.0",
     "ts-node": "^10.9.1",
     "yargs": "^17.6.2"
+  },
+  "lavamoat": {
+    "allowScripts": {
+      "@lavamoat/preinstall-always-fail": false
+    }
   }
 }
