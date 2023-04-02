@@ -61,12 +61,9 @@ export class Watcher {
     if (data.length === 0) {
       this.config.removeLedger(name);
 
-      Logger.info();
       Logger.info(`Removed ${name}`);
     } else {
       this.config.removeAddresses(name, data as string[]);
-
-      Logger.info();
 
       for (const address of data) {
         Logger.info(`Removed ${address} to ${name}`);
@@ -77,14 +74,12 @@ export class Watcher {
   public removeLedger(name: string) {
     this.config.removeLedger(name);
 
-    Logger.info();
     Logger.info(`Removed ${name}`);
   }
 
   public addToken(symbol: string, address: string, decimals: number) {
     this.config.addToken(symbol, address, decimals);
 
-    Logger.info();
     Logger.info(`Added ${symbol} at ${address} with ${decimals} decimals`);
   }
 
@@ -233,13 +228,13 @@ export class Watcher {
       }
     }
 
+    const totalsTableHead = [chalk.cyanBright("Symbol"), chalk.cyanBright("Amount")];
+    if (this.price) {
+      totalsTableHead.push(chalk.cyanBright("Value"), chalk.cyanBright("% of Total Value"));
+    }
+
     const totalsTable = new Table({
-      head: [
-        chalk.cyanBright("Symbol"),
-        chalk.cyanBright("Amount"),
-        chalk.cyanBright("Value"),
-        chalk.cyanBright("% of Total Value")
-      ]
+      head: totalsTableHead
     });
 
     for (const [symbol, amount] of Object.entries(totalAmounts)) {
@@ -274,13 +269,13 @@ export class Watcher {
   private printAddresses(addressAmounts: NamedAmounts, prices: Prices) {
     Logger.title("Address Amounts");
 
+    const addressesTableHead = [chalk.cyanBright("Address"), chalk.cyanBright("Symbol")];
+    if (this.price) {
+      addressesTableHead.push(chalk.cyanBright("Value"));
+    }
+
     const addressesTable = new Table({
-      head: [
-        chalk.cyanBright("Address"),
-        chalk.cyanBright("Symbol"),
-        chalk.cyanBright("Amount"),
-        chalk.cyanBright("Value")
-      ]
+      head: addressesTableHead
     });
 
     for (const [address, amounts] of Object.entries(addressAmounts)) {
@@ -321,13 +316,13 @@ export class Watcher {
         }
       }
 
+      const ledgerAmountsTableHead = [chalk.cyanBright("Symbol"), chalk.cyanBright("Amount")];
+      if (this.price) {
+        ledgerAmountsTableHead.push(chalk.cyanBright("Value"), chalk.cyanBright("% of Ledger Total Value"));
+      }
+
       const ledgerAmountsTable = new Table({
-        head: [
-          chalk.cyanBright("Symbol"),
-          chalk.cyanBright("Amount"),
-          chalk.cyanBright("Value"),
-          chalk.cyanBright("% of Ledger Total Value")
-        ]
+        head: ledgerAmountsTableHead
       });
 
       for (const [symbol, amount] of Object.entries(amounts)) {

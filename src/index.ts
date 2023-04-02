@@ -13,17 +13,19 @@ const main = async () => {
       .parserConfiguration({ "parse-numbers": false })
       .scriptName("yarn")
       .option("url", {
+        description: "Web3 provider's URL",
         type: "string",
-        default: "http://localhost:8545",
-        description: "Web3 provider's URL"
+        default: "http://localhost:8545"
       })
       .option("verbose", {
+        description: "Verbose mode",
         type: "boolean",
-        description: "Verbose mode"
+        alias: "v"
       })
       .option("price", {
-        type: "boolean",
         description: "Query prices using Coingecko",
+        type: "boolean",
+        alias: "p",
         default: false
       })
       .middleware(async ({ url, price }) => {
