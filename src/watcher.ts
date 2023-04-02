@@ -6,6 +6,7 @@ import chalk from "chalk";
 import Table from "cli-table";
 import Decimal from "decimal.js";
 import { JsonRpcProvider } from "ethers";
+import { set } from "lodash";
 
 interface WatcherOptions {
   providerUrl: string;
@@ -15,12 +16,7 @@ interface WatcherOptions {
 
 type Amounts = Record<string, Decimal>;
 type Prices = Record<string, Decimal>;
-
-interface LedgerAmounts {
-  [ledger: string]: {
-    amounts: Amounts;
-  };
-}
+type NamedAmounts = Record<string, Amounts>;
 
 interface PrintOptions {
   verbose: boolean | undefined;
@@ -136,7 +132,8 @@ export class Watcher {
       [ETH]: new Decimal(0)
     };
 
-    const ledgerAmounts: LedgerAmounts = {};
+    const addressAmounts: NamedAmounts = {};
+    const ledgerAmounts: NamedAmounts = {};
 
     if (this.price) {
       prices[ETH] = await this.price.getETHPrice();
@@ -148,17 +145,17 @@ export class Watcher {
     for (const [name, addresses] of Object.entries(ledgers)) {
       Logger.info(`Processing the "${name}" ledger...`);
 
-      ledgerAmounts[name] = { amounts: { [ETH]: new Decimal(0) } };
+      ledgerAmounts[name] = { [ETH]: new Decimal(0) };
       const ledgerTotal = ledgerAmounts[name];
 
       for (const address of addresses) {
         const ethBalance = await this.balance.getBalance(address);
         if (verbose && !ethBalance.isZero()) {
-          Logger.info(address, ethBalance, ETH);
+          set(addressAmounts, [address, ETH], ethBalance);
         }
 
         totalAmounts[ETH] = totalAmounts[ETH].add(ethBalance);
-        ledgerTotal.amounts[ETH] = ledgerTotal.amounts[ETH].add(ethBalance);
+        ledgerTotal[ETH] = ledgerTotal[ETH].add(ethBalance);
 
         for (const [symbol, token] of Object.entries(tokens)) {
           const { address: tokenAddress, decimals } = token;
@@ -167,8 +164,8 @@ export class Watcher {
             totalAmounts[symbol] = new Decimal(0);
           }
 
-          if (ledgerTotal.amounts[symbol] === undefined) {
-            ledgerTotal.amounts[symbol] = new Decimal(0);
+          if (ledgerTotal[symbol] === undefined) {
+            ledgerTotal[symbol] = new Decimal(0);
           }
 
           const tokenBalance = await this.token.getTokenBalance(address, tokenAddress, decimals);
@@ -178,12 +175,12 @@ export class Watcher {
             }
 
             if (verbose) {
-              Logger.info(address, tokenBalance, symbol);
+              set(addressAmounts, [address, symbol], tokenBalance);
             }
           }
 
           totalAmounts[symbol] = totalAmounts[symbol].add(tokenBalance);
-          ledgerTotal.amounts[symbol] = ledgerTotal.amounts[symbol].add(tokenBalance);
+          ledgerTotal[symbol] = ledgerTotal[symbol].add(tokenBalance);
         }
       }
     }
@@ -195,6 +192,7 @@ export class Watcher {
     }
 
     if (verbose) {
+      this.printAddresses(addressAmounts, prices);
       this.printLedgerTotals(ledgerAmounts, prices);
     }
 
@@ -268,20 +266,52 @@ export class Watcher {
     Logger.table(totalsTable);
 
     if (this.price) {
-      Logger.info(`Total Value: $${totalValue.toCSV()}`);
+      Logger.notice(`Total Value: $${totalValue.toCSV()}`);
+      Logger.info();
     }
   }
 
-  private printLedgerTotals(ledgerAmounts: LedgerAmounts, prices: Prices) {
+  private printAddresses(addressAmounts: NamedAmounts, prices: Prices) {
+    Logger.title("Address Amounts");
+
+    const addressesTable = new Table({
+      head: [
+        chalk.cyanBright("Address"),
+        chalk.cyanBright("Symbol"),
+        chalk.cyanBright("Amount"),
+        chalk.cyanBright("Value")
+      ]
+    });
+
+    for (const [address, amounts] of Object.entries(addressAmounts)) {
+      for (const [symbol, amount] of Object.entries(amounts)) {
+        if (amount.isZero()) {
+          continue;
+        }
+
+        if (this.price) {
+          const value = amount.mul(prices[symbol]);
+
+          addressesTable.push([address, symbol, amount.toCSV(), `$${value.toCSV()}`]);
+        } else {
+          addressesTable.push([address, symbol, amount.toCSV()]);
+        }
+      }
+    }
+
+    Logger.table(addressesTable);
+  }
+
+  private printLedgerTotals(ledgerAmounts: NamedAmounts, prices: Prices) {
     Logger.title("Ledger Total Amounts");
 
-    for (const [name, ledger] of Object.entries(ledgerAmounts)) {
+    for (const [name, amounts] of Object.entries(ledgerAmounts)) {
       let ledgerTotalValue = new Decimal(0);
 
       Logger.subtitle(name);
 
       if (this.price) {
-        for (const [symbol, amount] of Object.entries(ledger.amounts)) {
+        for (const [symbol, amount] of Object.entries(amounts)) {
           if (amount.isZero()) {
             continue;
           }
@@ -300,7 +330,7 @@ export class Watcher {
         ]
       });
 
-      for (const [symbol, amount] of Object.entries(ledger.amounts)) {
+      for (const [symbol, amount] of Object.entries(amounts)) {
         if (amount.isZero()) {
           continue;
         }
