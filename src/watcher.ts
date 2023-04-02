@@ -13,14 +13,12 @@ interface WatcherOptions {
   price: boolean;
 }
 
-interface Totals {
-  amounts: Record<string, Decimal>;
-  prices: Record<string, Decimal>;
-}
+type Amounts = Record<string, Decimal>;
+type Prices = Record<string, Decimal>;
 
-interface LedgerTotals {
+interface LedgerAmounts {
   [ledger: string]: {
-    amounts: Record<string, Decimal>;
+    amounts: Amounts;
   };
 }
 
@@ -131,19 +129,17 @@ export class Watcher {
   }
 
   public async printData({ verbose }: PrintOptions) {
-    const totals: Totals = {
-      amounts: {
-        [ETH]: new Decimal(0)
-      },
-      prices: {
-        [ETH]: new Decimal(0)
-      }
+    const totalAmounts: Amounts = {
+      [ETH]: new Decimal(0)
+    };
+    const prices: Prices = {
+      [ETH]: new Decimal(0)
     };
 
-    const ledgerTotals: LedgerTotals = {};
+    const ledgerAmounts: LedgerAmounts = {};
 
     if (this.price) {
-      totals.prices[ETH] = await this.price.getETHPrice();
+      prices[ETH] = await this.price.getETHPrice();
     }
 
     const ledgers = this.config.getLedgers();
@@ -152,8 +148,8 @@ export class Watcher {
     for (const [name, addresses] of Object.entries(ledgers)) {
       Logger.info(`Processing the "${name}" ledger...`);
 
-      ledgerTotals[name] = { amounts: { [ETH]: new Decimal(0) } };
-      const ledgerTotal = ledgerTotals[name];
+      ledgerAmounts[name] = { amounts: { [ETH]: new Decimal(0) } };
+      const ledgerTotal = ledgerAmounts[name];
 
       for (const address of addresses) {
         const ethBalance = await this.balance.getBalance(address);
@@ -161,14 +157,14 @@ export class Watcher {
           Logger.info(address, ethBalance, ETH);
         }
 
-        totals.amounts[ETH] = totals.amounts[ETH].add(ethBalance);
+        totalAmounts[ETH] = totalAmounts[ETH].add(ethBalance);
         ledgerTotal.amounts[ETH] = ledgerTotal.amounts[ETH].add(ethBalance);
 
         for (const [symbol, token] of Object.entries(tokens)) {
           const { address: tokenAddress, decimals } = token;
 
-          if (totals.amounts[symbol] === undefined) {
-            totals.amounts[symbol] = new Decimal(0);
+          if (totalAmounts[symbol] === undefined) {
+            totalAmounts[symbol] = new Decimal(0);
           }
 
           if (ledgerTotal.amounts[symbol] === undefined) {
@@ -177,8 +173,8 @@ export class Watcher {
 
           const tokenBalance = await this.token.getTokenBalance(address, tokenAddress, decimals);
           if (!tokenBalance.isZero()) {
-            if (this.price && !totals.prices[symbol]) {
-              totals.prices[symbol] = await this.price.getTokenPrice(tokenAddress);
+            if (this.price && !prices[symbol]) {
+              prices[symbol] = await this.price.getTokenPrice(tokenAddress);
             }
 
             if (verbose) {
@@ -186,7 +182,7 @@ export class Watcher {
             }
           }
 
-          totals.amounts[symbol] = totals.amounts[symbol].add(tokenBalance);
+          totalAmounts[symbol] = totalAmounts[symbol].add(tokenBalance);
           ledgerTotal.amounts[symbol] = ledgerTotal.amounts[symbol].add(tokenBalance);
         }
       }
@@ -195,107 +191,137 @@ export class Watcher {
     Logger.info();
 
     if (this.price) {
-      Logger.title("Prices:");
-
-      Object.entries(totals.prices).forEach(([symbol, price]) => {
-        if (!price.isZero()) {
-          Logger.info(`  ${symbol}: $${price.toCSV()}`);
-        }
-      });
-
-      Logger.info();
+      this.printPrices(prices);
     }
 
-    if (this.price) {
-      Logger.title("Total Amounts and Values:");
-    } else {
-      Logger.title("Total Amounts:");
+    if (verbose) {
+      this.printLedgerTotals(ledgerAmounts, prices);
     }
+
+    this.printTotals(totalAmounts, prices);
+  }
+
+  private printPrices(prices: Prices) {
+    Logger.title("Prices");
+
+    const pricesTable = new Table({
+      head: [chalk.cyanBright("Symbol"), chalk.cyanBright("Price")]
+    });
+
+    for (const [symbol, price] of Object.entries(prices)) {
+      if (price.isZero()) {
+        continue;
+      }
+
+      pricesTable.push([symbol, `$${price.toCSV()}`]);
+    }
+
+    Logger.table(pricesTable);
+  }
+
+  private printTotals(totalAmounts: Amounts, prices: Prices) {
+    Logger.title("Total Amounts");
 
     let totalValue = new Decimal(0);
 
-    Object.entries(totals.amounts).forEach(([symbol, amount]) => {
-      if (!amount.isZero()) {
-        if (this.price) {
-          const value = amount.mul(totals.prices[symbol]);
-
-          Logger.info(`  ${symbol}: ${amount.toCSV()} ($${value.toCSV()})`);
-
-          totalValue = totalValue.add(value);
-        } else {
-          Logger.info(`  ${symbol}: ${amount.toCSV()}`);
+    if (this.price) {
+      for (const [symbol, amount] of Object.entries(totalAmounts)) {
+        if (amount.isZero()) {
+          continue;
         }
+
+        const value = amount.mul(prices[symbol]);
+        totalValue = totalValue.add(value);
       }
+    }
+
+    const totalsTable = new Table({
+      head: [
+        chalk.cyanBright("Symbol"),
+        chalk.cyanBright("Amount"),
+        chalk.cyanBright("Value"),
+        chalk.cyanBright("% of Total Value")
+      ]
     });
 
-    Logger.info();
+    for (const [symbol, amount] of Object.entries(totalAmounts)) {
+      if (amount.isZero()) {
+        continue;
+      }
 
-    if (this.price) {
-      Logger.info(`  Total Value: $${totalValue.toCSV()}`);
-      Logger.info();
+      if (this.price) {
+        const value = amount.mul(prices[symbol]);
 
-      Logger.title("Total Values %:");
+        totalsTable.push([
+          symbol,
+          amount.toCSV(),
+          `$${value.toCSV()}`,
+          value.mul(100).div(totalValue).toPrecision(6).toString()
+        ]);
 
-      Object.entries(totals.amounts).forEach(([symbol, amount]) => {
-        if (!amount.isZero()) {
-          const value = amount.mul(totals.prices[symbol]);
-
-          Logger.info(`  ${symbol}: ${value.mul(100).div(totalValue).toDecimalPlaces(4)}%`);
-        }
-      });
-
-      Logger.info();
+        totalValue = totalValue.add(value);
+      } else {
+        totalsTable.push([symbol, amount.toCSV()]);
+      }
     }
 
-    if (this.price) {
-      Logger.title("Ledger Total Amounts and Values:");
-    } else {
-      Logger.title("Ledger Total Amounts:");
-    }
+    Logger.table(totalsTable);
 
-    Object.entries(ledgerTotals).forEach(([name, ledgerTotals]) => {
+    if (this.price) {
+      Logger.info(`Total Value: $${totalValue.toCSV()}`);
+    }
+  }
+
+  private printLedgerTotals(ledgerAmounts: LedgerAmounts, prices: Prices) {
+    Logger.title("Ledger Total Amounts");
+
+    for (const [name, ledger] of Object.entries(ledgerAmounts)) {
       let ledgerTotalValue = new Decimal(0);
 
-      Logger.subtitle(`${name}:`);
+      Logger.subtitle(name);
 
       if (this.price) {
-        Logger.title("Total Amounts and Values:");
-      } else {
-        Logger.title("Total Amounts:");
+        for (const [symbol, amount] of Object.entries(ledger.amounts)) {
+          if (amount.isZero()) {
+            continue;
+          }
+
+          const value = amount.mul(prices[symbol]);
+          ledgerTotalValue = ledgerTotalValue.add(value);
+        }
       }
 
-      Object.entries(ledgerTotals.amounts).forEach(([symbol, amount]) => {
-        if (!amount.isZero()) {
-          if (this.price) {
-            const value = amount.mul(totals.prices[symbol]);
-
-            Logger.info(`  ${symbol}: ${amount.toCSV()} ($${value.toCSV()})`);
-
-            ledgerTotalValue = ledgerTotalValue.add(value);
-          } else {
-            Logger.info(`  ${symbol}: ${amount.toCSV()}`);
-          }
-        }
+      const ledgerAmountsTable = new Table({
+        head: [
+          chalk.cyanBright("Symbol"),
+          chalk.cyanBright("Amount"),
+          chalk.cyanBright("Value"),
+          chalk.cyanBright("% of Ledger Total Value")
+        ]
       });
 
-      Logger.info();
+      for (const [symbol, amount] of Object.entries(ledger.amounts)) {
+        if (amount.isZero()) {
+          continue;
+        }
 
-      if (this.price) {
-        Logger.info(`  Value: $${ledgerTotalValue.toCSV()}`);
-        Logger.info();
+        if (this.price) {
+          const value = amount.mul(prices[symbol]);
 
-        Logger.title("Total Values %:");
+          ledgerAmountsTable.push([
+            symbol,
+            amount.toCSV(),
+            `$${value.toCSV()}`,
+            value.mul(100).div(ledgerTotalValue).toPrecision(6).toString()
+          ]);
 
-        Object.entries(ledgerTotals.amounts).forEach(([symbol, amount]) => {
-          if (!amount.isZero()) {
-            const value = amount.mul(totals.prices[symbol]);
-
-            Logger.info(`  ${symbol}: ${value.mul(100).div(ledgerTotalValue).toDecimalPlaces(4)}%`);
-          }
-        });
-
-        Logger.info();
+          ledgerTotalValue = ledgerTotalValue.add(value);
+        } else {
+          ledgerAmountsTable.push([symbol, amount.toCSV()]);
+        }
       }
-    });
+
+      Logger.table(ledgerAmountsTable);
+    }
   }
 }
