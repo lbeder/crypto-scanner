@@ -2,6 +2,8 @@ import { Balance, Token, Price } from "./modules";
 import { Config } from "./utils/config";
 import { ETH } from "./utils/constants";
 import { Logger } from "./utils/logger";
+import chalk from "chalk";
+import Table from "cli-table";
 import Decimal from "decimal.js";
 import { JsonRpcProvider } from "ethers";
 
@@ -99,20 +101,33 @@ export class Watcher {
   }
 
   public printConfig() {
-    const ledgers = this.config.getLedgers();
-    const tokens = this.config.getTokens();
+    Logger.title("Configuration");
 
-    Logger.title("Configuration:");
+    Logger.title("Ledgers");
 
-    Logger.title("Ledgers:");
-    Logger.info(JSON.stringify(ledgers, null, 2));
+    for (const [ledger, addresses] of Object.entries(this.config.getLedgers())) {
+      const ledgers = new Table({
+        head: [chalk.cyanBright(ledger)]
+      });
 
-    Logger.info();
+      for (const address of addresses) {
+        ledgers.push([address]);
+      }
 
-    Logger.title("Tokens:");
-    Logger.info(JSON.stringify(tokens, null, 2));
+      Logger.table(ledgers);
+    }
 
-    Logger.info();
+    Logger.title("Tokens");
+
+    const tokens = new Table({
+      head: [chalk.cyanBright("Symbol"), chalk.cyanBright("Address"), chalk.cyanBright("Decimals")]
+    });
+
+    for (const [symbol, token] of Object.entries(this.config.getTokens())) {
+      tokens.push([symbol, token.address, token.decimals.toString()]);
+    }
+
+    Logger.table(tokens);
   }
 
   public async printData({ verbose }: PrintOptions) {

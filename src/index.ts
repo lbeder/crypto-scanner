@@ -1,9 +1,9 @@
 import { Config } from "./utils/config";
 import "./utils/csv";
 import { Logger } from "./utils/logger";
+import { Watcher } from "./watcher";
 import inquirer from "inquirer";
 import yargs from "yargs";
-import { Watcher } from "./watcher";
 
 const main = async () => {
   let watcher: Watcher;

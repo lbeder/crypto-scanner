@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import chalk from "chalk";
+import Table from "cli-table";
 
 export class Logger {
   public static verbose: boolean;
@@ -36,6 +37,12 @@ export class Logger {
     this.error(...args);
 
     process.exit(1);
+  }
+
+  public static table(table: Table) {
+    console.log(table.toString());
+
+    Logger.info();
   }
 
   public static br() {
