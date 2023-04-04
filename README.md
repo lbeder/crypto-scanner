@@ -33,7 +33,7 @@ Commands:
 
 Options:
       --version  Show version number                                   [boolean]
-      --url      Web3 provider's URL [string] [default: "http://localhost:8545"]
+      --url      Web3 provider's URL [string] [default: "http://127.0.0.1:8545"]
   -v, --verbose  Verbose mode                                          [boolean]
   -p, --price    Query prices using Coingecko         [boolean] [default: false]
       --help     Show help                                             [boolean]

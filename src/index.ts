@@ -15,7 +15,7 @@ const main = async () => {
       .option("url", {
         description: "Web3 provider's URL",
         type: "string",
-        default: "http://localhost:8545"
+        default: "http://127.0.0.1:8545"
       })
       .option("verbose", {
         description: "Verbose mode",
