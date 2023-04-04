@@ -251,8 +251,6 @@ export class Watcher {
           `$${value.toCSV()}`,
           value.mul(100).div(totalValue).toPrecision(6).toString()
         ]);
-
-        totalValue = totalValue.add(value);
       } else {
         totalsTable.push([symbol, amount.toCSV()]);
       }
@@ -339,8 +337,6 @@ export class Watcher {
             `$${value.toCSV()}`,
             value.mul(100).div(ledgerTotalValue).toPrecision(6).toString()
           ]);
-
-          ledgerTotalValue = ledgerTotalValue.add(value);
         } else {
           ledgerAmountsTable.push([symbol, amount.toCSV()]);
         }
