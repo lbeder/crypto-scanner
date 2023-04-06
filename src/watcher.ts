@@ -17,6 +17,7 @@ interface WatcherOptions {
 type Amounts = Record<string, Decimal>;
 type Prices = Record<string, Decimal>;
 type NamedAmounts = Record<string, Amounts>;
+type NamedAddressAmounts = Record<string, NamedAmounts>;
 
 interface PrintOptions {
   verbose: boolean | undefined;
@@ -94,9 +95,11 @@ export class Watcher {
 
     Logger.title("Ledgers");
 
-    for (const [ledger, addresses] of Object.entries(this.config.getLedgers())) {
+    for (const [name, addresses] of Object.entries(this.config.getLedgers())) {
+      Logger.subtitle(name);
+
       const ledgers = new Table({
-        head: [chalk.cyanBright(ledger)]
+        head: [chalk.cyanBright("Address")]
       });
 
       for (const address of addresses) {
@@ -127,7 +130,7 @@ export class Watcher {
       [ETH]: new Decimal(0)
     };
 
-    const addressAmounts: NamedAmounts = {};
+    const namedAddressAmounts: NamedAddressAmounts = {};
     const ledgerAmounts: NamedAmounts = {};
 
     if (this.price) {
@@ -140,13 +143,14 @@ export class Watcher {
     for (const [name, addresses] of Object.entries(ledgers)) {
       Logger.info(`Processing the "${name}" ledger...`);
 
-      ledgerAmounts[name] = { [ETH]: new Decimal(0) };
+      set(ledgerAmounts, [name, ETH], new Decimal(0));
+
       const ledgerTotal = ledgerAmounts[name];
 
       for (const address of addresses) {
         const ethBalance = await this.balance.getBalance(address);
         if (verbose && !ethBalance.isZero()) {
-          set(addressAmounts, [address, ETH], ethBalance);
+          set(namedAddressAmounts, [name, address, ETH], ethBalance);
         }
 
         totalAmounts[ETH] = totalAmounts[ETH].add(ethBalance);
@@ -170,7 +174,7 @@ export class Watcher {
             }
 
             if (verbose) {
-              set(addressAmounts, [address, symbol], tokenBalance);
+              set(namedAddressAmounts, [name, address, symbol], tokenBalance);
             }
           }
 
@@ -187,7 +191,7 @@ export class Watcher {
     }
 
     if (verbose) {
-      this.printAddresses(addressAmounts, prices);
+      this.printAddresses(namedAddressAmounts, prices);
       this.printLedgerTotals(ledgerAmounts, prices);
     }
 
@@ -264,39 +268,43 @@ export class Watcher {
     }
   }
 
-  private printAddresses(addressAmounts: NamedAmounts, prices: Prices) {
-    Logger.title("Address Amounts");
+  private printAddresses(namedAddressAmounts: NamedAddressAmounts, prices: Prices) {
+    Logger.title("Addresses");
 
-    const addressesTableHead = [chalk.cyanBright("Address"), chalk.cyanBright("Symbol")];
-    if (this.price) {
-      addressesTableHead.push(chalk.cyanBright("Value"));
-    }
+    for (const [name, addressAmounts] of Object.entries(namedAddressAmounts)) {
+      Logger.subtitle(name);
 
-    const addressesTable = new Table({
-      head: addressesTableHead
-    });
+      const addressesTableHead = [chalk.cyanBright("Address"), chalk.cyanBright("Symbol"), chalk.cyanBright("Amount")];
+      if (this.price) {
+        addressesTableHead.push(chalk.cyanBright("Value"));
+      }
 
-    for (const [address, amounts] of Object.entries(addressAmounts)) {
-      for (const [symbol, amount] of Object.entries(amounts)) {
-        if (amount.isZero()) {
-          continue;
-        }
+      const addressesTable = new Table({
+        head: addressesTableHead
+      });
 
-        if (this.price) {
-          const value = amount.mul(prices[symbol]);
+      for (const [address, amounts] of Object.entries(addressAmounts)) {
+        for (const [symbol, amount] of Object.entries(amounts)) {
+          if (amount.isZero()) {
+            continue;
+          }
 
-          addressesTable.push([address, symbol, amount.toCSV(), `$${value.toCSV()}`]);
-        } else {
-          addressesTable.push([address, symbol, amount.toCSV()]);
+          if (this.price) {
+            const value = amount.mul(prices[symbol]);
+
+            addressesTable.push([address, symbol, amount.toCSV(), `$${value.toCSV()}`]);
+          } else {
+            addressesTable.push([address, symbol, amount.toCSV()]);
+          }
         }
       }
-    }
 
-    Logger.table(addressesTable);
+      Logger.table(addressesTable);
+    }
   }
 
   private printLedgerTotals(ledgerAmounts: NamedAmounts, prices: Prices) {
-    Logger.title("Ledger Total Amounts");
+    Logger.title("Ledgers");
 
     for (const [name, amounts] of Object.entries(ledgerAmounts)) {
       let ledgerTotalValue = new Decimal(0);
