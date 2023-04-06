@@ -1,6 +1,6 @@
 {
   "name": "crypto-watcher",
-  "version": "3.7.0",
+  "version": "3.8.0",
   "description": "Crypto Watcher is a privacy-oriented tool used to track Ether and token balances across multiple addresses and groups (ledgers)",
   "author": "Leonid Beder",
   "license": "MIT",
@@ -14,6 +14,7 @@
     "change-password": "yarn start change-password",
     "add-addresses": "yarn start add-addresses",
     "add-token": "yarn start add-token",
+    "add-asset": "yarn start add-asset",
     "lint": "yarn eslint src",
     "format": "prettier --check --write src/**/* --config .prettierrc",
     "prepare": "yarn snyk-protect",

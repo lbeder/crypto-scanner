@@ -6,14 +6,24 @@ import path from "path";
 const DATA_DIR = path.resolve(__dirname, "../../data");
 const CONFIG_PATH = path.join(DATA_DIR, "config.data");
 
-interface Token {
+export interface Token {
   address: string;
   decimals: number;
 }
 
+export interface Asset {
+  quantity: number;
+  price: number;
+}
+
+export type Ledgers = Record<string, string[]>;
+export type Tokens = Record<string, Token>;
+export type Assets = Record<string, Asset>;
+
 interface Data {
-  ledgers: Record<string, string[]>;
-  tokens: Record<string, Token>;
+  ledgers: Ledgers;
+  tokens: Tokens;
+  assets: Assets;
 }
 
 export class Config {
@@ -27,17 +37,23 @@ export class Config {
       fs.mkdirSync(DATA_DIR, { recursive: true });
     }
 
+    const initData = {
+      ledgers: {},
+      tokens: {},
+      assets: {}
+    };
+
     if (!Config.exists()) {
-      this.data = {
-        ledgers: {},
-        tokens: {}
-      };
+      this.data = initData;
 
       return;
     }
 
     try {
-      this.data = JSON.parse(Config.decrypt(fs.readFileSync(CONFIG_PATH, "utf8"), password)) as Data;
+      this.data = {
+        ...initData,
+        ...(JSON.parse(Config.decrypt(fs.readFileSync(CONFIG_PATH, "utf8"), password)) as Data)
+      };
     } catch {
       throw new Error("Invalid password");
     }
@@ -54,24 +70,36 @@ export class Config {
   }
 
   public getLedgers() {
-    return this.data.ledgers;
+    return this.data.ledgers || {};
   }
 
-  public getLedger(name: string) {
-    return this.data.ledgers[name];
+  public getTokens() {
+    return this.data.tokens || {};
+  }
+
+  public getAssets() {
+    return this.data.assets || {};
   }
 
   public addLedger(name: string) {
+    if (!name) {
+      throw new Error("Invalid data");
+    }
+
+    if (this.data.ledgers[name]) {
+      throw new Error(`Ledger ${name} already exists`);
+    }
+
     this.data.ledgers[name] = [];
 
     this.save();
 
-    return this.getLedger(name);
+    return this.data.ledgers[name];
   }
 
   public removeLedger(name: string) {
-    if (!this.getLedger(name)) {
-      return;
+    if (!this.data.ledgers[name]) {
+      throw new Error(`Ledger ${name} doesn't not exist`);
     }
 
     delete this.data.ledgers[name];
@@ -105,11 +133,15 @@ export class Config {
     this.save();
   }
 
-  public getTokens() {
-    return this.data.tokens;
-  }
-
   public addToken(symbol: string, address: string, decimals: number) {
+    if (!symbol || !address || decimals <= 0) {
+      throw new Error("Invalid data");
+    }
+
+    if (this.data.tokens[symbol]) {
+      throw new Error(`Token ${symbol} already exists`);
+    }
+
     this.data.tokens[symbol] = {
       address: getAddress(address),
       decimals
@@ -119,7 +151,55 @@ export class Config {
   }
 
   public removeToken(symbol: string) {
+    if (this.data.tokens[symbol]) {
+      throw new Error(`Token ${symbol} doesn't exist`);
+    }
+
     delete this.data.tokens[symbol];
+
+    this.save();
+  }
+
+  public addAsset(name: string, quantity: number, price: number) {
+    if (!name || price <= 0 || quantity <= 0) {
+      throw new Error("Invalid data");
+    }
+
+    if (this.data.assets[name]) {
+      throw new Error(`Asset ${name} already exists`);
+    }
+
+    this.data.assets[name] = {
+      quantity,
+      price
+    };
+
+    this.save();
+  }
+
+  public updateAsset(name: string, quantity: number, price: number) {
+    if (!name || price <= 0 || quantity <= 0) {
+      throw new Error("Invalid data");
+    }
+
+    if (!this.data.assets[name]) {
+      throw new Error(`Asset ${name} doesn't exist`);
+    }
+
+    this.data.assets[name] = {
+      quantity,
+      price
+    };
+
+    this.save();
+  }
+
+  public removeAsset(name: string) {
+    if (this.data.assets[name]) {
+      throw new Error(`Asset ${name} doesn't exist`);
+    }
+
+    delete this.data.assets[name];
 
     this.save();
   }

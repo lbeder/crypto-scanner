@@ -66,6 +66,14 @@ const main = async () => {
         }
       )
       .command(
+        "query",
+        "Query all addresses and tokens",
+        () => {},
+        async ({ verbose }) => {
+          await watcher.printData({ verbose });
+        }
+      )
+      .command(
         "change-password",
         "Change the encryption password",
         () => {},
@@ -100,14 +108,14 @@ const main = async () => {
         "Add an address or a list of space-separated addresses to a named ledger",
         {
           name: {
+            description: "The name of the ledger",
             type: "string",
-            required: true,
-            description: "The name of the ledger"
+            required: true
           },
           data: {
+            description: "The addresses to add",
             type: "array",
-            required: true,
-            description: "The addresses to add"
+            required: true
           }
         },
         ({ name, data }) => {
@@ -119,13 +127,13 @@ const main = async () => {
         "Remove an address or a list of space-separated addresses from a named ledger",
         {
           name: {
+            description: "The name of the ledger",
             type: "string",
-            required: true,
-            description: "The name of the ledger"
+            required: true
           },
           data: {
-            type: "array",
             description: "The addresses to remove",
+            type: "array",
             default: []
           }
         },
@@ -138,9 +146,9 @@ const main = async () => {
         "Remove an entire named ledger",
         {
           name: {
+            description: "The name of the ledger",
             type: "string",
-            required: true,
-            description: "The name of the ledger"
+            required: true
           }
         },
         ({ name }) => {
@@ -152,18 +160,18 @@ const main = async () => {
         "Add a token to the config",
         {
           symbol: {
+            description: "The symbol of the token",
             type: "string",
-            required: true,
-            description: "The symbol of the token"
+            required: true
           },
           address: {
+            description: "The address of the token",
             type: "string",
-            required: true,
-            description: "The address of the token"
+            required: true
           },
           decimals: {
-            type: "number",
             description: "The decimals of the token",
+            type: "number",
             default: 18
           }
         },
@@ -176,9 +184,9 @@ const main = async () => {
         "Remove a token from the config",
         {
           symbol: {
+            description: "The symbol of the token",
             type: "string",
-            required: true,
-            description: "The symbol of the token"
+            required: true
           }
         },
         ({ symbol }) => {
@@ -186,11 +194,65 @@ const main = async () => {
         }
       )
       .command(
-        "query",
-        "Query all addresses and tokens",
-        () => {},
-        async ({ verbose }) => {
-          await watcher.printData({ verbose });
+        "add-asset",
+        "Add an asset to the config",
+        {
+          name: {
+            description: "The name of the asset",
+            type: "string",
+            required: true
+          },
+          quantity: {
+            type: "number",
+            description: "The quantity of the asset",
+            required: true
+          },
+          "unit-price": {
+            description: "The unit price of the asset",
+            type: "number",
+            required: true
+          }
+        },
+        ({ name, quantity, unitPrice: price }) => {
+          watcher.addAsset(name, quantity, price);
+        }
+      )
+      .command(
+        "update-asset",
+        "Update an asset in the config",
+        {
+          name: {
+            description: "The name of the asset",
+            type: "string",
+            required: true
+          },
+          quantity: {
+            type: "number",
+            description: "The new quantity of the asset",
+            required: true
+          },
+          "unit-price": {
+            description: "The new unit price of the asset",
+            type: "number",
+            required: true
+          }
+        },
+        ({ name, quantity, unitPrice: price }) => {
+          watcher.updateAsset(name, quantity, price);
+        }
+      )
+      .command(
+        "remove-asset",
+        "Remove an assert from the config",
+        {
+          name: {
+            description: "The name of the asset",
+            type: "string",
+            required: true
+          }
+        },
+        ({ name }) => {
+          watcher.removeAsset(name);
         }
       )
       .demandCommand()
