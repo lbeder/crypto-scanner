@@ -1,7 +1,8 @@
 import { Config } from "./utils/config";
+import { DEFAULT_DECIMALS } from "./utils/constants";
 import "./utils/csv";
 import { Logger } from "./utils/logger";
-import { Watcher } from "./watcher";
+import { Watcher, DEFAULT_SYMBOL_PRICE } from "./watcher";
 import inquirer from "inquirer";
 import yargs from "yargs";
 
@@ -172,7 +173,7 @@ const main = async () => {
           decimals: {
             description: "The decimals of the token",
             type: "number",
-            default: 18
+            default: DEFAULT_DECIMALS
           }
         },
         ({ symbol, address, decimals }) => {
@@ -218,7 +219,7 @@ const main = async () => {
         },
         ({ name, quantity, unitPrice: price, symbol }) => {
           if (symbol && !price) {
-            price = 1;
+            price = DEFAULT_SYMBOL_PRICE;
           } else {
             throw new Error("Missing required argument: unit-price");
           }
@@ -242,8 +243,7 @@ const main = async () => {
           },
           "unit-price": {
             description: "The new unit price of the asset",
-            type: "number",
-            required: true
+            type: "number"
           },
           symbol: {
             description: "The symbol of the token the asset is priced in",
@@ -251,6 +251,12 @@ const main = async () => {
           }
         },
         ({ name, quantity, unitPrice: price, symbol }) => {
+          if (symbol && !price) {
+            price = DEFAULT_SYMBOL_PRICE;
+          } else {
+            throw new Error("Missing required argument: unit-price");
+          }
+
           watcher.updateAsset(name, quantity, price, symbol);
         }
       )

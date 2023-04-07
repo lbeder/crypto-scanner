@@ -23,6 +23,8 @@ interface PrintOptions {
   verbose: boolean | undefined;
 }
 
+export const DEFAULT_SYMBOL_PRICE = 1;
+
 export class Watcher {
   private provider: JsonRpcProvider;
   private config: Config;
@@ -443,7 +445,9 @@ export class Watcher {
       const values = [name, new Decimal(quantity).toCSV(), fullPrice];
 
       if (this.price) {
-        const value = new Decimal(quantity).mul(price).mul(!symbol || symbol === USD ? 1 : prices[symbol]);
+        const value = new Decimal(quantity)
+          .mul(price)
+          .mul(!symbol || symbol === USD ? DEFAULT_SYMBOL_PRICE : prices[symbol]);
 
         values.push(`$${value.toCSV()}`);
       }
