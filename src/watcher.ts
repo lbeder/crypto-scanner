@@ -17,7 +17,7 @@ interface WatcherOptions {
 type Amounts = Record<string, Decimal>;
 type Prices = Record<string, Decimal>;
 type NamedAmounts = Record<string, Amounts>;
-type NamedAddressAmounts = Record<string, NamedAmounts>;
+type LedgerAddressAmounts = Record<string, NamedAmounts>;
 
 interface PrintOptions {
   verbose: boolean | undefined;
@@ -169,7 +169,7 @@ export class Watcher {
       [ETH]: new Decimal(0)
     };
 
-    const namedAddressAmounts: NamedAddressAmounts = {};
+    const ledgerAddressAmounts: LedgerAddressAmounts = {};
     const ledgerAmounts: NamedAmounts = {};
 
     if (this.price) {
@@ -190,7 +190,7 @@ export class Watcher {
       for (const address of addresses) {
         const ethBalance = await this.balance.getBalance(address);
         if (verbose && !ethBalance.isZero()) {
-          set(namedAddressAmounts, [name, address, ETH], ethBalance);
+          set(ledgerAddressAmounts, [name, address, ETH], ethBalance);
         }
 
         totalAmounts[ETH] = totalAmounts[ETH].add(ethBalance);
@@ -214,7 +214,7 @@ export class Watcher {
             }
 
             if (verbose) {
-              set(namedAddressAmounts, [name, address, symbol], tokenBalance);
+              set(ledgerAddressAmounts, [name, address, symbol], tokenBalance);
             }
           }
 
@@ -241,7 +241,7 @@ export class Watcher {
     }
 
     if (verbose) {
-      this.printAddresses(namedAddressAmounts, prices);
+      this.printAddresses(ledgerAddressAmounts);
       this.printLedgerTotals(ledgerAmounts, prices);
       this.printAssets(assets);
     }
@@ -316,41 +316,26 @@ export class Watcher {
     }
   }
 
-  private printAddresses(namedAddressAmounts: NamedAddressAmounts, prices: Prices) {
-    if (isEmpty(namedAddressAmounts)) {
+  private printAddresses(ledgerAddressAmounts: LedgerAddressAmounts) {
+    if (isEmpty(ledgerAddressAmounts)) {
       return;
     }
 
+    const tokens = [ETH, ...Object.keys(this.config.getTokens())];
+
     Logger.title("Addresses");
 
-    for (const [name, addressAmounts] of Object.entries(namedAddressAmounts)) {
+    for (const [name, addressAmounts] of Object.entries(ledgerAddressAmounts)) {
       Logger.subtitle(name);
 
-      const addressesTableHead = [chalk.cyanBright("Address"), chalk.cyanBright("Symbol"), chalk.cyanBright("Amount")];
-      if (this.price) {
-        addressesTableHead.push(chalk.cyanBright("Value"));
-      }
-
       const addressesTable = new Table({
-        head: addressesTableHead
+        head: [chalk.cyanBright("Address"), ...tokens.map((t) => chalk.cyanBright(t))]
       });
 
       for (const [address, amounts] of Object.entries(addressAmounts)) {
-        for (const [symbol, amount] of Object.entries(amounts)) {
-          if (amount.isZero()) {
-            continue;
-          }
+        const balances = tokens.map((t) => (amounts[t] || new Decimal(0)).toCSV());
 
-          const values = [address, symbol, amount.toCSV()];
-
-          if (this.price) {
-            const value = amount.mul(prices[symbol]);
-
-            values.push(`$${value.toCSV()}`);
-          }
-
-          addressesTable.push(values);
-        }
+        addressesTable.push([address, ...balances]);
       }
 
       Logger.table(addressesTable);
