@@ -349,13 +349,24 @@ export class Watcher {
       head: [chalk.cyanBright("Ledger"), chalk.cyanBright("Address"), ...tokens.map((t) => chalk.cyanBright(t))]
     });
 
+    const totals: Amounts = {};
+
     for (const [name, addressAmounts] of Object.entries(ledgerAddressAmounts)) {
       for (const [address, amounts] of Object.entries(addressAmounts)) {
-        const balances = tokens.map((t) => (amounts[t] || new Decimal(0)).toCSV());
+        const balances: string[] = [];
+
+        for (const symbol of tokens) {
+          const amount = amounts[symbol] || new Decimal(0);
+
+          totals[symbol] = (totals[symbol] || new Decimal(0)).add(amount);
+          balances.push(amount.toCSV());
+        }
 
         addressesTable.push([name, address, ...balances]);
       }
     }
+
+    addressesTable.push(["", "Total", ...tokens.map((t) => (totals[t] || new Decimal(0)).toCSV())]);
 
     Logger.table(addressesTable);
   }

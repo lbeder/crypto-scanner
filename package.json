@@ -1,6 +1,6 @@
 {
   "name": "crypto-watcher",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "description": "Crypto Watcher is a privacy-oriented tool used to track Ether and token balances across multiple addresses and groups (ledgers)",
   "author": "Leonid Beder",
   "license": "MIT",
