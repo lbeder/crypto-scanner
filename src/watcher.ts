@@ -443,7 +443,7 @@ export class Watcher {
       const values = [name, new Decimal(quantity).toCSV(), fullPrice];
 
       if (this.price) {
-        const value = new Decimal(quantity).mul(price).mul(symbol === USD ? 1 : prices[symbol]);
+        const value = new Decimal(quantity).mul(price).mul(!symbol || symbol === USD ? 1 : prices[symbol]);
 
         values.push(`$${value.toCSV()}`);
       }
