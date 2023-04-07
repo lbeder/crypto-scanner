@@ -406,9 +406,9 @@ export class Watcher {
 
         ledgersTable.push(values);
       }
-
-      Logger.table(ledgersTable);
     }
+
+    Logger.table(ledgersTable);
   }
 
   private printAssets(assets: Assets, prices: Prices) {
