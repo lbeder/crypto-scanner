@@ -218,9 +218,9 @@ const main = async () => {
           }
         },
         ({ name, quantity, unitPrice: price, symbol }) => {
-          if (symbol && !price) {
-            price = DEFAULT_SYMBOL_PRICE;
-          } else {
+          if (symbol) {
+            price ||= DEFAULT_SYMBOL_PRICE;
+          } else if (!price) {
             throw new Error("Missing required argument: unit-price");
           }
 
@@ -251,9 +251,9 @@ const main = async () => {
           }
         },
         ({ name, quantity, unitPrice: price, symbol }) => {
-          if (symbol && !price) {
-            price = DEFAULT_SYMBOL_PRICE;
-          } else {
+          if (symbol) {
+            price ||= DEFAULT_SYMBOL_PRICE;
+          } else if (!price) {
             throw new Error("Missing required argument: unit-price");
           }
 
