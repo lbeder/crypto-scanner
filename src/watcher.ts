@@ -237,7 +237,7 @@ export class Watcher {
       }
 
       if (this.price && !prices[name]) {
-        if (symbol === USD) {
+        if (!symbol || symbol === USD) {
           prices[name] = new Decimal(price);
         } else {
           if (!prices[symbol]) {
