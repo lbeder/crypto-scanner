@@ -209,8 +209,7 @@ const main = async () => {
           },
           "unit-price": {
             description: "The unit price of the asset",
-            type: "number",
-            required: true
+            type: "number"
           },
           symbol: {
             description: "The (optional) symbol of the token the asset is priced in",
@@ -218,6 +217,12 @@ const main = async () => {
           }
         },
         ({ name, quantity, unitPrice: price, symbol }) => {
+          if (symbol && !price) {
+            price = 1;
+          } else {
+            throw new Error("Missing required argument: unit-price");
+          }
+
           watcher.addAsset(name, quantity, price, symbol);
         }
       )
