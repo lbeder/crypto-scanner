@@ -211,10 +211,14 @@ const main = async () => {
             description: "The unit price of the asset",
             type: "number",
             required: true
+          },
+          symbol: {
+            description: "The (optional) symbol of the token the asset is priced in",
+            type: "string"
           }
         },
-        ({ name, quantity, unitPrice: price }) => {
-          watcher.addAsset(name, quantity, price);
+        ({ name, quantity, unitPrice: price, symbol }) => {
+          watcher.addAsset(name, quantity, price, symbol);
         }
       )
       .command(
@@ -235,10 +239,14 @@ const main = async () => {
             description: "The new unit price of the asset",
             type: "number",
             required: true
+          },
+          symbol: {
+            description: "The symbol of the token the asset is priced in",
+            type: "string"
           }
         },
-        ({ name, quantity, unitPrice: price }) => {
-          watcher.updateAsset(name, quantity, price);
+        ({ name, quantity, unitPrice: price, symbol }) => {
+          watcher.updateAsset(name, quantity, price, symbol);
         }
       )
       .command(

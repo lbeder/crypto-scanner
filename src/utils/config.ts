@@ -1,3 +1,4 @@
+import { ETH, USD } from "./constants";
 import crypto from "crypto";
 import { getAddress } from "ethers";
 import fs from "fs";
@@ -14,6 +15,7 @@ export interface Token {
 export interface Asset {
   quantity: number;
   price: number;
+  symbol: string;
 }
 
 export type Ledgers = Record<string, string[]>;
@@ -151,7 +153,7 @@ export class Config {
   }
 
   public removeToken(symbol: string) {
-    if (this.data.tokens[symbol]) {
+    if (!this.data.tokens[symbol]) {
       throw new Error(`Token ${symbol} doesn't exist`);
     }
 
@@ -160,42 +162,58 @@ export class Config {
     this.save();
   }
 
-  public addAsset(name: string, quantity: number, price: number) {
-    if (!name || price <= 0 || quantity <= 0) {
-      throw new Error("Invalid data");
-    }
-
+  public addAsset(name: string, quantity: number, price: number, symbol: string) {
     if (this.data.assets[name]) {
       throw new Error(`Asset ${name} already exists`);
     }
 
+    if (!name || price <= 0 || quantity <= 0) {
+      throw new Error("Invalid data");
+    }
+
+    if (symbol !== USD && symbol !== ETH) {
+      const token = this.data.tokens[symbol];
+      if (!token) {
+        throw new Error(`Unknown token ${symbol}`);
+      }
+    }
+
     this.data.assets[name] = {
       quantity,
-      price
+      price,
+      symbol
     };
 
     this.save();
   }
 
-  public updateAsset(name: string, quantity: number, price: number) {
-    if (!name || price <= 0 || quantity <= 0) {
-      throw new Error("Invalid data");
-    }
-
+  public updateAsset(name: string, quantity: number, price: number, symbol: string) {
     if (!this.data.assets[name]) {
       throw new Error(`Asset ${name} doesn't exist`);
     }
 
+    if (!name || price <= 0 || quantity <= 0) {
+      throw new Error("Invalid data");
+    }
+
+    if (symbol !== USD && symbol !== ETH) {
+      const token = this.data.tokens[symbol];
+      if (!token) {
+        throw new Error(`Unknown token ${symbol}`);
+      }
+    }
+
     this.data.assets[name] = {
       quantity,
-      price
+      price,
+      symbol
     };
 
     this.save();
   }
 
   public removeAsset(name: string) {
-    if (this.data.assets[name]) {
+    if (!this.data.assets[name]) {
       throw new Error(`Asset ${name} doesn't exist`);
     }
 

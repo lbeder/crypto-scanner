@@ -1,6 +1,6 @@
 import { Balance, Token, Price } from "./modules";
 import { Config, Assets } from "./utils/config";
-import { ETH } from "./utils/constants";
+import { ETH, USD } from "./utils/constants";
 import { Logger } from "./utils/logger";
 import chalk from "chalk";
 import Table from "cli-table";
@@ -90,16 +90,16 @@ export class Watcher {
     Logger.info(`Removed ${symbol}`);
   }
 
-  public addAsset(name: string, quantity: number, price: number) {
-    this.config.addAsset(name, quantity, price);
+  public addAsset(name: string, quantity: number, price: number, symbol: string = USD) {
+    this.config.addAsset(name, quantity, price, symbol);
 
-    Logger.info(`Added ${quantity} units of ${name} at the price of $${price} per unit`);
+    Logger.info(`Added ${quantity} units of ${name} at the price of ${price} ${symbol} per unit`);
   }
 
-  public updateAsset(name: string, quantity: number, price: number) {
-    this.config.updateAsset(name, quantity, price);
+  public updateAsset(name: string, quantity: number, price: number, symbol: string = USD) {
+    this.config.updateAsset(name, quantity, price, symbol);
 
-    Logger.info(`Updated ${quantity} units of ${name} at the price of $${price} per unit`);
+    Logger.info(`Updated ${quantity} units of ${name} at the price of ${price} ${symbol} per unit`);
   }
 
   public removeAsset(name: string) {
@@ -153,8 +153,15 @@ export class Watcher {
         head: [chalk.cyanBright("Name"), chalk.cyanBright("Quantity"), chalk.cyanBright("Price")]
       });
 
-      for (const [name, { quantity, price }] of Object.entries(this.config.getAssets())) {
-        assetsTable.push([name, new Decimal(quantity).toCSV(), `$${new Decimal(price).toCSV()}`]);
+      for (const [name, { quantity, price, symbol }] of Object.entries(this.config.getAssets())) {
+        let fullPrice = new Decimal(price).toCSV();
+        if (symbol === USD) {
+          fullPrice = `$${fullPrice}`;
+        } else {
+          fullPrice = `${fullPrice} ${symbol}`;
+        }
+
+        assetsTable.push([name, new Decimal(quantity).toCSV(), fullPrice]);
       }
 
       Logger.table(assetsTable);
@@ -224,13 +231,26 @@ export class Watcher {
       }
     }
 
-    for (const [name, asset] of Object.entries(assets)) {
+    for (const [name, { price, quantity, symbol }] of Object.entries(assets)) {
       if (totalAmounts[name] === undefined) {
-        totalAmounts[name] = new Decimal(asset.quantity);
+        totalAmounts[name] = new Decimal(quantity);
       }
 
       if (this.price && !prices[name]) {
-        prices[name] = new Decimal(asset.price);
+        if (symbol === USD) {
+          prices[name] = new Decimal(price);
+        } else {
+          if (!prices[symbol]) {
+            const token = this.config.getTokens()[symbol];
+            if (!token) {
+              throw new Error(`Unknown token ${symbol}`);
+            }
+
+            prices[symbol] = await this.price.getTokenPrice(token.address);
+          }
+
+          prices[name] = new Decimal(price).mul(prices[symbol]);
+        }
       }
     }
 
@@ -243,7 +263,7 @@ export class Watcher {
     if (verbose) {
       this.printAddresses(ledgerAddressAmounts);
       this.printLedgerTotals(ledgerAmounts, prices);
-      this.printAssets(assets);
+      this.printAssets(assets, prices);
     }
 
     this.printTotals(totalAmounts, prices);
@@ -361,6 +381,7 @@ export class Watcher {
           }
 
           const value = amount.mul(prices[symbol]);
+
           ledgerTotalValue = ledgerTotalValue.add(value);
         }
       }
@@ -379,47 +400,55 @@ export class Watcher {
           continue;
         }
 
+        const values = [symbol, amount.toCSV()];
+
         if (this.price) {
           const value = amount.mul(prices[symbol]);
 
-          ledgersTable.push([
-            symbol,
-            amount.toCSV(),
-            `$${value.toCSV()}`,
-            value.mul(100).div(ledgerTotalValue).toPrecision(6).toString()
-          ]);
-        } else {
-          ledgersTable.push([symbol, amount.toCSV()]);
+          values.push(`$${value.toCSV()}`, value.mul(100).div(ledgerTotalValue).toPrecision(6).toString());
         }
+
+        ledgersTable.push(values);
       }
 
       Logger.table(ledgersTable);
     }
   }
 
-  private printAssets(assets: Assets) {
+  private printAssets(assets: Assets, prices: Prices) {
     if (isEmpty(assets)) {
       return;
     }
 
     Logger.title("Assets");
 
+    const assetsTableHead = [chalk.cyanBright("Name"), chalk.cyanBright("Quantity"), chalk.cyanBright("Price")];
+
+    if (this.price) {
+      assetsTableHead.push(chalk.cyanBright("Value"));
+    }
+
     const assetsTable = new Table({
-      head: [
-        chalk.cyanBright("Name"),
-        chalk.cyanBright("Quantity"),
-        chalk.cyanBright("Price"),
-        chalk.cyanBright("Value")
-      ]
+      head: assetsTableHead
     });
 
-    for (const [name, { quantity, price }] of Object.entries(assets)) {
-      assetsTable.push([
-        name,
-        new Decimal(quantity).toCSV(),
-        `$${new Decimal(price).toCSV()}`,
-        `$${new Decimal(quantity * price).toCSV()}`
-      ]);
+    for (const [name, { quantity, price, symbol }] of Object.entries(assets)) {
+      let fullPrice = new Decimal(price).toCSV();
+      if (symbol === USD) {
+        fullPrice = `$${fullPrice}`;
+      } else {
+        fullPrice = `${fullPrice} ${symbol}`;
+      }
+
+      const values = [name, new Decimal(quantity).toCSV(), fullPrice];
+
+      if (this.price) {
+        const value = new Decimal(quantity).mul(price).mul(symbol === USD ? 1 : prices[symbol]);
+
+        values.push(`$${value.toCSV()}`);
+      }
+
+      assetsTable.push(values);
     }
 
     Logger.table(assetsTable);

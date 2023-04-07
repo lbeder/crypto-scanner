@@ -1,3 +1,4 @@
+import { USD } from "../utils/constants";
 import { Base } from "./base";
 import { CoinGeckoClient } from "coingecko-api-v3";
 import Decimal from "decimal.js";
@@ -17,7 +18,7 @@ export class Price extends Base {
 
   public async getETHPrice() {
     // eslint-disable-next-line camelcase
-    const price = await this.client.simplePrice({ ids: "ethereum", vs_currencies: "USD" });
+    const price = await this.client.simplePrice({ ids: "ethereum", vs_currencies: USD });
 
     return new Decimal(price.ethereum.usd);
   }
@@ -28,7 +29,7 @@ export class Price extends Base {
       // eslint-disable-next-line camelcase
       contract_addresses: address,
       // eslint-disable-next-line camelcase
-      vs_currencies: "USD"
+      vs_currencies: USD
     });
 
     return new Decimal(price[address.toLowerCase()].usd);
