@@ -7,5 +7,5 @@ declare module "decimal.js" {
 }
 
 Decimal.prototype.toCSV = function (this: Decimal) {
-  return Number(this.toFixed()).toLocaleString();
+  return Number(this).toLocaleString();
 };
