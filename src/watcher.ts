@@ -345,8 +345,9 @@ export class Watcher {
 
     Logger.title("Addresses");
 
+    const tokensHead = tokens.map((t) => chalk.cyanBright(t));
     const addressesTable = new Table({
-      head: [chalk.cyanBright("Ledger"), chalk.cyanBright("Address"), ...tokens.map((t) => chalk.cyanBright(t))]
+      head: [chalk.cyanBright("Ledger"), chalk.cyanBright("Address"), ...tokensHead]
     });
 
     const totals: Amounts = {};
@@ -367,6 +368,7 @@ export class Watcher {
     }
 
     addressesTable.push(["", "Total", ...tokens.map((t) => (totals[t] || new Decimal(0)).toCSV())]);
+    addressesTable.push(["", "", ...tokensHead]);
 
     Logger.table(addressesTable);
   }
