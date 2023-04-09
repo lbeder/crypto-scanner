@@ -206,6 +206,10 @@ export class Watcher {
         for (const [symbol, token] of Object.entries(tokens)) {
           const { address: tokenAddress, decimals } = token;
 
+          if (this.price && !prices[symbol]) {
+            prices[symbol] = await this.price.getTokenPrice(tokenAddress);
+          }
+
           if (totalAmounts[symbol] === undefined) {
             totalAmounts[symbol] = new Decimal(0);
           }
@@ -216,10 +220,6 @@ export class Watcher {
 
           const tokenBalance = await this.token.getTokenBalance(address, tokenAddress, decimals);
           if (!tokenBalance.isZero()) {
-            if (this.price && !prices[symbol]) {
-              prices[symbol] = await this.price.getTokenPrice(tokenAddress);
-            }
-
             if (verbose) {
               set(ledgerAddressAmounts, [name, address, symbol], tokenBalance);
             }
@@ -261,7 +261,7 @@ export class Watcher {
     }
 
     if (verbose) {
-      this.printAddresses(ledgerAddressAmounts);
+      this.printAddresses(ledgerAddressAmounts, prices);
       this.printLedgerTotals(ledgerAmounts, prices);
       this.printAssets(assets, prices);
     }
@@ -336,16 +336,15 @@ export class Watcher {
     }
   }
 
-  private printAddresses(ledgerAddressAmounts: LedgerAddressAmounts) {
+  private printAddresses(ledgerAddressAmounts: LedgerAddressAmounts, prices: Prices) {
     if (isEmpty(ledgerAddressAmounts)) {
       return;
     }
 
-    const tokens = [ETH, ...Object.keys(this.config.getTokens())];
-
     Logger.title("Addresses");
 
-    const tokensHead = tokens.map((t) => chalk.cyanBright(t));
+    const tokens = [ETH, ...Object.keys(this.config.getTokens())];
+    const tokensHead = tokens.map((symbol) => chalk.cyanBright(symbol));
     const addressesTable = new Table({
       head: [chalk.cyanBright("Ledger"), chalk.cyanBright("Address"), ...tokensHead]
     });
@@ -367,8 +366,17 @@ export class Watcher {
       }
     }
 
-    addressesTable.push(["", "Total", ...tokens.map((t) => (totals[t] || new Decimal(0)).toCSV())]);
+    addressesTable.push(["", "Total", ...tokens.map((symbol) => (totals[symbol] || new Decimal(0)).toCSV())]);
+
     addressesTable.push(["", "", ...tokensHead]);
+
+    if (this.price) {
+      addressesTable.push([
+        "",
+        "Total Value",
+        ...tokens.map((symbol) => `$${(totals[symbol] || new Decimal(0)).mul(prices[symbol]).toCSV()}`)
+      ]);
+    }
 
     Logger.table(addressesTable);
   }
@@ -380,45 +388,36 @@ export class Watcher {
 
     Logger.title("Ledgers");
 
-    const ledgersTableHead = [chalk.cyanBright("Ledger"), chalk.cyanBright("Symbol"), chalk.cyanBright("Amount")];
-    if (this.price) {
-      ledgersTableHead.push(chalk.cyanBright("Value"), chalk.cyanBright("% of Ledger Total Value"));
-    }
-
+    const tokens = [ETH, ...Object.keys(this.config.getTokens())];
+    const tokensHead = tokens.map((symbol) => chalk.cyanBright(symbol));
     const ledgersTable = new Table({
-      head: ledgersTableHead
+      head: [chalk.cyanBright("Ledger"), ...tokensHead]
     });
 
+    const totals: Amounts = {};
+
     for (const [name, amounts] of Object.entries(ledgerAmounts)) {
-      let ledgerTotalValue = new Decimal(0);
+      const balances: string[] = [];
 
-      if (this.price) {
-        for (const [symbol, amount] of Object.entries(amounts)) {
-          if (amount.isZero()) {
-            continue;
-          }
+      for (const symbol of tokens) {
+        const amount = amounts[symbol] || new Decimal(0);
 
-          const value = amount.mul(prices[symbol]);
-
-          ledgerTotalValue = ledgerTotalValue.add(value);
-        }
+        totals[symbol] = (totals[symbol] || new Decimal(0)).add(amount);
+        balances.push(amount.toCSV());
       }
 
-      for (const [symbol, amount] of Object.entries(amounts)) {
-        if (amount.isZero()) {
-          continue;
-        }
+      ledgersTable.push([name, ...balances]);
+    }
 
-        const values = [name, symbol, amount.toCSV()];
+    ledgersTable.push(["Total", ...tokens.map((symbol) => (totals[symbol] || new Decimal(0)).toCSV())]);
 
-        if (this.price) {
-          const value = amount.mul(prices[symbol]);
+    ledgersTable.push(["", ...tokensHead]);
 
-          values.push(`$${value.toCSV()}`, value.mul(100).div(ledgerTotalValue).toPrecision(6).toString());
-        }
-
-        ledgersTable.push(values);
-      }
+    if (this.price) {
+      ledgersTable.push([
+        "Total Value",
+        ...tokens.map((symbol) => `$${(totals[symbol] || new Decimal(0)).mul(prices[symbol]).toCSV()}`)
+      ]);
     }
 
     Logger.table(ledgersTable);
