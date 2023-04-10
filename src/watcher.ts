@@ -328,12 +328,11 @@ export class Watcher {
       totalsTable.push(values);
     }
 
-    Logger.table(totalsTable);
-
     if (this.price) {
-      Logger.notice(`Total Value: $${totalValue.toCSV()}`);
-      Logger.info();
+      totalsTable.push(["", "Total Value", `$${totalValue.toCSV()}`, ""]);
     }
+
+    Logger.table(totalsTable);
   }
 
   private printAddresses(ledgerAddressAmounts: LedgerAddressAmounts, prices: Prices) {
