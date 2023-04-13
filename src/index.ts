@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { Config } from "./utils/config";
 import { DEFAULT_DECIMALS } from "./utils/constants";
 import "./utils/csv";
@@ -12,7 +13,7 @@ const main = async () => {
   try {
     await yargs(process.argv.slice(2))
       .parserConfiguration({ "parse-numbers": false })
-      .scriptName("yarn")
+      .scriptName("crypto-watcher")
       .option("url", {
         description: "Web3 provider's URL",
         type: "string",

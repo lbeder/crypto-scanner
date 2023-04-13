@@ -1,11 +1,17 @@
 {
   "name": "crypto-watcher",
-  "version": "4.5.0",
+  "version": "4.6.0",
   "description": "Crypto Watcher is a privacy-oriented tool used to track Ether and token balances across multiple addresses and groups (ledgers)",
   "author": "Leonid Beder",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "bin": {
+    "crypto-watcher": "./dist/index.js"
+  },
   "scripts": {
     "start": "ts-node src/index.ts",
     "cli": "yarn start --help",
@@ -22,6 +28,8 @@
     "lint": "yarn eslint src",
     "format": "prettier --check --write src/**/* --config .prettierrc",
     "prepare": "yarn snyk-protect",
+    "build": "rm -rf dist && tsc --build tsconfig.json",
+    "release": "yarn build &&  yarn prepare && npm publish",
     "snyk-protect": "snyk-protect",
     "snyk-test": "snyk test"
   },
@@ -45,14 +53,12 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-standard": "^5.0.0",
-    "prettier-package-json": "^2.8.0",
     "prettier": "^2.8.7",
+    "prettier-package-json": "^2.8.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "@lavamoat/allow-scripts": "^2.3.0",
-    "@lavamoat/preinstall-always-fail": "^1.0.0",
     "cli-table": "^0.3.11",
     "coingecko-api-v3": "^0.0.23",
     "decimal.js": "^10.4.3",
@@ -60,10 +66,5 @@
     "inquirer": "^8.1.0",
     "lodash": "^4.17.21",
     "yargs": "^17.7.1"
-  },
-  "lavamoat": {
-    "allowScripts": {
-      "@lavamoat/preinstall-always-fail": false
-    }
   }
 }
