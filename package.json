@@ -26,8 +26,7 @@
     "snyk-test": "snyk test"
   },
   "devDependencies": {
-    "@lavamoat/allow-scripts": "^2.3.0",
-    "@lavamoat/preinstall-always-fail": "^1.0.0",
+    "@snyk/protect": "^1.1139.0",
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "@types/cli-table": "^0.3.1",
     "@types/inquirer": "^9.0.3",
@@ -35,10 +34,10 @@
     "@types/node": "^18.15.11",
     "@types/underscore": "^1.11.4",
     "@types/yargs": "^17.0.24",
-    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "@typescript-eslint/eslint-plugin": "^5.58.0",
     "@typescript-eslint/parser": "^5.57.1",
     "chalk": "^4.1.2",
-    "eslint": "^8.37.0",
+    "eslint": "^8.38.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.27.5",
