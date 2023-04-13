@@ -29,7 +29,7 @@
     "format": "prettier --check --write src/**/* --config .prettierrc",
     "prepare": "yarn snyk-protect",
     "build": "rm -rf dist && tsc --build tsconfig.json",
-    "release": "yarn build &&  yarn prepare && npm publish",
+    "release": "yarn build && yarn prepare",
     "snyk-protect": "snyk-protect",
     "snyk-test": "snyk test"
   },
