@@ -1,6 +1,6 @@
 import { ETH, USD } from "./constants";
 import crypto from "crypto";
-import { getAddress } from "ethers";
+import { getAddress, isAddress } from "ethers";
 import fs from "fs";
 import os from "os";
 import path from "path";
@@ -68,6 +68,82 @@ export class Config {
 
   public changePassword(newPassword: string) {
     this.password = newPassword;
+
+    this.save();
+  }
+
+  public export(outputPath: string) {
+    const outputDir = path.dirname(outputPath);
+    if (!fs.existsSync(outputDir)) {
+      fs.mkdirSync(outputDir, { recursive: true });
+    }
+
+    fs.writeFileSync(outputPath, JSON.stringify(this.data, null, 2), "utf-8");
+  }
+
+  public import(inputPath: string) {
+    if (!fs.existsSync(inputPath)) {
+      throw new Error(`Input path ${inputPath} does not exist`);
+    }
+
+    const data = JSON.parse(fs.readFileSync(inputPath, "utf-8")) as Data;
+    if (!data.ledgers) {
+      throw new Error("Missing ledgers");
+    }
+
+    for (const [ledger, addresses] of Object.entries(data.ledgers)) {
+      if (!ledger) {
+        throw new Error("Invalid ledger name");
+      }
+
+      for (const address of addresses) {
+        if (!isAddress(address)) {
+          throw new Error(`Invalid address: ${address}`);
+        }
+      }
+    }
+
+    if (!data.tokens) {
+      throw new Error("Missing tokens");
+    }
+
+    for (const [symbol, { address, decimals }] of Object.entries(data.tokens)) {
+      if (!symbol) {
+        throw new Error("Invalid token symbol");
+      }
+
+      if (!isAddress(address)) {
+        throw new Error(`Invalid token's ${symbol} address: ${address}`);
+      }
+
+      if (!decimals) {
+        throw new Error(`Invalid token's ${symbol} decimals`);
+      }
+    }
+
+    if (!data.assets) {
+      throw new Error("Missing assets");
+    }
+
+    for (const [name, { quantity, price }] of Object.entries(data.assets)) {
+      if (!name) {
+        throw new Error("Invalid asset name");
+      }
+
+      if (!name) {
+        throw new Error("Invalid asset name");
+      }
+
+      if (!quantity) {
+        throw new Error(`Invalid asset's ${name} quantity`);
+      }
+
+      if (!price) {
+        throw new Error(`Invalid asset's ${name} price`);
+      }
+    }
+
+    this.data = data;
 
     this.save();
   }

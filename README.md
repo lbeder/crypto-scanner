@@ -41,10 +41,11 @@ Commands:
   crypto-watcher show              Show the configuration
   crypto-watcher query             Query all addresses and tokens
   crypto-watcher change-password   Change the encryption password
-  crypto-watcher add-addresses     Add an address or a list of space-separated
-                                   addresses to a named ledger
-  crypto-watcher remove-addresses  Remove an address or a list of
-                                   space-separated addresses from a named ledger
+  crypto-watcher export-config     Export the config to an external file. Note that the export is *not* encrypted
+  crypto-watcher import-config     Import the config from an external file. Note that the import should not be *not*
+                                   encrypted
+  crypto-watcher add-addresses     Add an address or a list of space-separated addresses to a named ledger
+  crypto-watcher remove-addresses  Remove an address or a list of space-separated addresses from a named ledger
   crypto-watcher remove-ledger     Remove an entire named ledger
   crypto-watcher add-token         Add a token to the config
   crypto-watcher remove-token      Remove a token from the config
@@ -53,12 +54,11 @@ Commands:
   crypto-watcher remove-asset      Remove an assert from the config
 
 Options:
-      --version  Show version number                                   [boolean]
-      --url      Web3 provider's URL [string] [default: "http://127.0.0.1:8545"]
-  -v, --verbose  Verbose mode                                          [boolean]
-  -p, --price    Query prices using Coingecko         [boolean] [default: false]
-      --help     Show help                                             [boolean]
-```
+      --version  Show version number                                                                           [boolean]
+      --help     Show help                                                                                     [boolean]
+      --url      Web3 provider's URL                                         [string] [default: "http://127.0.0.1:8545"]
+  -v, --verbose  Verbose mode                                                                                  [boolean]
+  -p, --price    Query prices using Coingecko                                                 [boolean] [default: false]
 
 ### Example
 

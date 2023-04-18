@@ -14,6 +14,9 @@ const main = async () => {
     await yargs(process.argv.slice(2))
       .parserConfiguration({ "parse-numbers": false })
       .scriptName("crypto-watcher")
+      .wrap(120)
+      .demandCommand()
+      .help()
       .option("url", {
         description: "Web3 provider's URL",
         type: "string",
@@ -103,6 +106,36 @@ const main = async () => {
           }
 
           watcher.changePassword(newPassword2);
+        }
+      )
+      .command(
+        "export-config",
+        "Export the config to an external file. Note that the export is *not* encrypted",
+        {
+          output: {
+            description: "The output file path",
+            type: "string",
+            alias: "o",
+            required: true
+          }
+        },
+        ({ output }) => {
+          watcher.exportConfig(output);
+        }
+      )
+      .command(
+        "import-config",
+        "Import the config from an external file. Note that the import should not be *not* encrypted",
+        {
+          input: {
+            description: "The input file path",
+            type: "string",
+            alias: "i",
+            required: true
+          }
+        },
+        ({ input }) => {
+          watcher.importConfig(input);
         }
       )
       .command(
@@ -275,8 +308,6 @@ const main = async () => {
           watcher.removeAsset(name);
         }
       )
-      .demandCommand()
-      .help()
       .parse();
 
     process.exit(0);

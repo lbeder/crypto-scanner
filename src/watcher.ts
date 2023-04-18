@@ -52,6 +52,18 @@ export class Watcher {
     Logger.info("Password has been successfully changed");
   }
 
+  public exportConfig(outputPath: string) {
+    Logger.info(`Config has been exported to ${outputPath}`);
+
+    this.config.export(outputPath);
+  }
+
+  public importConfig(inputPath: string) {
+    this.config.import(inputPath);
+
+    Logger.info(`Config has been imported from ${inputPath}`);
+  }
+
   public addAddresses(name: string, data: string[]) {
     this.config.addAddresses(name, data);
 
