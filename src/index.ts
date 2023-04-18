@@ -5,6 +5,7 @@ import "./utils/csv";
 import { Logger } from "./utils/logger";
 import { Watcher, DEFAULT_SYMBOL_PRICE } from "./watcher";
 import inquirer from "inquirer";
+import { zipWith } from "lodash";
 import yargs from "yargs";
 
 const main = async () => {
@@ -17,6 +18,7 @@ const main = async () => {
       .wrap(120)
       .demandCommand()
       .help()
+      .version()
       .option("url", {
         description: "Web3 provider's URL",
         type: "string",
@@ -147,14 +149,21 @@ const main = async () => {
             type: "string",
             required: true
           },
-          data: {
-            description: "The addresses to add",
+          addresses: {
+            description: "The address (or multiple addresses) to add",
             type: "array",
             required: true
+          },
+          notes: {
+            description: "The address notes (or multiple notes) to add",
+            type: "array"
           }
         },
-        ({ name, data }) => {
-          watcher.addAddresses(name, data as string[]);
+        ({ name, addresses, notes }) => {
+          watcher.addAddresses(
+            name,
+            zipWith(addresses as string[], notes as string[], (address, note) => ({ address, note }))
+          );
         }
       )
       .command(
@@ -167,7 +176,7 @@ const main = async () => {
             required: true
           },
           data: {
-            description: "The addresses to remove",
+            description: "The address (or multiple addresses) to remove",
             type: "array",
             default: []
           }

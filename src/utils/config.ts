@@ -8,6 +8,11 @@ import path from "path";
 const DATA_DIR = path.resolve(os.homedir(), ".crypto-watcher/");
 const CONFIG_PATH = path.join(DATA_DIR, "config.data");
 
+export interface Address {
+  address: string;
+  note: string;
+}
+
 export interface Token {
   address: string;
   decimals: number;
@@ -19,7 +24,7 @@ export interface Asset {
   symbol: string;
 }
 
-export type Ledgers = Record<string, string[]>;
+export type Ledgers = Record<string, Address[]>;
 export type Tokens = Record<string, Token>;
 export type Assets = Record<string, Asset>;
 
@@ -40,26 +45,32 @@ export class Config {
       fs.mkdirSync(DATA_DIR, { recursive: true });
     }
 
-    const initData = {
-      ledgers: {},
-      tokens: {},
-      assets: {}
-    };
-
     if (!Config.exists()) {
-      this.data = initData;
+      this.data = {
+        ledgers: {},
+        tokens: {},
+        assets: {}
+      };
 
       return;
     }
 
+    let data: Data;
+
     try {
-      this.data = {
-        ...initData,
-        ...(JSON.parse(Config.decrypt(fs.readFileSync(CONFIG_PATH, "utf8"), password)) as Data)
-      };
+      data = JSON.parse(Config.decrypt(fs.readFileSync(CONFIG_PATH, "utf8"), password)) as Data;
     } catch {
       throw new Error("Invalid password");
     }
+
+    // Backward compatibility
+    for (const [name, addresses] of Object.entries(data.ledgers)) {
+      if (addresses.length > 0 && typeof addresses[0] === "string") {
+        data.ledgers[name] = (addresses as any as string[]).map((a) => ({ address: a, note: "" }));
+      }
+    }
+
+    this.data = data;
   }
 
   public static exists() {
@@ -96,7 +107,7 @@ export class Config {
         throw new Error("Invalid ledger name");
       }
 
-      for (const address of addresses) {
+      for (const { address } of addresses) {
         if (!isAddress(address)) {
           throw new Error(`Invalid address: ${address}`);
         }
@@ -186,14 +197,17 @@ export class Config {
     this.save();
   }
 
-  public addAddresses(name: string, addresses: string[]) {
+  public addAddresses(name: string, addresses: Address[]) {
     const ledger = this.data.ledgers[name] || this.addLedger(name);
 
-    for (const address of addresses) {
+    for (const { address, note } of addresses) {
       const checksummedAddress = getAddress(address);
 
-      if (!ledger.includes(checksummedAddress)) {
-        ledger.push(checksummedAddress);
+      const existing = ledger.find((a) => a.address === checksummedAddress);
+      if (!existing) {
+        ledger.push({ address: checksummedAddress, note });
+      } else if (existing.note !== note) {
+        existing.note = note;
       }
     }
 
@@ -207,7 +221,7 @@ export class Config {
     }
 
     const checksummedAddress = addresses.map((a) => getAddress(a as string));
-    this.data.ledgers[name] = ledger.filter((a) => !checksummedAddress.includes(a));
+    this.data.ledgers[name] = ledger.filter((a) => !checksummedAddress.includes(a.address));
 
     this.save();
   }

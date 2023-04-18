@@ -1,5 +1,5 @@
 import { Balance, Token, Price } from "./modules";
-import { Config, Assets } from "./utils/config";
+import { Config, Assets, Address } from "./utils/config";
 import { ETH, USD } from "./utils/constants";
 import { Logger } from "./utils/logger";
 import chalk from "chalk";
@@ -64,11 +64,13 @@ export class Watcher {
     Logger.info(`Config has been imported from ${inputPath}`);
   }
 
-  public addAddresses(name: string, data: string[]) {
+  public addAddresses(name: string, data: Address[]) {
     this.config.addAddresses(name, data);
 
-    for (const address of data) {
-      Logger.info(`Added ${address} to ${name}`);
+    for (const { address, note } of data) {
+      const desc = note ? ` (with a note: "${note}")` : "";
+
+      Logger.info(`Added ${address} to ${name}${desc}`);
     }
   }
 
@@ -130,12 +132,12 @@ export class Watcher {
       Logger.title("Ledgers");
 
       const ledgersTable = new Table({
-        head: [chalk.cyanBright("Ledger"), chalk.cyanBright("Address")]
+        head: [chalk.cyanBright("Ledger"), chalk.cyanBright("Address"), chalk.cyanBright("Note")]
       });
 
       for (const [name, addresses] of Object.entries(ledgers)) {
-        for (const address of addresses) {
-          ledgersTable.push([name, address]);
+        for (const { address, note } of addresses) {
+          ledgersTable.push([name, address, note || ""]);
         }
       }
 
@@ -198,6 +200,7 @@ export class Watcher {
     const ledgers = this.config.getLedgers();
     const tokens = this.config.getTokens();
     const assets = this.config.getAssets();
+    const notes: Record<string, string> = {};
 
     for (const [name, addresses] of Object.entries(ledgers)) {
       Logger.info(`Processing the "${name}" ledger...`);
@@ -206,10 +209,11 @@ export class Watcher {
 
       const ledgerTotal = ledgerAmounts[name];
 
-      for (const address of addresses) {
+      for (const { address, note } of addresses) {
         const ethBalance = await this.balance.getBalance(address);
         if (verbose && !ethBalance.isZero()) {
           set(ledgerAddressAmounts, [name, address, ETH], ethBalance);
+          notes[address] = note;
         }
 
         totalAmounts[ETH] = totalAmounts[ETH].add(ethBalance);
@@ -234,6 +238,7 @@ export class Watcher {
           if (!tokenBalance.isZero()) {
             if (verbose) {
               set(ledgerAddressAmounts, [name, address, symbol], tokenBalance);
+              notes[address] = note;
             }
           }
 
@@ -273,7 +278,7 @@ export class Watcher {
     }
 
     if (verbose) {
-      this.printAddresses(ledgerAddressAmounts, prices);
+      this.printAddresses(ledgerAddressAmounts, notes, prices);
       this.printLedgerTotals(ledgerAmounts, prices);
       this.printAssets(assets, prices);
     }
@@ -347,7 +352,7 @@ export class Watcher {
     Logger.table(totalsTable);
   }
 
-  private printAddresses(ledgerAddressAmounts: LedgerAddressAmounts, prices: Prices) {
+  private printAddresses(ledgerAddressAmounts: LedgerAddressAmounts, notes: Record<string, string>, prices: Prices) {
     if (isEmpty(ledgerAddressAmounts)) {
       return;
     }
@@ -357,7 +362,7 @@ export class Watcher {
     const tokens = [ETH, ...Object.keys(this.config.getTokens())];
     const tokensHead = tokens.map((symbol) => chalk.cyanBright(symbol));
     const addressesTable = new Table({
-      head: [chalk.cyanBright("Ledger"), chalk.cyanBright("Address"), ...tokensHead]
+      head: [chalk.cyanBright("Ledger"), chalk.cyanBright("Address"), ...tokensHead, chalk.cyanBright("Note")]
     });
 
     const totals: Amounts = {};
@@ -373,19 +378,20 @@ export class Watcher {
           balances.push(amount.toCSV());
         }
 
-        addressesTable.push([name, address, ...balances]);
+        addressesTable.push([name, address, ...balances, notes[address] || ""]);
       }
     }
 
-    addressesTable.push(["", "Total", ...tokens.map((symbol) => (totals[symbol] || new Decimal(0)).toCSV())]);
+    addressesTable.push(["", "Total", ...tokens.map((symbol) => (totals[symbol] || new Decimal(0)).toCSV()), ""]);
 
-    addressesTable.push(["", "", ...tokensHead]);
+    addressesTable.push(["", "", ...tokensHead, ""]);
 
     if (this.price) {
       addressesTable.push([
         "",
         "Total Value",
-        ...tokens.map((symbol) => `$${(totals[symbol] || new Decimal(0)).mul(prices[symbol]).toCSV()}`)
+        ...tokens.map((symbol) => `$${(totals[symbol] || new Decimal(0)).mul(prices[symbol]).toCSV()}`),
+        ""
       ]);
     }
 
