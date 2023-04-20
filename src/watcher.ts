@@ -169,14 +169,14 @@ export class Watcher {
       });
 
       for (const [name, { quantity, price, symbol }] of Object.entries(this.config.getAssets())) {
-        let fullPrice = new Decimal(price).toCSV();
+        let fullPrice = new Decimal(price).toCSVAmount();
         if (symbol === USD) {
           fullPrice = `$${fullPrice}`;
         } else {
           fullPrice = `${fullPrice} ${symbol}`;
         }
 
-        assetsTable.push([name, new Decimal(quantity).toCSV(), fullPrice]);
+        assetsTable.push([name, new Decimal(quantity).toCSVAmount(), fullPrice]);
       }
 
       Logger.table(assetsTable);
@@ -347,19 +347,19 @@ export class Watcher {
         continue;
       }
 
-      const values = [name, amount.toCSV()];
+      const values = [name, amount.toCSVAmount()];
 
       if (this.price) {
         const value = amount.mul(prices[name]);
 
-        values.push(`$${value.toCSV()}`, value.mul(100).div(totalValue).toPrecision(6).toString());
+        values.push(`$${value.toCSVAmount()}`, value.mul(100).div(totalValue).toPrecision(6).toString());
       }
 
       totalsTable.push(values);
     }
 
     if (this.price) {
-      totalsTable.push(["", "Total Value", `$${totalValue.toCSV()}`, ""]);
+      totalsTable.push(["", "Total Value", `$${totalValue.toCSVAmount()}`, ""]);
     }
 
     Logger.table(totalsTable);
@@ -388,14 +388,14 @@ export class Watcher {
           const amount = amounts[symbol] || new Decimal(0);
 
           totals[symbol] = (totals[symbol] || new Decimal(0)).add(amount);
-          balances.push(amount.toCSV());
+          balances.push(amount.toCSVAmount());
         }
 
         addressesTable.push([name, address, ...balances, notes[address] || ""]);
       }
     }
 
-    addressesTable.push(["", "Total", ...tokens.map((symbol) => (totals[symbol] || new Decimal(0)).toCSV()), ""]);
+    addressesTable.push(["", "Total", ...tokens.map((symbol) => (totals[symbol] || new Decimal(0)).toCSVAmount()), ""]);
 
     addressesTable.push(["", "", ...tokensHead, ""]);
 
@@ -403,7 +403,7 @@ export class Watcher {
       addressesTable.push([
         "",
         "Total Value",
-        ...tokens.map((symbol) => `$${(totals[symbol] || new Decimal(0)).mul(prices[symbol]).toCSV()}`),
+        ...tokens.map((symbol) => `$${(totals[symbol] || new Decimal(0)).mul(prices[symbol]).toCSVAmount()}`),
         ""
       ]);
     }
@@ -433,20 +433,20 @@ export class Watcher {
         const amount = amounts[symbol] || new Decimal(0);
 
         totals[symbol] = (totals[symbol] || new Decimal(0)).add(amount);
-        balances.push(amount.toCSV());
+        balances.push(amount.toCSVAmount());
       }
 
       ledgersTable.push([name, ...balances]);
     }
 
-    ledgersTable.push(["Total", ...tokens.map((symbol) => (totals[symbol] || new Decimal(0)).toCSV())]);
+    ledgersTable.push(["Total", ...tokens.map((symbol) => (totals[symbol] || new Decimal(0)).toCSVAmount())]);
 
     ledgersTable.push(["", ...tokensHead]);
 
     if (this.price) {
       ledgersTable.push([
         "Total Value",
-        ...tokens.map((symbol) => `$${(totals[symbol] || new Decimal(0)).mul(prices[symbol]).toCSV()}`)
+        ...tokens.map((symbol) => `$${(totals[symbol] || new Decimal(0)).mul(prices[symbol]).toCSVAmount()}`)
       ]);
     }
 
@@ -471,21 +471,21 @@ export class Watcher {
     });
 
     for (const [name, { quantity, price, symbol }] of Object.entries(assets)) {
-      let fullPrice = new Decimal(price).toCSV();
+      let fullPrice = new Decimal(price).toCSVAmount();
       if (symbol === USD) {
         fullPrice = `$${fullPrice}`;
       } else {
         fullPrice = `${fullPrice} ${symbol}`;
       }
 
-      const values = [name, new Decimal(quantity).toCSV(), fullPrice];
+      const values = [name, new Decimal(quantity).toCSVAmount(), fullPrice];
 
       if (this.price) {
         const value = new Decimal(quantity)
           .mul(price)
           .mul(!symbol || symbol === USD ? DEFAULT_SYMBOL_PRICE : prices[symbol]);
 
-        values.push(`$${value.toCSV()}`);
+        values.push(`$${value.toCSVAmount()}`);
       }
 
       assetsTable.push(values);
