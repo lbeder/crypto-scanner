@@ -3,6 +3,7 @@ import { Config, Assets, Address } from "./utils/config";
 import { ETH, USD } from "./utils/constants";
 import { Logger } from "./utils/logger";
 import chalk from "chalk";
+import CliProgress from "cli-progress";
 import Table from "cli-table";
 import Decimal from "decimal.js";
 import { JsonRpcProvider } from "ethers";
@@ -202,14 +203,23 @@ export class Watcher {
     const assets = this.config.getAssets();
     const notes: Record<string, string> = {};
 
-    for (const [name, addresses] of Object.entries(ledgers)) {
-      Logger.info(`Processing the "${name}" ledger...`);
+    const totalAddresses = Object.values(ledgers).reduce((res, addresses) => res + addresses.length, 0);
+    const bar = new CliProgress.SingleBar(
+      {
+        format: "{address} | {bar} {percentage}% | ETA: {eta}s | {value}/{total}"
+      },
+      CliProgress.Presets.shades_classic
+    );
+    bar.start(totalAddresses, 0);
 
+    for (const [name, addresses] of Object.entries(ledgers)) {
       set(ledgerAmounts, [name, ETH], new Decimal(0));
 
       const ledgerTotal = ledgerAmounts[name];
 
       for (const { address, note } of addresses) {
+        bar.increment(1, { address: `${name} | ${address}` });
+
         const ethBalance = await this.balance.getBalance(address);
         if (verbose && !ethBalance.isZero()) {
           set(ledgerAddressAmounts, [name, address, ETH], ethBalance);
@@ -247,6 +257,9 @@ export class Watcher {
         }
       }
     }
+
+    bar.update({ address: "Finished" });
+    bar.stop();
 
     for (const [name, { price, quantity, symbol }] of Object.entries(assets)) {
       if (totalAmounts[name] === undefined) {
