@@ -24,11 +24,6 @@ const main = async () => {
         type: "string",
         default: "http://127.0.0.1:8545"
       })
-      .option("verbose", {
-        description: "Verbose mode",
-        type: "boolean",
-        alias: "v"
-      })
       .option("price", {
         description: "Query prices using Coingecko",
         type: "boolean",
@@ -75,9 +70,20 @@ const main = async () => {
       .command(
         "query",
         "Query all addresses and tokens",
-        () => {},
-        async ({ verbose }) => {
-          await watcher.printData({ verbose });
+        (yargs) =>
+          yargs
+            .option("verbose", {
+              description: "Verbose mode",
+              type: "boolean",
+              alias: "v"
+            })
+            .option("show-empty-addresses", {
+              alias: "e",
+              type: "boolean",
+              default: false
+            }),
+        async ({ verbose, showEmptyAddresses }) => {
+          await watcher.printData({ verbose, showEmptyAddresses });
         }
       )
       .command(

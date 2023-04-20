@@ -22,6 +22,7 @@ type LedgerAddressAmounts = Record<string, NamedAmounts>;
 
 interface PrintOptions {
   verbose: boolean | undefined;
+  showEmptyAddresses: boolean;
 }
 
 export const DEFAULT_SYMBOL_PRICE = 1;
@@ -183,7 +184,7 @@ export class Watcher {
     }
   }
 
-  public async printData({ verbose }: PrintOptions) {
+  public async printData({ verbose, showEmptyAddresses }: PrintOptions) {
     const totalAmounts: Amounts = {
       [ETH]: new Decimal(0)
     };
@@ -221,7 +222,7 @@ export class Watcher {
         bar.increment(1, { address: `${name} | ${address}` });
 
         const ethBalance = await this.balance.getBalance(address);
-        if (verbose && !ethBalance.isZero()) {
+        if (verbose && (showEmptyAddresses || !ethBalance.isZero())) {
           set(ledgerAddressAmounts, [name, address, ETH], ethBalance);
           notes[address] = note;
         }
@@ -245,11 +246,9 @@ export class Watcher {
           }
 
           const tokenBalance = await this.token.getTokenBalance(address, tokenAddress, decimals);
-          if (!tokenBalance.isZero()) {
-            if (verbose) {
-              set(ledgerAddressAmounts, [name, address, symbol], tokenBalance);
-              notes[address] = note;
-            }
+          if (verbose && (showEmptyAddresses || !tokenBalance.isZero())) {
+            set(ledgerAddressAmounts, [name, address, symbol], tokenBalance);
+            notes[address] = note;
           }
 
           totalAmounts[symbol] = totalAmounts[symbol].add(tokenBalance);
