@@ -1,8 +1,12 @@
 # crypto-watcher
 
-Crypto Watcher is a privacy-oriented tool used to track ETH and token balances across multiple addresses and groups (ledgers).
+Crypto Watcher is a privacy-focused tool designed to help you keep track of your Ethereum and token balances across multiple addresses and ledgers. With support for importing external assets and pricing them in USD or other assets like ETH, it's the perfect tool for managing your entire portfolio.
 
-All the data is stored locally in an AES256 encrypted database.
+What sets Crypto Watcher apart from other similar tools is its approach to data retrieval. Instead of fetching your balances from a centralized API, which can compromise your privacy and security, Crypto Watcher uses an RPC URL (`http://localhost:8545` by default) to retrieve your data. This means that your balances are requested directly from your local machine, and your sensitive information remains completely private and secure.
+
+By using this approach, Crypto Watcher ensures that your data is never transmitted over the internet or stored on a third-party server. This greatly reduces the risk of data breaches and ensures that you have complete control over your cryptocurrency portfolio.
+
+What's more, all the data is stored in an AES256 encrypted database, ensuring that your sensitive information remains protected even if your device is compromised. With its robust security features and intuitive interface, Crypto Watcher is the ideal choice for privacy-conscious users who want to keep their cryptocurrency investments safe and secure.
 
 ## Installation
 
@@ -58,37 +62,24 @@ Commands:
 Options:
       --help     Show help                                                                                     [boolean]
       --version  Show version number                                                                           [boolean]
-      --url      Web3 provider's URL                                         [string] [default: "http://127.0.0.1:8545"]
-  -v, --verbose  Verbose mode                                                                                  [boolean]
+      --url      Web3 provider's URL                                         [string] [default: "http://localhost:8545"]
   -p, --price    Query prices using Coingecko                                                 [boolean] [default: false]
 ```
 
 ### Query Amounts and Values
 
 ```sh
-crypto-watcher query --help
+crypto-watcher query
 
 Query all addresses and tokens
 
 Options:
       --help                  Show help                                                                        [boolean]
       --version               Show version number                                                              [boolean]
-      --url                   Web3 provider's URL                            [string] [default: "http://127.0.0.1:8545"]
+      --url                   Web3 provider's URL                            [string] [default: "http://localhost:8545"]
   -p, --price                 Query prices using Coingecko                                    [boolean] [default: false]
   -v, --verbose               Verbose mode                                                                     [boolean]
   -e, --show-empty-addresses                                                                  [boolean] [default: false]
-```
-
-```sh
-crypto-watcher show --help
-
-Show the configuration
-
-Options:
-      --help     Show help                                                                                     [boolean]
-      --version  Show version number                                                                           [boolean]
-      --url      Web3 provider's URL                                         [string] [default: "http://127.0.0.1:8545"]
-  -p, --price    Query prices using Coingecko                                                 [boolean] [default: false]
 ```
 
 ### Show the Configuration
@@ -101,7 +92,7 @@ Show the configuration
 Options:
       --help     Show help                                                                                     [boolean]
       --version  Show version number                                                                           [boolean]
-      --url      Web3 provider's URL                                         [string] [default: "http://127.0.0.1:8545"]
+      --url      Web3 provider's URL                                         [string] [default: "http://localhost:8545"]
   -p, --price    Query prices using Coingecko                                                 [boolean] [default: false]
 ```
 
