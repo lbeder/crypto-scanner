@@ -12,8 +12,13 @@ Decimal.prototype.toCSV = function (this: Decimal) {
 };
 
 Decimal.prototype.toCSVAmount = function (this: Decimal) {
-  if (this.abs() < new Decimal(1)) {
-    return this.toCSV();
+  const abs = this.abs();
+  if (!abs.isZero() && abs < new Decimal(1)) {
+    if (abs < new Decimal(0.0001)) {
+      return "<0.0001";
+    }
+
+    return this.toDecimalPlaces(4).toString();
   }
 
   return Number(this.toDecimalPlaces(2)).toLocaleString();
