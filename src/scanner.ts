@@ -7,7 +7,7 @@ import CliProgress from "cli-progress";
 import Table from "cli-table";
 import Decimal from "decimal.js";
 import { JsonRpcProvider } from "ethers";
-import { set, isEmpty } from "lodash";
+import { set, isEmpty, truncate, padEnd } from "lodash";
 
 interface ScannerOptions {
   providerUrl: string;
@@ -205,22 +205,26 @@ export class Scanner {
     const assets = this.db.getAssets();
     const notes: Record<string, string> = {};
 
-    const totalAddresses = Object.values(ledgers).reduce((res, addresses) => res + addresses.length, 0);
-    const bar = new CliProgress.SingleBar(
+    const addressCount = Object.values(ledgers).reduce((res, addresses) => res + addresses.length, 0);
+    const tokenCount = Object.keys(tokens).length;
+    const multiBar = new CliProgress.MultiBar(
       {
-        format: "{address} | {bar} {percentage}% | ETA: {eta}s | {value}/{total}"
+        format: "{label} | {bar} {percentage}% | ETA: {eta}s | {value}/{total}",
+        autopadding: true
       },
       CliProgress.Presets.shades_classic
     );
-    bar.start(totalAddresses, 0);
+
+    const ledgerBar = multiBar.create(addressCount, 0);
+    const tokenBar = multiBar.create(tokenCount, 0);
 
     for (const [name, addresses] of Object.entries(ledgers)) {
       set(ledgerAmounts, [name, ETH], new Decimal(0));
 
       const ledgerTotal = ledgerAmounts[name];
 
-      for (const { address, note } of addresses) {
-        bar.increment(1, { address: `${name} | ${address}` });
+      for (const [i, { address, note }] of addresses.entries()) {
+        ledgerBar.update(i, { label: `${Scanner.formatLabel(name)} | ${address}` });
 
         const ethBalance = await this.balance.getBalance(address);
         if (verbose && (showEmptyAddresses || !ethBalance.isZero())) {
@@ -231,8 +235,10 @@ export class Scanner {
         totalAmounts[ETH] = totalAmounts[ETH].add(ethBalance);
         ledgerTotal[ETH] = ledgerTotal[ETH].add(ethBalance);
 
-        for (const [symbol, token] of Object.entries(tokens)) {
+        for (const [j, [symbol, token]] of Object.entries(tokens).entries()) {
           const { address: tokenAddress, decimals } = token;
+
+          tokenBar.update(j, { label: `${Scanner.formatLabel(symbol)} | ${tokenAddress}` });
 
           if (this.price && !prices[symbol]) {
             prices[symbol] = await this.price.getTokenPrice(tokenAddress);
@@ -246,8 +252,17 @@ export class Scanner {
             ledgerTotal[symbol] = new Decimal(0);
           }
 
-          const tokenBalance = await this.token.getTokenBalance(address, tokenAddress, decimals);
-          if (verbose && (showEmptyAddresses || !tokenBalance.isZero())) {
+          let tokenBalance: Decimal = new Decimal(0);
+
+          try {
+            tokenBalance = await this.token.getTokenBalance(address, tokenAddress, decimals);
+          } catch (e) {
+            Logger.error(`\nFailed on ${symbol} (${tokenAddress}`);
+
+            throw e;
+          }
+
+          if (verbose && !tokenBalance.isZero()) {
             set(ledgerAddressAmounts, [name, address, symbol], tokenBalance);
             notes[address] = note;
           }
@@ -258,8 +273,13 @@ export class Scanner {
       }
     }
 
-    bar.update({ address: "Finished" });
-    bar.stop();
+    ledgerBar.update({ label: "Finished" });
+    ledgerBar.stop();
+
+    tokenBar.update({ label: "Finished" });
+    tokenBar.stop();
+
+    Logger.info();
 
     for (const [name, { price, quantity, symbol }] of Object.entries(assets)) {
       if (totalAmounts[name] === undefined) {
@@ -492,5 +512,9 @@ export class Scanner {
     }
 
     Logger.table(assetsTable);
+  }
+
+  private static formatLabel(label: string) {
+    return `${padEnd(truncate(label, { length: 8 }), 10)}`;
   }
 }

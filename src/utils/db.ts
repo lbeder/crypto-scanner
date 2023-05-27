@@ -63,7 +63,13 @@ export class DB {
     }
 
     if (globalTokenList) {
-      this.globalTokenList = JSON.parse(fs.readFileSync(GLOBAL_TOKEN_LIST_PATH, "utf8")) as Tokens;
+      this.globalTokenList = Object.fromEntries(
+        Object.entries(JSON.parse(fs.readFileSync(GLOBAL_TOKEN_LIST_PATH, "utf8")) as Tokens).map(
+          ([symbol, { address, decimals }]) => [symbol, { address: getAddress(address), decimals }]
+        )
+      );
+
+      getAddress;
     }
 
     let data: Data;
