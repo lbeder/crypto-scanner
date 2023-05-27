@@ -80,7 +80,7 @@ const main = async () => {
         "Scans all addresses and tokens",
         {
           csv: {
-            description: "The addresses CSV report output path (optional)",
+            description: "The CSV reports output directory (optional)",
             type: "string",
             alias: "r"
           },
@@ -97,7 +97,7 @@ const main = async () => {
           }
         },
         async ({ csv, verbose, showEmptyAddresses }) => {
-          await scanner.scan({ csvOutputPath: csv, verbose, showEmptyAddresses });
+          await scanner.scan({ csvOutputDir: csv, verbose, showEmptyAddresses });
         }
       )
       .command(

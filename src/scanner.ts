@@ -24,7 +24,7 @@ type NamedAmounts = Record<string, Amounts>;
 type LedgerAddressAmounts = Record<string, NamedAmounts>;
 
 interface ScanOptions {
-  csvOutputPath?: string;
+  csvOutputDir?: string;
   verbose: boolean | undefined;
   showEmptyAddresses: boolean;
 }
@@ -39,6 +39,8 @@ export class Scanner {
   private price?: Price;
 
   private static readonly PRICE_QUERY_BATCH_SIZE = 150;
+  private static readonly CSV_ADDRESSES_REPORT = "addresses.csv";
+  private static readonly CSV_PRICES_REPORT = "prices.csv";
 
   constructor({ providerUrl, password, price, globalTokenList }: ScannerOptions) {
     this.provider = new JsonRpcProvider(providerUrl);
@@ -190,14 +192,14 @@ export class Scanner {
     }
   }
 
-  public async scan({ csvOutputPath, verbose, showEmptyAddresses }: ScanOptions) {
+  public async scan({ csvOutputDir, verbose, showEmptyAddresses }: ScanOptions) {
     if (this.db.isGlobalTokenListEnabled()) {
       if (verbose) {
         Logger.warning("WARNING: Using the global token list in verbose mode isn't recommended!");
         Logger.warning();
       }
 
-      if (!csvOutputPath) {
+      if (!csvOutputDir) {
         Logger.warning("WARNING: Please consider requesting a CSV export when the global token list is used");
         Logger.warning();
       }
@@ -299,18 +301,19 @@ export class Scanner {
       }
     }
 
-    if (this.price) {
-      this.showPrices(prices);
-    }
-
     if (verbose) {
       this.showAddresses(ledgerAddressAmounts, notes, prices);
       this.showLedgerTotals(ledgerAmounts, prices);
       this.showAssets(assets, prices);
     }
 
-    if (csvOutputPath) {
-      this.exportAddresses(csvOutputPath, ledgerAddressAmounts, notes, prices);
+    if (this.price) {
+      this.showPrices(prices);
+    }
+
+    if (csvOutputDir) {
+      this.exportAddresses(csvOutputDir, ledgerAddressAmounts, notes, prices);
+      this.exportPrices(csvOutputDir, prices);
     }
 
     this.showTotals(totalAmounts, prices);
@@ -445,16 +448,16 @@ export class Scanner {
     const totals: Amounts = {};
 
     for (const [name, amounts] of Object.entries(ledgerAmounts)) {
-      const balances: string[] = [];
+      const balances: Decimal[] = [];
 
       for (const symbol of tokens) {
         const amount = amounts[symbol] ?? new Decimal(0);
 
         totals[symbol] = (totals[symbol] ?? new Decimal(0)).add(amount);
-        balances.push(amount.toCSVAmount());
+        balances.push(amount);
       }
 
-      ledgersTable.push([name, ...balances]);
+      ledgersTable.push([name, ...balances.map((b) => b.toCSVAmount())]);
     }
 
     ledgersTable.push(["Total", ...tokens.map((symbol) => (totals[symbol] ?? new Decimal(0)).toCSVAmount())]);
@@ -513,12 +516,14 @@ export class Scanner {
   }
 
   private exportAddresses(
-    csvOutputPath: string,
+    csvOutputDir: string,
     ledgerAddressAmounts: LedgerAddressAmounts,
     notes: Record<string, string>,
     prices: Prices
   ) {
-    fs.mkdirSync(path.dirname(csvOutputPath), { recursive: true });
+    fs.mkdirSync(path.dirname(csvOutputDir), { recursive: true });
+
+    const csvOutputPath = path.join(csvOutputDir, Scanner.CSV_ADDRESSES_REPORT);
     if (fs.existsSync(csvOutputPath)) {
       fs.rmSync(csvOutputPath);
     }
@@ -567,6 +572,32 @@ export class Scanner {
         ].join(",")}\n`
       );
     }
+
+    Logger.info(`Exported addresses report to: ${csvOutputPath}`);
+    Logger.info();
+  }
+
+  private exportPrices(csvOutputDir: string, prices: Prices) {
+    fs.mkdirSync(path.dirname(csvOutputDir), { recursive: true });
+
+    const csvOutputPath = path.join(csvOutputDir, Scanner.CSV_PRICES_REPORT);
+    if (fs.existsSync(csvOutputPath)) {
+      fs.rmSync(csvOutputPath);
+    }
+
+    fs.appendFileSync(csvOutputPath, `${["Symbol", "Price"].join(",")}\n`);
+
+    for (const symbol of Object.keys(prices).sort()) {
+      const price = prices[symbol];
+      if (price.isZero()) {
+        continue;
+      }
+
+      fs.appendFileSync(csvOutputPath, `${[symbol, `$${price.toCSV()}`].join(",")}\n`);
+    }
+
+    Logger.info(`Exported prices report to: ${csvOutputPath}`);
+    Logger.info();
   }
 
   private static formatLabel(label: string) {
