@@ -9,7 +9,7 @@ import Decimal from "decimal.js";
 import { JsonRpcProvider } from "ethers";
 import { set, isEmpty } from "lodash";
 
-interface WatcherOptions {
+interface ScannerOptions {
   providerUrl: string;
   password: string;
   price: boolean;
@@ -27,14 +27,14 @@ interface PrintOptions {
 
 export const DEFAULT_SYMBOL_PRICE = 1;
 
-export class Watcher {
+export class Scanner {
   private provider: JsonRpcProvider;
   private config: Config;
   private balance: Balance;
   private token: Token;
   private price?: Price;
 
-  constructor({ providerUrl, password, price }: WatcherOptions) {
+  constructor({ providerUrl, password, price }: ScannerOptions) {
     this.provider = new JsonRpcProvider(providerUrl);
 
     this.balance = new Balance(this.provider);

@@ -1,23 +1,23 @@
-# crypto-watcher
+# crypto-scanner
 
-Crypto Watcher is a privacy-focused tool designed to help you keep track of your Ethereum and token balances across multiple addresses and ledgers. With support for importing external assets and pricing them in USD or other assets like ETH, it's the perfect tool for managing your entire portfolio.
+Crypto Scanner is a privacy-focused tool designed to help you keep track of your ETH and token balances across multiple addresses and ledgers. With support for importing external assets and pricing them in USD or other assets like ETH, it's the perfect tool for managing your entire portfolio.
 
-What sets Crypto Watcher apart from other similar tools is its approach to data retrieval. Instead of fetching your balances from a centralized API, which can compromise your privacy and security, Crypto Watcher uses an RPC URL (`http://localhost:8545` by default) to retrieve your data. This means that your balances are requested directly from your local machine, and your sensitive information remains completely private and secure.
+What sets Crypto Scanner apart from other similar tools is its approach to data retrieval. Instead of fetching your balances from a centralized API, which can compromise your privacy and security, Crypto Scanner uses an RPC URL (`http://localhost:8545` by default) to retrieve your data. This means that your balances are requested directly from your local machine, and your sensitive information remains completely private and secure.
 
-By using this approach, Crypto Watcher ensures that your data is never transmitted over the internet or stored on a third-party server. This greatly reduces the risk of data breaches and ensures that you have complete control over your cryptocurrency portfolio.
+By using this approach, Crypto Scanner ensures that your data is never transmitted over the internet or stored on a third-party server. This greatly reduces the risk of data breaches and ensures that you have complete control over your cryptocurrency portfolio.
 
-What's more, all the data is stored in an AES256 encrypted database, ensuring that your sensitive information remains protected even if your device is compromised. With its robust security features and intuitive interface, Crypto Watcher is the ideal choice for privacy-conscious users who want to keep their cryptocurrency investments safe and secure.
+What's more, all the data is stored in an AES256 encrypted database, ensuring that your sensitive information remains protected even if your device is compromised. With its robust security features and intuitive interface, Crypto Scanner is the ideal choice for privacy-conscious users who want to keep their cryptocurrency investments safe and secure.
 
 ## Installation
 
-The `crypto-watcher` tool stores the configuration at `<HOME_DIR>/.crypto-watcher/config.data` by default.
+The `crypto-scanner` tool stores the configuration at `<HOME_DIR>/.crypto-scanner/config.data` by default.
 
 ### Locally
 
 ```sh
-git clone https://github.com/lbeder/crypto-watcher
+git clone https://github.com/lbeder/crypto-scanner
 
-cd crypto-watcher
+cd crypto-scanner
 
 yarn
 ```
@@ -25,39 +25,39 @@ yarn
 ### Globally
 
 ```sh
-npm install -g crypto-watcher
+npm install -g crypto-scanner
 ```
 
 Or run with npx:
 
 ```sh
-npx crypto-watcher
+npx crypto-scanner
 ```
 
-This will also allow you to run the `crypto-watcher` in the terminal.
+This will also allow you to run the `crypto-scanner` in the terminal.
 
 ## Usage
 
 ### General
 
 ```sh
-crypto-watcher <command>
+crypto-scanner <command>
 
 Commands:
-  crypto-watcher show              Show the configuration
-  crypto-watcher query             Query all addresses and tokens
-  crypto-watcher change-password   Change the encryption password
-  crypto-watcher export-config     Export the config to an external file. Note that the export is *not* encrypted
-  crypto-watcher import-config     Import the config from an external file. Note that the import should not be *not*
+  crypto-scanner show              Show the configuration
+  crypto-scanner scan              Scans all addresses and tokens
+  crypto-scanner change-password   Change the encryption password
+  crypto-scanner export-config     Export the config to an external file. Note that the export is *not* encrypted
+  crypto-scanner import-config     Import the config from an external file. Note that the import should not be *not*
                                    encrypted
-  crypto-watcher add-addresses     Add an address or a list of space-separated addresses to a named ledger
-  crypto-watcher remove-addresses  Remove an address or a list of space-separated addresses from a named ledger
-  crypto-watcher remove-ledger     Remove an entire named ledger
-  crypto-watcher add-token         Add a token to the config
-  crypto-watcher remove-token      Remove a token from the config
-  crypto-watcher add-asset         Add an asset to the config
-  crypto-watcher update-asset      Update an asset in the config
-  crypto-watcher remove-asset      Remove an assert from the config
+  crypto-scanner add-addresses     Add an address or a list of space-separated addresses to a named ledger
+  crypto-scanner remove-addresses  Remove an address or a list of space-separated addresses from a named ledger
+  crypto-scanner remove-ledger     Remove an entire named ledger
+  crypto-scanner add-token         Add a token to the config
+  crypto-scanner remove-token      Remove a token from the config
+  crypto-scanner add-asset         Add an asset to the config
+  crypto-scanner update-asset      Update an asset in the config
+  crypto-scanner remove-asset      Remove an assert from the config
 
 Options:
       --help     Show help                                                                                     [boolean]
@@ -66,12 +66,12 @@ Options:
   -p, --price    Query prices using Coingecko                                                 [boolean] [default: false]
 ```
 
-### Query Amounts and Values
+### Scan all Balances
 
 ```sh
-crypto-watcher query
+crypto-scanner scan
 
-Query all addresses and tokens
+Scans all addresses and tokens
 
 Options:
       --help                  Show help                                                                        [boolean]
@@ -85,7 +85,7 @@ Options:
 ### Show the Configuration
 
 ```sh
-crypto-watcher show
+crypto-scanner show
 
 Show the configuration
 
@@ -109,7 +109,7 @@ Let's start by adding the following addresses to the following named ledgers:
   * `0xDA9dfA130Df4dE4673b89022EE50ff26f6EA73Cf`
 
 ```sh
-crypto-watcher add-addresses --name "Binance" --addresses 0xBE0eB53F46cd790Cd13851d5EFf43D12404d33E8 0xF977814e90dA44bFA03b6295A0616a897441aceC --notes "Binance 7" "Binance 8"
+crypto-scanner add-addresses --name "Binance" --addresses 0xBE0eB53F46cd790Cd13851d5EFf43D12404d33E8 0xF977814e90dA44bFA03b6295A0616a897441aceC --notes "Binance 7" "Binance 8"
 
 ? Enter password [hidden]
 
@@ -118,7 +118,7 @@ Added 0xF977814e90dA44bFA03b6295A0616a897441aceC to Binance (with a note: "Binan
 ```
 
 ```sh
-crypto-watcher add-addresses --name "Kraken" --addresses 0xDA9dfA130Df4dE4673b89022EE50ff26f6EA73Cf
+crypto-scanner add-addresses --name "Kraken" --addresses 0xDA9dfA130Df4dE4673b89022EE50ff26f6EA73Cf
 
 ? Enter password [hidden]
 
@@ -126,7 +126,7 @@ Added 0xDA9dfA130Df4dE4673b89022EE50ff26f6EA73Cf to Kraken
 ```
 
 ```sh
-crypto-watcher add-addresses --name "Coinbase" --addresses 0x71660c4005BA85c37ccec55d0C4493E66Fe775d3 --notes "Coinbase 1"
+crypto-scanner add-addresses --name "Coinbase" --addresses 0x71660c4005BA85c37ccec55d0C4493E66Fe775d3 --notes "Coinbase 1"
 
 ? Enter password [hidden]
 
@@ -136,7 +136,7 @@ Added 0x71660c4005BA85c37ccec55d0C4493E66Fe775d3 to Coinbase (with a note: "Coin
 We can see that the configuration has been updated:
 
 ```sh
-crypto-watcher show
+crypto-scanner show
 
 ? Enter password [hidden]
 
@@ -157,10 +157,10 @@ Ledgers
 └──────────┴────────────────────────────────────────────┴────────────┘
 ```
 
-As you can see, by default the known token list is empty, therefore querying the balances will only return Ether amounts:
+As you can see, by default the known token list is empty, therefore scanning the balances will only return ETH amounts:
 
 ```sh
-crypto-watcher query
+crypto-scanner scan
 
 ? Enter password [hidden]
 
@@ -178,7 +178,7 @@ Total Amounts
 You can also provide the `-v/--verbose` flag to print verbose amounts for all addresses and ledgers:
 
 ```sh
-crypto-watcher query -v
+crypto-scanner scan -v
 
 ? Enter password [hidden]
 
@@ -230,7 +230,7 @@ Total Amounts
 Let's add the USDT, USDC, DAI, and LINK tokens and try again:
 
 ```sh
-crypto-watcher add-token --symbol USDT --address 0xdAC17F958D2ee523a2206206994597C13D831ec7 --decimals 6
+crypto-scanner add-token --symbol USDT --address 0xdAC17F958D2ee523a2206206994597C13D831ec7 --decimals 6
 
 ? Enter password [hidden]
 
@@ -238,7 +238,7 @@ Added USDT at 0xdAC17F958D2ee523a2206206994597C13D831ec7 with 6 decimals
 ```
 
 ```sh
-crypto-watcher add-token --symbol USDC --address 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 --decimals 6
+crypto-scanner add-token --symbol USDC --address 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 --decimals 6
 
 ? Enter password [hidden]
 
@@ -246,7 +246,7 @@ Added USDC at 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 with 6 decimals
 ```
 
 ```sh
-crypto-watcher add-token --symbol DAI --address 0x6B175474E89094C44Da98b954EedeAC495271d0F
+crypto-scanner add-token --symbol DAI --address 0x6B175474E89094C44Da98b954EedeAC495271d0F
 
 ? Enter password [hidden]
 
@@ -254,7 +254,7 @@ Added DAI at 0x6B175474E89094C44Da98b954EedeAC495271d0F with 18 decimals
 ```
 
 ```sh
-crypto-watcher add-token --symbol LINK --address 0x514910771AF9Ca656af840dff83E8264EcF986CA
+crypto-scanner add-token --symbol LINK --address 0x514910771AF9Ca656af840dff83E8264EcF986CA
 
 ? Enter password [hidden]
 
@@ -264,7 +264,7 @@ Added LINK at 0x514910771AF9Ca656af840dff83E8264EcF986CA with 18 decimals
 You can check and verify that the tokens are now part of the configuration:
 
 ```sh
-crypto-watcher show
+crypto-scanner show
 
 ? Enter password [hidden]
 
@@ -299,10 +299,10 @@ Tokens
 └────────┴────────────────────────────────────────────┴──────────┘
 ```
 
-Let's query the balances again:
+Let's scan the balances again:
 
 ```sh
-crypto-watcher query
+crypto-scanner scan
 
 ? Enter password [hidden]
 
@@ -325,10 +325,10 @@ Total Amounts
 └──────┴──────────────┘
 ```
 
-Let's query again with the `-v/--verbose` flag:
+Let's scan again with the `-v/--verbose` flag:
 
 ```sh
-crypto-watcher query -v
+crypto-scanner scan -v
 
 ? Enter password [hidden]
 
@@ -385,10 +385,10 @@ Total Amounts
 └──────┴─────────────┘
 ```
 
-If you are interested in querying the $ value of the balances, you can pass the optional `-p/--price` flag which will query the balances using [https://www.coingecko.com/](CoinGecko API):
+If you are interested in scanning the $ value of the balances, you can pass the optional `-p/--price` flag which will query the balances using [https://www.coingecko.com/](CoinGecko API):
 
 ```sh
-crypto-watcher query -p
+crypto-scanner scan -p
 
 ? Enter password [hidden]
 
@@ -432,7 +432,7 @@ Total Amounts
 You can also combine both the `-p/--price` and the `-v/--verbose` flags for the full output with an aggregated total $ values and holding percentages:
 
 ```sh
-crypto-watcher query -v -p
+crypto-scanner scan -v -p
 
 Finished | ████████████████████████████████████████ 100% | ETA: 0s | 4/4
 
@@ -512,7 +512,7 @@ Total Amounts
 In addition to ETH and token amounts, you can also add static assets, by specifying their name, quantity, and unit prices. For example:
 
 ```sh
-crypto-watcher add-asset --name Gold --quantity 100 --unit-price 2018.25
+crypto-scanner add-asset --name Gold --quantity 100 --unit-price 2018.25
 
 ? Enter password [hidden]
 
@@ -520,7 +520,7 @@ Added 100 units of Gold at the price of 2018.25 USD per unit
 ```
 
 ```sh
-crypto-watcher add-asset --name "Real Estate" --quantity 1 --unit-price 1000000
+crypto-scanner add-asset --name "Real Estate" --quantity 1 --unit-price 1000000
 
 ? Enter password [hidden]
 
@@ -530,7 +530,7 @@ Added 1 units of Real Estate at the price of 1000000 USD per unit
 You can check and verify that the assets are now part of the configuration:
 
 ```sh
-crypto-watcher show
+crypto-scanner show
 
 ? Enter password [hidden]
 
@@ -578,7 +578,7 @@ Assets
 You can also see that asset amounts are aggregated as well:
 
 ```sh
-crypto-watcher query -p -v
+crypto-scanner scan -p -v
 
 ? Enter password [hidden]
 
@@ -678,7 +678,7 @@ Total Amounts
 You can also add assets priced in tokens. Please note that the token should have been added via the `add-token` command:
 
 ```sh
-crypto-watcher add-asset --name CDP --quantity 123 --unit-price 1 --symbol ETH
+crypto-scanner add-asset --name CDP --quantity 123 --unit-price 1 --symbol ETH
 
 ? Enter password [hidden]
 
@@ -686,7 +686,7 @@ Added 123 units of CDP at the price of 1 ETH per unit
 ```
 
 ```sh
-crypto-watcher add-asset --name wUSDC --quantity 1000 --unit-price 2 --symbol USDC
+crypto-scanner add-asset --name wUSDC --quantity 1000 --unit-price 2 --symbol USDC
 
 ? Enter password [hidden]
 
@@ -696,7 +696,7 @@ Added 1000 units of wUSDC at the price of 2 USDC per unit
 You can check and verify that the new assets are now part of the configuration:
 
 ```sh
-crypto-watcher show
+crypto-scanner show
 
 ? Enter password [hidden]
 
@@ -748,7 +748,7 @@ Assets
 You can also see that asset amounts are aggregated as well:
 
 ```sh
-crypto-watcher query -p -v
+crypto-scanner scan -p -v
 
 ? Enter password [hidden]
 

@@ -1,20 +1,20 @@
 #!/usr/bin/env node
+import { Scanner, DEFAULT_SYMBOL_PRICE } from "./scanner";
 import { Config } from "./utils/config";
 import { DEFAULT_DECIMALS } from "./utils/constants";
 import "./utils/csv";
 import { Logger } from "./utils/logger";
-import { Watcher, DEFAULT_SYMBOL_PRICE } from "./watcher";
 import inquirer from "inquirer";
 import { zipWith } from "lodash";
 import yargs from "yargs";
 
 const main = async () => {
-  let watcher: Watcher;
+  let scanner: Scanner;
 
   try {
     await yargs(process.argv.slice(2))
       .parserConfiguration({ "parse-numbers": false })
-      .scriptName("crypto-watcher")
+      .scriptName("crypto-scanner")
       .wrap(120)
       .demandCommand()
       .help()
@@ -57,19 +57,19 @@ const main = async () => {
 
         Logger.info();
 
-        watcher = new Watcher({ providerUrl: url, price, password });
+        scanner = new Scanner({ providerUrl: url, price, password });
       })
       .command(
         "show",
         "Show the configuration",
         () => {},
         () => {
-          watcher.printConfig();
+          scanner.printConfig();
         }
       )
       .command(
-        "query",
-        "Query all addresses and tokens",
+        "scan",
+        "Scans all addresses and tokens",
         (yargs) =>
           yargs
             .option("verbose", {
@@ -83,7 +83,7 @@ const main = async () => {
               default: false
             }),
         async ({ verbose, showEmptyAddresses }) => {
-          await watcher.printData({ verbose, showEmptyAddresses });
+          await scanner.printData({ verbose, showEmptyAddresses });
         }
       )
       .command(
@@ -113,7 +113,7 @@ const main = async () => {
             return;
           }
 
-          watcher.changePassword(newPassword2);
+          scanner.changePassword(newPassword2);
         }
       )
       .command(
@@ -128,7 +128,7 @@ const main = async () => {
           }
         },
         ({ output }) => {
-          watcher.exportConfig(output);
+          scanner.exportConfig(output);
         }
       )
       .command(
@@ -143,7 +143,7 @@ const main = async () => {
           }
         },
         ({ input }) => {
-          watcher.importConfig(input);
+          scanner.importConfig(input);
         }
       )
       .command(
@@ -166,7 +166,7 @@ const main = async () => {
           }
         },
         ({ name, addresses, notes }) => {
-          watcher.addAddresses(
+          scanner.addAddresses(
             name,
             zipWith(addresses as string[], notes as string[], (address, note) => ({ address, note }))
           );
@@ -188,7 +188,7 @@ const main = async () => {
           }
         },
         ({ name, data }) => {
-          watcher.removeAddresses(name, data as string[]);
+          scanner.removeAddresses(name, data as string[]);
         }
       )
       .command(
@@ -202,7 +202,7 @@ const main = async () => {
           }
         },
         ({ name }) => {
-          watcher.removeLedger(name);
+          scanner.removeLedger(name);
         }
       )
       .command(
@@ -226,7 +226,7 @@ const main = async () => {
           }
         },
         ({ symbol, address, decimals }) => {
-          watcher.addToken(symbol, address, decimals);
+          scanner.addToken(symbol, address, decimals);
         }
       )
       .command(
@@ -240,7 +240,7 @@ const main = async () => {
           }
         },
         ({ symbol }) => {
-          watcher.removeToken(symbol);
+          scanner.removeToken(symbol);
         }
       )
       .command(
@@ -273,7 +273,7 @@ const main = async () => {
             throw new Error("Missing required argument: unit-price");
           }
 
-          watcher.addAsset(name, quantity, price, symbol);
+          scanner.addAsset(name, quantity, price, symbol);
         }
       )
       .command(
@@ -306,7 +306,7 @@ const main = async () => {
             throw new Error("Missing required argument: unit-price");
           }
 
-          watcher.updateAsset(name, quantity, price, symbol);
+          scanner.updateAsset(name, quantity, price, symbol);
         }
       )
       .command(
@@ -320,7 +320,7 @@ const main = async () => {
           }
         },
         ({ name }) => {
-          watcher.removeAsset(name);
+          scanner.removeAsset(name);
         }
       )
       .parse();

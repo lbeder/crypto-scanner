@@ -5,7 +5,7 @@ import fs from "fs";
 import os from "os";
 import path from "path";
 
-const DATA_DIR = path.resolve(os.homedir(), ".crypto-watcher/");
+const DATA_DIR = path.resolve(os.homedir(), ".crypto-scanner/");
 const CONFIG_PATH = path.join(DATA_DIR, "config.data");
 
 export interface Address {

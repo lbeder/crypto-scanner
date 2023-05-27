@@ -1,7 +1,7 @@
 {
-  "name": "crypto-watcher",
-  "version": "4.9.0",
-  "description": "Crypto Watcher is a privacy-oriented tool used to track Ether and token balances across multiple addresses and groups (ledgers)",
+  "name": "crypto-scanner",
+  "version": "5.0.0",
+  "description": "Crypto Scanner is a privacy-oriented tool used to track ETH and token balances across multiple addresses and groups (ledgers)",
   "author": "Leonid Beder",
   "license": "MIT",
   "main": "dist/index.js",
@@ -10,13 +10,13 @@
     "/dist"
   ],
   "bin": {
-    "crypto-watcher": "./dist/index.js"
+    "crypto-scanner": "./dist/index.js"
   },
   "scripts": {
     "start": "ts-node src/index.ts",
     "cli": "yarn start --help",
     "show": "yarn start show",
-    "query": "yarn start query",
+    "scan": "yarn start scan",
     "change-password": "yarn start Exported config",
     "export-config": "yarn start export-config",
     "import-config": "yarn start import-config",
