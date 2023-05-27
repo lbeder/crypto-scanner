@@ -217,14 +217,15 @@ export class Scanner {
 
     const ledgerBar = multiBar.create(addressCount, 0);
     const tokenBar = multiBar.create(tokenCount, 0);
+    let addressIndex = 0;
 
     for (const [name, addresses] of Object.entries(ledgers)) {
       set(ledgerAmounts, [name, ETH], new Decimal(0));
 
       const ledgerTotal = ledgerAmounts[name];
 
-      for (const [i, { address, note }] of addresses.entries()) {
-        ledgerBar.update(i, { label: `${Scanner.formatLabel(name)} | ${address}` });
+      for (const { address, note } of addresses) {
+        ledgerBar.update(addressIndex++, { label: `${Scanner.formatLabel(name)} | ${address}` });
 
         const ethBalance = await this.balance.getBalance(address);
         if (verbose && (showEmptyAddresses || !ethBalance.isZero())) {
@@ -235,10 +236,10 @@ export class Scanner {
         totalAmounts[ETH] = totalAmounts[ETH].add(ethBalance);
         ledgerTotal[ETH] = ledgerTotal[ETH].add(ethBalance);
 
-        for (const [j, [symbol, token]] of Object.entries(tokens).entries()) {
+        for (const [tokenIndex, [symbol, token]] of Object.entries(tokens).entries()) {
           const { address: tokenAddress, decimals } = token;
 
-          tokenBar.update(j, { label: `${Scanner.formatLabel(symbol)} | ${tokenAddress}` });
+          tokenBar.update(tokenIndex, { label: `${Scanner.formatLabel(symbol)} | ${tokenAddress}` });
 
           if (this.price && !prices[symbol]) {
             prices[symbol] = await this.price.getTokenPrice(tokenAddress);
@@ -273,11 +274,10 @@ export class Scanner {
       }
     }
 
-    ledgerBar.update({ label: "Finished" });
-    ledgerBar.stop();
+    ledgerBar.update(addressCount, { label: "Finished" });
+    tokenBar.update(tokenCount, { label: "Finished" });
 
-    tokenBar.update({ label: "Finished" });
-    tokenBar.stop();
+    multiBar.stop();
 
     Logger.info();
 
