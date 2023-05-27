@@ -20,7 +20,7 @@ type Prices = Record<string, Decimal>;
 type NamedAmounts = Record<string, Amounts>;
 type LedgerAddressAmounts = Record<string, NamedAmounts>;
 
-interface PrintOptions {
+interface ScanOptions {
   verbose: boolean | undefined;
   showEmptyAddresses: boolean;
 }
@@ -126,7 +126,7 @@ export class Scanner {
     Logger.info(`Removed ${name}`);
   }
 
-  public printConfig() {
+  public showConfig() {
     Logger.title("Configuration");
 
     const ledgers = this.config.getLedgers();
@@ -184,7 +184,7 @@ export class Scanner {
     }
   }
 
-  public async printData({ verbose, showEmptyAddresses }: PrintOptions) {
+  public async scan({ verbose, showEmptyAddresses }: ScanOptions) {
     const totalAmounts: Amounts = {
       [ETH]: new Decimal(0)
     };
@@ -286,19 +286,19 @@ export class Scanner {
     Logger.info();
 
     if (this.price) {
-      this.printPrices(prices);
+      this.showPrices(prices);
     }
 
     if (verbose) {
-      this.printAddresses(ledgerAddressAmounts, notes, prices);
-      this.printLedgerTotals(ledgerAmounts, prices);
-      this.printAssets(assets, prices);
+      this.showAddresses(ledgerAddressAmounts, notes, prices);
+      this.showLedgerTotals(ledgerAmounts, prices);
+      this.showAssets(assets, prices);
     }
 
     this.printTotals(totalAmounts, prices);
   }
 
-  private printPrices(prices: Prices) {
+  private showPrices(prices: Prices) {
     Logger.title("Prices");
 
     const pricesTable = new Table({
@@ -364,7 +364,7 @@ export class Scanner {
     Logger.table(totalsTable);
   }
 
-  private printAddresses(ledgerAddressAmounts: LedgerAddressAmounts, notes: Record<string, string>, prices: Prices) {
+  private showAddresses(ledgerAddressAmounts: LedgerAddressAmounts, notes: Record<string, string>, prices: Prices) {
     if (isEmpty(ledgerAddressAmounts)) {
       return;
     }
@@ -410,7 +410,7 @@ export class Scanner {
     Logger.table(addressesTable);
   }
 
-  private printLedgerTotals(ledgerAmounts: NamedAmounts, prices: Prices) {
+  private showLedgerTotals(ledgerAmounts: NamedAmounts, prices: Prices) {
     if (isEmpty(ledgerAmounts)) {
       return;
     }
@@ -452,7 +452,7 @@ export class Scanner {
     Logger.table(ledgersTable);
   }
 
-  private printAssets(assets: Assets, prices: Prices) {
+  private showAssets(assets: Assets, prices: Prices) {
     if (isEmpty(assets)) {
       return;
     }

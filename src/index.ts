@@ -64,7 +64,7 @@ const main = async () => {
         "Show the configuration",
         () => {},
         () => {
-          scanner.printConfig();
+          scanner.showConfig();
         }
       )
       .command(
@@ -78,12 +78,13 @@ const main = async () => {
               alias: "v"
             })
             .option("show-empty-addresses", {
+              description: "Show empty addresses",
               alias: "e",
               type: "boolean",
               default: false
             }),
         async ({ verbose, showEmptyAddresses }) => {
-          await scanner.printData({ verbose, showEmptyAddresses });
+          await scanner.scan({ verbose, showEmptyAddresses });
         }
       )
       .command(
