@@ -6,7 +6,7 @@ import os from "os";
 import path from "path";
 
 const DATA_DIR = path.resolve(os.homedir(), ".crypto-scanner/");
-const CONFIG_PATH = path.join(DATA_DIR, "config.data");
+const DB_PATH = path.join(DATA_DIR, "db");
 
 export interface Address {
   address: string;
@@ -34,7 +34,7 @@ interface Data {
   assets: Assets;
 }
 
-export class Config {
+export class DB {
   private data: Data;
   private password: string;
 
@@ -45,7 +45,7 @@ export class Config {
       fs.mkdirSync(DATA_DIR, { recursive: true });
     }
 
-    if (!Config.exists()) {
+    if (!DB.exists()) {
       this.data = {
         ledgers: {},
         tokens: {},
@@ -58,7 +58,7 @@ export class Config {
     let data: Data;
 
     try {
-      data = JSON.parse(Config.decrypt(fs.readFileSync(CONFIG_PATH, "utf8"), password)) as Data;
+      data = JSON.parse(DB.decrypt(fs.readFileSync(DB_PATH, "utf8"), password)) as Data;
     } catch {
       throw new Error("Invalid password");
     }
@@ -74,7 +74,7 @@ export class Config {
   }
 
   public static exists() {
-    return fs.existsSync(CONFIG_PATH);
+    return fs.existsSync(DB_PATH);
   }
 
   public changePassword(newPassword: string) {
@@ -330,8 +330,8 @@ export class Config {
   }
 
   private save() {
-    const encryptedConfig = Config.encrypt(this.data, this.password);
+    const encryptedDB = DB.encrypt(this.data, this.password);
 
-    fs.writeFileSync(CONFIG_PATH, encryptedConfig, "utf8");
+    fs.writeFileSync(DB_PATH, encryptedDB, "utf8");
   }
 }

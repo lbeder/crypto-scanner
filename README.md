@@ -10,7 +10,7 @@ What's more, all the data is stored in an AES256 encrypted database, ensuring th
 
 ## Installation
 
-The `crypto-scanner` tool stores the configuration at `<HOME_DIR>/.crypto-scanner/config.data` by default.
+The `crypto-scanner` tool stores the DB at `<HOME_DIR>/.crypto-scanner/db` by default.
 
 ### Locally
 
@@ -44,20 +44,20 @@ This will also allow you to run the `crypto-scanner` in the terminal.
 crypto-scanner <command>
 
 Commands:
-  crypto-scanner show              Show the configuration
+  crypto-scanner show              Show the DB
   crypto-scanner scan              Scans all addresses and tokens
   crypto-scanner change-password   Change the encryption password
-  crypto-scanner export-config     Export the config to an external file. Note that the export is *not* encrypted
-  crypto-scanner import-config     Import the config from an external file. Note that the import should not be *not*
+  crypto-scanner export-db         Export the DB to an external file. Note that the export is *not* encrypted
+  crypto-scanner import-DB         Import the DB from an external file. Note that the import should not be *not*
                                    encrypted
   crypto-scanner add-addresses     Add an address or a list of space-separated addresses to a named ledger
   crypto-scanner remove-addresses  Remove an address or a list of space-separated addresses from a named ledger
   crypto-scanner remove-ledger     Remove an entire named ledger
-  crypto-scanner add-token         Add a token to the config
-  crypto-scanner remove-token      Remove a token from the config
-  crypto-scanner add-asset         Add an asset to the config
-  crypto-scanner update-asset      Update an asset in the config
-  crypto-scanner remove-asset      Remove an assert from the config
+  crypto-scanner add-token         Add a token to the DB
+  crypto-scanner remove-token      Remove a token from the DB
+  crypto-scanner add-asset         Add an asset to the DB
+  crypto-scanner update-asset      Update an asset in the DB
+  crypto-scanner remove-asset      Remove an asset from the DB
 
 Options:
       --help     Show help                                                                                     [boolean]
@@ -82,12 +82,12 @@ Options:
   -e, --show-empty-addresses                                                                  [boolean] [default: false]
 ```
 
-### Show the Configuration
+### Show the DB
 
 ```sh
 crypto-scanner show
 
-Show the configuration
+Show the DB
 
 Options:
       --help     Show help                                                                                     [boolean]
@@ -98,7 +98,7 @@ Options:
 
 ### Example
 
-#### Adding addresses
+#### Adding Addresses
 
 Let's start by adding the following addresses to the following named ledgers:
 
@@ -133,15 +133,15 @@ crypto-scanner add-addresses --name "Coinbase" --addresses 0x71660c4005BA85c37cc
 Added 0x71660c4005BA85c37ccec55d0C4493E66Fe775d3 to Coinbase (with a note: "Coinbase 1")
 ```
 
-We can see that the configuration has been updated:
+We can see that the DB has been updated:
 
 ```sh
 crypto-scanner show
 
 ? Enter password [hidden]
 
-Configuration
-‾‾‾‾‾‾‾‾‾‾‾‾‾
+DB
+‾‾
 Ledgers
 ‾‾‾‾‾‾‾
 ┌──────────┬────────────────────────────────────────────┬────────────┐
@@ -227,6 +227,8 @@ Total Amounts
 └──────┴──────────────┘
 ```
 
+#### Adding Tokens
+
 Let's add the USDT, USDC, DAI, and LINK tokens and try again:
 
 ```sh
@@ -261,15 +263,15 @@ crypto-scanner add-token --symbol LINK --address 0x514910771AF9Ca656af840dff83E8
 Added LINK at 0x514910771AF9Ca656af840dff83E8264EcF986CA with 18 decimals
 ```
 
-You can check and verify that the tokens are now part of the configuration:
+You can check and verify that the tokens are now part of the DB:
 
 ```sh
 crypto-scanner show
 
 ? Enter password [hidden]
 
-Configuration
-‾‾‾‾‾‾‾‾‾‾‾‾‾
+DB
+‾‾
 Ledgers
 ‾‾‾‾‾‾‾
 ┌──────────┬────────────────────────────────────────────┬────────────┐
@@ -385,7 +387,9 @@ Total Amounts
 └──────┴─────────────┘
 ```
 
-If you are interested in scanning the $ value of the balances, you can pass the optional `-p/--price` flag which will query the balances using [https://www.coingecko.com/](CoinGecko API):
+#### Showing USD Values
+
+If you are interested in showing the USD values of the balances, you can pass the optional `-p/--price` flag which will query the prices using [https://www.coingecko.com/](CoinGecko API):
 
 ```sh
 crypto-scanner scan -p
@@ -509,6 +513,9 @@ Total Amounts
 └──────┴─────────────┴────────────────────┴──────────────────┘
 ```
 
+
+#### Adding Assets
+
 In addition to ETH and token amounts, you can also add static assets, by specifying their name, quantity, and unit prices. For example:
 
 ```sh
@@ -527,15 +534,15 @@ crypto-scanner add-asset --name "Real Estate" --quantity 1 --unit-price 1000000
 Added 1 units of Real Estate at the price of 1000000 USD per unit
 ```
 
-You can check and verify that the assets are now part of the configuration:
+You can check and verify that the assets are now part of the DB:
 
 ```sh
 crypto-scanner show
 
 ? Enter password [hidden]
 
-Configuration
-‾‾‾‾‾‾‾‾‾‾‾‾‾
+DB
+‾‾
 Ledgers
 ‾‾‾‾‾‾‾
 ┌──────────┬────────────────────────────────────────────┬────────────┐
@@ -675,7 +682,9 @@ Total Amounts
 └─────────────┴─────────────┴────────────────────┴──────────────────┘
 ```
 
-You can also add assets priced in tokens. Please note that the token should have been added via the `add-token` command:
+#### Custom Pricing
+
+You can also add assets priced in other tokens/assets. Please note that the token should have been added via the `add-token` command (or appear in the global token list, if you have explicitly specified to use it):
 
 ```sh
 crypto-scanner add-asset --name CDP --quantity 123 --unit-price 1 --symbol ETH
@@ -693,15 +702,15 @@ crypto-scanner add-asset --name wUSDC --quantity 1000 --unit-price 2 --symbol US
 Added 1000 units of wUSDC at the price of 2 USDC per unit
 ```
 
-You can check and verify that the new assets are now part of the configuration:
+You can check and verify that the new assets are now part of the DB:
 
 ```sh
 crypto-scanner show
 
 ? Enter password [hidden]
 
-Configuration
-‾‾‾‾‾‾‾‾‾‾‾‾‾
+DB
+‾‾
 Ledgers
 ‾‾‾‾‾‾‾
 ┌──────────┬────────────────────────────────────────────┬────────────┐

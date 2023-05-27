@@ -1,6 +1,6 @@
 import { Balance, Token, Price } from "./modules";
-import { Config, Assets, Address } from "./utils/config";
 import { ETH, USD } from "./utils/constants";
+import { DB, Assets, Address } from "./utils/db";
 import { Logger } from "./utils/logger";
 import chalk from "chalk";
 import CliProgress from "cli-progress";
@@ -29,7 +29,7 @@ export const DEFAULT_SYMBOL_PRICE = 1;
 
 export class Scanner {
   private provider: JsonRpcProvider;
-  private config: Config;
+  private db: DB;
   private balance: Balance;
   private token: Token;
   private price?: Price;
@@ -44,30 +44,30 @@ export class Scanner {
       this.price = new Price(this.provider);
     }
 
-    this.config = new Config(password);
+    this.db = new DB(password);
   }
 
   public changePassword(newPassword: string) {
-    this.config.changePassword(newPassword);
+    this.db.changePassword(newPassword);
 
     Logger.info();
     Logger.info("Password has been successfully changed");
   }
 
-  public exportConfig(outputPath: string) {
-    Logger.info(`Config has been exported to ${outputPath}`);
+  public exportDB(outputPath: string) {
+    Logger.info(`DB has been exported to ${outputPath}`);
 
-    this.config.export(outputPath);
+    this.db.export(outputPath);
   }
 
-  public importConfig(inputPath: string) {
-    this.config.import(inputPath);
+  public importDB(inputPath: string) {
+    this.db.import(inputPath);
 
-    Logger.info(`Config has been imported from ${inputPath}`);
+    Logger.info(`DB has been imported from ${inputPath}`);
   }
 
   public addAddresses(name: string, data: Address[]) {
-    this.config.addAddresses(name, data);
+    this.db.addAddresses(name, data);
 
     for (const { address, note } of data) {
       const desc = note ? ` (with a note: "${note}")` : "";
@@ -78,11 +78,11 @@ export class Scanner {
 
   public removeAddresses(name: string, data: string[]) {
     if (data.length === 0) {
-      this.config.removeLedger(name);
+      this.db.removeLedger(name);
 
       Logger.info(`Removed ${name}`);
     } else {
-      this.config.removeAddresses(name, data as string[]);
+      this.db.removeAddresses(name, data as string[]);
 
       for (const address of data) {
         Logger.info(`Removed ${address} to ${name}`);
@@ -91,45 +91,45 @@ export class Scanner {
   }
 
   public removeLedger(name: string) {
-    this.config.removeLedger(name);
+    this.db.removeLedger(name);
 
     Logger.info(`Removed ${name}`);
   }
 
   public addToken(symbol: string, address: string, decimals: number) {
-    this.config.addToken(symbol, address, decimals);
+    this.db.addToken(symbol, address, decimals);
 
     Logger.info(`Added ${symbol} at ${address} with ${decimals} decimals`);
   }
 
   public removeToken(symbol: string) {
-    this.config.removeToken(symbol);
+    this.db.removeToken(symbol);
 
     Logger.info(`Removed ${symbol}`);
   }
 
   public addAsset(name: string, quantity: number, price: number, symbol: string = USD) {
-    this.config.addAsset(name, quantity, price, symbol);
+    this.db.addAsset(name, quantity, price, symbol);
 
     Logger.info(`Added ${quantity} units of ${name} at the price of ${price} ${symbol} per unit`);
   }
 
   public updateAsset(name: string, quantity: number, price: number, symbol: string = USD) {
-    this.config.updateAsset(name, quantity, price, symbol);
+    this.db.updateAsset(name, quantity, price, symbol);
 
     Logger.info(`Updated ${quantity} units of ${name} at the price of ${price} ${symbol} per unit`);
   }
 
   public removeAsset(name: string) {
-    this.config.removeAsset(name);
+    this.db.removeAsset(name);
 
     Logger.info(`Removed ${name}`);
   }
 
-  public showConfig() {
-    Logger.title("Configuration");
+  public showDB() {
+    Logger.title("DB");
 
-    const ledgers = this.config.getLedgers();
+    const ledgers = this.db.getLedgers();
     if (Object.keys(ledgers).length !== 0) {
       Logger.title("Ledgers");
 
@@ -146,7 +146,7 @@ export class Scanner {
       Logger.table(ledgersTable);
     }
 
-    const tokens = this.config.getTokens();
+    const tokens = this.db.getTokens();
     if (!isEmpty(tokens)) {
       Logger.title("Tokens");
 
@@ -161,7 +161,7 @@ export class Scanner {
       Logger.table(tokensTable);
     }
 
-    const assets = this.config.getAssets();
+    const assets = this.db.getAssets();
     if (!isEmpty(assets)) {
       Logger.title("Assets");
 
@@ -169,7 +169,7 @@ export class Scanner {
         head: [chalk.cyanBright("Name"), chalk.cyanBright("Quantity"), chalk.cyanBright("Price")]
       });
 
-      for (const [name, { quantity, price, symbol }] of Object.entries(this.config.getAssets())) {
+      for (const [name, { quantity, price, symbol }] of Object.entries(this.db.getAssets())) {
         let fullPrice = new Decimal(price).toCSVAmount();
         if (symbol === USD) {
           fullPrice = `$${fullPrice}`;
@@ -199,9 +199,9 @@ export class Scanner {
       prices[ETH] = await this.price.getETHPrice();
     }
 
-    const ledgers = this.config.getLedgers();
-    const tokens = this.config.getTokens();
-    const assets = this.config.getAssets();
+    const ledgers = this.db.getLedgers();
+    const tokens = this.db.getTokens();
+    const assets = this.db.getAssets();
     const notes: Record<string, string> = {};
 
     const totalAddresses = Object.values(ledgers).reduce((res, addresses) => res + addresses.length, 0);
@@ -270,7 +270,7 @@ export class Scanner {
           prices[name] = new Decimal(price);
         } else {
           if (!prices[symbol]) {
-            const token = this.config.getTokens()[symbol];
+            const token = this.db.getTokens()[symbol];
             if (!token) {
               throw new Error(`Unknown token ${symbol}`);
             }
@@ -371,7 +371,7 @@ export class Scanner {
 
     Logger.title("Addresses");
 
-    const tokens = [ETH, ...Object.keys(this.config.getTokens())];
+    const tokens = [ETH, ...Object.keys(this.db.getTokens())];
     const tokensHead = tokens.map((symbol) => chalk.cyanBright(symbol));
     const addressesTable = new Table({
       head: [chalk.cyanBright("Ledger"), chalk.cyanBright("Address"), ...tokensHead, chalk.cyanBright("Note")]
@@ -417,7 +417,7 @@ export class Scanner {
 
     Logger.title("Ledgers");
 
-    const tokens = [ETH, ...Object.keys(this.config.getTokens())];
+    const tokens = [ETH, ...Object.keys(this.db.getTokens())];
     const tokensHead = tokens.map((symbol) => chalk.cyanBright(symbol));
     const ledgersTable = new Table({
       head: [chalk.cyanBright("Ledger"), ...tokensHead]

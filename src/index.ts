@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import { Scanner, DEFAULT_SYMBOL_PRICE } from "./scanner";
-import { Config } from "./utils/config";
 import { DEFAULT_DECIMALS } from "./utils/constants";
 import "./utils/csv";
+import { DB } from "./utils/db";
 import { Logger } from "./utils/logger";
 import inquirer from "inquirer";
 import { zipWith } from "lodash";
@@ -39,7 +39,7 @@ const main = async () => {
           }
         ]);
 
-        if (!Config.exists()) {
+        if (!DB.exists()) {
           const { password2 } = await inquirer.prompt([
             {
               type: "password",
@@ -61,10 +61,10 @@ const main = async () => {
       })
       .command(
         "show",
-        "Show the configuration",
+        "Show the DB",
         () => {},
         () => {
-          scanner.showConfig();
+          scanner.showDB();
         }
       )
       .command(
@@ -118,8 +118,8 @@ const main = async () => {
         }
       )
       .command(
-        "export-config",
-        "Export the config to an external file. Note that the export is *not* encrypted",
+        "export-db",
+        "Export the DB to an external file. Note that the export is *not* encrypted",
         {
           output: {
             description: "The output file path",
@@ -129,12 +129,12 @@ const main = async () => {
           }
         },
         ({ output }) => {
-          scanner.exportConfig(output);
+          scanner.exportDB(output);
         }
       )
       .command(
-        "import-config",
-        "Import the config from an external file. Note that the import should not be *not* encrypted",
+        "import-DB",
+        "Import the DB from an external file. Note that the import should not be *not* encrypted",
         {
           input: {
             description: "The input file path",
@@ -144,7 +144,7 @@ const main = async () => {
           }
         },
         ({ input }) => {
-          scanner.importConfig(input);
+          scanner.importDB(input);
         }
       )
       .command(
@@ -208,7 +208,7 @@ const main = async () => {
       )
       .command(
         "add-token",
-        "Add a token to the config",
+        "Add a token to the DB",
         {
           symbol: {
             description: "The symbol of the token",
@@ -232,7 +232,7 @@ const main = async () => {
       )
       .command(
         "remove-token",
-        "Remove a token from the config",
+        "Remove a token from the DB",
         {
           symbol: {
             description: "The symbol of the token",
@@ -246,7 +246,7 @@ const main = async () => {
       )
       .command(
         "add-asset",
-        "Add an asset to the config",
+        "Add an asset to the DB",
         {
           name: {
             description: "The name of the asset",
@@ -279,7 +279,7 @@ const main = async () => {
       )
       .command(
         "update-asset",
-        "Update an asset in the config",
+        "Update an asset in the DB",
         {
           name: {
             description: "The name of the asset",
@@ -312,7 +312,7 @@ const main = async () => {
       )
       .command(
         "remove-asset",
-        "Remove an assert from the config",
+        "Remove an asset from the DB",
         {
           name: {
             description: "The name of the asset",
