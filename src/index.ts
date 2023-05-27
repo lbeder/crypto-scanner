@@ -79,6 +79,11 @@ const main = async () => {
         "scan",
         "Scans all addresses and tokens",
         {
+          csv: {
+            description: "The addresses CSV report output path (optional)",
+            type: "string",
+            alias: "r"
+          },
           verbose: {
             description: "Verbose mode",
             type: "boolean",
@@ -91,8 +96,8 @@ const main = async () => {
             default: false
           }
         },
-        async ({ verbose, showEmptyAddresses }) => {
-          await scanner.scan({ verbose, showEmptyAddresses });
+        async ({ csv, verbose, showEmptyAddresses }) => {
+          await scanner.scan({ csvOutputPath: csv, verbose, showEmptyAddresses });
         }
       )
       .command(
@@ -271,7 +276,7 @@ const main = async () => {
             type: "number"
           },
           symbol: {
-            description: "The (optional) symbol of the token the asset is priced in",
+            description: "The symbol of the token the asset is priced in (optional)",
             type: "string"
           }
         },

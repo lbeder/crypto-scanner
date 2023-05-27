@@ -44,6 +44,7 @@ export class DB {
   private data: Data;
   private password: string;
   private globalTokenList: Tokens = {};
+  private globalTokenListEnabled = false;
 
   constructor({ password, globalTokenList }: DBOptions) {
     this.password = password;
@@ -69,7 +70,7 @@ export class DB {
         )
       );
 
-      getAddress;
+      this.globalTokenListEnabled = true;
     }
 
     let data: Data;
@@ -184,6 +185,10 @@ export class DB {
     return { ...this.data.tokens, ...this.globalTokenList };
   }
 
+  public isGlobalTokenListEnabled() {
+    return this.globalTokenListEnabled;
+  }
+
   public getAssets() {
     return this.data.assets;
   }
@@ -215,7 +220,7 @@ export class DB {
   }
 
   public addAddresses(name: string, addresses: Address[]) {
-    const ledger = this.data.ledgers[name] || this.addLedger(name);
+    const ledger = this.data.ledgers[name] ?? this.addLedger(name);
 
     for (const { address, note } of addresses) {
       const checksummedAddress = getAddress(address);

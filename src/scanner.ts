@@ -7,7 +7,9 @@ import CliProgress from "cli-progress";
 import Table from "cli-table";
 import Decimal from "decimal.js";
 import { JsonRpcProvider } from "ethers";
+import fs from "fs";
 import { set, isEmpty, truncate, padEnd } from "lodash";
+import path from "path";
 
 interface ScannerOptions {
   providerUrl: string;
@@ -22,6 +24,7 @@ type NamedAmounts = Record<string, Amounts>;
 type LedgerAddressAmounts = Record<string, NamedAmounts>;
 
 interface ScanOptions {
+  csvOutputPath?: string;
   verbose: boolean | undefined;
   showEmptyAddresses: boolean;
 }
@@ -140,7 +143,7 @@ export class Scanner {
 
       for (const [name, addresses] of Object.entries(ledgers)) {
         for (const { address, note } of addresses) {
-          ledgersTable.push([name, address, note || ""]);
+          ledgersTable.push([name, address, note ?? ""]);
         }
       }
 
@@ -185,7 +188,19 @@ export class Scanner {
     }
   }
 
-  public async scan({ verbose, showEmptyAddresses }: ScanOptions) {
+  public async scan({ csvOutputPath, verbose, showEmptyAddresses }: ScanOptions) {
+    if (this.db.isGlobalTokenListEnabled()) {
+      if (verbose) {
+        Logger.warning("WARNING: Using the global token list in verbose mode isn't recommended!");
+        Logger.warning();
+      }
+
+      if (!csvOutputPath) {
+        Logger.warning("WARNING: Please consider requesting a CSV export when the global token list is used");
+        Logger.warning();
+      }
+    }
+
     const totalAmounts: Amounts = {
       [ETH]: new Decimal(0)
     };
@@ -228,7 +243,7 @@ export class Scanner {
         ledgerBar.update(addressIndex++, { label: `${Scanner.formatLabel(name)} | ${address}` });
 
         const ethBalance = await this.balance.getBalance(address);
-        if (verbose && (showEmptyAddresses || !ethBalance.isZero())) {
+        if (showEmptyAddresses || !ethBalance.isZero()) {
           set(ledgerAddressAmounts, [name, address, ETH], ethBalance);
           notes[address] = note;
         }
@@ -258,12 +273,13 @@ export class Scanner {
           try {
             tokenBalance = await this.token.getTokenBalance(address, tokenAddress, decimals);
           } catch (e) {
-            Logger.error(`\nFailed on ${symbol} (${tokenAddress}`);
+            Logger.error();
+            Logger.error(`Failed on ${symbol} (${tokenAddress}`);
 
             throw e;
           }
 
-          if (verbose && !tokenBalance.isZero()) {
+          if (!tokenBalance.isZero()) {
             set(ledgerAddressAmounts, [name, address, symbol], tokenBalance);
             notes[address] = note;
           }
@@ -316,7 +332,11 @@ export class Scanner {
       this.showAssets(assets, prices);
     }
 
-    this.printTotals(totalAmounts, prices);
+    if (csvOutputPath) {
+      this.exportAddresses(csvOutputPath, ledgerAddressAmounts, notes, prices);
+    }
+
+    this.showTotals(totalAmounts, prices);
   }
 
   private showPrices(prices: Prices) {
@@ -337,7 +357,7 @@ export class Scanner {
     Logger.table(pricesTable);
   }
 
-  private printTotals(totalAmounts: Amounts, prices: Prices) {
+  private showTotals(totalAmounts: Amounts, prices: Prices) {
     Logger.title("Total Amounts");
 
     let totalValue = new Decimal(0);
@@ -393,9 +413,9 @@ export class Scanner {
     Logger.title("Addresses");
 
     const tokens = [ETH, ...Object.keys(this.db.getTokens())];
-    const tokensHead = tokens.map((symbol) => chalk.cyanBright(symbol));
+    const tokenHead = tokens.map((symbol) => chalk.cyanBright(symbol));
     const addressesTable = new Table({
-      head: [chalk.cyanBright("Ledger"), chalk.cyanBright("Address"), ...tokensHead, chalk.cyanBright("Note")]
+      head: [chalk.cyanBright("Ledger"), chalk.cyanBright("Address"), ...tokenHead, chalk.cyanBright("Note")]
     });
 
     const totals: Amounts = {};
@@ -405,25 +425,25 @@ export class Scanner {
         const balances: string[] = [];
 
         for (const symbol of tokens) {
-          const amount = amounts[symbol] || new Decimal(0);
+          const amount = amounts[symbol] ?? new Decimal(0);
 
-          totals[symbol] = (totals[symbol] || new Decimal(0)).add(amount);
+          totals[symbol] = (totals[symbol] ?? new Decimal(0)).add(amount);
           balances.push(amount.toCSVAmount());
         }
 
-        addressesTable.push([name, address, ...balances, notes[address] || ""]);
+        addressesTable.push([name, address, ...balances, notes[address] ?? ""]);
       }
     }
 
-    addressesTable.push(["", "Total", ...tokens.map((symbol) => (totals[symbol] || new Decimal(0)).toCSVAmount()), ""]);
+    addressesTable.push(["", "Total", ...tokens.map((symbol) => (totals[symbol] ?? new Decimal(0)).toCSVAmount()), ""]);
 
-    addressesTable.push(["", "", ...tokensHead, ""]);
+    addressesTable.push(["", "", ...tokenHead, ""]);
 
     if (this.price) {
       addressesTable.push([
         "",
         "Total Value",
-        ...tokens.map((symbol) => `$${(totals[symbol] || new Decimal(0)).mul(prices[symbol]).toCSVAmount()}`),
+        ...tokens.map((symbol) => `$${(totals[symbol] ?? new Decimal(0)).mul(prices[symbol]).toCSVAmount()}`),
         ""
       ]);
     }
@@ -439,9 +459,9 @@ export class Scanner {
     Logger.title("Ledgers");
 
     const tokens = [ETH, ...Object.keys(this.db.getTokens())];
-    const tokensHead = tokens.map((symbol) => chalk.cyanBright(symbol));
+    const tokenHead = tokens.map((symbol) => chalk.cyanBright(symbol));
     const ledgersTable = new Table({
-      head: [chalk.cyanBright("Ledger"), ...tokensHead]
+      head: [chalk.cyanBright("Ledger"), ...tokenHead]
     });
 
     const totals: Amounts = {};
@@ -450,23 +470,23 @@ export class Scanner {
       const balances: string[] = [];
 
       for (const symbol of tokens) {
-        const amount = amounts[symbol] || new Decimal(0);
+        const amount = amounts[symbol] ?? new Decimal(0);
 
-        totals[symbol] = (totals[symbol] || new Decimal(0)).add(amount);
+        totals[symbol] = (totals[symbol] ?? new Decimal(0)).add(amount);
         balances.push(amount.toCSVAmount());
       }
 
       ledgersTable.push([name, ...balances]);
     }
 
-    ledgersTable.push(["Total", ...tokens.map((symbol) => (totals[symbol] || new Decimal(0)).toCSVAmount())]);
+    ledgersTable.push(["Total", ...tokens.map((symbol) => (totals[symbol] ?? new Decimal(0)).toCSVAmount())]);
 
-    ledgersTable.push(["", ...tokensHead]);
+    ledgersTable.push(["", ...tokenHead]);
 
     if (this.price) {
       ledgersTable.push([
         "Total Value",
-        ...tokens.map((symbol) => `$${(totals[symbol] || new Decimal(0)).mul(prices[symbol]).toCSVAmount()}`)
+        ...tokens.map((symbol) => `$${(totals[symbol] ?? new Decimal(0)).mul(prices[symbol]).toCSVAmount()}`)
       ]);
     }
 
@@ -512,6 +532,63 @@ export class Scanner {
     }
 
     Logger.table(assetsTable);
+  }
+
+  private exportAddresses(
+    csvOutputPath: string,
+    ledgerAddressAmounts: LedgerAddressAmounts,
+    notes: Record<string, string>,
+    prices: Prices
+  ) {
+    fs.mkdirSync(path.dirname(csvOutputPath), { recursive: true });
+    if (fs.existsSync(csvOutputPath)) {
+      fs.rmSync(csvOutputPath);
+    }
+
+    const tokens = [ETH, ...Object.keys(this.db.getTokens())];
+    const tokenHead = tokens.map((symbol) => symbol);
+
+    fs.appendFileSync(csvOutputPath, `${["Ledger", "Address", "Note", ...tokens].join(",")}\n`);
+
+    if (isEmpty(ledgerAddressAmounts)) {
+      return;
+    }
+
+    const totals: Amounts = {};
+
+    for (const [name, addressAmounts] of Object.entries(ledgerAddressAmounts)) {
+      for (const [address, amounts] of Object.entries(addressAmounts)) {
+        const balances: string[] = [];
+
+        for (const symbol of tokens) {
+          const amount = amounts[symbol] ?? new Decimal(0);
+
+          totals[symbol] = (totals[symbol] ?? new Decimal(0)).add(amount);
+          balances.push(amount.toString());
+        }
+
+        fs.appendFileSync(csvOutputPath, `${[name, address, notes[address] ?? "", ...balances].join(",")}\n`);
+      }
+    }
+
+    fs.appendFileSync(
+      csvOutputPath,
+      `${["", "", "Total", ...tokens.map((symbol) => (totals[symbol] ?? new Decimal(0)).toString())].join(",")}\n`
+    );
+
+    fs.appendFileSync(csvOutputPath, `${["", "", "", ...tokenHead].join(",")}\n`);
+
+    if (this.price) {
+      fs.appendFileSync(
+        csvOutputPath,
+        `${[
+          "",
+          "",
+          "Total Value",
+          ...tokens.map((symbol) => `$${(totals[symbol] ?? new Decimal(0)).mul(prices[symbol]).toString()}`)
+        ].join(",")}\n`
+      );
+    }
   }
 
   private static formatLabel(label: string) {
