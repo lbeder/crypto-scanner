@@ -2,7 +2,7 @@ import { USD } from "../utils/constants";
 import { Base } from "./base";
 import { CoinGeckoClient } from "coingecko-api-v3";
 import Decimal from "decimal.js";
-import { AbstractProvider } from "ethers";
+import { AbstractProvider, getAddress } from "ethers";
 
 export class Price extends Base {
   private readonly client: CoinGeckoClient;
@@ -23,15 +23,27 @@ export class Price extends Base {
     return new Decimal(price.ethereum.usd);
   }
 
-  public async getTokenPrice(address: string) {
-    const price = await this.client.simpleTokenPrice({
+  public async getTokenPrice(address: string): Promise<Decimal> {
+    const price = await this.getPrice([address]);
+
+    return new Decimal(price[address.toLowerCase()].usd);
+  }
+
+  public async getTokenPrices(addresses: string[]): Promise<Record<string, Decimal>> {
+    const prices = await this.getPrice(addresses);
+
+    return Object.fromEntries(
+      Object.entries(prices).map(([address, data]) => [getAddress(address), new Decimal(data.usd ?? 0)])
+    );
+  }
+
+  private getPrice(addresses: string[]) {
+    return this.client.simpleTokenPrice({
       id: "ethereum",
       // eslint-disable-next-line camelcase
-      contract_addresses: address,
+      contract_addresses: addresses.join(","),
       // eslint-disable-next-line camelcase
       vs_currencies: USD
     });
-
-    return new Decimal(price[address.toLowerCase()].usd);
   }
 }

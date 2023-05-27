@@ -234,6 +234,14 @@ export class Scanner {
     const tokenBar = multiBar.create(tokenCount, 0);
     let addressIndex = 0;
 
+    if (this.price) {
+      const priceByAddress = await this.price.getTokenPrices(Object.values(tokens).map((t) => t.address));
+
+      for (const [symbol, { address }] of Object.entries(tokens)) {
+        prices[symbol] = priceByAddress[address];
+      }
+    }
+
     for (const [name, addresses] of Object.entries(ledgers)) {
       set(ledgerAmounts, [name, ETH], new Decimal(0));
 
@@ -255,10 +263,6 @@ export class Scanner {
           const { address: tokenAddress, decimals } = token;
 
           tokenBar.update(tokenIndex, { label: `${Scanner.formatLabel(symbol)} | ${tokenAddress}` });
-
-          if (this.price && !prices[symbol]) {
-            prices[symbol] = await this.price.getTokenPrice(tokenAddress);
-          }
 
           if (totalAmounts[symbol] === undefined) {
             totalAmounts[symbol] = new Decimal(0);
