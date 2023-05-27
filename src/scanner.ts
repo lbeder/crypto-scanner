@@ -8,7 +8,7 @@ import Table from "cli-table";
 import Decimal from "decimal.js";
 import { JsonRpcProvider } from "ethers";
 import fs from "fs";
-import { set, isEmpty, truncate, padEnd } from "lodash";
+import { set, isEmpty, truncate, padEnd, chunk } from "lodash";
 import path from "path";
 
 interface ScannerOptions {
@@ -37,6 +37,8 @@ export class Scanner {
   private balance: Balance;
   private token: Token;
   private price?: Price;
+
+  private static readonly PRICE_QUERY_BATCH_SIZE = 150;
 
   constructor({ providerUrl, password, price, globalTokenList }: ScannerOptions) {
     this.provider = new JsonRpcProvider(providerUrl);
@@ -204,21 +206,19 @@ export class Scanner {
     const totalAmounts: Amounts = {
       [ETH]: new Decimal(0)
     };
-    const prices: Prices = {
-      [ETH]: new Decimal(0)
-    };
 
     const ledgerAddressAmounts: LedgerAddressAmounts = {};
     const ledgerAmounts: NamedAmounts = {};
-
-    if (this.price) {
-      prices[ETH] = await this.price.getETHPrice();
-    }
 
     const ledgers = this.db.getLedgers();
     const tokens = this.db.getTokens();
     const assets = this.db.getAssets();
     const notes: Record<string, string> = {};
+
+    const prices = this.price ? await this.fetchPrices() : {};
+
+    Logger.info("Scanning all addresses and tokens...");
+    Logger.info();
 
     const addressCount = Object.values(ledgers).reduce((res, addresses) => res + addresses.length, 0);
     const tokenCount = Object.keys(tokens).length;
@@ -233,14 +233,6 @@ export class Scanner {
     const ledgerBar = multiBar.create(addressCount, 0);
     const tokenBar = multiBar.create(tokenCount, 0);
     let addressIndex = 0;
-
-    if (this.price) {
-      const priceByAddress = await this.price.getTokenPrices(Object.values(tokens).map((t) => t.address));
-
-      for (const [symbol, { address }] of Object.entries(tokens)) {
-        prices[symbol] = priceByAddress[address];
-      }
-    }
 
     for (const [name, addresses] of Object.entries(ledgers)) {
       set(ledgerAmounts, [name, ETH], new Decimal(0));
@@ -301,30 +293,11 @@ export class Scanner {
 
     Logger.info();
 
-    for (const [name, { price, quantity, symbol }] of Object.entries(assets)) {
+    for (const [name, { quantity }] of Object.entries(assets)) {
       if (totalAmounts[name] === undefined) {
         totalAmounts[name] = new Decimal(quantity);
       }
-
-      if (this.price && !prices[name]) {
-        if (!symbol || symbol === USD) {
-          prices[name] = new Decimal(price);
-        } else {
-          if (!prices[symbol]) {
-            const token = this.db.getTokens()[symbol];
-            if (!token) {
-              throw new Error(`Unknown token ${symbol}`);
-            }
-
-            prices[symbol] = await this.price.getTokenPrice(token.address);
-          }
-
-          prices[name] = new Decimal(price).mul(prices[symbol]);
-        }
-      }
     }
-
-    Logger.info();
 
     if (this.price) {
       this.showPrices(prices);
@@ -350,7 +323,8 @@ export class Scanner {
       head: [chalk.cyanBright("Symbol"), chalk.cyanBright("Price")]
     });
 
-    for (const [symbol, price] of Object.entries(prices)) {
+    for (const symbol of Object.keys(prices).sort()) {
+      const price = prices[symbol];
       if (price.isZero()) {
         continue;
       }
@@ -565,9 +539,9 @@ export class Scanner {
         const balances: string[] = [];
 
         for (const symbol of tokens) {
-          const amount = amounts[symbol] ?? new Decimal(0);
+          const amount = new Decimal(amounts[symbol] ?? 0);
 
-          totals[symbol] = (totals[symbol] ?? new Decimal(0)).add(amount);
+          totals[symbol] = new Decimal(totals[symbol] ?? 0).add(amount);
           balances.push(amount.toString());
         }
 
@@ -577,7 +551,7 @@ export class Scanner {
 
     fs.appendFileSync(
       csvOutputPath,
-      `${["", "", "Total", ...tokens.map((symbol) => (totals[symbol] ?? new Decimal(0)).toString())].join(",")}\n`
+      `${["", "", "Total", ...tokens.map((symbol) => new Decimal(totals[symbol] ?? 0).toString())].join(",")}\n`
     );
 
     fs.appendFileSync(csvOutputPath, `${["", "", "", ...tokenHead].join(",")}\n`);
@@ -589,7 +563,7 @@ export class Scanner {
           "",
           "",
           "Total Value",
-          ...tokens.map((symbol) => `$${(totals[symbol] ?? new Decimal(0)).mul(prices[symbol]).toString()}`)
+          ...tokens.map((symbol) => `$${new Decimal(totals[symbol] ?? 0).mul(prices[symbol]).toString()}`)
         ].join(",")}\n`
       );
     }
@@ -597,5 +571,92 @@ export class Scanner {
 
   private static formatLabel(label: string) {
     return `${padEnd(truncate(label, { length: 8 }), 10)}`;
+  }
+
+  private async fetchPrices(): Promise<Record<string, Decimal>> {
+    const prices: Record<string, Decimal> = {};
+
+    if (!this.price) {
+      return prices;
+    }
+
+    Logger.info("Querying token prices. This operation may take a long time...");
+    Logger.info();
+
+    prices[ETH] = await this.price.getETHPrice();
+
+    const tokens = this.db.getTokens();
+    const assets = this.db.getAssets();
+    const tokenCount = Object.keys(tokens).length + Object.keys(assets).length;
+
+    const bar = new CliProgress.SingleBar(
+      {
+        format: "{label} | {bar} {percentage}% | ETA: {eta}s | {value}/{total}",
+        autopadding: true
+      },
+      CliProgress.Presets.shades_classic
+    );
+
+    bar.start(tokenCount, 0);
+
+    const tokenAddresses = Object.values(tokens).map((t) => t.address);
+    const symbolByAddress = Object.fromEntries(
+      Object.entries(tokens).map(([symbol, { address }]) => [address, symbol])
+    );
+    let tokenIndex = 0;
+
+    for (const batch of chunk(tokenAddresses, Scanner.PRICE_QUERY_BATCH_SIZE)) {
+      bar.update(tokenIndex, {
+        label: `${symbolByAddress[batch[0]]} - ${symbolByAddress[batch[batch.length - 1]]}`
+      });
+
+      const priceByAddress = await this.price.getTokenPrices(batch);
+
+      for (const [address, price] of Object.entries(priceByAddress)) {
+        prices[symbolByAddress[address]] = price;
+      }
+
+      tokenIndex += batch.length;
+    }
+
+    // Query the custom asset prices
+    for (const [name, { price, symbol }] of Object.entries(assets)) {
+      bar.update(++tokenIndex, {
+        label: name
+      });
+
+      if (prices[name]) {
+        continue;
+      }
+
+      if (!symbol || symbol === USD) {
+        prices[name] = new Decimal(price);
+      } else {
+        if (!prices[symbol]) {
+          const token = this.db.getTokens()[symbol];
+          if (!token) {
+            throw new Error(`Unknown token ${symbol}`);
+          }
+
+          prices[symbol] = await this.price.getTokenPrice(token.address);
+        }
+
+        prices[name] = new Decimal(price).mul(prices[symbol]);
+      }
+    }
+
+    // Set the prices of unmatched tokens to 0
+    for (const symbol of Object.keys(tokens)) {
+      if (!prices[symbol]) {
+        prices[symbol] = new Decimal(0);
+      }
+    }
+
+    bar.update(tokenCount, { label: "Finished" });
+    bar.stop();
+
+    Logger.info();
+
+    return prices;
   }
 }
