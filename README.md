@@ -60,10 +60,12 @@ Commands:
   crypto-scanner remove-asset      Remove an asset from the DB
 
 Options:
-      --help     Show help                                                                                     [boolean]
-      --version  Show version number                                                                           [boolean]
-      --url      Web3 provider's URL                                         [string] [default: "http://localhost:8545"]
-  -p, --price    Query prices using Coingecko                                                 [boolean] [default: false]
+      --help               Show help                                                                           [boolean]
+      --version            Show version number                                                                 [boolean]
+      --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
+  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
+                                                                                              [boolean] [default: false]
 ```
 
 ### Scan all Balances
@@ -76,10 +78,12 @@ Scans all addresses and tokens
 Options:
       --help                  Show help                                                                        [boolean]
       --version               Show version number                                                              [boolean]
-      --url                   Web3 provider's URL                            [string] [default: "http://localhost:8545"]
+      --provider-url          Web3 provider's URL                            [string] [default: "http://localhost:8545"]
   -p, --price                 Query prices using Coingecko                                    [boolean] [default: false]
+  -g, --global-token-list     Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
+                                                                                              [boolean] [default: false]
   -v, --verbose               Verbose mode                                                                     [boolean]
-  -e, --show-empty-addresses                                                                  [boolean] [default: false]
+  -e, --show-empty-addresses  Show empty addresses                                            [boolean] [default: false]
 ```
 
 ### Show the DB
@@ -90,10 +94,12 @@ crypto-scanner show
 Show the DB
 
 Options:
-      --help     Show help                                                                                     [boolean]
-      --version  Show version number                                                                           [boolean]
-      --url      Web3 provider's URL                                         [string] [default: "http://localhost:8545"]
-  -p, --price    Query prices using Coingecko                                                 [boolean] [default: false]
+      --help               Show help                                                                           [boolean]
+      --version            Show version number                                                                 [boolean]
+      --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
+  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
+                                                                                              [boolean] [default: false]
 ```
 
 ### Example
@@ -512,7 +518,6 @@ Total Amounts
 │      │ Total Value │ $10,344,663,138.83 │                  │
 └──────┴─────────────┴────────────────────┴──────────────────┘
 ```
-
 
 #### Adding Assets
 

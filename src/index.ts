@@ -19,18 +19,26 @@ const main = async () => {
       .demandCommand()
       .help()
       .version()
-      .option("url", {
-        description: "Web3 provider's URL",
-        type: "string",
-        default: "http://localhost:8545"
+      .options({
+        "provider-url": {
+          description: "Web3 provider's URL",
+          type: "string",
+          default: "http://localhost:8545"
+        },
+        price: {
+          description: "Query prices using Coingecko",
+          type: "boolean",
+          alias: "p",
+          default: false
+        },
+        "global-token-list": {
+          description: "Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)",
+          alias: "g",
+          type: "boolean",
+          default: false
+        }
       })
-      .option("price", {
-        description: "Query prices using Coingecko",
-        type: "boolean",
-        alias: "p",
-        default: false
-      })
-      .middleware(async ({ url, price }) => {
+      .middleware(async ({ providerUrl, price, globalTokenList }) => {
         const { password } = await inquirer.prompt([
           {
             type: "password",
@@ -57,7 +65,7 @@ const main = async () => {
 
         Logger.info();
 
-        scanner = new Scanner({ providerUrl: url, price, password });
+        scanner = new Scanner({ providerUrl, password, price, globalTokenList });
       })
       .command(
         "show",
@@ -70,19 +78,19 @@ const main = async () => {
       .command(
         "scan",
         "Scans all addresses and tokens",
-        (yargs) =>
-          yargs
-            .option("verbose", {
-              description: "Verbose mode",
-              type: "boolean",
-              alias: "v"
-            })
-            .option("show-empty-addresses", {
-              description: "Show empty addresses",
-              alias: "e",
-              type: "boolean",
-              default: false
-            }),
+        {
+          verbose: {
+            description: "Verbose mode",
+            type: "boolean",
+            alias: "v"
+          },
+          "show-empty-addresses": {
+            description: "Show empty addresses",
+            alias: "e",
+            type: "boolean",
+            default: false
+          }
+        },
         async ({ verbose, showEmptyAddresses }) => {
           await scanner.scan({ verbose, showEmptyAddresses });
         }

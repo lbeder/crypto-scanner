@@ -5,8 +5,9 @@ import fs from "fs";
 import os from "os";
 import path from "path";
 
-const DATA_DIR = path.resolve(os.homedir(), ".crypto-scanner/");
-const DB_PATH = path.join(DATA_DIR, "db");
+const DB_DIR = path.resolve(os.homedir(), ".crypto-scanner/");
+const DB_PATH = path.join(DB_DIR, "db");
+const GLOBAL_TOKEN_LIST_PATH = path.resolve(path.join(__dirname, "../../data/tokens.json"));
 
 export interface Address {
   address: string;
@@ -34,15 +35,21 @@ interface Data {
   assets: Assets;
 }
 
+export interface DBOptions {
+  password: string;
+  globalTokenList: boolean;
+}
+
 export class DB {
   private data: Data;
   private password: string;
+  private globalTokenList: Tokens = {};
 
-  constructor(password: string) {
+  constructor({ password, globalTokenList }: DBOptions) {
     this.password = password;
 
-    if (!fs.existsSync(DATA_DIR)) {
-      fs.mkdirSync(DATA_DIR, { recursive: true });
+    if (!fs.existsSync(DB_DIR)) {
+      fs.mkdirSync(DB_DIR, { recursive: true });
     }
 
     if (!DB.exists()) {
@@ -53,6 +60,10 @@ export class DB {
       };
 
       return;
+    }
+
+    if (globalTokenList) {
+      this.globalTokenList = JSON.parse(fs.readFileSync(GLOBAL_TOKEN_LIST_PATH, "utf8")) as Tokens;
     }
 
     let data: Data;
@@ -160,15 +171,15 @@ export class DB {
   }
 
   public getLedgers() {
-    return this.data.ledgers || {};
+    return this.data.ledgers;
   }
 
   public getTokens() {
-    return this.data.tokens || {};
+    return { ...this.data.tokens, ...this.globalTokenList };
   }
 
   public getAssets() {
-    return this.data.assets || {};
+    return this.data.assets;
   }
 
   public addLedger(name: string) {

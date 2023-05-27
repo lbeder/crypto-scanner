@@ -13,6 +13,7 @@ interface ScannerOptions {
   providerUrl: string;
   password: string;
   price: boolean;
+  globalTokenList: boolean;
 }
 
 type Amounts = Record<string, Decimal>;
@@ -34,7 +35,7 @@ export class Scanner {
   private token: Token;
   private price?: Price;
 
-  constructor({ providerUrl, password, price }: ScannerOptions) {
+  constructor({ providerUrl, password, price, globalTokenList }: ScannerOptions) {
     this.provider = new JsonRpcProvider(providerUrl);
 
     this.balance = new Balance(this.provider);
@@ -44,7 +45,7 @@ export class Scanner {
       this.price = new Price(this.provider);
     }
 
-    this.db = new DB(password);
+    this.db = new DB({ password, globalTokenList });
   }
 
   public changePassword(newPassword: string) {
