@@ -301,22 +301,21 @@ export class Scanner {
       }
     }
 
+    if (this.price) {
+      this.showPrices(prices);
+    }
+
     if (verbose) {
       this.showAddresses(ledgerAddressAmounts, notes, prices);
       this.showLedgerTotals(ledgerAmounts, prices);
       this.showAssets(assets, prices);
     }
 
-    if (this.price) {
-      this.showPrices(prices);
-    }
+    this.showTotals(totalAmounts, prices);
 
     if (csvOutputDir) {
-      this.exportAddresses(csvOutputDir, ledgerAddressAmounts, notes, prices);
-      this.exportPrices(csvOutputDir, prices);
+      this.exportData(csvOutputDir, ledgerAddressAmounts, notes, prices);
     }
-
-    this.showTotals(totalAmounts, prices);
   }
 
   private showPrices(prices: Prices) {
@@ -515,7 +514,7 @@ export class Scanner {
     Logger.table(assetsTable);
   }
 
-  private exportAddresses(
+  private exportData(
     csvOutputDir: string,
     ledgerAddressAmounts: LedgerAddressAmounts,
     notes: Record<string, string>,
@@ -523,15 +522,15 @@ export class Scanner {
   ) {
     fs.mkdirSync(csvOutputDir, { recursive: true });
 
-    const csvOutputPath = path.join(csvOutputDir, Scanner.CSV_ADDRESSES_REPORT);
-    if (fs.existsSync(csvOutputPath)) {
-      fs.rmSync(csvOutputPath);
+    const addressesOutputPath = path.join(csvOutputDir, Scanner.CSV_ADDRESSES_REPORT);
+    if (fs.existsSync(addressesOutputPath)) {
+      fs.rmSync(addressesOutputPath);
     }
 
     const tokens = [ETH, ...Object.keys(this.db.getTokens())];
     const tokenHead = tokens.map((symbol) => symbol);
 
-    fs.appendFileSync(csvOutputPath, `${["Ledger", "Address", "Note", ...tokens].join(",")}\n`);
+    fs.appendFileSync(addressesOutputPath, `${["Ledger", "Address", "Note", ...tokens].join(",")}\n`);
 
     if (isEmpty(ledgerAddressAmounts)) {
       return;
@@ -550,20 +549,20 @@ export class Scanner {
           balances.push(amount.toString());
         }
 
-        fs.appendFileSync(csvOutputPath, `${[name, address, notes[address] ?? "", ...balances].join(",")}\n`);
+        fs.appendFileSync(addressesOutputPath, `${[name, address, notes[address] ?? "", ...balances].join(",")}\n`);
       }
     }
 
     fs.appendFileSync(
-      csvOutputPath,
+      addressesOutputPath,
       `${["", "", "Total", ...tokens.map((symbol) => new Decimal(totals[symbol] ?? 0).toString())].join(",")}\n`
     );
 
-    fs.appendFileSync(csvOutputPath, `${["", "", "", ...tokenHead].join(",")}\n`);
+    fs.appendFileSync(addressesOutputPath, `${["", "", "", ...tokenHead].join(",")}\n`);
 
     if (this.price) {
       fs.appendFileSync(
-        csvOutputPath,
+        addressesOutputPath,
         `${[
           "",
           "",
@@ -573,19 +572,11 @@ export class Scanner {
       );
     }
 
-    Logger.info(`Exported addresses report to: ${csvOutputPath}`);
-    Logger.info();
-  }
+    Logger.info(`Exported address data to: ${addressesOutputPath}`);
 
-  private exportPrices(csvOutputDir: string, prices: Prices) {
-    fs.mkdirSync(csvOutputDir, { recursive: true });
+    const pricesOutputPath = path.join(csvOutputDir, Scanner.CSV_PRICES_REPORT);
 
-    const csvOutputPath = path.join(csvOutputDir, Scanner.CSV_PRICES_REPORT);
-    if (fs.existsSync(csvOutputPath)) {
-      fs.rmSync(csvOutputPath);
-    }
-
-    fs.appendFileSync(csvOutputPath, `${["Symbol", "Price"].join(",")}\n`);
+    fs.appendFileSync(pricesOutputPath, `${["Symbol", "Price"].join(",")}\n`);
 
     for (const symbol of Object.keys(prices).sort()) {
       const price = prices[symbol];
@@ -593,10 +584,11 @@ export class Scanner {
         continue;
       }
 
-      fs.appendFileSync(csvOutputPath, `${[symbol, `$${price.toCSV()}`].join(",")}\n`);
+      fs.appendFileSync(pricesOutputPath, `${[symbol, `$${price.toCSV()}`].join(",")}\n`);
     }
 
-    Logger.info(`Exported prices report to: ${csvOutputPath}`);
+    Logger.info(`Exported price data to: ${pricesOutputPath}`);
+
     Logger.info();
   }
 
