@@ -82,6 +82,7 @@ Options:
   -p, --price                 Query prices using Coingecko                                    [boolean] [default: false]
   -g, --global-token-list     Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
                                                                                               [boolean] [default: false]
+  -r, --csv                   The CSV reports output directory (optional)                                       [string]
   -v, --verbose               Verbose mode                                                                     [boolean]
   -e, --show-empty-addresses  Show empty addresses                                            [boolean] [default: false]
 ```

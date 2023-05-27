@@ -521,7 +521,7 @@ export class Scanner {
     notes: Record<string, string>,
     prices: Prices
   ) {
-    fs.mkdirSync(path.dirname(csvOutputDir), { recursive: true });
+    fs.mkdirSync(csvOutputDir, { recursive: true });
 
     const csvOutputPath = path.join(csvOutputDir, Scanner.CSV_ADDRESSES_REPORT);
     if (fs.existsSync(csvOutputPath)) {
@@ -578,7 +578,7 @@ export class Scanner {
   }
 
   private exportPrices(csvOutputDir: string, prices: Prices) {
-    fs.mkdirSync(path.dirname(csvOutputDir), { recursive: true });
+    fs.mkdirSync(csvOutputDir, { recursive: true });
 
     const csvOutputPath = path.join(csvOutputDir, Scanner.CSV_PRICES_REPORT);
     if (fs.existsSync(csvOutputPath)) {
