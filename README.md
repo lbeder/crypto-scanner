@@ -1692,6 +1692,7 @@ Total Amounts
 
 Exported address data to: ~/reports/addresses.csv
 Exported price data to: ~/reports/prices.csv
+Exported totals data to: ~/reports/totals.csv
 ```
 
 If you can't find your token in [data/tokens.json](/data/tokens.json), feel free to open a PR/issue and we'll add it.

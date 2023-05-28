@@ -41,6 +41,7 @@ export class Scanner {
   private static readonly PRICE_QUERY_BATCH_SIZE = 150;
   private static readonly CSV_ADDRESSES_REPORT = "addresses.csv";
   private static readonly CSV_PRICES_REPORT = "prices.csv";
+  private static readonly CSV_TOTALS_REPORT = "totals.csv";
 
   constructor({ providerUrl, password, price, globalTokenList }: ScannerOptions) {
     this.provider = new JsonRpcProvider(providerUrl);
@@ -316,7 +317,9 @@ export class Scanner {
     this.showTotals(totalAmounts, prices);
 
     if (csvOutputDir) {
-      this.exportData(csvOutputDir, ledgerAddressAmounts, notes, prices);
+      this.exportAddresses(csvOutputDir, ledgerAddressAmounts, notes, prices);
+      this.exportPrices(csvOutputDir, prices);
+      this.exportTotals(csvOutputDir, totalAmounts, prices);
     }
   }
 
@@ -516,69 +519,55 @@ export class Scanner {
     Logger.table(assetsTable);
   }
 
-  private exportData(
-    csvOutputDir: string,
+  private exportAddresses(
+    outputDir: string,
     ledgerAddressAmounts: LedgerAddressAmounts,
     notes: Record<string, string>,
     prices: Prices
   ) {
-    fs.mkdirSync(csvOutputDir, { recursive: true });
+    fs.mkdirSync(outputDir, { recursive: true });
 
-    const addressesOutputPath = path.join(csvOutputDir, Scanner.CSV_ADDRESSES_REPORT);
-    if (fs.existsSync(addressesOutputPath)) {
-      fs.rmSync(addressesOutputPath);
+    const outputPath = path.join(outputDir, Scanner.CSV_ADDRESSES_REPORT);
+    if (fs.existsSync(outputPath)) {
+      fs.rmSync(outputPath);
     }
 
-    const tokens = [ETH, ...Object.keys(this.db.getTokens())];
-    const tokenHead = tokens.map((symbol) => symbol);
+    const headers = ["Ledger", "Address", "Note", "Asset", "Amount"];
+    if (this.price) {
+      headers.push("Value");
+    }
 
-    fs.appendFileSync(addressesOutputPath, `${["Ledger", "Address", "Note", ...tokens].join(",")}\n`);
+    fs.appendFileSync(outputPath, `${headers.join(",")}\n`);
 
     if (isEmpty(ledgerAddressAmounts)) {
       return;
     }
 
-    const totals: Amounts = {};
-
     for (const [name, addressAmounts] of Object.entries(ledgerAddressAmounts)) {
       for (const [address, amounts] of Object.entries(addressAmounts)) {
-        const balances: string[] = [];
+        for (const [symbol, amount] of Object.entries(amounts)) {
+          const values = [name, address, `"${notes[address] ?? ""}"`, symbol, `"${amount.toCSV()}"`];
+          if (this.price) {
+            values.push(`"$${amount.mul(prices[symbol]).toCSV()}"`);
+          }
 
-        for (const symbol of tokens) {
-          const amount = new Decimal(amounts[symbol] ?? 0);
-
-          totals[symbol] = new Decimal(totals[symbol] ?? 0).add(amount);
-          balances.push(amount.toString());
+          fs.appendFileSync(outputPath, `${values.join(",")}\n`);
         }
-
-        fs.appendFileSync(addressesOutputPath, `${[name, address, notes[address] ?? "", ...balances].join(",")}\n`);
       }
     }
 
-    fs.appendFileSync(
-      addressesOutputPath,
-      `${["", "", "Total", ...tokens.map((symbol) => new Decimal(totals[symbol] ?? 0).toString())].join(",")}\n`
-    );
+    Logger.info(`Exported address data to: ${outputPath}`);
+  }
 
-    fs.appendFileSync(addressesOutputPath, `${["", "", "", ...tokenHead].join(",")}\n`);
+  private exportPrices(outputDir: string, prices: Prices) {
+    fs.mkdirSync(outputDir, { recursive: true });
 
-    if (this.price) {
-      fs.appendFileSync(
-        addressesOutputPath,
-        `${[
-          "",
-          "",
-          "Total Value",
-          ...tokens.map((symbol) => `$${new Decimal(totals[symbol] ?? 0).mul(prices[symbol]).toString()}`)
-        ].join(",")}\n`
-      );
+    const outputPath = path.join(outputDir, Scanner.CSV_PRICES_REPORT);
+    if (fs.existsSync(outputPath)) {
+      fs.rmSync(outputPath);
     }
 
-    Logger.info(`Exported address data to: ${addressesOutputPath}`);
-
-    const pricesOutputPath = path.join(csvOutputDir, Scanner.CSV_PRICES_REPORT);
-
-    fs.appendFileSync(pricesOutputPath, `${["Symbol", "Price"].join(",")}\n`);
+    fs.appendFileSync(outputPath, `${["Symbol", "Price"].join(",")}\n`);
 
     for (const symbol of Object.keys(prices).sort()) {
       const price = prices[symbol];
@@ -586,12 +575,58 @@ export class Scanner {
         continue;
       }
 
-      fs.appendFileSync(pricesOutputPath, `${[symbol, `$${price.toCSV()}`].join(",")}\n`);
+      fs.appendFileSync(outputPath, `${[symbol, `"$${price.toCSV()}"`].join(",")}\n`);
     }
 
-    Logger.info(`Exported price data to: ${pricesOutputPath}`);
+    Logger.info(`Exported price data to: ${outputPath}`);
+  }
 
-    Logger.info();
+  private exportTotals(outputDir: string, totalAmounts: Amounts, prices: Prices) {
+    fs.mkdirSync(outputDir, { recursive: true });
+
+    const outputPath = path.join(outputDir, Scanner.CSV_TOTALS_REPORT);
+    if (fs.existsSync(outputPath)) {
+      fs.rmSync(outputPath);
+    }
+
+    const headers = ["Name", "Amount"];
+
+    if (this.price) {
+      headers.push("Value", "% of Total Value");
+    }
+
+    fs.appendFileSync(outputPath, `${headers.join(",")}\n`);
+
+    let totalValue = new Decimal(0);
+
+    if (this.price) {
+      for (const [symbol, amount] of Object.entries(totalAmounts)) {
+        if (amount.isZero()) {
+          continue;
+        }
+
+        const value = amount.mul(prices[symbol]);
+        totalValue = totalValue.add(value);
+      }
+    }
+
+    for (const [name, amount] of Object.entries(totalAmounts)) {
+      if (amount.isZero()) {
+        continue;
+      }
+
+      const values = [name, `"${amount.toCSV()}"`];
+
+      if (this.price) {
+        const value = amount.mul(prices[name]);
+
+        values.push(`"$${value.toCSV()}"`, value.mul(100).div(totalValue).toPrecision(6).toString());
+      }
+
+      fs.appendFileSync(outputPath, `${values.join(",")}\n`);
+    }
+
+    Logger.info(`Exported totals data to: ${outputPath}`);
   }
 
   private static formatLabel(label: string) {
