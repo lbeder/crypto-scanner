@@ -413,7 +413,7 @@ If you are interested in showing the USD values of the balances, you can pass th
 ```sh
 crypto-scanner scan -p
 
-Querying token prices. This operation may take a long time...
+Querying prices. This operation may take a long time...
 
 Finished | ████████████████████████████████████████ 100% | ETA: 0s | 4/4
 
@@ -462,7 +462,7 @@ You can also combine both the `-p/--price` and the `-v/--verbose` flags for the 
 ```sh
 crypto-scanner scan -v -p
 
-Querying token prices. This operation may take a long time...
+Querying prices. This operation may take a long time...
 
 Finished | ████████████████████████████████████████ 100% | ETA: 0s | 4/4
 
@@ -619,7 +619,7 @@ crypto-scanner scan -p -v
 
 ? Enter password [hidden]
 
-Querying token prices. This operation may take a long time...
+Querying prices. This operation may take a long time...
 
 Finished | ████████████████████████████████████████ 100% | ETA: 0s | 4/4
 
@@ -798,7 +798,7 @@ crypto-scanner scan -p -v
 
 ? Enter password [hidden]
 
-Querying token prices. This operation may take a long time...
+Querying prices. This operation may take a long time...
 
 Finished | ████████████████████████████████████████ 100% | ETA: 0s | 4/4
 
@@ -919,7 +919,7 @@ Please note that when the global token list is used, the `-v/--verbose` flag is 
 ```sh
 crypto-scanner scan -g -p -r ~/reports
 
-Querying token prices. This operation may take a long time...
+Querying prices. This operation may take a long time...
 
 Finished | ████████████████████████████████████████ 100% | ETA: 0s | 3748/3748
 

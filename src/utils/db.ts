@@ -190,7 +190,7 @@ export class DB {
   }
 
   public getAssets() {
-    return this.data.assets;
+    return this.data.assets ?? {};
   }
 
   public addLedger(name: string) {

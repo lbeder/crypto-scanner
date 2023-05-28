@@ -214,7 +214,6 @@ export class Scanner {
 
     const ledgers = this.db.getLedgers();
     const tokens = this.db.getTokens();
-    const assets = this.db.getAssets();
     const notes: Record<string, string> = {};
 
     const prices = this.price ? await this.fetchPrices() : {};
@@ -295,9 +294,12 @@ export class Scanner {
 
     Logger.info();
 
-    for (const [name, { quantity }] of Object.entries(assets)) {
-      if (totalAmounts[name] === undefined) {
-        totalAmounts[name] = new Decimal(quantity);
+    const assets = this.db.getAssets();
+    if (!isEmpty(assets)) {
+      for (const [name, { quantity }] of Object.entries(assets)) {
+        if (totalAmounts[name] === undefined) {
+          totalAmounts[name] = new Decimal(quantity);
+        }
       }
     }
 
@@ -603,14 +605,18 @@ export class Scanner {
       return prices;
     }
 
-    Logger.info("Querying token prices. This operation may take a long time...");
+    Logger.info("Querying prices. This operation may take a long time...");
     Logger.info();
 
     prices[ETH] = await this.price.getETHPrice();
 
     const tokens = this.db.getTokens();
+    if (!tokens) {
+      return prices;
+    }
+
     const assets = this.db.getAssets();
-    const tokenCount = Object.keys(tokens).length + Object.keys(assets).length;
+    const tokenCount = Object.keys(tokens).length + (isEmpty(assets) ? 0 : Object.keys(assets).length);
 
     const bar = new CliProgress.SingleBar(
       {
@@ -643,28 +649,30 @@ export class Scanner {
     }
 
     // Query the custom asset prices
-    for (const [name, { price, symbol }] of Object.entries(assets)) {
-      bar.update(++tokenIndex, {
-        label: name
-      });
+    if (!isEmpty(assets)) {
+      for (const [name, { price, symbol }] of Object.entries(assets)) {
+        bar.update(++tokenIndex, {
+          label: name
+        });
 
-      if (prices[name]) {
-        continue;
-      }
-
-      if (!symbol || symbol === USD) {
-        prices[name] = new Decimal(price);
-      } else {
-        if (!prices[symbol]) {
-          const token = this.db.getTokens()[symbol];
-          if (!token) {
-            throw new Error(`Unknown token ${symbol}`);
-          }
-
-          prices[symbol] = await this.price.getTokenPrice(token.address);
+        if (prices[name]) {
+          continue;
         }
 
-        prices[name] = new Decimal(price).mul(prices[symbol]);
+        if (!symbol || symbol === USD) {
+          prices[name] = new Decimal(price);
+        } else {
+          if (!prices[symbol]) {
+            const token = this.db.getTokens()[symbol];
+            if (!token) {
+              throw new Error(`Unknown token ${symbol}`);
+            }
+
+            prices[symbol] = await this.price.getTokenPrice(token.address);
+          }
+
+          prices[name] = new Decimal(price).mul(prices[symbol]);
+        }
       }
     }
 
