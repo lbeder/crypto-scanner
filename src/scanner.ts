@@ -27,6 +27,7 @@ interface ScanOptions {
   csvOutputDir?: string;
   verbose: boolean | undefined;
   showEmptyAddresses: boolean;
+  aggregateAssets: boolean;
 }
 
 export const DEFAULT_SYMBOL_PRICE = 1;
@@ -196,7 +197,7 @@ export class Scanner {
     }
   }
 
-  public async scan({ csvOutputDir, verbose, showEmptyAddresses }: ScanOptions) {
+  public async scan({ csvOutputDir, verbose, showEmptyAddresses, aggregateAssets }: ScanOptions) {
     if (this.db.isGlobalTokenListEnabled()) {
       if (verbose) {
         Logger.warning("WARNING: Using the global token list in verbose mode isn't recommended!");
@@ -301,9 +302,12 @@ export class Scanner {
 
     const assets = this.db.getAssets();
     if (!isEmpty(assets)) {
-      for (const [name, { quantity }] of Object.entries(assets)) {
-        if (totalAmounts[name] === undefined) {
-          totalAmounts[name] = new Decimal(quantity);
+      for (const [name, { quantity, price, symbol }] of Object.entries(assets)) {
+        // If the asset is priced in another token or asset - aggregate its price as well.
+        if (aggregateAssets && symbol && (symbol === ETH || tokens[symbol] || assets[symbol])) {
+          totalAmounts[symbol] = (totalAmounts[symbol] ?? new Decimal(0)).add(quantity * price);
+        } else {
+          totalAmounts[name] = (totalAmounts[name] ?? new Decimal(0)).add(quantity);
         }
       }
     }

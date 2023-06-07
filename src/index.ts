@@ -94,10 +94,17 @@ const main = async () => {
             alias: "e",
             type: "boolean",
             default: false
+          },
+          "aggregate-assets": {
+            description:
+              "Aggregate custom-priced assets in totals (e.g., if an asset has a custom price of 3 ETH per unit, then instead of showing it separately, we will aggregate its amount with the total ETH amount)",
+            alias: "a",
+            type: "boolean",
+            default: false
           }
         },
-        async ({ csv, verbose, showEmptyAddresses }) => {
-          await scanner.scan({ csvOutputDir: csv, verbose, showEmptyAddresses });
+        async ({ csv, verbose, showEmptyAddresses, aggregateAssets }) => {
+          await scanner.scan({ csvOutputDir: csv, verbose, showEmptyAddresses, aggregateAssets });
         }
       )
       .command(
