@@ -142,7 +142,7 @@ export class Scanner {
     Logger.info();
 
     const ledgers = this.db.getLedgers();
-    if (Object.keys(ledgers).length !== 0) {
+    if (!isEmpty(ledgers)) {
       Logger.title("Ledgers");
 
       const ledgersTable = new Table({
