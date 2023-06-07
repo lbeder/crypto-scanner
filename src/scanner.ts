@@ -138,6 +138,9 @@ export class Scanner {
   public showDB() {
     Logger.title("DB");
 
+    Logger.info(`Version: ${this.db.getVersion()}`);
+    Logger.info();
+
     const ledgers = this.db.getLedgers();
     if (Object.keys(ledgers).length !== 0) {
       Logger.title("Ledgers");

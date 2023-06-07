@@ -9,6 +9,8 @@ const DB_DIR = path.resolve(os.homedir(), ".crypto-scanner/");
 const DB_PATH = path.join(DB_DIR, "db");
 const GLOBAL_TOKEN_LIST_PATH = path.resolve(path.join(__dirname, "../../data/tokens.json"));
 
+const VERSION = 1;
+
 export interface Address {
   address: string;
   note: string;
@@ -30,6 +32,7 @@ export type Tokens = Record<string, Token>;
 export type Assets = Record<string, Asset>;
 
 interface Data {
+  version: number;
   ledgers: Ledgers;
   tokens: Tokens;
   assets: Assets;
@@ -55,6 +58,7 @@ export class DB {
 
     if (!DB.exists()) {
       this.data = {
+        version: VERSION,
         ledgers: {},
         tokens: {},
         assets: {}
@@ -175,6 +179,10 @@ export class DB {
     this.data = data;
 
     this.save();
+  }
+
+  public getVersion() {
+    return this.data.version ?? VERSION;
   }
 
   public getLedgers() {
