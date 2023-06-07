@@ -149,7 +149,6 @@ crypto-scanner show
 
 DB
 ‾‾
-
 Version: 1
 
 Ledgers
@@ -288,7 +287,6 @@ crypto-scanner show
 
 DB
 ‾‾
-
 Version: 1
 
 Ledgers
@@ -579,7 +577,6 @@ crypto-scanner show
 
 DB
 ‾‾
-
 Version: 1
 
 Ledgers
@@ -757,7 +754,6 @@ crypto-scanner show
 
 DB
 ‾‾
-
 Version: 1
 
 Ledgers
