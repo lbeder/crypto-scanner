@@ -81,12 +81,13 @@ export class DB {
 
     try {
       data = JSON.parse(DB.decrypt(fs.readFileSync(DB_PATH, "utf8"), password)) as Data;
-      data.version ??= VERSION;
     } catch {
       throw new Error("Invalid password");
     }
 
     // Backward compatibility
+    data.version ??= VERSION;
+
     for (const [name, addresses] of Object.entries(data.ledgers)) {
       if (addresses.length > 0 && typeof addresses[0] === "string") {
         data.ledgers[name] = (addresses as any as string[]).map((a) => ({ address: a, note: "" }));
