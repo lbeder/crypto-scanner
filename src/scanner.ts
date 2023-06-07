@@ -237,6 +237,7 @@ export class Scanner {
 
     const ledgerBar = multiBar.create(addressCount, 0);
     const tokenBar = multiBar.create(tokenCount, 0);
+
     let addressIndex = 0;
 
     for (const [name, addresses] of Object.entries(ledgers)) {
