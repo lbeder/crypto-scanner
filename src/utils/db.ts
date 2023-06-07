@@ -81,6 +81,7 @@ export class DB {
 
     try {
       data = JSON.parse(DB.decrypt(fs.readFileSync(DB_PATH, "utf8"), password)) as Data;
+      data.version ??= VERSION;
     } catch {
       throw new Error("Invalid password");
     }
@@ -120,6 +121,15 @@ export class DB {
     }
 
     const data = JSON.parse(fs.readFileSync(inputPath, "utf-8")) as Data;
+    switch (data.version) {
+      case undefined:
+      case 1:
+        break;
+
+      default:
+        throw new Error(`Unsupported version: ${data.version}`);
+    }
+
     if (!data.ledgers) {
       throw new Error("Missing ledgers");
     }
