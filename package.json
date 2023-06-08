@@ -1,6 +1,6 @@
 {
   "name": "crypto-scanner",
-  "version": "5.3.0",
+  "version": "5.4.0",
   "description": "Crypto Scanner is a privacy-oriented tool used to track ETH and token balances across multiple addresses and groups (ledgers)",
   "author": "Leonid Beder",
   "license": "MIT",
@@ -32,6 +32,7 @@
     "prepare": "yarn snyk-protect",
     "build": "rm -rf dist && tsc --build tsconfig.json",
     "release": "yarn build && yarn prepare",
+    "update-tokens": "ts-node src/scripts/tokens.ts",
     "snyk-protect": "snyk-protect",
     "snyk-test": "snyk test"
   },
@@ -43,6 +44,7 @@
     "@types/inquirer": "^9.0.3",
     "@types/lodash": "^4.14.195",
     "@types/node": "^20.2.5",
+    "@types/node-fetch": "^2.6.4",
     "@types/underscore": "^1.11.5",
     "@types/yargs": "^17.0.24",
     "@typescript-eslint/eslint-plugin": "^5.59.7",
@@ -56,6 +58,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-standard": "^5.0.0",
+    "node-fetch": "2",
     "prettier": "^2.8.8",
     "prettier-package-json": "^2.8.0",
     "ts-node": "^10.9.1",

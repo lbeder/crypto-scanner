@@ -38,6 +38,11 @@ interface Data {
   assets: Assets;
 }
 
+interface TokenList {
+  data: string;
+  tokens: Tokens;
+}
+
 export interface DBOptions {
   password: string;
   globalTokenList: boolean;
@@ -69,7 +74,7 @@ export class DB {
 
     if (globalTokenList) {
       this.globalTokenList = Object.fromEntries(
-        Object.entries(JSON.parse(fs.readFileSync(GLOBAL_TOKEN_LIST_PATH, "utf8")) as Tokens).map(
+        Object.entries((JSON.parse(fs.readFileSync(GLOBAL_TOKEN_LIST_PATH, "utf8")) as TokenList).tokens).map(
           ([symbol, { address, decimals }]) => [symbol, { address: getAddress(address), decimals }]
         )
       );
