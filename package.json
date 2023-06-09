@@ -17,7 +17,7 @@
     "cli": "yarn start --help",
     "show": "yarn start show",
     "scan": "yarn start scan",
-    "change-password": "yarn startchange-password",
+    "change-password": "yarn start change-password",
     "export-db": "yarn start export-db",
     "import-db": "yarn start import-db",
     "add-addresses": "yarn start add-addresses",
