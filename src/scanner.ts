@@ -8,7 +8,7 @@ import Table from "cli-table";
 import Decimal from "decimal.js";
 import { JsonRpcProvider } from "ethers";
 import fs from "fs";
-import { set, isEmpty, truncate, padEnd, chunk } from "lodash";
+import { set, isEmpty, truncate, padEnd, chunk, clone } from "lodash";
 import path from "path";
 
 interface ScannerOptions {
@@ -300,14 +300,27 @@ export class Scanner {
 
     Logger.info();
 
+    const totalAggregatedAmounts = clone(totalAmounts);
+
     const assets = this.db.getAssets();
+
+    // Aggregate assets only if it was requested and there is at least one custom priced asset.
+    const customPricedAssets = new Set<string>(
+      Object.entries(assets)
+        .filter(([_, { symbol }]) => symbol && (symbol === ETH || tokens[symbol] || assets[symbol]))
+        .map(([name]) => name)
+    );
+    const shouldAggregateAssets = aggregateAssets && customPricedAssets.size > 0;
+
     if (!isEmpty(assets)) {
       for (const [name, { quantity, price, symbol }] of Object.entries(assets)) {
+        totalAmounts[name] = (totalAmounts[name] ?? new Decimal(0)).add(quantity);
+
         // If the asset is priced in another token or asset - aggregate its price as well.
-        if (aggregateAssets && symbol && (symbol === ETH || tokens[symbol] || assets[symbol])) {
-          totalAmounts[symbol] = (totalAmounts[symbol] ?? new Decimal(0)).add(quantity * price);
+        if (shouldAggregateAssets && customPricedAssets.has(name)) {
+          totalAggregatedAmounts[symbol] = (totalAggregatedAmounts[symbol] ?? new Decimal(0)).add(quantity * price);
         } else {
-          totalAmounts[name] = (totalAmounts[name] ?? new Decimal(0)).add(quantity);
+          totalAggregatedAmounts[name] = (totalAggregatedAmounts[name] ?? new Decimal(0)).add(quantity);
         }
       }
     }
@@ -322,7 +335,10 @@ export class Scanner {
       this.showAssets(assets, prices);
     }
 
-    this.showTotals(totalAmounts, prices);
+    this.showTotals(totalAmounts, prices, "Total Amounts");
+    if (shouldAggregateAssets) {
+      this.showTotals(totalAggregatedAmounts, prices, "Total Aggregated Amounts");
+    }
 
     if (csvOutputDir) {
       this.exportAddresses(csvOutputDir, ledgerAddressAmounts, notes, prices);
@@ -350,8 +366,8 @@ export class Scanner {
     Logger.table(pricesTable);
   }
 
-  private showTotals(totalAmounts: Amounts, prices: Prices) {
-    Logger.title("Total Amounts");
+  private showTotals(totalAmounts: Amounts, prices: Prices, title: string) {
+    Logger.title(title);
 
     let totalValue = new Decimal(0);
 
