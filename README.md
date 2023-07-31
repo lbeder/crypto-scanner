@@ -19,7 +19,13 @@ git clone https://github.com/lbeder/crypto-scanner
 
 cd crypto-scanner
 
+pnpm install
+
+# Or
 yarn
+
+# Or
+npm install
 ```
 
 ### Globally
