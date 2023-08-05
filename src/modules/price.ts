@@ -1,8 +1,8 @@
-import { USD } from "../utils/constants";
-import { Base } from "./base";
 import { CoinGeckoClient } from "coingecko-api-v3";
 import Decimal from "decimal.js";
 import { AbstractProvider, getAddress } from "ethers";
+import { USD } from "../utils/constants";
+import { Base } from "./base";
 
 export class Price extends Base {
   private readonly client: CoinGeckoClient;

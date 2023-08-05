@@ -1,6 +1,6 @@
+import Decimal from "decimal.js";
 import { ETH_WEI } from "../utils/constants";
 import { Base } from "./base";
-import Decimal from "decimal.js";
 
 export class Balance extends Base {
   async getBalance(address: string): Promise<Decimal> {

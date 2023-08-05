@@ -1,9 +1,9 @@
-import { ETH, USD } from "./constants";
 import crypto from "crypto";
-import { getAddress, isAddress } from "ethers";
 import fs from "fs";
 import os from "os";
 import path from "path";
+import { getAddress, isAddress } from "ethers";
+import { ETH, USD } from "./constants";
 
 const DB_DIR = path.resolve(os.homedir(), ".crypto-scanner/");
 const DB_PATH = path.join(DB_DIR, "db");

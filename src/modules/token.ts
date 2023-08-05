@@ -1,7 +1,7 @@
-import ERC20_API from "../abi/erc20.json";
-import { Base } from "./base";
 import Decimal from "decimal.js";
 import { Contract } from "ethers";
+import ERC20_API from "../abi/erc20.json";
+import { Base } from "./base";
 
 export class Token extends Base {
   async getTokenBalance(address: string, token: string, decimals: number): Promise<Decimal> {

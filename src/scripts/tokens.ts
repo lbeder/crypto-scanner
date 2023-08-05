@@ -1,9 +1,9 @@
-import { Logger } from "../utils/logger";
-import { getAddress } from "ethers";
 import fs from "fs";
+import path from "path";
+import { getAddress } from "ethers";
 import { sortBy } from "lodash";
 import fetch from "node-fetch";
-import path from "path";
+import { Logger } from "../utils/logger";
 
 const TOKENS_API = "https://tokens.coingecko.com/ethereum/all.json";
 
