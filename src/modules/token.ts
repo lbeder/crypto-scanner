@@ -1,6 +1,6 @@
 import Decimal from "decimal.js";
 import { Contract } from "ethers";
-import ERC20_API from "../abi/erc20.json";
+import ERC20_API from "../abi/ERC20.json";
 import { Base } from "./base";
 
 export class Token extends Base {

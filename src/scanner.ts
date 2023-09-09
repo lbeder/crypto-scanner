@@ -1,15 +1,15 @@
-import { Balance, Token, Price } from "./modules";
-import { ETH, USD } from "./utils/constants";
-import { DB, Assets, Address } from "./utils/db";
-import { Logger } from "./utils/logger";
+import fs from "fs";
+import path from "path";
 import chalk from "chalk";
 import CliProgress from "cli-progress";
 import Table from "cli-table";
 import Decimal from "decimal.js";
 import { JsonRpcProvider } from "ethers";
-import fs from "fs";
-import { set, isEmpty, truncate, padEnd, chunk, clone } from "lodash";
-import path from "path";
+import { chunk, clone, isEmpty, padEnd, set, truncate } from "lodash";
+import { Balance, Price, Token } from "./modules";
+import { ETH, USD } from "./utils/constants";
+import { Address, Assets, DB } from "./utils/db";
+import { Logger } from "./utils/logger";
 
 interface ScannerOptions {
   providerUrl: string;

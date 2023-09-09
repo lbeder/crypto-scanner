@@ -1,12 +1,12 @@
 #!/usr/bin/env node
-import { Scanner, DEFAULT_SYMBOL_PRICE } from "./scanner";
+import { DEFAULT_SYMBOL_PRICE, Scanner } from "./scanner";
 import { DEFAULT_DECIMALS } from "./utils/constants";
 import "./utils/csv";
-import { DB } from "./utils/db";
-import { Logger } from "./utils/logger";
 import inquirer from "inquirer";
 import { zipWith } from "lodash";
 import yargs from "yargs";
+import { DB } from "./utils/db";
+import { Logger } from "./utils/logger";
 
 const main = async () => {
   let scanner: Scanner;
