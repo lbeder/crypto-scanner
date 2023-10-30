@@ -1,6 +1,6 @@
 {
   "name": "crypto-scanner",
-  "version": "5.6.0",
+  "version": "5.7.0",
   "description": "Crypto Scanner is a privacy-oriented tool used to track ETH and token balances across multiple addresses and groups (ledgers)",
   "author": "Leonid Beder",
   "license": "MIT",
@@ -9,9 +9,6 @@
   "files": [
     "/dist"
   ],
-  "bin": {
-    "crypto-scanner": "./dist/index.js"
-  },
   "scripts": {
     "start": "ts-node src/index.ts",
     "cli": "pnpm start --help",
@@ -29,8 +26,13 @@
     "remove-asset": "pnpm start remove-asset",
     "lint": "pnpm eslint src",
     "format": "prettier --check --write src/**/* --config .prettierrc",
+    "build": "rm -rf dist && tsc --build tsconfig.json && pkg dist/index.js",
+    "build:win-x64": "pnpm build -t node16-win-x64 -o ./build/win-x64/crypto-scanner.exe",
+    "build:linux-x64": "pnpm build -t node16-linux-x64 -o ./build/linux-x64/crypto-scanner",
+    "build:macos-x64": "pnpm build -t node16-macos-x64 -o ./build/macos-x64/crypto-scanner",
+    "build:macos-arm64": "pnpm build -t node16-macos-arm64 -o ./build/macos-arm64/crypto-scanner",
+    "build:all": "pnpm build:win-x64 && pnpm build:linux-x64 && pnpm build:macos-x64 && pnpm build:macos-arm64",
     "prepare": "pnpm snyk-protect",
-    "build": "rm -rf dist && tsc --build tsconfig.json",
     "release": "pnpm build && pnpm prepare",
     "update-tokens": "ts-node src/scripts/tokens.ts",
     "snyk-protect": "snyk-protect",
@@ -57,6 +59,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.1.1",
     "node-fetch": "^3.3.2",
+    "pkg": "^5.8.1",
     "prettier": "^3.0.3",
     "prettier-package-json": "^2.8.0",
     "ts-node": "^10.9.1",
