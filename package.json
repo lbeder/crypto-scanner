@@ -9,6 +9,9 @@
   "files": [
     "/dist"
   ],
+  "bin": {
+    "crypto-scanner": "./dist/index.js"
+  },
   "scripts": {
     "start": "ts-node src/index.ts",
     "cli": "pnpm start --help",
