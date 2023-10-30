@@ -8,6 +8,8 @@ import yargs from "yargs";
 import { DB } from "./utils/db";
 import { Logger } from "./utils/logger";
 
+const VERSION = "5.7.0";
+
 const main = async () => {
   let scanner: Scanner;
 
@@ -18,7 +20,7 @@ const main = async () => {
       .wrap(120)
       .demandCommand()
       .help()
-      .version()
+      .version(VERSION)
       .options({
         "provider-url": {
           description: "Web3 provider's URL",
