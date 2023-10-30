@@ -1,8 +1,8 @@
 import fs from "fs";
 import path from "path";
+import axios from "axios";
 import { getAddress } from "ethers";
 import { sortBy } from "lodash";
-import fetch from "node-fetch";
 import { Logger } from "../utils/logger";
 
 const TOKENS_API = "https://tokens.coingecko.com/ethereum/all.json";
@@ -20,14 +20,10 @@ interface TokenInfo {
   decimals: number;
 }
 
-interface Response {
-  tokens: TokenInfo[];
-}
-
 const main = async () => {
   try {
-    const response = await fetch(TOKENS_API);
-    const tokens = ((await response.json()) as Response).tokens as TokenInfo[];
+    const response = await axios.get(TOKENS_API);
+    const tokens = response.data.tokens as TokenInfo[];
 
     const data = {
       date: new Date().toISOString(),
