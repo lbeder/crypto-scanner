@@ -8,7 +8,7 @@ import yargs from "yargs";
 import { DB } from "./utils/db";
 import { Logger } from "./utils/logger";
 
-const VERSION = "5.8.0";
+const VERSION = "5.10.0";
 
 const main = async () => {
   let scanner: Scanner;
@@ -84,7 +84,8 @@ const main = async () => {
           csv: {
             description: "The CSV reports output directory (optional)",
             type: "string",
-            alias: "r"
+            alias: "r",
+            requiresArg: true
           },
           verbose: {
             description: "Verbose mode",
@@ -286,7 +287,8 @@ const main = async () => {
           },
           symbol: {
             description: "The symbol of the token the asset is priced in (optional)",
-            type: "string"
+            type: "string",
+            requiresArg: true
           }
         },
         ({ name, quantity, unitPrice: price, symbol }) => {
@@ -319,7 +321,8 @@ const main = async () => {
           },
           symbol: {
             description: "The symbol of the token the asset is priced in",
-            type: "string"
+            type: "string",
+            requiresArg: true
           }
         },
         ({ name, quantity, unitPrice: price, symbol }) => {
