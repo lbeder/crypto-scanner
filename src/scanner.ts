@@ -39,7 +39,7 @@ export class Scanner {
   private token: Token;
   private price?: Price;
 
-  private static readonly PRICE_QUERY_BATCH_SIZE = 150;
+  private static readonly PRICE_QUERY_BATCH_SIZE = 20;
   private static readonly CSV_ADDRESSES_REPORT = "addresses.csv";
   private static readonly CSV_PRICES_REPORT = "prices.csv";
   private static readonly CSV_TOTALS_REPORT = "totals.csv";
