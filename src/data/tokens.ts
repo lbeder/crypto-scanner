@@ -1,5 +1,5 @@
 export const GLOBAL_TOKEN_LIST = {
-  date: "2023-12-17T22:05:08.716Z",
+  date: "2023-12-17T22:42:18.060Z",
   tokens: {
     "28": {
       address: "0xA50709b10C328772EA24a44b13C7E23C75561ecb",
@@ -15984,10 +15984,6 @@ export const GLOBAL_TOKEN_LIST = {
     VXV: {
       address: "0x7D29A64504629172a429e64183D6673b9dAcbFCe",
       decimals: 18
-    },
-    VZZN: {
-      address: "0x60867B79a68AbECB78351B2dbB5fdec4282C5aCB",
-      decimals: 9
     },
     WACME: {
       address: "0xDF4Ef6EE483953fE3B84ABd08C6A060445c01170",
