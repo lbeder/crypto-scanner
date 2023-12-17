@@ -11,7 +11,8 @@ const TOKENS_PATH = path.resolve(path.join(__dirname, "../data/tokens.ts"));
 
 const IGNORED_TOKENS = new Set<string>([
   "0xDadb4aE5B5D3099Dd1f586f990B845F2404A1c4c",
-  "0x47140a767A861F7a1f3B0Dd22A2F463421c28814"
+  "0x47140a767A861F7a1f3B0Dd22A2F463421c28814",
+  "0x60867B79a68AbECB78351B2dbB5fdec4282C5aCB"
 ]);
 
 interface TokenInfo {
