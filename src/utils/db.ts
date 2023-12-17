@@ -38,11 +38,6 @@ interface Data {
   assets: Assets;
 }
 
-interface TokenList {
-  data: string;
-  tokens: Tokens;
-}
-
 export interface DBOptions {
   password: string;
   globalTokenList: boolean;
