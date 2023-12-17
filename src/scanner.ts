@@ -205,7 +205,9 @@ export class Scanner {
       }
 
       if (!csvOutputDir) {
-        Logger.warning("WARNING: Please consider requesting a CSV export when the global token list is used");
+        Logger.warning(
+          "WARNING: You're using a global token list. If you haven't passed the reporting option, the output will be hard to read"
+        );
         Logger.warning();
       }
     }
