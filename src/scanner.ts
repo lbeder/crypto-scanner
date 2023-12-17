@@ -664,7 +664,7 @@ export class Scanner {
       return prices;
     }
 
-    Logger.info("Querying prices. This operation may take a long time...");
+    Logger.info("Querying prices. This operation may take a very long time...");
     Logger.info();
 
     prices[ETH] = await this.price.getETHPrice();

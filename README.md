@@ -426,7 +426,7 @@ If you are interested in showing the USD values of the balances, you can pass th
 ```sh
 crypto-scanner scan -p
 
-Querying prices. This operation may take a long time...
+Querying prices. This operation may take a very long time...
 
 Finished | ████████████████████████████████████████ 100% | ETA: 0s | 4/4
 
@@ -475,7 +475,7 @@ You can also combine both the `-p/--price` and the `-v/--verbose` flags for the 
 ```sh
 crypto-scanner scan -v -p
 
-Querying prices. This operation may take a long time...
+Querying prices. This operation may take a very long time...
 
 Finished | ████████████████████████████████████████ 100% | ETA: 0s | 4/4
 
@@ -634,7 +634,7 @@ crypto-scanner scan -p -v
 
 ? Enter password [hidden]
 
-Querying prices. This operation may take a long time...
+Querying prices. This operation may take a very long time...
 
 Finished | ████████████████████████████████████████ 100% | ETA: 0s | 4/4
 
@@ -815,7 +815,7 @@ crypto-scanner scan -p -v
 
 ? Enter password [hidden]
 
-Querying prices. This operation may take a long time...
+Querying prices. This operation may take a very long time...
 
 Finished | ████████████████████████████████████████ 100% | ETA: 0s | 4/4
 
@@ -938,7 +938,7 @@ crypto-scanner scan -p -v -a
 
 ? Enter password [hidden]
 
-Querying prices. This operation may take a long time...
+Querying prices. This operation may take a very long time...
 
 Finished | ████████████████████████████████████████ 100% | ETA: 0s | 8/8
 
@@ -1081,7 +1081,7 @@ Please note that when the global token list is used, the `-v/--verbose` flag is 
 ```sh
 crypto-scanner scan -g -p -r ~/reports
 
-Querying prices. This operation may take a long time...
+Querying prices. This operation may take a very long time...
 
 Finished | ████████████████████████████████████████ 100% | ETA: 0s | 3748/3748
 
@@ -1857,4 +1857,4 @@ Exported price data to: ~/reports/prices.csv
 Exported totals data to: ~/reports/totals.csv
 ```
 
-If you can't find your token in [data/tokens.json](/data/tokens.json), feel free to open a PR/issue and we'll add it.
+If you can't find your token in [src/data/tokens.ts](/src/data/tokens.ts), feel free to open a PR/issue and we'll add it.

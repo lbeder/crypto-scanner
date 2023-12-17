@@ -7,7 +7,7 @@ import { Logger } from "../utils/logger";
 
 const TOKENS_API = "https://tokens.coingecko.com/ethereum/all.json";
 
-const TOKENS_JSON_PATH = path.resolve(path.join(__dirname, "../../data/tokens.json"));
+const TOKENS_PATH = path.resolve(path.join(__dirname, "../data/tokens.ts"));
 
 const IGNORED_TOKENS = new Set<string>([
   "0xDadb4aE5B5D3099Dd1f586f990B845F2404A1c4c",
@@ -25,6 +25,8 @@ const main = async () => {
     const response = await axios.get(TOKENS_API);
     const tokens = response.data.tokens as TokenInfo[];
 
+    fs.writeFileSync(TOKENS_PATH, "export const TOKENS = ");
+
     const data = {
       date: new Date().toISOString(),
       tokens: Object.fromEntries(
@@ -36,9 +38,9 @@ const main = async () => {
         )
       )
     };
-    fs.writeFileSync(TOKENS_JSON_PATH, JSON.stringify(data, null, 2));
+    fs.writeFileSync(TOKENS_PATH, `export const GLOBAL_TOKEN_LIST = ${JSON.stringify(data, null, 2)};\n\r`);
 
-    Logger.info(`Updated ${TOKENS_JSON_PATH}`);
+    Logger.info(`Updated ${TOKENS_PATH}`);
   } catch (e) {
     if (e instanceof Error) {
       Logger.fatal(e.stack);

@@ -15,7 +15,7 @@
   "scripts": {
     "start": "ts-node src/index.ts",
     "lint": "pnpm eslint src",
-    "format": "prettier --check --write src/**/* --config .prettierrc",
+    "format": "prettier --check --config .prettierrc --write src/**/*",
     "build": "rm -rf dist && tsc --build tsconfig.json && pkg dist/index.js",
     "build:win-x64": "pnpm build -t node16-win-x64 -o ./build/win-x64/crypto-scanner.exe",
     "build:linux-x64": "pnpm build -t node16-linux-x64 -o ./build/linux-x64/crypto-scanner",
@@ -24,7 +24,7 @@
     "build:all": "pnpm build:win-x64 && pnpm build:linux-x64 && pnpm build:macos-x64 && pnpm build:macos-arm64",
     "prepare": "pnpm snyk-protect",
     "release": "pnpm build && pnpm prepare",
-    "update-tokens": "ts-node src/scripts/tokens.ts",
+    "update-tokens": "ts-node src/scripts/tokens.ts && pnpm format",
     "snyk-protect": "snyk-protect",
     "snyk-test": "snyk test"
   },

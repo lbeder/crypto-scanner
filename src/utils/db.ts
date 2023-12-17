@@ -3,11 +3,11 @@ import fs from "fs";
 import os from "os";
 import path from "path";
 import { getAddress, isAddress } from "ethers";
+import { GLOBAL_TOKEN_LIST } from "../data/tokens";
 import { ETH, USD } from "./constants";
 
 const DB_DIR = path.resolve(os.homedir(), ".crypto-scanner/");
 const DB_PATH = path.join(DB_DIR, "db");
-const GLOBAL_TOKEN_LIST_PATH = path.resolve(path.join(__dirname, "../../data/tokens.json"));
 
 const VERSION = 1;
 
@@ -74,9 +74,10 @@ export class DB {
 
     if (globalTokenList) {
       this.globalTokenList = Object.fromEntries(
-        Object.entries((JSON.parse(fs.readFileSync(GLOBAL_TOKEN_LIST_PATH, "utf8")) as TokenList).tokens).map(
-          ([symbol, { address, decimals }]) => [symbol, { address: getAddress(address), decimals }]
-        )
+        Object.entries(GLOBAL_TOKEN_LIST.tokens).map(([symbol, { address, decimals }]) => [
+          symbol,
+          { address: getAddress(address), decimals }
+        ])
       );
 
       this.globalTokenListEnabled = true;
