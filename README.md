@@ -54,7 +54,7 @@ Commands:
   crypto-scanner scan              Scans all addresses and tokens
   crypto-scanner change-password   Change the encryption password
   crypto-scanner export-db         Export the DB to an external file. Note that the export is *not* encrypted
-  crypto-scanner import-DB         Import the DB from an external file. Note that the import should not be *not*
+  crypto-scanner import-db         Import the DB from an external file. Note that the import should not be *not*
                                    encrypted
   crypto-scanner add-addresses     Add an address or a list of space-separated addresses to a named ledger
   crypto-scanner remove-addresses  Remove an address or a list of space-separated addresses from a named ledger

@@ -155,7 +155,7 @@ const main = async () => {
         }
       )
       .command(
-        "import-DB",
+        "import-db",
         "Import the DB from an external file. Note that the import should not be *not* encrypted",
         {
           input: {
