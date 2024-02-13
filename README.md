@@ -50,20 +50,13 @@ This will also allow you to run the `crypto-scanner` in the terminal.
 crypto-scanner <command>
 
 Commands:
-  crypto-scanner show              Show the DB
-  crypto-scanner scan              Scans all addresses and tokens
-  crypto-scanner change-password   Change the encryption password
-  crypto-scanner export-db         Export the DB to an external file. Note that the export is *not* encrypted
-  crypto-scanner import-db         Import the DB from an external file. Note that the import should not be *not*
-                                   encrypted
-  crypto-scanner add-addresses     Add an address or a list of space-separated addresses to a named ledger
-  crypto-scanner remove-addresses  Remove an address or a list of space-separated addresses from a named ledger
-  crypto-scanner remove-ledger     Remove an entire named ledger
-  crypto-scanner add-token         Add a token to the DB
-  crypto-scanner remove-token      Remove a token from the DB
-  crypto-scanner add-asset         Add an asset to the DB
-  crypto-scanner update-asset      Update an asset in the DB
-  crypto-scanner remove-asset      Remove an asset from the DB
+  crypto-scanner scan      Scan all addresses and tokens
+  crypto-scanner db        DB management functions
+  crypto-scanner password  Password management functions
+  crypto-scanner ledger    Ledger management functions
+  crypto-scanner address   Address management functions
+  crypto-scanner token     Token management functions
+  crypto-scanner asset     Asset management functions
 
 Options:
       --help               Show help                                                                           [boolean]
@@ -74,12 +67,12 @@ Options:
                                                                                               [boolean] [default: false]
 ```
 
-### Scan all Balances
+### Scan
 
 ```sh
 crypto-scanner scan
 
-Scans all addresses and tokens
+Scan all addresses and tokens
 
 Options:
       --help                  Show help                                                                        [boolean]
@@ -96,10 +89,31 @@ Options:
                               total ETH amount)                                               [boolean] [default: false]
 ```
 
-### Show the DB
+### DB
 
 ```sh
-crypto-scanner show
+crypto-scanner db
+
+DB management functions
+
+Commands:
+  crypto-scanner db show    Show the DB
+  crypto-scanner db export  Export the DB to an external file. Note that the export is *not* encrypted
+  crypto-scanner db import  Import the DB from an external file. Note that the import should not be *not* encrypted
+
+Options:
+      --help               Show help                                                                           [boolean]
+      --version            Show version number                                                                 [boolean]
+      --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
+  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
+                                                                                              [boolean] [default: false]
+```
+
+#### Show the DB
+
+```sh
+crypto-scanner db show
 
 Show the DB
 
@@ -110,6 +124,320 @@ Options:
   -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
                                                                                               [boolean] [default: false]
+```
+
+#### Export the DB
+
+```sh
+crypto-scanner db export
+
+Export the DB to an external file. Note that the export is *not* encrypted
+
+Options:
+      --help               Show help                                                                           [boolean]
+      --version            Show version number                                                                 [boolean]
+      --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
+  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
+                                                                                              [boolean] [default: false]
+  -o, --output             The output file path                                                      [string] [required]
+```
+
+#### Import the DB
+
+```sh
+crypto-scanner db import
+
+Import the DB from an external file. Note that the import should not be *not* encrypted
+
+Options:
+      --help               Show help                                                                           [boolean]
+      --version            Show version number                                                                 [boolean]
+      --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
+  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
+                                                                                              [boolean] [default: false]
+  -i, --input              The input file path                                                       [string] [required]
+```
+
+### Password Management
+
+```sh
+crypto-scanner password
+
+Password management functions
+
+Commands:
+  crypto-scanner password set  Set/change the encryption password
+
+Options:
+      --help               Show help                                                                           [boolean]
+      --version            Show version number                                                                 [boolean]
+      --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
+  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
+                                                                                              [boolean] [default: false]
+```
+
+#### Set the Password
+
+```sh
+crypto-scanner password set
+
+Set/change the encryption password
+
+Options:
+      --help               Show help                                                                           [boolean]
+      --version            Show version number                                                                 [boolean]
+      --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
+  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
+                                                                                              [boolean] [default: false]
+```
+
+### Ledger Management
+
+```sh
+crypto-scanner ledger
+
+Ledger management functions
+
+Commands:
+  crypto-scanner ledger add     Add a new named ledger
+  crypto-scanner ledger remove  Remove an existing ledger
+
+Options:
+      --help               Show help                                                                           [boolean]
+      --version            Show version number                                                                 [boolean]
+      --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
+  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
+                                                                                              [boolean] [default: false]
+```
+
+#### Add Ledger
+
+```sh
+crypto-scanner ledger add
+
+Add a new ledger
+
+Options:
+      --help               Show help                                                                           [boolean]
+      --version            Show version number                                                                 [boolean]
+      --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
+  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
+                                                                                              [boolean] [default: false]
+      --name               The name of the ledger                                                    [string] [required]
+```
+
+#### Remove Ledger
+
+```sh
+crypto-scanner ledger remove
+
+Remove an existing ledger
+
+Options:
+      --help               Show help                                                                           [boolean]
+      --version            Show version number                                                                 [boolean]
+      --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
+  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
+                                                                                              [boolean] [default: false]
+      --name               The name of the ledger                                                    [string] [required]
+```
+
+### Address Management
+
+```sh
+crypto-scanner address
+
+Address management functions
+
+Commands:
+  crypto-scanner address add     Add an address or a list of space-separated addresses to a named ledger
+  crypto-scanner address remove  Remove an address or a list of space-separated addresses from a named ledger
+
+Options:
+      --help               Show help                                                                           [boolean]
+      --version            Show version number                                                                 [boolean]
+      --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
+  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
+                                                                                              [boolean] [default: false]
+```
+
+#### Add Addresses
+
+```sh
+crypto-scanner address add
+
+Add an address or a list of space-separated addresses to a named ledger
+
+Options:
+      --help               Show help                                                                           [boolean]
+      --version            Show version number                                                                 [boolean]
+      --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
+  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
+                                                                                              [boolean] [default: false]
+      --name               The name of the ledger                                                    [string] [required]
+      --addresses          The address (or multiple addresses) to add                                 [array] [required]
+      --notes              The address notes (or multiple notes) to add                                          [array]
+```
+
+#### Remove Addresses
+
+```sh
+crypto-scanner address remove
+
+Remove an address or a list of space-separated addresses from a named ledger
+
+Options:
+      --help               Show help                                                                           [boolean]
+      --version            Show version number                                                                 [boolean]
+      --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
+  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
+                                                                                              [boolean] [default: false]
+      --name               The name of the ledger                                                    [string] [required]
+      --data               The address (or multiple addresses) to remove                           [array] [default: []]
+```
+
+### Token Management
+
+```sh
+crypto-scanner token
+
+Token management functions
+
+Commands:
+  crypto-scanner token add     Add a new token
+  crypto-scanner token remove  Remove a token from
+
+Options:
+      --help               Show help                                                                           [boolean]
+      --version            Show version number                                                                 [boolean]
+      --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
+  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
+                                                                                              [boolean] [default: false]
+```
+
+#### Add Tokens
+
+```sh
+crypto-scanner token add
+
+Add a new token
+
+Options:
+      --help               Show help                                                                           [boolean]
+      --version            Show version number                                                                 [boolean]
+      --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
+  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
+                                                                                              [boolean] [default: false]
+      --symbol             The symbol of the token                                                   [string] [required]
+      --address            The address of the token                                                  [string] [required]
+      --decimals           The decimals of the token                                              [number] [default: 18]
+```
+
+#### Remove Tokens
+
+```sh
+crypto-scanner token remove
+
+Remove a token from
+
+Options:
+      --help               Show help                                                                           [boolean]
+      --version            Show version number                                                                 [boolean]
+      --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
+  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
+                                                                                              [boolean] [default: false]
+      --symbol             The symbol of the token                                                   [string] [required]
+```
+
+### Asset Management
+
+```sh
+crypto-scanner asset
+
+Asset management functions
+
+Commands:
+  crypto-scanner asset add     Add a new asset
+  crypto-scanner asset update  Update an existing asset
+  crypto-scanner asset remove  Remove an existing asset
+
+Options:
+      --help               Show help                                                                           [boolean]
+      --version            Show version number                                                                 [boolean]
+      --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
+  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
+                                                                                              [boolean] [default: false]
+```
+
+#### Add Asset
+
+```sh
+crypto-scanner asset add
+
+Add a new asset
+
+Options:
+      --help               Show help                                                                           [boolean]
+      --version            Show version number                                                                 [boolean]
+      --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
+  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
+                                                                                              [boolean] [default: false]
+      --name               The name of the asset                                                     [string] [required]
+      --quantity           The quantity of the asset                                                 [number] [required]
+      --unit-price         The unit price of the asset                                                          [number]
+      --symbol             The symbol of the token the asset is priced in (optional)                            [string]
+```
+
+#### Update Asset
+
+```sh
+crypto-scanner asset update
+
+Update an existing asset
+
+Options:
+      --help               Show help                                                                           [boolean]
+      --version            Show version number                                                                 [boolean]
+      --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
+  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
+                                                                                              [boolean] [default: false]
+      --name               The name of the asset                                                     [string] [required]
+      --quantity           The new quantity of the asset                                             [number] [required]
+      --unit-price         The new unit price of the asset                                                      [number]
+      --symbol             The symbol of the token the asset is priced in                                       [string]
+```
+
+#### Remove Asset
+
+```sh
+crypto-scanner asset remove
+
+Remove an existing asset
+
+Options:
+      --help               Show help                                                                           [boolean]
+      --version            Show version number                                                                 [boolean]
+      --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
+  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
+                                                                                              [boolean] [default: false]
+      --name               The name of the asset                                                     [string] [required]
 ```
 
 ### Example
@@ -125,7 +453,7 @@ Let's start by adding the following addresses to the following named ledgers:
   * `0xDA9dfA130Df4dE4673b89022EE50ff26f6EA73Cf`
 
 ```sh
-crypto-scanner add-addresses --name "Binance" --addresses 0xBE0eB53F46cd790Cd13851d5EFf43D12404d33E8 0xF977814e90dA44bFA03b6295A0616a897441aceC --notes "Binance 7" "Binance 8"
+crypto-scanner address add --name "Binance" --addresses 0xBE0eB53F46cd790Cd13851d5EFf43D12404d33E8 0xF977814e90dA44bFA03b6295A0616a897441aceC --notes "Binance 7" "Binance 8"
 
 ? Enter password [hidden]
 
@@ -134,7 +462,7 @@ Added 0xF977814e90dA44bFA03b6295A0616a897441aceC to Binance (with a note: "Binan
 ```
 
 ```sh
-crypto-scanner add-addresses --name "Kraken" --addresses 0xDA9dfA130Df4dE4673b89022EE50ff26f6EA73Cf
+crypto-scanner address add --name "Kraken" --addresses 0xDA9dfA130Df4dE4673b89022EE50ff26f6EA73Cf
 
 ? Enter password [hidden]
 
@@ -142,7 +470,7 @@ Added 0xDA9dfA130Df4dE4673b89022EE50ff26f6EA73Cf to Kraken
 ```
 
 ```sh
-crypto-scanner add-addresses --name "Coinbase" --addresses 0x71660c4005BA85c37ccec55d0C4493E66Fe775d3 --notes "Coinbase 1"
+crypto-scanner address add --name "Coinbase" --addresses 0x71660c4005BA85c37ccec55d0C4493E66Fe775d3 --notes "Coinbase 1"
 
 ? Enter password [hidden]
 
@@ -152,7 +480,7 @@ Added 0x71660c4005BA85c37ccec55d0C4493E66Fe775d3 to Coinbase (with a note: "Coin
 We can see that the DB has been updated:
 
 ```sh
-crypto-scanner show
+crypto-scanner db show
 
 ? Enter password [hidden]
 
@@ -192,7 +520,7 @@ Total Amounts
 ┌──────┬──────────────┐
 │ Name │ Amount       │
 ├──────┼──────────────┤
-│ ETH  │ 4,863,139.18 │
+│ ETH  │ 4,254,204.37 │
 └──────┴──────────────┘
 ```
 
@@ -213,15 +541,15 @@ Addresses
 ┌──────────┬────────────────────────────────────────────┬──────────────┬────────────┐
 │ Ledger   │ Address                                    │ ETH          │ Note       │
 ├──────────┼────────────────────────────────────────────┼──────────────┼────────────┤
-│ Binance  │ 0xBE0eB53F46cd790Cd13851d5EFf43D12404d33E8 │ 1,996,008.36 │ Binance 7  │
+│ Binance  │ 0xBE0eB53F46cd790Cd13851d5EFf43D12404d33E8 │ 1,996,008.38 │ Binance 7  │
 ├──────────┼────────────────────────────────────────────┼──────────────┼────────────┤
-│ Binance  │ 0xF977814e90dA44bFA03b6295A0616a897441aceC │ 1,170,353.94 │ Binance 8  │
+│ Binance  │ 0xF977814e90dA44bFA03b6295A0616a897441aceC │ 647,701.18   │ Binance 8  │
 ├──────────┼────────────────────────────────────────────┼──────────────┼────────────┤
-│ Kraken   │ 0xDA9dfA130Df4dE4673b89022EE50ff26f6EA73Cf │ 1,690,839.97 │            │
+│ Kraken   │ 0xDA9dfA130Df4dE4673b89022EE50ff26f6EA73Cf │ 1,598,923.57 │            │
 ├──────────┼────────────────────────────────────────────┼──────────────┼────────────┤
-│ Coinbase │ 0x71660c4005BA85c37ccec55d0C4493E66Fe775d3 │ 5,936.91     │ Coinbase 1 │
+│ Coinbase │ 0x71660c4005BA85c37ccec55d0C4493E66Fe775d3 │ 11,571.25    │ Coinbase 1 │
 ├──────────┼────────────────────────────────────────────┼──────────────┼────────────┤
-│          │ Total                                      │ 4,863,139.18 │            │
+│          │ Total                                      │ 4,254,204.37 │            │
 ├──────────┼────────────────────────────────────────────┼──────────────┼────────────┤
 │          │                                            │ ETH          │            │
 └──────────┴────────────────────────────────────────────┴──────────────┴────────────┘
@@ -231,13 +559,13 @@ Ledgers
 ┌──────────┬──────────────┐
 │ Ledger   │ ETH          │
 ├──────────┼──────────────┤
-│ Binance  │ 3,166,362.29 │
+│ Binance  │ 2,643,709.56 │
 ├──────────┼──────────────┤
-│ Kraken   │ 1,690,839.97 │
+│ Kraken   │ 1,598,923.57 │
 ├──────────┼──────────────┤
-│ Coinbase │ 5,936.91     │
+│ Coinbase │ 11,571.25    │
 ├──────────┼──────────────┤
-│ Total    │ 4,863,139.18 │
+│ Total    │ 4,254,204.37 │
 ├──────────┼──────────────┤
 │          │ ETH          │
 └──────────┴──────────────┘
@@ -247,7 +575,7 @@ Total Amounts
 ┌──────┬──────────────┐
 │ Name │ Amount       │
 ├──────┼──────────────┤
-│ ETH  │ 4,863,139.18 │
+│ ETH  │ 4,254,204.37 │
 └──────┴──────────────┘
 ```
 
@@ -256,7 +584,7 @@ Total Amounts
 Let's add the `USDT`, `USDC`, `DAI`, and `LINK`tokens and try again:
 
 ```sh
-crypto-scanner add-token --symbol USDT --address 0xdAC17F958D2ee523a2206206994597C13D831ec7 --decimals 6
+crypto-scanner token add --symbol USDT --address 0xdAC17F958D2ee523a2206206994597C13D831ec7 --decimals 6
 
 ? Enter password [hidden]
 
@@ -264,7 +592,7 @@ Added USDT at 0xdAC17F958D2ee523a2206206994597C13D831ec7 with 6 decimals
 ```
 
 ```sh
-crypto-scanner add-token --symbol USDC --address 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 --decimals 6
+crypto-scanner token add --symbol USDC --address 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 --decimals 6
 
 ? Enter password [hidden]
 
@@ -272,7 +600,7 @@ Added USDC at 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 with 6 decimals
 ```
 
 ```sh
-crypto-scanner add-token --symbol DAI --address 0x6B175474E89094C44Da98b954EedeAC495271d0F
+crypto-scanner token add --symbol DAI --address 0x6B175474E89094C44Da98b954EedeAC495271d0F
 
 ? Enter password [hidden]
 
@@ -280,7 +608,7 @@ Added DAI at 0x6B175474E89094C44Da98b954EedeAC495271d0F with 18 decimals
 ```
 
 ```sh
-crypto-scanner add-token --symbol LINK --address 0x514910771AF9Ca656af840dff83E8264EcF986CA
+crypto-scanner token add --symbol LINK --address 0x514910771AF9Ca656af840dff83E8264EcF986CA
 
 ? Enter password [hidden]
 
@@ -290,7 +618,7 @@ Added LINK at 0x514910771AF9Ca656af840dff83E8264EcF986CA with 18 decimals
 You can check and verify that the tokens are now part of the DB:
 
 ```sh
-crypto-scanner show
+crypto-scanner db show
 
 ? Enter password [hidden]
 
@@ -341,19 +669,19 @@ Finished | ███████████████████████
 
 Total Amounts
 ‾‾‾‾‾‾‾‾‾‾‾‾‾
-┌──────┬───────────────┐
-│ Name │ Amount        │
-├──────┼───────────────┤
-│ ETH  │ 4,863,139.08  │
-├──────┼───────────────┤
-│ USDT │ 30,000,533.18 │
-├──────┼───────────────┤
-│ USDC │ 30,000,490.99 │
-├──────┼───────────────┤
-│ DAI  │ 292,409       │
-├──────┼───────────────┤
-│ LINK │ 64,500,000    │
-└──────┴───────────────┘
+┌──────┬──────────────────┐
+│ Name │ Amount           │
+├──────┼──────────────────┤
+│ ETH  │ 4,254,204.33     │
+├──────┼──────────────────┤
+│ USDT │ 5,325,198,659.87 │
+├──────┼──────────────────┤
+│ USDC │ 300,001,622.94   │
+├──────┼──────────────────┤
+│ DAI  │ 0.0002           │
+├──────┼──────────────────┤
+│ LINK │ 54,653,254.58    │
+└──────┴──────────────────┘
 ```
 
 Let's scan again with the `-v/--verbose` flag:
@@ -370,53 +698,53 @@ Finished | ███████████████████████
 
 Addresses
 ‾‾‾‾‾‾‾‾‾
-┌──────────┬────────────────────────────────────────────┬──────────────┬───────────────┬───────────────┬─────────┬────────────┬────────────┐
-│ Ledger   │ Address                                    │ ETH          │ USDT          │ USDC          │ DAI     │ LINK       │ Note       │
-├──────────┼────────────────────────────────────────────┼──────────────┼───────────────┼───────────────┼─────────┼────────────┼────────────┤
-│ Binance  │ 0xBE0eB53F46cd790Cd13851d5EFf43D12404d33E8 │ 1,996,008.36 │ 161           │ 0             │ 0       │ 5,000,000  │ Binance 7  │
-├──────────┼────────────────────────────────────────────┼──────────────┼───────────────┼───────────────┼─────────┼────────────┼────────────┤
-│ Binance  │ 0xF977814e90dA44bFA03b6295A0616a897441aceC │ 1,170,353.94 │ 30,000,270.89 │ 30,000,000    │ 0       │ 50,000,000 │ Binance 8  │
-├──────────┼────────────────────────────────────────────┼──────────────┼───────────────┼───────────────┼─────────┼────────────┼────────────┤
-│ Kraken   │ 0xDA9dfA130Df4dE4673b89022EE50ff26f6EA73Cf │ 1,690,839.97 │ 100           │ 0             │ 292,409 │ 9,500,000  │            │
-├──────────┼────────────────────────────────────────────┼──────────────┼───────────────┼───────────────┼─────────┼────────────┼────────────┤
-│ Coinbase │ 0x71660c4005BA85c37ccec55d0C4493E66Fe775d3 │ 5,936.82     │ 1.29          │ 490.99        │ 0.0002  │ 0          │ Coinbase 1 │
-├──────────┼────────────────────────────────────────────┼──────────────┼───────────────┼───────────────┼─────────┼────────────┼────────────┤
-│          │ Total                                      │ 4,863,139.08 │ 30,000,533.18 │ 30,000,490.99 │ 292,409 │ 64,500,000 │            │
-├──────────┼────────────────────────────────────────────┼──────────────┼───────────────┼───────────────┼─────────┼────────────┼────────────┤
-│          │                                            │ ETH          │ USDT          │ USDC          │ DAI     │ LINK       │            │
-└──────────┴────────────────────────────────────────────┴──────────────┴───────────────┴───────────────┴─────────┴────────────┴────────────┘
+┌──────────┬────────────────────────────────────────────┬──────────────┬──────────────────┬────────────────┬────────┬───────────────┬────────────┐
+│ Ledger   │ Address                                    │ ETH          │ USDT             │ USDC           │ DAI    │ LINK          │ Note       │
+├──────────┼────────────────────────────────────────────┼──────────────┼──────────────────┼────────────────┼────────┼───────────────┼────────────┤
+│ Binance  │ 0xBE0eB53F46cd790Cd13851d5EFf43D12404d33E8 │ 1,996,008.38 │ 162              │ 0              │ 0      │ 5,000,000     │ Binance 7  │
+├──────────┼────────────────────────────────────────────┼──────────────┼──────────────────┼────────────────┼────────┼───────────────┼────────────┤
+│ Binance  │ 0xF977814e90dA44bFA03b6295A0616a897441aceC │ 647,701.18   │ 5,325,198,345.11 │ 300,000,000    │ 0      │ 40,153,254.58 │ Binance 8  │
+├──────────┼────────────────────────────────────────────┼──────────────┼──────────────────┼────────────────┼────────┼───────────────┼────────────┤
+│ Kraken   │ 0xDA9dfA130Df4dE4673b89022EE50ff26f6EA73Cf │ 1,598,923.57 │ 142              │ 0              │ 0      │ 9,500,000     │            │
+├──────────┼────────────────────────────────────────────┼──────────────┼──────────────────┼────────────────┼────────┼───────────────┼────────────┤
+│ Coinbase │ 0x71660c4005BA85c37ccec55d0C4493E66Fe775d3 │ 11,571.2     │ 10.76            │ 1,622.94       │ 0.0002 │ 0             │ Coinbase 1 │
+├──────────┼────────────────────────────────────────────┼──────────────┼──────────────────┼────────────────┼────────┼───────────────┼────────────┤
+│          │ Total                                      │ 4,254,204.33 │ 5,325,198,659.87 │ 300,001,622.94 │ 0.0002 │ 54,653,254.58 │            │
+├──────────┼────────────────────────────────────────────┼──────────────┼──────────────────┼────────────────┼────────┼───────────────┼────────────┤
+│          │                                            │ ETH          │ USDT             │ USDC           │ DAI    │ LINK          │            │
+└──────────┴────────────────────────────────────────────┴──────────────┴──────────────────┴────────────────┴────────┴───────────────┴────────────┘
 
 Ledgers
 ‾‾‾‾‾‾‾
-┌──────────┬──────────────┬───────────────┬───────────────┬─────────┬────────────┐
-│ Ledger   │ ETH          │ USDT          │ USDC          │ DAI     │ LINK       │
-├──────────┼──────────────┼───────────────┼───────────────┼─────────┼────────────┤
-│ Binance  │ 3,166,362.29 │ 30,000,431.89 │ 30,000,000    │ 0       │ 55,000,000 │
-├──────────┼──────────────┼───────────────┼───────────────┼─────────┼────────────┤
-│ Kraken   │ 1,690,839.97 │ 100           │ 0             │ 292,409 │ 9,500,000  │
-├──────────┼──────────────┼───────────────┼───────────────┼─────────┼────────────┤
-│ Coinbase │ 5,936.82     │ 1.29          │ 490.99        │ 0.0002  │ 0          │
-├──────────┼──────────────┼───────────────┼───────────────┼─────────┼────────────┤
-│ Total    │ 4,863,139.08 │ 30,000,533.18 │ 30,000,490.99 │ 292,409 │ 64,500,000 │
-├──────────┼──────────────┼───────────────┼───────────────┼─────────┼────────────┤
-│          │ ETH          │ USDT          │ USDC          │ DAI     │ LINK       │
-└──────────┴──────────────┴───────────────┴───────────────┴─────────┴────────────┘
+┌──────────┬──────────────┬──────────────────┬────────────────┬────────┬───────────────┐
+│ Ledger   │ ETH          │ USDT             │ USDC           │ DAI    │ LINK          │
+├──────────┼──────────────┼──────────────────┼────────────────┼────────┼───────────────┤
+│ Binance  │ 2,643,709.56 │ 5,325,198,507.11 │ 300,000,000    │ 0      │ 45,153,254.58 │
+├──────────┼──────────────┼──────────────────┼────────────────┼────────┼───────────────┤
+│ Kraken   │ 1,598,923.57 │ 142              │ 0              │ 0      │ 9,500,000     │
+├──────────┼──────────────┼──────────────────┼────────────────┼────────┼───────────────┤
+│ Coinbase │ 11,571.2     │ 10.76            │ 1,622.94       │ 0.0002 │ 0             │
+├──────────┼──────────────┼──────────────────┼────────────────┼────────┼───────────────┤
+│ Total    │ 4,254,204.33 │ 5,325,198,659.87 │ 300,001,622.94 │ 0.0002 │ 54,653,254.58 │
+├──────────┼──────────────┼──────────────────┼────────────────┼────────┼───────────────┤
+│          │ ETH          │ USDT             │ USDC           │ DAI    │ LINK          │
+└──────────┴──────────────┴──────────────────┴────────────────┴────────┴───────────────┘
 
 Total Amounts
 ‾‾‾‾‾‾‾‾‾‾‾‾‾
-┌──────┬───────────────┐
-│ Name │ Amount        │
-├──────┼───────────────┤
-│ ETH  │ 4,863,139.08  │
-├──────┼───────────────┤
-│ USDT │ 30,000,533.18 │
-├──────┼───────────────┤
-│ USDC │ 30,000,490.99 │
-├──────┼───────────────┤
-│ DAI  │ 292,409       │
-├──────┼───────────────┤
-│ LINK │ 64,500,000    │
-└──────┴───────────────┘
+┌──────┬──────────────────┐
+│ Name │ Amount           │
+├──────┼──────────────────┤
+│ ETH  │ 4,254,204.33     │
+├──────┼──────────────────┤
+│ USDT │ 5,325,198,659.87 │
+├──────┼──────────────────┤
+│ USDC │ 300,001,622.94   │
+├──────┼──────────────────┤
+│ DAI  │ 0.0002           │
+├──────┼──────────────────┤
+│ LINK │ 54,653,254.58    │
+└──────┴──────────────────┘
 ```
 
 #### Showing USD Values
@@ -442,9 +770,9 @@ Prices
 ├────────┼───────────┤
 │ DAI    │ $0.999    │
 ├────────┼───────────┤
-│ ETH    │ $1,849.54 │
+│ ETH    │ $2,635.77 │
 ├────────┼───────────┤
-│ LINK   │ $5.93     │
+│ LINK   │ $19.82    │
 ├────────┼───────────┤
 │ USDC   │ $1        │
 ├────────┼───────────┤
@@ -453,21 +781,21 @@ Prices
 
 Total Amounts
 ‾‾‾‾‾‾‾‾‾‾‾‾‾
-┌──────┬───────────────┬───────────────────┬──────────────────┐
-│ Name │ Amount        │ Value             │ % of Total Value │
-├──────┼───────────────┼───────────────────┼──────────────────┤
-│ ETH  │ 4,863,139.08  │ $8,994,570,260.74 │ 95.3083          │
-├──────┼───────────────┼───────────────────┼──────────────────┤
-│ USDT │ 30,000,533.18 │ $29,996,963.11    │ 0.317854         │
-├──────┼───────────────┼───────────────────┼──────────────────┤
-│ USDC │ 30,000,490.99 │ $30,000,490.99    │ 0.317891         │
-├──────┼───────────────┼───────────────────┼──────────────────┤
-│ DAI  │ 292,409       │ $292,258.99       │ 0.00309683       │
-├──────┼───────────────┼───────────────────┼──────────────────┤
-│ LINK │ 64,500,000    │ $382,485,000      │ 4.05289          │
-├──────┼───────────────┼───────────────────┼──────────────────┤
-│      │ Total Value   │ $9,437,344,973.84 │                  │
-└──────┴───────────────┴───────────────────┴──────────────────┘
+┌──────┬──────────────────┬────────────────────┬──────────────────┐
+│ Name │ Amount           │ Value              │ % of Total Value │
+├──────┼──────────────────┼────────────────────┼──────────────────┤
+│ ETH  │ 4,254,204.32     │ $11,213,104,126.64 │ 62.5678          │
+├──────┼──────────────────┼────────────────────┼──────────────────┤
+│ USDT │ 5,325,198,659.87 │ $5,325,198,659.87  │ 29.7140          │
+├──────┼──────────────────┼────────────────────┼──────────────────┤
+│ USDC │ 300,001,622.94   │ $300,001,622.94    │ 1.67397          │
+├──────┼──────────────────┼────────────────────┼──────────────────┤
+│ DAI  │ 0.0002           │ $0.0002            │ 9.95097e-13      │
+├──────┼──────────────────┼────────────────────┼──────────────────┤
+│ LINK │ 54,653,254.58    │ $1,083,227,505.76  │ 6.04428          │
+├──────┼──────────────────┼────────────────────┼──────────────────┤
+│      │ Total Value      │ $17,921,531,915.21 │                  │
+└──────┴──────────────────┴────────────────────┴──────────────────┘
 ```
 
 You can also combine both the `-p/--price` and the `-v/--verbose` flags for the full output with an aggregated total $ values and holding percentages:
@@ -491,9 +819,9 @@ Prices
 ├────────┼───────────┤
 │ DAI    │ $0.999    │
 ├────────┼───────────┤
-│ ETH    │ $1,849.54 │
+│ ETH    │ $2,635.77 │
 ├────────┼───────────┤
-│ LINK   │ $5.93     │
+│ LINK   │ $19.82    │
 ├────────┼───────────┤
 │ USDC   │ $1        │
 ├────────┼───────────┤
@@ -502,59 +830,59 @@ Prices
 
 Addresses
 ‾‾‾‾‾‾‾‾‾
-┌──────────┬────────────────────────────────────────────┬───────────────────┬────────────────┬────────────────┬─────────────┬──────────────┬────────────┐
-│ Ledger   │ Address                                    │ ETH               │ USDT           │ USDC           │ DAI         │ LINK         │ Note       │
-├──────────┼────────────────────────────────────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┼────────────┤
-│ Binance  │ 0xBE0eB53F46cd790Cd13851d5EFf43D12404d33E8 │ 1,996,008.36      │ 161            │ 0              │ 0           │ 5,000,000    │ Binance 7  │
-├──────────┼────────────────────────────────────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┼────────────┤
-│ Binance  │ 0xF977814e90dA44bFA03b6295A0616a897441aceC │ 1,170,353.94      │ 30,000,270.89  │ 30,000,000     │ 0           │ 50,000,000   │ Binance 8  │
-├──────────┼────────────────────────────────────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┼────────────┤
-│ Kraken   │ 0xDA9dfA130Df4dE4673b89022EE50ff26f6EA73Cf │ 1,690,839.97      │ 100            │ 0              │ 292,409     │ 9,500,000    │            │
-├──────────┼────────────────────────────────────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┼────────────┤
-│ Coinbase │ 0x71660c4005BA85c37ccec55d0C4493E66Fe775d3 │ 5,936.58          │ 1.29           │ 490.99         │ 0.0002      │ 0            │ Coinbase 1 │
-├──────────┼────────────────────────────────────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┼────────────┤
-│          │ Total                                      │ 4,863,138.85      │ 30,000,533.18  │ 30,000,490.99  │ 292,409     │ 64,500,000   │            │
-├──────────┼────────────────────────────────────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┼────────────┤
-│          │                                            │ ETH               │ USDT           │ USDC           │ DAI         │ LINK         │            │
-├──────────┼────────────────────────────────────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┼────────────┤
-│          │ Total Value                                │ $8,994,569,827.49 │ $29,996,963.11 │ $30,000,490.99 │ $292,258.99 │ $382,485,000 │            │
-└──────────┴────────────────────────────────────────────┴───────────────────┴────────────────┴────────────────┴─────────────┴──────────────┴────────────┘
+┌──────────┬────────────────────────────────────────────┬────────────────────┬───────────────────┬─────────────────┬─────────┬───────────────────┬────────────┐
+│ Ledger   │ Address                                    │ ETH                │ USDT              │ USDC            │ DAI     │ LINK              │ Note       │
+├──────────┼────────────────────────────────────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┼────────────┤
+│ Binance  │ 0xBE0eB53F46cd790Cd13851d5EFf43D12404d33E8 │ 1,996,008.38       │ 162               │ 0               │ 0       │ 5,000,000         │ Binance 7  │
+├──────────┼────────────────────────────────────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┼────────────┤
+│ Binance  │ 0xF977814e90dA44bFA03b6295A0616a897441aceC │ 647,701.18         │ 5,325,198,345.11  │ 300,000,000     │ 0       │ 40,153,254.58     │ Binance 8  │
+├──────────┼────────────────────────────────────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┼────────────┤
+│ Kraken   │ 0xDA9dfA130Df4dE4673b89022EE50ff26f6EA73Cf │ 1,598,923.57       │ 142               │ 0               │ 0       │ 9,500,000         │            │
+├──────────┼────────────────────────────────────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┼────────────┤
+│ Coinbase │ 0x71660c4005BA85c37ccec55d0C4493E66Fe775d3 │ 11,571.19          │ 10.76             │ 1,622.94        │ 0.0002  │ 0                 │ Coinbase 1 │
+├──────────┼────────────────────────────────────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┼────────────┤
+│          │ Total                                      │ 4,254,204.32       │ 5,325,198,659.87  │ 300,001,622.94  │ 0.0002  │ 54,653,254.58     │            │
+├──────────┼────────────────────────────────────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┼────────────┤
+│          │                                            │ ETH                │ USDT              │ USDC            │ DAI     │ LINK              │            │
+├──────────┼────────────────────────────────────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┼────────────┤
+│          │ Total Value                                │ $11,213,104,126.64 │ $5,325,198,659.87 │ $300,001,622.94 │ $0.0002 │ $1,083,227,505.76 │            │
+└──────────┴────────────────────────────────────────────┴────────────────────┴───────────────────┴─────────────────┴─────────┴───────────────────┴────────────┘
 
 Ledgers
 ‾‾‾‾‾‾‾
-┌─────────────┬───────────────────┬────────────────┬────────────────┬─────────────┬──────────────┐
-│ Ledger      │ ETH               │ USDT           │ USDC           │ DAI         │ LINK         │
-├─────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┤
-│ Binance     │ 3,166,362.29      │ 30,000,431.89  │ 30,000,000     │ 0           │ 55,000,000   │
-├─────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┤
-│ Kraken      │ 1,690,839.97      │ 100            │ 0              │ 292,409     │ 9,500,000    │
-├─────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┤
-│ Coinbase    │ 5,936.58          │ 1.29           │ 490.99         │ 0.0002      │ 0            │
-├─────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┤
-│ Total       │ 4,863,138.85      │ 30,000,533.18  │ 30,000,490.99  │ 292,409     │ 64,500,000   │
-├─────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┤
-│             │ ETH               │ USDT           │ USDC           │ DAI         │ LINK         │
-├─────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┤
-│ Total Value │ $8,994,569,827.49 │ $29,996,963.11 │ $30,000,490.99 │ $292,258.99 │ $382,485,000 │
-└─────────────┴───────────────────┴────────────────┴────────────────┴─────────────┴──────────────┘
+┌─────────────┬────────────────────┬───────────────────┬─────────────────┬─────────┬───────────────────┐
+│ Ledger      │ ETH                │ USDT              │ USDC            │ DAI     │ LINK              │
+├─────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┤
+│ Binance     │ 2,643,709.56       │ 5,325,198,507.11  │ 300,000,000     │ 0       │ 45,153,254.58     │
+├─────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┤
+│ Kraken      │ 1,598,923.57       │ 142               │ 0               │ 0       │ 9,500,000         │
+├─────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┤
+│ Coinbase    │ 11,571.19          │ 10.76             │ 1,622.94        │ 0.0002  │ 0                 │
+├─────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┤
+│ Total       │ 4,254,204.32       │ 5,325,198,659.87  │ 300,001,622.94  │ 0.0002  │ 54,653,254.58     │
+├─────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┤
+│             │ ETH                │ USDT              │ USDC            │ DAI     │ LINK              │
+├─────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┤
+│ Total Value │ $11,213,104,126.64 │ $5,325,198,659.87 │ $300,001,622.94 │ $0.0002 │ $1,083,227,505.76 │
+└─────────────┴────────────────────┴───────────────────┴─────────────────┴─────────┴───────────────────┘
 
 Total Amounts
 ‾‾‾‾‾‾‾‾‾‾‾‾‾
-┌──────┬───────────────┬───────────────────┬──────────────────┐
-│ Name │ Amount        │ Value             │ % of Total Value │
-├──────┼───────────────┼───────────────────┼──────────────────┤
-│ ETH  │ 4,863,138.85  │ $8,994,569,827.49 │ 95.3083          │
-├──────┼───────────────┼───────────────────┼──────────────────┤
-│ USDT │ 30,000,533.18 │ $29,996,963.11    │ 0.317854         │
-├──────┼───────────────┼───────────────────┼──────────────────┤
-│ USDC │ 30,000,490.99 │ $30,000,490.99    │ 0.317891         │
-├──────┼───────────────┼───────────────────┼──────────────────┤
-│ DAI  │ 292,409       │ $292,258.99       │ 0.00309684       │
-├──────┼───────────────┼───────────────────┼──────────────────┤
-│ LINK │ 64,500,000    │ $382,485,000      │ 4.05289          │
-├──────┼───────────────┼───────────────────┼──────────────────┤
-│      │ Total Value   │ $9,437,344,540.59 │                  │
-└──────┴───────────────┴───────────────────┴──────────────────┘
+┌──────┬──────────────────┬────────────────────┬──────────────────┐
+│ Name │ Amount           │ Value              │ % of Total Value │
+├──────┼──────────────────┼────────────────────┼──────────────────┤
+│ ETH  │ 4,254,204.32     │ $11,213,104,126.64 │ 62.5678          │
+├──────┼──────────────────┼────────────────────┼──────────────────┤
+│ USDT │ 5,325,198,659.87 │ $5,325,198,659.87  │ 29.7140          │
+├──────┼──────────────────┼────────────────────┼──────────────────┤
+│ USDC │ 300,001,622.94   │ $300,001,622.94    │ 1.67397          │
+├──────┼──────────────────┼────────────────────┼──────────────────┤
+│ DAI  │ 0.0002           │ $0.0002            │ 9.95097e-13      │
+├──────┼──────────────────┼────────────────────┼──────────────────┤
+│ LINK │ 54,653,254.58    │ $1,083,227,505.76  │ 6.04428          │
+├──────┼──────────────────┼────────────────────┼──────────────────┤
+│      │ Total Value      │ $17,921,531,915.21 │                  │
+└──────┴──────────────────┴────────────────────┴──────────────────┘
 ```
 
 #### Adding Assets
@@ -562,7 +890,7 @@ Total Amounts
 In addition to ETH and token amounts, you can also add static assets, by specifying their name, quantity, and unit prices. For example:
 
 ```sh
-crypto-scanner add-asset --name Gold --quantity 100 --unit-price 2018.25
+crypto-scanner asset add --name Gold --quantity 100 --unit-price 2018.25
 
 ? Enter password [hidden]
 
@@ -570,7 +898,7 @@ Added 100 units of Gold at the price of 2018.25 USD per unit
 ```
 
 ```sh
-crypto-scanner add-asset --name "Real Estate" --quantity 1 --unit-price 1000000
+crypto-scanner asset add --name "Real Estate" --quantity 1 --unit-price 1000000
 
 ? Enter password [hidden]
 
@@ -580,7 +908,7 @@ Added 1 units of Real Estate at the price of 1000000 USD per unit
 You can check and verify that the assets are now part of the DB:
 
 ```sh
-crypto-scanner show
+crypto-scanner db show
 
 ? Enter password [hidden]
 
@@ -650,11 +978,11 @@ Prices
 ├─────────────┼────────────┤
 │ DAI         │ $0.999     │
 ├─────────────┼────────────┤
-│ ETH         │ $1,849.54  │
+│ ETH         │ $2,635.77  │
 ├─────────────┼────────────┤
 │ Gold        │ $2,018.25  │
 ├─────────────┼────────────┤
-│ LINK        │ $5.93      │
+│ LINK        │ $19.82     │
 ├─────────────┼────────────┤
 │ Real Estate │ $1,000,000 │
 ├─────────────┼────────────┤
@@ -665,41 +993,41 @@ Prices
 
 Addresses
 ‾‾‾‾‾‾‾‾‾
-┌──────────┬────────────────────────────────────────────┬───────────────────┬────────────────┬────────────────┬─────────────┬──────────────┬────────────┐
-│ Ledger   │ Address                                    │ ETH               │ USDT           │ USDC           │ DAI         │ LINK         │ Note       │
-├──────────┼────────────────────────────────────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┼────────────┤
-│ Binance  │ 0xBE0eB53F46cd790Cd13851d5EFf43D12404d33E8 │ 1,996,008.36      │ 161            │ 0              │ 0           │ 5,000,000    │ Binance 7  │
-├──────────┼────────────────────────────────────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┼────────────┤
-│ Binance  │ 0xF977814e90dA44bFA03b6295A0616a897441aceC │ 1,170,353.94      │ 30,000,270.89  │ 30,000,000     │ 0           │ 50,000,000   │ Binance 8  │
-├──────────┼────────────────────────────────────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┼────────────┤
-│ Kraken   │ 0xDA9dfA130Df4dE4673b89022EE50ff26f6EA73Cf │ 1,690,839.97      │ 100            │ 0              │ 292,409     │ 9,500,000    │            │
-├──────────┼────────────────────────────────────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┼────────────┤
-│ Coinbase │ 0x71660c4005BA85c37ccec55d0C4493E66Fe775d3 │ 5,936.58          │ 1.29           │ 490.99         │ 0.0002      │ 0            │ Coinbase 1 │
-├──────────┼────────────────────────────────────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┼────────────┤
-│          │ Total                                      │ 4,863,138.85      │ 30,000,533.18  │ 30,000,490.99  │ 292,409     │ 64,500,000   │            │
-├──────────┼────────────────────────────────────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┼────────────┤
-│          │                                            │ ETH               │ USDT           │ USDC           │ DAI         │ LINK         │            │
-├──────────┼────────────────────────────────────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┼────────────┤
-│          │ Total Value                                │ $8,994,569,827.49 │ $29,996,963.11 │ $30,000,490.99 │ $292,258.99 │ $382,485,000 │            │
-└──────────┴────────────────────────────────────────────┴───────────────────┴────────────────┴────────────────┴─────────────┴──────────────┴────────────┘
+┌──────────┬────────────────────────────────────────────┬────────────────────┬───────────────────┬─────────────────┬─────────┬───────────────────┬────────────┐
+│ Ledger   │ Address                                    │ ETH                │ USDT              │ USDC            │ DAI     │ LINK              │ Note       │
+├──────────┼────────────────────────────────────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┼────────────┤
+│ Binance  │ 0xBE0eB53F46cd790Cd13851d5EFf43D12404d33E8 │ 1,996,008.38       │ 162               │ 0               │ 0       │ 5,000,000         │ Binance 7  │
+├──────────┼────────────────────────────────────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┼────────────┤
+│ Binance  │ 0xF977814e90dA44bFA03b6295A0616a897441aceC │ 647,701.18         │ 5,325,198,345.11  │ 300,000,000     │ 0       │ 40,153,254.58     │ Binance 8  │
+├──────────┼────────────────────────────────────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┼────────────┤
+│ Kraken   │ 0xDA9dfA130Df4dE4673b89022EE50ff26f6EA73Cf │ 1,598,923.57       │ 142               │ 0               │ 0       │ 9,500,000         │            │
+├──────────┼────────────────────────────────────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┼────────────┤
+│ Coinbase │ 0x71660c4005BA85c37ccec55d0C4493E66Fe775d3 │ 11,571.16          │ 10.76             │ 1,622.94        │ 0.0002  │ 0                 │ Coinbase 1 │
+├──────────┼────────────────────────────────────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┼────────────┤
+│          │ Total                                      │ 4,254,204.29       │ 5,325,198,659.87  │ 300,001,622.94  │ 0.0002  │ 54,653,254.58     │            │
+├──────────┼────────────────────────────────────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┼────────────┤
+│          │                                            │ ETH                │ USDT              │ USDC            │ DAI     │ LINK              │            │
+├──────────┼────────────────────────────────────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┼────────────┤
+│          │ Total Value                                │ $11,213,104,040.03 │ $5,325,198,659.87 │ $300,001,622.94 │ $0.0002 │ $1,083,227,505.76 │            │
+└──────────┴────────────────────────────────────────────┴────────────────────┴───────────────────┴─────────────────┴─────────┴───────────────────┴────────────┘
 
 Ledgers
 ‾‾‾‾‾‾‾
-┌─────────────┬───────────────────┬────────────────┬────────────────┬─────────────┬──────────────┐
-│ Ledger      │ ETH               │ USDT           │ USDC           │ DAI         │ LINK         │
-├─────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┤
-│ Binance     │ 3,166,362.29      │ 30,000,431.89  │ 30,000,000     │ 0           │ 55,000,000   │
-├─────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┤
-│ Kraken      │ 1,690,839.97      │ 100            │ 0              │ 292,409     │ 9,500,000    │
-├─────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┤
-│ Coinbase    │ 5,936.58          │ 1.29           │ 490.99         │ 0.0002      │ 0            │
-├─────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┤
-│ Total       │ 4,863,138.85      │ 30,000,533.18  │ 30,000,490.99  │ 292,409     │ 64,500,000   │
-├─────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┤
-│             │ ETH               │ USDT           │ USDC           │ DAI         │ LINK         │
-├─────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┤
-│ Total Value │ $8,994,569,827.49 │ $29,996,963.11 │ $30,000,490.99 │ $292,258.99 │ $382,485,000 │
-└─────────────┴───────────────────┴────────────────┴────────────────┴─────────────┴──────────────┘
+┌─────────────┬────────────────────┬───────────────────┬─────────────────┬─────────┬───────────────────┐
+│ Ledger      │ ETH                │ USDT              │ USDC            │ DAI     │ LINK              │
+├─────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┤
+│ Binance     │ 2,643,709.56       │ 5,325,198,507.11  │ 300,000,000     │ 0       │ 45,153,254.58     │
+├─────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┤
+│ Kraken      │ 1,598,923.57       │ 142               │ 0               │ 0       │ 9,500,000         │
+├─────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┤
+│ Coinbase    │ 11,571.16          │ 10.76             │ 1,622.94        │ 0.0002  │ 0                 │
+├─────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┤
+│ Total       │ 4,254,204.29       │ 5,325,198,659.87  │ 300,001,622.94  │ 0.0002  │ 54,653,254.58     │
+├─────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┤
+│             │ ETH                │ USDT              │ USDC            │ DAI     │ LINK              │
+├─────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┤
+│ Total Value │ $11,213,104,040.03 │ $5,325,198,659.87 │ $300,001,622.94 │ $0.0002 │ $1,083,227,505.76 │
+└─────────────┴────────────────────┴───────────────────┴─────────────────┴─────────┴───────────────────┘
 
 Assets
 ‾‾‾‾‾‾
@@ -713,33 +1041,33 @@ Assets
 
 Total Amounts
 ‾‾‾‾‾‾‾‾‾‾‾‾‾
-┌─────────────┬───────────────┬───────────────────┬──────────────────┐
-│ Name        │ Amount        │ Value             │ % of Total Value │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│ ETH         │ 4,863,138.85  │ $8,994,569,827.49 │ 95.2961          │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│ USDT        │ 30,000,533.18 │ $29,996,963.11    │ 0.317813         │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│ USDC        │ 30,000,490.99 │ $30,000,490.99    │ 0.317851         │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│ DAI         │ 292,409       │ $292,258.99       │ 0.00309644       │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│ LINK        │ 64,500,000    │ $382,485,000      │ 4.05237          │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│ Gold        │ 100           │ $201,825          │ 0.00213831       │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│ Real Estate │ 1             │ $1,000,000        │ 0.0105949        │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│             │ Total Value   │ $9,438,546,365.59 │                  │
-└─────────────┴───────────────┴───────────────────┴──────────────────┘
+┌─────────────┬──────────────────┬────────────────────┬──────────────────┐
+│ Name        │ Amount           │ Value              │ % of Total Value │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│ ETH         │ 4,254,204.29     │ $11,213,104,040.03 │ 62.5636          │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│ USDT        │ 5,325,198,659.87 │ $5,325,198,659.87  │ 29.7120          │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│ USDC        │ 300,001,622.94   │ $300,001,622.94    │ 1.67386          │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│ DAI         │ 0.0002           │ $0.0002            │ 9.95031e-13      │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│ LINK        │ 54,653,254.58    │ $1,083,227,505.76  │ 6.04387          │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│ Gold        │ 100              │ $201,825           │ 0.00112608       │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│ Real Estate │ 1                │ $1,000,000         │ 0.00557951       │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│             │ Total Value      │ $17,922,733,653.6  │                  │
+└─────────────┴──────────────────┴────────────────────┴──────────────────┘
 ```
 
 #### Custom Pricing
 
-You can also add assets priced in other tokens/assets. Please note that the token should have been added via the `add-token` command (or appear in the global token list, if you have explicitly specified to use it):
+You can also add assets priced in other tokens/assets. Please note that the token should have been added via the `token add` command (or appear in the global token list, if you have explicitly specified to use it):
 
 ```sh
-crypto-scanner add-asset --name CDP --quantity 123 --unit-price 1 --symbol ETH
+crypto-scanner asset add --name CDP --quantity 123 --unit-price 1 --symbol ETH
 
 ? Enter password [hidden]
 
@@ -747,7 +1075,7 @@ Added 123 units of CDP at the price of 1 ETH per unit
 ```
 
 ```sh
-crypto-scanner add-asset --name wwUSDC --quantity 1000 --unit-price 2 --symbol USDC
+crypto-scanner asset add --name wwUSDC --quantity 1000 --unit-price 2 --symbol USDC
 
 ? Enter password [hidden]
 
@@ -757,7 +1085,7 @@ Added 1000 units of wwUSDC at the price of 2 USDC per unit
 You can check and verify that the new assets are now part of the DB:
 
 ```sh
-crypto-scanner show
+crypto-scanner db show
 
 ? Enter password [hidden]
 
@@ -829,15 +1157,15 @@ Prices
 ┌─────────────┬────────────┐
 │ Symbol      │ Price      │
 ├─────────────┼────────────┤
-│ CDP         │ $1,849.54  │
+│ CDP         │ $2,635.77  │
 ├─────────────┼────────────┤
 │ DAI         │ $0.999     │
 ├─────────────┼────────────┤
-│ ETH         │ $1,849.54  │
+│ ETH         │ $2,635.77  │
 ├─────────────┼────────────┤
 │ Gold        │ $2,018.25  │
 ├─────────────┼────────────┤
-│ LINK        │ $5.93      │
+│ LINK        │ $19.82     │
 ├─────────────┼────────────┤
 │ Real Estate │ $1,000,000 │
 ├─────────────┼────────────┤
@@ -850,41 +1178,41 @@ Prices
 
 Addresses
 ‾‾‾‾‾‾‾‾‾
-┌──────────┬────────────────────────────────────────────┬───────────────────┬────────────────┬────────────────┬─────────────┬──────────────┬────────────┐
-│ Ledger   │ Address                                    │ ETH               │ USDT           │ USDC           │ DAI         │ LINK         │ Note       │
-├──────────┼────────────────────────────────────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┼────────────┤
-│ Binance  │ 0xBE0eB53F46cd790Cd13851d5EFf43D12404d33E8 │ 1,996,008.36      │ 161            │ 0              │ 0           │ 5,000,000    │ Binance 7  │
-├──────────┼────────────────────────────────────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┼────────────┤
-│ Binance  │ 0xF977814e90dA44bFA03b6295A0616a897441aceC │ 1,170,353.94      │ 30,000,270.89  │ 30,000,000     │ 0           │ 50,000,000   │ Binance 8  │
-├──────────┼────────────────────────────────────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┼────────────┤
-│ Kraken   │ 0xDA9dfA130Df4dE4673b89022EE50ff26f6EA73Cf │ 1,690,839.97      │ 100            │ 0              │ 292,409     │ 9,500,000    │            │
-├──────────┼────────────────────────────────────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┼────────────┤
-│ Coinbase │ 0x71660c4005BA85c37ccec55d0C4493E66Fe775d3 │ 5,936.55          │ 1.29           │ 490.99         │ 0.0002      │ 0            │ Coinbase 1 │
-├──────────┼────────────────────────────────────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┼────────────┤
-│          │ Total                                      │ 4,863,138.82      │ 30,000,533.18  │ 30,000,490.99  │ 292,409     │ 64,500,000   │            │
-├──────────┼────────────────────────────────────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┼────────────┤
-│          │                                            │ ETH               │ USDT           │ USDC           │ DAI         │ LINK         │            │
-├──────────┼────────────────────────────────────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┼────────────┤
-│          │ Total Value                                │ $8,994,569,764.36 │ $29,996,963.11 │ $30,000,490.99 │ $292,258.99 │ $382,485,000 │            │
-└──────────┴────────────────────────────────────────────┴───────────────────┴────────────────┴────────────────┴─────────────┴──────────────┴────────────┘
+┌──────────┬────────────────────────────────────────────┬────────────────────┬───────────────────┬─────────────────┬─────────┬───────────────────┬────────────┐
+│ Ledger   │ Address                                    │ ETH                │ USDT              │ USDC            │ DAI     │ LINK              │ Note       │
+├──────────┼────────────────────────────────────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┼────────────┤
+│ Binance  │ 0xBE0eB53F46cd790Cd13851d5EFf43D12404d33E8 │ 1,996,008.38       │ 162               │ 0               │ 0       │ 5,000,000         │ Binance 7  │
+├──────────┼────────────────────────────────────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┼────────────┤
+│ Binance  │ 0xF977814e90dA44bFA03b6295A0616a897441aceC │ 647,701.18         │ 5,325,198,345.11  │ 300,000,000     │ 0       │ 40,153,254.58     │ Binance 8  │
+├──────────┼────────────────────────────────────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┼────────────┤
+│ Kraken   │ 0xDA9dfA130Df4dE4673b89022EE50ff26f6EA73Cf │ 1,598,923.57       │ 142               │ 0               │ 0       │ 9,500,000         │            │
+├──────────┼────────────────────────────────────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┼────────────┤
+│ Coinbase │ 0x71660c4005BA85c37ccec55d0C4493E66Fe775d3 │ 11,571.16          │ 10.76             │ 1,622.94        │ 0.0002  │ 0                 │ Coinbase 1 │
+├──────────┼────────────────────────────────────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┼────────────┤
+│          │ Total                                      │ 4,254,204.29       │ 5,325,198,659.87  │ 300,001,622.94  │ 0.0002  │ 54,653,254.58     │            │
+├──────────┼────────────────────────────────────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┼────────────┤
+│          │                                            │ ETH                │ USDT              │ USDC            │ DAI     │ LINK              │            │
+├──────────┼────────────────────────────────────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┼────────────┤
+│          │ Total Value                                │ $11,213,104,040.03 │ $5,325,198,659.87 │ $300,001,622.94 │ $0.0002 │ $1,083,227,505.76 │            │
+└──────────┴────────────────────────────────────────────┴────────────────────┴───────────────────┴─────────────────┴─────────┴───────────────────┴────────────┘
 
 Ledgers
 ‾‾‾‾‾‾‾
-┌─────────────┬───────────────────┬────────────────┬────────────────┬─────────────┬──────────────┐
-│ Ledger      │ ETH               │ USDT           │ USDC           │ DAI         │ LINK         │
-├─────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┤
-│ Binance     │ 3,166,362.29      │ 30,000,431.89  │ 30,000,000     │ 0           │ 55,000,000   │
-├─────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┤
-│ Kraken      │ 1,690,839.97      │ 100            │ 0              │ 292,409     │ 9,500,000    │
-├─────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┤
-│ Coinbase    │ 5,936.55          │ 1.29           │ 490.99         │ 0.0002      │ 0            │
-├─────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┤
-│ Total       │ 4,863,138.82      │ 30,000,533.18  │ 30,000,490.99  │ 292,409     │ 64,500,000   │
-├─────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┤
-│             │ ETH               │ USDT           │ USDC           │ DAI         │ LINK         │
-├─────────────┼───────────────────┼────────────────┼────────────────┼─────────────┼──────────────┤
-│ Total Value │ $8,994,569,764.36 │ $29,996,963.11 │ $30,000,490.99 │ $292,258.99 │ $382,485,000 │
-└─────────────┴───────────────────┴────────────────┴────────────────┴─────────────┴──────────────┘
+┌─────────────┬────────────────────┬───────────────────┬─────────────────┬─────────┬───────────────────┐
+│ Ledger      │ ETH                │ USDT              │ USDC            │ DAI     │ LINK              │
+├─────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┤
+│ Binance     │ 2,643,709.56       │ 5,325,198,507.11  │ 300,000,000     │ 0       │ 45,153,254.58     │
+├─────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┤
+│ Kraken      │ 1,598,923.57       │ 142               │ 0               │ 0       │ 9,500,000         │
+├─────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┤
+│ Coinbase    │ 11,571.16          │ 10.76             │ 1,622.94        │ 0.0002  │ 0                 │
+├─────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┤
+│ Total       │ 4,254,204.29       │ 5,325,198,659.87  │ 300,001,622.94  │ 0.0002  │ 54,653,254.58     │
+├─────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┤
+│             │ ETH                │ USDT              │ USDC            │ DAI     │ LINK              │
+├─────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┤
+│ Total Value │ $11,213,104,040.03 │ $5,325,198,659.87 │ $300,001,622.94 │ $0.0002 │ $1,083,227,505.76 │
+└─────────────┴────────────────────┴───────────────────┴─────────────────┴─────────┴───────────────────┘
 
 Assets
 ‾‾‾‾‾‾
@@ -895,36 +1223,36 @@ Assets
 ├─────────────┼──────────┼────────────┼─────────────┤
 │ Real Estate │ 1        │ $1,000,000 │ $1,000,000  │
 ├─────────────┼──────────┼────────────┼─────────────┤
-│ CDP         │ 123      │ 1 ETH      │ $227,493.42 │
+│ CDP         │ 123      │ 1 ETH      │ $324,199.71 │
 ├─────────────┼──────────┼────────────┼─────────────┤
 │ wwUSDC      │ 1,000    │ 2 USDC     │ $2,000      │
 └─────────────┴──────────┴────────────┴─────────────┘
 
 Total Amounts
 ‾‾‾‾‾‾‾‾‾‾‾‾‾
-┌─────────────┬───────────────┬───────────────────┬──────────────────┐
-│ Name        │ Amount        │ Value             │ % of Total Value │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│ ETH         │ 4,863,138.82  │ $8,994,569,764.36 │ 95.2938          │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│ USDT        │ 30,000,533.18 │ $29,996,963.11    │ 0.317806         │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│ USDC        │ 30,000,490.99 │ $30,000,490.99    │ 0.317843         │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│ DAI         │ 292,409       │ $292,258.99       │ 0.00309637       │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│ LINK        │ 64,500,000    │ $382,485,000      │ 4.05227          │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│ Gold        │ 100           │ $201,825          │ 0.00213825       │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│ Real Estate │ 1             │ $1,000,000        │ 0.0105946        │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│ CDP         │ 123           │ $227,493.42       │ 0.00241020       │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│ wwUSDC      │ 1,000         │ $2,000            │ 0.0000211892     │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│             │ Total Value   │ $9,438,775,795.88 │                  │
-└─────────────┴───────────────┴───────────────────┴──────────────────┘
+┌─────────────┬──────────────────┬────────────────────┬──────────────────┐
+│ Name        │ Amount           │ Value              │ % of Total Value │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│ ETH         │ 4,254,204.29     │ $11,213,104,040.03 │ 62.5624          │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│ USDT        │ 5,325,198,659.87 │ $5,325,198,659.87  │ 29.7114          │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│ USDC        │ 300,001,622.94   │ $300,001,622.94    │ 1.67383          │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│ DAI         │ 0.0002           │ $0.0002            │ 9.95012e-13      │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│ LINK        │ 54,653,254.58    │ $1,083,227,505.76  │ 6.04376          │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│ Gold        │ 100              │ $201,825           │ 0.00112606       │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│ Real Estate │ 1                │ $1,000,000         │ 0.00557940       │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│ CDP         │ 123              │ $324,199.71        │ 0.00180884       │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│ wwUSDC      │ 1,000            │ $2,000             │ 0.0000111588     │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│             │ Total Value      │ $17,923,059,853.31 │                  │
+└─────────────┴──────────────────┴────────────────────┴──────────────────┘
 ```
 
 You can also choose to aggregate custom-priced assets (i.e., assets which are priced in other tokens/assets) in an additional totals table by passing the optional `-a/--aggregate-assets` flag.
@@ -952,15 +1280,15 @@ Prices
 ┌─────────────┬────────────┐
 │ Symbol      │ Price      │
 ├─────────────┼────────────┤
-│ CDP         │ $1,846.28  │
+│ CDP         │ $2,635.77  │
 ├─────────────┼────────────┤
-│ DAI         │ $1         │
+│ DAI         │ $0.999     │
 ├─────────────┼────────────┤
-│ ETH         │ $1,846.28  │
+│ ETH         │ $2,635.77  │
 ├─────────────┼────────────┤
 │ Gold        │ $2,018.25  │
 ├─────────────┼────────────┤
-│ LINK        │ $6.02      │
+│ LINK        │ $19.82     │
 ├─────────────┼────────────┤
 │ Real Estate │ $1,000,000 │
 ├─────────────┼────────────┤
@@ -973,41 +1301,41 @@ Prices
 
 Addresses
 ‾‾‾‾‾‾‾‾‾
-┌──────────┬────────────────────────────────────────────┬───────────────────┬────────────────┬─────────┬──────────┬──────────────┬────────────┐
-│ Ledger   │ Address                                    │ ETH               │ USDT           │ USDC    │ DAI      │ LINK         │ Note       │
-├──────────┼────────────────────────────────────────────┼───────────────────┼────────────────┼─────────┼──────────┼──────────────┼────────────┤
-│ Binance  │ 0xBE0eB53F46cd790Cd13851d5EFf43D12404d33E8 │ 1,996,008.36      │ 161            │ 0       │ 0        │ 5,000,000    │ Binance 7  │
-├──────────┼────────────────────────────────────────────┼───────────────────┼────────────────┼─────────┼──────────┼──────────────┼────────────┤
-│ Binance  │ 0xF977814e90dA44bFA03b6295A0616a897441aceC │ 1,170,353.93      │ 30,000,270.89  │ 0       │ 0        │ 50,000,000   │ Binance 8  │
-├──────────┼────────────────────────────────────────────┼───────────────────┼────────────────┼─────────┼──────────┼──────────────┼────────────┤
-│ Kraken   │ 0xDA9dfA130Df4dE4673b89022EE50ff26f6EA73Cf │ 1,690,839.97      │ 100            │ 0       │ 292,409  │ 9,500,000    │            │
-├──────────┼────────────────────────────────────────────┼───────────────────┼────────────────┼─────────┼──────────┼──────────────┼────────────┤
-│ Coinbase │ 0x71660c4005BA85c37ccec55d0C4493E66Fe775d3 │ 11.97             │ 1.29           │ 490.99  │ 0.0002   │ 0            │ Coinbase 1 │
-├──────────┼────────────────────────────────────────────┼───────────────────┼────────────────┼─────────┼──────────┼──────────────┼────────────┤
-│          │ Total                                      │ 4,857,214.23      │ 30,000,533.18  │ 490.99  │ 292,409  │ 64,500,000   │            │
-├──────────┼────────────────────────────────────────────┼───────────────────┼────────────────┼─────────┼──────────┼──────────────┼────────────┤
-│          │                                            │ ETH               │ USDT           │ USDC    │ DAI      │ LINK         │            │
-├──────────┼────────────────────────────────────────────┼───────────────────┼────────────────┼─────────┼──────────┼──────────────┼────────────┤
-│          │ Total Value                                │ $8,967,777,483.31 │ $30,000,533.18 │ $490.99 │ $292,409 │ $388,290,000 │            │
-└──────────┴────────────────────────────────────────────┴───────────────────┴────────────────┴─────────┴──────────┴──────────────┴────────────┘
+┌──────────┬────────────────────────────────────────────┬────────────────────┬───────────────────┬─────────────────┬─────────┬───────────────────┬────────────┐
+│ Ledger   │ Address                                    │ ETH                │ USDT              │ USDC            │ DAI     │ LINK              │ Note       │
+├──────────┼────────────────────────────────────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┼────────────┤
+│ Binance  │ 0xBE0eB53F46cd790Cd13851d5EFf43D12404d33E8 │ 1,996,008.38       │ 162               │ 0               │ 0       │ 5,000,000         │ Binance 7  │
+├──────────┼────────────────────────────────────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┼────────────┤
+│ Binance  │ 0xF977814e90dA44bFA03b6295A0616a897441aceC │ 647,701.18         │ 5,325,198,345.11  │ 300,000,000     │ 0       │ 40,153,254.58     │ Binance 8  │
+├──────────┼────────────────────────────────────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┼────────────┤
+│ Kraken   │ 0xDA9dfA130Df4dE4673b89022EE50ff26f6EA73Cf │ 1,598,923.57       │ 142               │ 0               │ 0       │ 9,500,000         │            │
+├──────────┼────────────────────────────────────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┼────────────┤
+│ Coinbase │ 0x71660c4005BA85c37ccec55d0C4493E66Fe775d3 │ 11,571.16          │ 10.76             │ 1,622.94        │ 0.0002  │ 0                 │ Coinbase 1 │
+├──────────┼────────────────────────────────────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┼────────────┤
+│          │ Total                                      │ 4,254,204.29       │ 5,325,198,659.87  │ 300,001,622.94  │ 0.0002  │ 54,653,254.58     │            │
+├──────────┼────────────────────────────────────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┼────────────┤
+│          │                                            │ ETH                │ USDT              │ USDC            │ DAI     │ LINK              │            │
+├──────────┼────────────────────────────────────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┼────────────┤
+│          │ Total Value                                │ $11,213,104,040.03 │ $5,325,198,659.87 │ $300,001,622.94 │ $0.0002 │ $1,083,227,505.76 │            │
+└──────────┴────────────────────────────────────────────┴────────────────────┴───────────────────┴─────────────────┴─────────┴───────────────────┴────────────┘
 
 Ledgers
 ‾‾‾‾‾‾‾
-┌─────────────┬───────────────────┬────────────────┬─────────┬──────────┬──────────────┐
-│ Ledger      │ ETH               │ USDT           │ USDC    │ DAI      │ LINK         │
-├─────────────┼───────────────────┼────────────────┼─────────┼──────────┼──────────────┤
-│ Binance     │ 3,166,362.28      │ 30,000,431.89  │ 0       │ 0        │ 55,000,000   │
-├─────────────┼───────────────────┼────────────────┼─────────┼──────────┼──────────────┤
-│ Kraken      │ 1,690,839.97      │ 100            │ 0       │ 292,409  │ 9,500,000    │
-├─────────────┼───────────────────┼────────────────┼─────────┼──────────┼──────────────┤
-│ Coinbase    │ 11.97             │ 1.29           │ 490.99  │ 0.0002   │ 0            │
-├─────────────┼───────────────────┼────────────────┼─────────┼──────────┼──────────────┤
-│ Total       │ 4,857,214.23      │ 30,000,533.18  │ 490.99  │ 292,409  │ 64,500,000   │
-├─────────────┼───────────────────┼────────────────┼─────────┼──────────┼──────────────┤
-│             │ ETH               │ USDT           │ USDC    │ DAI      │ LINK         │
-├─────────────┼───────────────────┼────────────────┼─────────┼──────────┼──────────────┤
-│ Total Value │ $8,967,777,483.31 │ $30,000,533.18 │ $490.99 │ $292,409 │ $388,290,000 │
-└─────────────┴───────────────────┴────────────────┴─────────┴──────────┴──────────────┘
+┌─────────────┬────────────────────┬───────────────────┬─────────────────┬─────────┬───────────────────┐
+│ Ledger      │ ETH                │ USDT              │ USDC            │ DAI     │ LINK              │
+├─────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┤
+│ Binance     │ 2,643,709.56       │ 5,325,198,507.11  │ 300,000,000     │ 0       │ 45,153,254.58     │
+├─────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┤
+│ Kraken      │ 1,598,923.57       │ 142               │ 0               │ 0       │ 9,500,000         │
+├─────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┤
+│ Coinbase    │ 11,571.16          │ 10.76             │ 1,622.94        │ 0.0002  │ 0                 │
+├─────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┤
+│ Total       │ 4,254,204.29       │ 5,325,198,659.87  │ 300,001,622.94  │ 0.0002  │ 54,653,254.58     │
+├─────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┤
+│             │ ETH                │ USDT              │ USDC            │ DAI     │ LINK              │
+├─────────────┼────────────────────┼───────────────────┼─────────────────┼─────────┼───────────────────┤
+│ Total Value │ $11,213,104,040.03 │ $5,325,198,659.87 │ $300,001,622.94 │ $0.0002 │ $1,083,227,505.76 │
+└─────────────┴────────────────────┴───────────────────┴─────────────────┴─────────┴───────────────────┘
 
 Assets
 ‾‾‾‾‾‾
@@ -1018,58 +1346,58 @@ Assets
 ├─────────────┼──────────┼────────────┼─────────────┤
 │ Real Estate │ 1        │ $1,000,000 │ $1,000,000  │
 ├─────────────┼──────────┼────────────┼─────────────┤
-│ CDP         │ 123      │ 1 ETH      │ $227,092.44 │
+│ CDP         │ 123      │ 1 ETH      │ $324,199.71 │
 ├─────────────┼──────────┼────────────┼─────────────┤
 │ wwUSDC      │ 1,000    │ 2 USDC     │ $2,000      │
 └─────────────┴──────────┴────────────┴─────────────┘
 
 Total Amounts
 ‾‾‾‾‾‾‾‾‾‾‾‾‾
-┌─────────────┬───────────────┬───────────────────┬──────────────────┐
-│ Name        │ Amount        │ Value             │ % of Total Value │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│ ETH         │ 4,857,214.23  │ $8,967,777,483.31 │ 95.5260          │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│ USDT        │ 30,000,533.18 │ $30,000,533.18    │ 0.319570         │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│ USDC        │ 490.99        │ $490.99           │ 0.00000523009    │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│ DAI         │ 292,409       │ $292,409          │ 0.00311478       │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│ LINK        │ 64,500,000    │ $388,290,000      │ 4.13612          │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│ Gold        │ 100           │ $201,825          │ 0.00214987       │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│ Real Estate │ 1             │ $1,000,000        │ 0.0106521        │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│ CDP         │ 123           │ $227,092.44       │ 0.00241902       │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│ wwUSDC      │ 1,000         │ $2,000            │ 0.0000213043     │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│             │ Total Value   │ $9,387,791,833.92 │                  │
-└─────────────┴───────────────┴───────────────────┴──────────────────┘
+┌─────────────┬──────────────────┬────────────────────┬──────────────────┐
+│ Name        │ Amount           │ Value              │ % of Total Value │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│ ETH         │ 4,254,204.29     │ $11,213,104,040.03 │ 62.5624          │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│ USDT        │ 5,325,198,659.87 │ $5,325,198,659.87  │ 29.7114          │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│ USDC        │ 300,001,622.94   │ $300,001,622.94    │ 1.67383          │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│ DAI         │ 0.0002           │ $0.0002            │ 9.95012e-13      │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│ LINK        │ 54,653,254.58    │ $1,083,227,505.76  │ 6.04376          │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│ Gold        │ 100              │ $201,825           │ 0.00112606       │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│ Real Estate │ 1                │ $1,000,000         │ 0.00557940       │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│ CDP         │ 123              │ $324,199.71        │ 0.00180884       │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│ wwUSDC      │ 1,000            │ $2,000             │ 0.0000111588     │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│             │ Total Value      │ $17,923,059,853.31 │                  │
+└─────────────┴──────────────────┴────────────────────┴──────────────────┘
 
 Total Aggregated Amounts
 ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
-┌─────────────┬───────────────┬───────────────────┬──────────────────┐
-│ Name        │ Amount        │ Value             │ % of Total Value │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│ ETH         │ 4,857,337.23  │ $8,968,004,575.75 │ 95.5284          │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│ USDT        │ 30,000,533.18 │ $30,000,533.18    │ 0.319570         │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│ USDC        │ 2,490.99      │ $2,490.99         │ 0.0000265344     │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│ DAI         │ 292,409       │ $292,409          │ 0.00311478       │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│ LINK        │ 64,500,000    │ $388,290,000      │ 4.13612          │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│ Gold        │ 100           │ $201,825          │ 0.00214987       │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│ Real Estate │ 1             │ $1,000,000        │ 0.0106521        │
-├─────────────┼───────────────┼───────────────────┼──────────────────┤
-│             │ Total Value   │ $9,387,791,833.92 │                  │
-└─────────────┴───────────────┴───────────────────┴──────────────────┘
+┌─────────────┬──────────────────┬────────────────────┬──────────────────┐
+│ Name        │ Amount           │ Value              │ % of Total Value │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│ ETH         │ 4,254,327.29     │ $11,213,428,239.74 │ 62.5643          │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│ USDT        │ 5,325,198,659.87 │ $5,325,198,659.87  │ 29.7114          │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│ USDC        │ 300,003,622.94   │ $300,003,622.94    │ 1.67384          │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│ DAI         │ 0.0002           │ $0.0002            │ 9.95012e-13      │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│ LINK        │ 54,653,254.58    │ $1,083,227,505.76  │ 6.04376          │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│ Gold        │ 100              │ $201,825           │ 0.00112606       │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│ Real Estate │ 1                │ $1,000,000         │ 0.00557940       │
+├─────────────┼──────────────────┼────────────────────┼──────────────────┤
+│             │ Total Value      │ $17,923,059,853.31 │                  │
+└─────────────┴──────────────────┴────────────────────┴──────────────────┘
 ```
 
 #### Using Global Token List
