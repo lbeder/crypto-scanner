@@ -4,11 +4,11 @@ import { DEFAULT_DECIMALS } from "./utils/constants";
 import "./utils/csv";
 import inquirer from "inquirer";
 import { zipWith } from "lodash";
-import yargs from "yargs";
+import yargs, { Argv } from "yargs";
 import { DB } from "./utils/db";
 import { Logger } from "./utils/logger";
 
-const VERSION = "5.10.0";
+const VERSION = "6.0.0";
 
 const main = async () => {
   let scanner: Scanner;
