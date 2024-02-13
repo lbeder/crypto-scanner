@@ -656,7 +656,7 @@ export class Scanner {
   }
 
   private static formatLabel(label: string) {
-    return `${padEnd(truncate(label, { length: 8 }), 10)}`;
+    return `${padEnd(truncate(label, { length: 20 }), 22)}`;
   }
 
   private async fetchPrices(): Promise<Record<string, Decimal>> {
