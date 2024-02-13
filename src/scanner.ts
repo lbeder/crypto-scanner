@@ -100,6 +100,12 @@ export class Scanner {
     }
   }
 
+  public addLedger(name: string) {
+    this.db.addLedger(name);
+
+    Logger.info(`Added ${name}`);
+  }
+
   public removeLedger(name: string) {
     this.db.removeLedger(name);
 
