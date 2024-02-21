@@ -8,7 +8,7 @@ import yargs, { Argv } from "yargs";
 import { DB } from "./utils/db";
 import { Logger } from "./utils/logger";
 
-const VERSION = "6.0.0";
+const VERSION = "6.1.0";
 
 const main = async () => {
   let scanner: Scanner;
