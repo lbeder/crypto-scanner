@@ -51,6 +51,7 @@ crypto-scanner <command>
 
 Commands:
   crypto-scanner scan      Scan all addresses and tokens
+  crypto-scanner list      List all the ledgers, addresses, tokens, and assets
   crypto-scanner db        DB management functions
   crypto-scanner password  Password management functions
   crypto-scanner ledger    Ledger management functions
@@ -89,6 +90,22 @@ Options:
                               total ETH amount)                                               [boolean] [default: false]
 ```
 
+### List
+
+```sh
+crypto-scanner list
+
+List all the ledgers, addresses, tokens, and assets
+
+Options:
+      --help               Show help                                                                           [boolean]
+      --version            Show version number                                                                 [boolean]
+      --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
+  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
+                                                                                              [boolean] [default: false]
+```
+
 ### DB
 
 ```sh
@@ -113,7 +130,7 @@ Options:
 #### Show the DB
 
 ```sh
-crypto-scanner db show
+crypto-scanner list
 
 Show the DB
 
@@ -480,7 +497,7 @@ Added 0x71660c4005BA85c37ccec55d0C4493E66Fe775d3 to Coinbase (with a note: "Coin
 We can see that the DB has been updated:
 
 ```sh
-crypto-scanner db show
+crypto-scanner list
 
 ? Enter password [hidden]
 
@@ -618,7 +635,7 @@ Added LINK at 0x514910771AF9Ca656af840dff83E8264EcF986CA with 18 decimals
 You can check and verify that the tokens are now part of the DB:
 
 ```sh
-crypto-scanner db show
+crypto-scanner list
 
 ? Enter password [hidden]
 
@@ -908,7 +925,7 @@ Added 1 units of Real Estate at the price of 1000000 USD per unit
 You can check and verify that the assets are now part of the DB:
 
 ```sh
-crypto-scanner db show
+crypto-scanner list
 
 ? Enter password [hidden]
 
@@ -1085,7 +1102,7 @@ Added 1000 units of wwUSDC at the price of 2 USDC per unit
 You can check and verify that the new assets are now part of the DB:
 
 ```sh
-crypto-scanner db show
+crypto-scanner list
 
 ? Enter password [hidden]
 

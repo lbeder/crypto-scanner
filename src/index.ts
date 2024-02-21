@@ -102,6 +102,14 @@ const main = async () => {
           await scanner.scan({ csvOutputDir: csv, verbose, showEmptyAddresses, aggregateAssets });
         }
       )
+      .command(
+        "list",
+        "List all the ledgers, addresses, tokens, and assets",
+        () => {},
+        () => {
+          scanner.showDB();
+        }
+      )
       .command("db", "DB management functions", (yargs: Argv) =>
         yargs
           .command(
