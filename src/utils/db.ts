@@ -1,13 +1,9 @@
 import crypto from "crypto";
 import fs from "fs";
-import os from "os";
 import path from "path";
 import { getAddress, isAddress } from "ethers";
 import { GLOBAL_TOKEN_LIST } from "../data/tokens";
 import { ETH, USD } from "./constants";
-
-const DB_DIR = path.resolve(os.homedir(), ".crypto-scanner/");
-const DB_PATH = path.join(DB_DIR, "db");
 
 const VERSION = 1;
 
@@ -39,24 +35,28 @@ interface Data {
 }
 
 export interface DBOptions {
+  path: string;
   password: string;
   globalTokenList: boolean;
 }
 
 export class DB {
   private data: Data;
+  private readonly path: string;
   private password: string;
   private globalTokenList: Tokens = {};
   private globalTokenListEnabled = false;
 
-  constructor({ password, globalTokenList }: DBOptions) {
+  constructor({ path: dbPath, password, globalTokenList }: DBOptions) {
+    this.path = dbPath;
     this.password = password;
 
-    if (!fs.existsSync(DB_DIR)) {
-      fs.mkdirSync(DB_DIR, { recursive: true });
+    const dbDir = path.dirname(this.path);
+    if (!fs.existsSync(dbDir)) {
+      fs.mkdirSync(dbDir, { recursive: true });
     }
 
-    if (!DB.exists()) {
+    if (!fs.existsSync(this.path)) {
       this.data = {
         version: VERSION,
         ledgers: {},
@@ -81,7 +81,7 @@ export class DB {
     let data: Data;
 
     try {
-      data = JSON.parse(DB.decrypt(fs.readFileSync(DB_PATH, "utf8"), password)) as Data;
+      data = JSON.parse(DB.decrypt(fs.readFileSync(this.path, "utf8"), password)) as Data;
     } catch {
       throw new Error("Invalid password");
     }
@@ -96,10 +96,6 @@ export class DB {
     }
 
     this.data = data;
-  }
-
-  public static exists() {
-    return fs.existsSync(DB_PATH);
   }
 
   public changePassword(newPassword: string) {
@@ -374,6 +370,6 @@ export class DB {
   private save() {
     const encryptedDB = DB.encrypt(this.data, this.password);
 
-    fs.writeFileSync(DB_PATH, encryptedDB, "utf8");
+    fs.writeFileSync(this.path, encryptedDB, "utf8");
   }
 }

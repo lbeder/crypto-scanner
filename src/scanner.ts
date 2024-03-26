@@ -12,6 +12,7 @@ import { Address, Assets, DB } from "./utils/db";
 import { Logger } from "./utils/logger";
 
 interface ScannerOptions {
+  path: string;
   providerUrl: string;
   password: string;
   price: boolean;
@@ -44,7 +45,7 @@ export class Scanner {
   private static readonly CSV_PRICES_REPORT = "prices.csv";
   private static readonly CSV_TOTALS_REPORT = "totals.csv";
 
-  constructor({ providerUrl, password, price, globalTokenList }: ScannerOptions) {
+  constructor({ path, providerUrl, password, price, globalTokenList }: ScannerOptions) {
     this.provider = new JsonRpcProvider(providerUrl);
 
     this.balance = new Balance(this.provider);
@@ -54,7 +55,7 @@ export class Scanner {
       this.price = new Price(this.provider);
     }
 
-    this.db = new DB({ password, globalTokenList });
+    this.db = new DB({ path, password, globalTokenList });
   }
 
   public changePassword(newPassword: string) {

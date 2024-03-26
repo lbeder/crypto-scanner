@@ -62,6 +62,7 @@ Commands:
 Options:
       --help               Show help                                                                           [boolean]
       --version            Show version number                                                                 [boolean]
+      --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
   -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
@@ -100,6 +101,7 @@ List all the ledgers, addresses, tokens, and assets
 Options:
       --help               Show help                                                                           [boolean]
       --version            Show version number                                                                 [boolean]
+      --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
   -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
@@ -121,6 +123,7 @@ Commands:
 Options:
       --help               Show help                                                                           [boolean]
       --version            Show version number                                                                 [boolean]
+      --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
   -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
@@ -137,6 +140,7 @@ Show the DB
 Options:
       --help               Show help                                                                           [boolean]
       --version            Show version number                                                                 [boolean]
+      --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
   -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
@@ -153,6 +157,7 @@ Export the DB to an external file. Note that the export is *not* encrypted
 Options:
       --help               Show help                                                                           [boolean]
       --version            Show version number                                                                 [boolean]
+      --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
   -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
@@ -170,6 +175,7 @@ Import the DB from an external file. Note that the import should not be *not* en
 Options:
       --help               Show help                                                                           [boolean]
       --version            Show version number                                                                 [boolean]
+      --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
   -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
@@ -190,6 +196,7 @@ Commands:
 Options:
       --help               Show help                                                                           [boolean]
       --version            Show version number                                                                 [boolean]
+      --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
   -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
@@ -206,6 +213,7 @@ Set/change the encryption password
 Options:
       --help               Show help                                                                           [boolean]
       --version            Show version number                                                                 [boolean]
+      --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
   -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
@@ -226,6 +234,7 @@ Commands:
 Options:
       --help               Show help                                                                           [boolean]
       --version            Show version number                                                                 [boolean]
+      --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
   -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
@@ -242,6 +251,7 @@ Add a new ledger
 Options:
       --help               Show help                                                                           [boolean]
       --version            Show version number                                                                 [boolean]
+      --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
   -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
@@ -259,6 +269,7 @@ Remove an existing ledger
 Options:
       --help               Show help                                                                           [boolean]
       --version            Show version number                                                                 [boolean]
+      --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
   -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
@@ -280,6 +291,7 @@ Commands:
 Options:
       --help               Show help                                                                           [boolean]
       --version            Show version number                                                                 [boolean]
+      --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
   -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
@@ -296,6 +308,7 @@ Add an address or a list of space-separated addresses to a named ledger
 Options:
       --help               Show help                                                                           [boolean]
       --version            Show version number                                                                 [boolean]
+      --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
   -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
@@ -315,6 +328,7 @@ Remove an address or a list of space-separated addresses from a named ledger
 Options:
       --help               Show help                                                                           [boolean]
       --version            Show version number                                                                 [boolean]
+      --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
   -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
@@ -337,6 +351,7 @@ Commands:
 Options:
       --help               Show help                                                                           [boolean]
       --version            Show version number                                                                 [boolean]
+      --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
   -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
@@ -353,6 +368,7 @@ Add a new token
 Options:
       --help               Show help                                                                           [boolean]
       --version            Show version number                                                                 [boolean]
+      --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
   -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
@@ -372,6 +388,7 @@ Remove a token from
 Options:
       --help               Show help                                                                           [boolean]
       --version            Show version number                                                                 [boolean]
+      --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
   -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
@@ -394,6 +411,7 @@ Commands:
 Options:
       --help               Show help                                                                           [boolean]
       --version            Show version number                                                                 [boolean]
+      --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
   -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
@@ -410,6 +428,7 @@ Add a new asset
 Options:
       --help               Show help                                                                           [boolean]
       --version            Show version number                                                                 [boolean]
+      --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
   -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
@@ -430,6 +449,7 @@ Update an existing asset
 Options:
       --help               Show help                                                                           [boolean]
       --version            Show version number                                                                 [boolean]
+      --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
   -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
@@ -450,6 +470,7 @@ Remove an existing asset
 Options:
       --help               Show help                                                                           [boolean]
       --version            Show version number                                                                 [boolean]
+      --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
   -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)

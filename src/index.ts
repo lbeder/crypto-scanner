@@ -2,13 +2,15 @@
 import { DEFAULT_SYMBOL_PRICE, Scanner } from "./scanner";
 import { DEFAULT_DECIMALS } from "./utils/constants";
 import "./utils/csv";
+import fs from "fs";
+import os from "os";
+import path from "path";
 import inquirer from "inquirer";
 import { zipWith } from "lodash";
 import yargs, { Argv } from "yargs";
-import { DB } from "./utils/db";
 import { Logger } from "./utils/logger";
 
-const VERSION = "6.1.0";
+const VERSION = "6.2.0";
 
 const main = async () => {
   let scanner: Scanner;
@@ -22,6 +24,11 @@ const main = async () => {
       .help()
       .version(VERSION)
       .options({
+        path: {
+          description: "DB URL",
+          type: "string",
+          default: path.join(path.resolve(os.homedir(), ".crypto-scanner/"), "db")
+        },
         "provider-url": {
           description: "Web3 provider's URL",
           type: "string",
@@ -40,7 +47,7 @@ const main = async () => {
           default: false
         }
       })
-      .middleware(async ({ providerUrl, price, globalTokenList }) => {
+      .middleware(async ({ path: dbPath, providerUrl, price, globalTokenList }) => {
         const { password } = await inquirer.prompt([
           {
             type: "password",
@@ -49,7 +56,7 @@ const main = async () => {
           }
         ]);
 
-        if (!DB.exists()) {
+        if (!fs.existsSync(dbPath)) {
           const { password2 } = await inquirer.prompt([
             {
               type: "password",
@@ -67,7 +74,7 @@ const main = async () => {
 
         Logger.info();
 
-        scanner = new Scanner({ providerUrl, password, price, globalTokenList });
+        scanner = new Scanner({ path: dbPath, providerUrl, password, price, globalTokenList });
       })
       .command(
         "scan",
