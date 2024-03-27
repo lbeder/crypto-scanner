@@ -1,8 +1,12 @@
 export const GLOBAL_TOKEN_LIST = {
-  date: "2024-02-21T23:19:17.142Z",
+  date: "2024-03-27T03:13:04.479Z",
   tokens: {
     "28": {
       address: "0xA50709b10C328772EA24a44b13C7E23C75561ecb",
+      decimals: 18
+    },
+    "721": {
+      address: "0x609c117183C9264aF6Ee54FE3F290F212b31aFBf",
       decimals: 18
     },
     "888": {
@@ -13,16 +17,12 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x4096Fc7119040175589387656F7C6073265f4096",
       decimals: 0
     },
-    "6969": {
-      address: "0x69168908793294D0A9Ea938673e12C36eCaE6969",
-      decimals: 9
-    },
     "69420": {
       address: "0x69Cbaf6C147086C3c234385556f8A0C6488D3420",
       decimals: 9
     },
     "": {
-      address: "0xa8c08D8bB15A2D1a4d3B78Def9c635EF1E340E16",
+      address: "0x559Cc0850361aFe1973c0BA5d0a3446C8A5aD678",
       decimals: 18
     },
     "00": {
@@ -57,6 +57,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xFC226294dAFb6E69905B3e7635b575D0508a42C5",
       decimals: 18
     },
+    "0XBET": {
+      address: "0x78993F9Bee8B68f2531a92427595405f294161dB",
+      decimals: 18
+    },
     "0XBTC": {
       address: "0xB6eD7644C69416d67B522e20bC294A9a9B405B31",
       decimals: 8
@@ -69,20 +73,16 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xF7498c98789957F4eE53B3E37fF5B7Ef8A6CFC7b",
       decimals: 18
     },
-    "0XF": {
-      address: "0x570147337F1A2313Fc35573F6a123CeB109eB901",
-      decimals: 9
-    },
     "0XFREE": {
       address: "0x4C05F1e65069a8C0694470720BE77e50D2b212d6",
       decimals: 9
     },
     "0XG": {
-      address: "0x5dF2AA6d903410B2a747C90DbF2de0de7b15AC60",
-      decimals: 8
+      address: "0x486D95c40FEba650c38E98Cd9d7979D9cD88CeA0",
+      decimals: 18
     },
     "0XGAS": {
-      address: "0x994A258c7Dec633b5b15376f850D5Ea701179E79",
+      address: "0x5FC111f3Fa4C6b32eAf65659CFEbdeed57234069",
       decimals: 18
     },
     "0XLP": {
@@ -99,6 +99,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     "0XS": {
       address: "0x456815812B3129A4389EA4D73e9706697cc91373",
+      decimals: 18
+    },
+    "0XSEARCH": {
+      address: "0xfA816739EdaAc4EBf329219D4Ef575085CC28037",
       decimals: 18
     },
     "0XSPAI": {
@@ -322,11 +326,11 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     ABAT: {
-      address: "0xE1BA0FB44CCb0D11b80F92f4f8Ed94CA3fF51D00",
+      address: "0x05Ec93c0365baAeAbF7AefFb0972ea7ECdD39CF1",
       decimals: 18
     },
     ABC: {
-      address: "0xD4d4B7b55B30fB096C30ad202e746d010B47dc30",
+      address: "0x52B552c4a698c9B1De4c7fe0Dd4462AF141F7C3e",
       decimals: 18
     },
     ABI: {
@@ -362,7 +366,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     AC: {
-      address: "0x9A0aBA393aac4dFbFf4333B06c407458002C6183",
+      address: "0x1250b98CBDe9F99f4c42dCdaCeE193221f17eb50",
       decimals: 18
     },
     ACBETH: {
@@ -385,10 +389,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x4BDCb66B968060D9390C1D12bd29734496205581",
       decimals: 18
     },
-    ACR: {
-      address: "0x76306F029f8F99EFFE509534037Ba7030999E3CF",
-      decimals: 18
-    },
     ACRE: {
       address: "0xb2cABf797bc907B049e4cCB5b84d13be3a8CFC21",
       decimals: 18
@@ -398,7 +398,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     ACRV: {
-      address: "0x8dAE6Cb04688C62d939ed9B68d32Bc62e49970b1",
+      address: "0x7B95Ec873268a6BFC6427e7a28e396Db9D0ebc65",
       decimals: 18
     },
     ACX: {
@@ -414,7 +414,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     ADAI: {
-      address: "0xfC1E690f61EFd961294b3e1Ce3313fBD8aa4f85d",
+      address: "0x018008bfb33d285247A21d44E50697654f754e63",
       decimals: 18
     },
     ADAO: {
@@ -429,10 +429,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xB6c3DC857845a713d3531cea5ac546F6767992F4",
       decimals: 6
     },
-    ADD: {
-      address: "0x5c9c7554AB2b302A0a3E943377AcB30E9a70F9F7",
-      decimals: 18
-    },
     ADDY: {
       address: "0xE15A66b7B8e385CAa6F69FD0d55984B96D7263CF",
       decimals: 18
@@ -441,17 +437,13 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x94d863173EE77439E4292284fF13fAD54b3BA182",
       decimals: 18
     },
-    ADF: {
-      address: "0x7220e92D418E2EB59D0C25d195FA004bfD3aFC42",
-      decimals: 18
-    },
     ADP: {
       address: "0xc314b0E758D5FF74f63e307A86EbfE183C95767b",
       decimals: 18
     },
     ADS: {
-      address: "0xcfcEcFe2bD2FED07A9145222E8a7ad9Cf1Ccd22A",
-      decimals: 11
+      address: "0x3106a0a076BeDAE847652F42ef07FD58589E001f",
+      decimals: 18
     },
     ADULT: {
       address: "0x565d3902d6A5A2D5CE28ff427423E88933334DD2",
@@ -478,7 +470,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     AENJ: {
-      address: "0x712DB54daA836B53Ef1EcBb9c6ba3b9Efb073F40",
+      address: "0xaC6Df26a590F08dcC95D5a4705ae8abbc88509Ef",
       decimals: 18
     },
     AENS: {
@@ -495,6 +487,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     AEUR: {
       address: "0xA40640458FBc27b6EefEdeA1E9C9E17d4ceE7a21",
+      decimals: 18
+    },
+    AEVO: {
+      address: "0xB528edBef013aff855ac3c50b381f253aF13b997",
       decimals: 18
     },
     AFIN: {
@@ -525,10 +521,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xBddF903F43dC7d9801F3F0034bA306169074EF8e",
       decimals: 18
     },
-    AGEUR: {
-      address: "0x1a7e4e63778B4f12a199C062f3eFdD288afCBce8",
-      decimals: 18
-    },
     AGF: {
       address: "0xA792ff98afD4cCB8D33F2590D0BC9420a062e555",
       decimals: 18
@@ -537,12 +529,8 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x492798Fb464e77Cb3cDA62b9a2C3c65162db198e",
       decimals: 18
     },
-    AGGRX: {
-      address: "0xB37Ea37DE1075b7d2F6B64E768917b174639A59c",
-      decimals: 9
-    },
     AGI: {
-      address: "0x5F18ea482ad5cc6BC65803817C99f477043DcE85",
+      address: "0x7dA2641000Cbb407C329310C461b2cB9c70C3046",
       decimals: 18
     },
     AGII: {
@@ -586,8 +574,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     AGUSD: {
-      address: "0xD37EE7e4f452C6638c96536e68090De8cBcdb583",
-      decimals: 2
+      address: "0x0000206329b97DB379d5E1Bf586BbDB969C63274",
+      decimals: 18
     },
     AGVC: {
       address: "0x8b79656FC38a04044E495e22fAD747126ca305C4",
@@ -625,6 +613,18 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x37Ac5730cFB1549715647828a05B3a8ED781134B",
       decimals: 18
     },
+    AII: {
+      address: "0x3c0BB14e8367c384885a97bAc6d5CcEab474ED75",
+      decimals: 18
+    },
+    AIKEK: {
+      address: "0x8dCE83ECa4af45dbe618Da1779F9Aaca43201084",
+      decimals: 18
+    },
+    AIL: {
+      address: "0xD155Fa55c40d010335Aa152891aA687e2f3090bD",
+      decimals: 9
+    },
     AIMAGE: {
       address: "0x4872208C83acBfd7f6Dea5AA6CE6d5D7aED2AC1C",
       decimals: 18
@@ -632,6 +632,10 @@ export const GLOBAL_TOKEN_LIST = {
     AIMBOT: {
       address: "0x0c48250Eb1f29491F1eFBeEc0261eb556f0973C7",
       decimals: 18
+    },
+    AIMEE: {
+      address: "0x62cf53A8D024c785e6Bd49b83d94a74E1F9C48b1",
+      decimals: 9
     },
     AIN: {
       address: "0x3A810ff7211b40c4fA76205a14efe161615d0385",
@@ -657,10 +661,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xF725f73CAEe250AE384ec38bB2C77C38ef2CcCeA",
       decimals: 18
     },
-    AIRBOT: {
-      address: "0xcD14517C7397a003aeC7404CB8159f16a90f9fE9",
-      decimals: 18
-    },
     AIRM: {
       address: "0xF250b1f6193941bB8BFF4152d719EDf1a59C0E69",
       decimals: 18
@@ -674,7 +674,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 0
     },
     AIT: {
-      address: "0x79650799e7899A802cB96C0Bc33a6a8d4CE4936C",
+      address: "0x89d584A1EDB3A70B3B07963F9A3eA5399E38b136",
       decimals: 18
     },
     AITEK: {
@@ -682,7 +682,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     AIUS: {
-      address: "0xe3DBC4F88EAa632DDF9708732E2832EEaA6688AB",
+      address: "0x8AFE4055Ebc86Bd2AFB3940c0095C9aca511d852",
       decimals: 18
     },
     AIX: {
@@ -698,7 +698,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     AKNC: {
-      address: "0x9D91BE44C06d373a8a226E1f3b146956083803eB",
+      address: "0x5b502e3796385E1e9755d7043B9C945C3aCCeC9C",
       decimals: 18
     },
     AKRO: {
@@ -750,7 +750,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 6
     },
     ALINK: {
-      address: "0xa06bC25B5805d5F8d82847D191Cb4Af5A3e873E0",
+      address: "0x5E8C8A7243651DB1384C0dDfDbE39761E8e7E51a",
       decimals: 18
     },
     ALLBI: {
@@ -778,8 +778,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     ALPHA: {
-      address: "0x38f9bb135ea88033f4377B9EA0fb5Cfb773fEc2F",
-      decimals: 18
+      address: "0x7ba441772fDd56DDa03e7E91284dB2eA2BA237da",
+      decimals: 9
     },
     ALPHABET: {
       address: "0x038ed1383763D704d4271FE856ac96b4557E9D06",
@@ -788,6 +788,10 @@ export const GLOBAL_TOKEN_LIST = {
     ALPHR: {
       address: "0xaa99199d1e9644b588796F3215089878440D58e0",
       decimals: 18
+    },
+    ALS: {
+      address: "0xEdeE9Cc3bF9CfD86a493a23A0775508e0F826644",
+      decimals: 9
     },
     ALT: {
       address: "0x1BD55090B8878630E57FAE6eBd11FD61d16DFC9f",
@@ -799,6 +803,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     ALUSD: {
       address: "0x3Fe6a295459FAe07DF8A0ceCC36F37160FE86AA9",
+      decimals: 18
+    },
+    ALVA: {
+      address: "0x8e729198d1C59B82bd6bBa579310C40d740A11C2",
       decimals: 18
     },
     ALY: {
@@ -822,7 +830,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     AMKR: {
-      address: "0xc713e5E149D5D0715DcD1c156a020976e7E56B88",
+      address: "0x8A458A9dc9048e005d22849F470891b840296619",
       decimals: 18
     },
     AMKT: {
@@ -871,6 +879,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     ANC: {
       address: "0x0F3ADC247E91c3c50bC08721355A41037E89Bc20",
+      decimals: 18
+    },
+    ANDY: {
+      address: "0x68BbEd6A47194EFf1CF514B50Ea91895597fc91E",
       decimals: 18
     },
     ANFD: {
@@ -949,10 +961,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x8578530205CEcbe5DB83F7F29EcfEEC860C297C2",
       decimals: 18
     },
-    APB: {
-      address: "0x23Da77203EEad71e72d7326654c431ef563567A4",
-      decimals: 18
-    },
     APCG: {
       address: "0x434Cb4fC4b952872967914D430878Eee53Ebd502",
       decimals: 18
@@ -963,10 +971,6 @@ export const GLOBAL_TOKEN_LIST = {
     },
     APED: {
       address: "0xE0151763455A8a021e64880C238ba1cff3787fF0",
-      decimals: 18
-    },
-    APEFI: {
-      address: "0x4332f8A38f14BD3D8D1553aF27D7c7Ac6C27278D",
       decimals: 18
     },
     APEGPT: {
@@ -1011,6 +1015,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     APPC: {
       address: "0x1a7a8BD9106F2B8D977E08582DC7d24c723ab0DB",
+      decimals: 18
+    },
+    APU: {
+      address: "0x594DaaD7D77592a2b97b725A7AD59D7E188b5bFa",
       decimals: 18
     },
     APW: {
@@ -1058,8 +1066,12 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     ARC: {
-      address: "0x2391b8147CAEF113787972abBdaF77F4bAe0cf22",
+      address: "0xC82E3dB60A52CF7529253b4eC688f631aad9e7c2",
       decimals: 18
+    },
+    ARCADE: {
+      address: "0x01194726B1B55bBf99cb083ba8E5dCC0834aDBC3",
+      decimals: 9
     },
     ARCAI: {
       address: "0x5c8190b76E90B4DD0702740cF6Eb0F7eE01Ab5E9",
@@ -1089,12 +1101,16 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x0f71B8De197A1C84d31de0F1fA7926c365F052B3",
       decimals: 18
     },
+    ARCX: {
+      address: "0x8E4d27d772099e18900CAF5Dcc36Cb612DcEE886",
+      decimals: 18
+    },
     ARDVRK: {
       address: "0xD0E94BF2466979B81d738c34058d4a6559c4D8BE",
       decimals: 18
     },
     AREN: {
-      address: "0x69948cC03f478B95283F7dbf1CE764d0fc7EC54C",
+      address: "0xCC12AbE4ff81c9378D670De1b57F8e0Dd228D77a",
       decimals: 18
     },
     ARENA: {
@@ -1217,6 +1233,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x64D91f12Ece7362F91A6f8E7940Cd55F05060b92",
       decimals: 18
     },
+    ASI: {
+      address: "0x5d942F9872863645bCb181ABa66c7D9646A91378",
+      decimals: 18
+    },
     ASIA: {
       address: "0xF519381791C03DD7666C142D4E49Fd94d3536011",
       decimals: 18
@@ -1230,11 +1250,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     ASNX: {
-      address: "0x35f6B052C598d933D69A4EEC4D04c73A191fE6c2",
-      decimals: 18
-    },
-    ASPC: {
-      address: "0x96eAfff5BedF18566B18fCe71C2323b69C795623",
+      address: "0xC7B4c17861357B8ABB91F25581E7263E08DCB59c",
       decimals: 18
     },
     AST: {
@@ -1258,7 +1274,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     ASTRA: {
-      address: "0x201332Bd45c8628D814F870bFb584B385A7C351e",
+      address: "0x0aA8A7D1fB4c64B3b1DcEa9A7ADe81C59C25b95b",
       decimals: 18
     },
     ASTRAFER: {
@@ -1274,7 +1290,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 9
     },
     ASUSD: {
-      address: "0x625aE63000f46200499120B906716420bd059240",
+      address: "0x6C5024Cd4F8A59110119C56f8933403A539555EB",
       decimals: 18
     },
     ASW: {
@@ -1294,7 +1310,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     ATB: {
-      address: "0x3B867A9e61311b9F5003899Be72540494EDe854f",
+      address: "0xE6f28389daF01Ae12b33Ee5E7F1e130c454e8494",
       decimals: 18
     },
     ATC: {
@@ -1310,8 +1326,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     ATH: {
-      address: "0x2F9411088cEF82Fd9fB904Eb8092f28eB485C8F6",
-      decimals: 18
+      address: "0xBE7458bc543Cf2df43Ac109d2F713DFfe6417Aa4",
+      decimals: 9
     },
     ATNT: {
       address: "0xAA2d8c9a8bd0F7945143bfD509bE3ff23dd78918",
@@ -1338,7 +1354,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     AUC: {
-      address: "0xc12d099be31567add4e4e4d0D45691C3F58f5663",
+      address: "0x87a92428bBc876d463C21C8e51b903f127d9A9F4",
       decimals: 18
     },
     AUCTION: {
@@ -1357,12 +1373,16 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x18aAA7115705e8be94bfFEBDE57Af9BFc265B998",
       decimals: 18
     },
+    AUDIT: {
+      address: "0xA318A1277E26dFCDf6f4095b90d137743d900e61",
+      decimals: 18
+    },
     AUDT: {
       address: "0xB90cb79B72EB10c39CbDF86e50B1C89F6a235f2e",
       decimals: 18
     },
     AUNI: {
-      address: "0xB9D7CB55f463405CDfBe4E90a6D2Df01C2B92BF1",
+      address: "0xF6D2224916DDFbbab6e6bd0D1B7034f4Ae0CaB18",
       decimals: 18
     },
     AUR: {
@@ -1386,7 +1406,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 6
     },
     AUSDT: {
-      address: "0x3Ed3B47Dd13EC9a98b44e6204A523E766B225811",
+      address: "0x23878914EFE38d27C4D67Ab83ed1b93A74D4086a",
       decimals: 6
     },
     AUTH: {
@@ -1434,7 +1454,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     AWBTC: {
-      address: "0xFC4B8ED459e00e5400be803A9BB3954234FD50e3",
+      address: "0x5Ee5bf7ae06D1Be5997A1A72006FE6C607eC6DE8",
       decimals: 8
     },
     AWC: {
@@ -1442,7 +1462,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 8
     },
     AWETH: {
-      address: "0x030bA81f1c18d280636F32af80b9AAd02Cf0854e",
+      address: "0x4d5F47FA6A74757f35C14fD3a6Ef8E3C9BC514E8",
       decimals: 18
     },
     AWO: {
@@ -1470,8 +1490,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     AXIS: {
-      address: "0xecC0F1F860a82aB3b442382D93853C02d6384389",
-      decimals: 18
+      address: "0xF0c5831EC3Da15f3696B4DAd8B21c7Ce2f007f28",
+      decimals: 8
     },
     AXL: {
       address: "0x25b24B3c47918b7962B3e49C4F468367F73CC0E0",
@@ -1497,10 +1517,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x686D1596e5632Fe0471961E7977E8EFe371b0B21",
       decimals: 18
     },
-    AZK: {
-      address: "0x5408245a4D7c685F59cE6D3b8B35916dd6c11A99",
-      decimals: 18
-    },
     AZR: {
       address: "0x47D20C7800906E01aDfC890F283C110bA70A6c97",
       decimals: 9
@@ -1519,6 +1535,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     AZUR: {
       address: "0xf161cDb9aa33B2F48be273DAE3F3BbB2330Ad3E5",
+      decimals: 18
+    },
+    AZURE: {
+      address: "0x1f769203D2abcb78F5A77dD15C0078C50fB13287",
       decimals: 18
     },
     "B-80BAL-20WETH": {
@@ -1542,8 +1562,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     BABY: {
-      address: "0xfF931a7946d2fA11CF9123EF0dc6F6C7c6cB60C4",
-      decimals: 9
+      address: "0x1cCF27211e8bf052f6255329ed641B4E94E80603",
+      decimals: 18
     },
     BABYDOGE: {
       address: "0xAC57De9C1A09FeC648E93EB98875B212DB0d460B",
@@ -1582,19 +1602,19 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     BACON: {
-      address: "0x34f797e7190C131cF630524655A618b5BD8738e7",
-      decimals: 18
+      address: "0xe08CD119Df4c2F147f623559d6985B8afe315873",
+      decimals: 9
     },
     BAD: {
-      address: "0x9352EC6D3E8b54a96B6903A79635C1e2d298b101",
-      decimals: 9
+      address: "0x32b86b99441480a7E5BD3A26c124ec2373e3F015",
+      decimals: 18
     },
     BADGER: {
       address: "0x3472A5A71965499acd81997a54BBA8D852C6E53d",
       decimals: 18
     },
     BAG: {
-      address: "0x235C8EE913d93c68D2902a8e0b5a643755705726",
+      address: "0x808688c820AB080A6Ff1019F03E5EC227D9b522B",
       decimals: 18
     },
     BAHAMAS: {
@@ -1641,12 +1661,16 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xBA11D00c5f74255f56a5E366F4F77f5A186d7f55",
       decimals: 18
     },
+    BANDS: {
+      address: "0x2048e0d048224381CaC3EA06012cED4a6F122d32",
+      decimals: 18
+    },
     BANGER: {
       address: "0x52A163F4ceF6a42fA6b17e0f2A773fC149547C9c",
       decimals: 18
     },
     BANK: {
-      address: "0x9360C489056b64D5003Bf22f4f31458e31cc8028",
+      address: "0x24A6A37576377F63f194Caa5F518a60f45b42921",
       decimals: 18
     },
     BANKBTC: {
@@ -1654,11 +1678,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 9
     },
     BAO: {
-      address: "0x374CB8C27130E2c9E04F44303f3c8351B9De61C1",
-      decimals: 18
-    },
-    "BAOUSD-LUSD-STABLEP": {
-      address: "0x7E9AfD25F5Ec0eb24d7d4b089Ae7EcB9651c8b1F",
+      address: "0xCe391315b414D4c7555956120461D21808A69F3A",
       decimals: 18
     },
     BARA: {
@@ -1670,8 +1690,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 9
     },
     BARK: {
-      address: "0x53340a1EF3a0dDeBA1D94BBd1E2fF55936F0ea60",
-      decimals: 18
+      address: "0x72fc1c1C926bD26712F62e7485392Cd405478F05",
+      decimals: 9
     },
     BARL: {
       address: "0x3e2324342bF5B8A1Dca42915f0489497203d640E",
@@ -1693,10 +1713,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x0D8775F648430679A709E98d2b0Cb6250d2887EF",
       decimals: 18
     },
-    BATTLE: {
-      address: "0x63F314C44D164D5Be423199AFBfbe129D72d3EA6",
-      decimals: 18
-    },
     BAX: {
       address: "0xf920e4F3FBEF5B3aD0A25017514B769bDc4Ac135",
       decimals: 18
@@ -1707,10 +1723,6 @@ export const GLOBAL_TOKEN_LIST = {
     },
     BB: {
       address: "0x562e12e1E792643d168C1fa01c1b7198a0f83C9F",
-      decimals: 18
-    },
-    "BB-S-DAI": {
-      address: "0x2B218683178d029BAB6c9789b1073aA6c96E5176",
       decimals: 18
     },
     BBADGER: {
@@ -1726,7 +1738,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     BBC: {
-      address: "0x015628Ce9150Db1bCE2FBb717A09E846F8a32436",
+      address: "0x102fa93ef3D2dC5b0B9ed3E7B3bF832796cb7b95",
       decimals: 18
     },
     BBCG: {
@@ -1738,7 +1750,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     BBL: {
-      address: "0x0a44A7ccEa34A7563Ba1D45A5F757d0B02281124",
+      address: "0xD979c468a68062e7bdff4Ba6DF7842DfD3492E0f",
       decimals: 18
     },
     BBOT: {
@@ -1766,8 +1778,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     BC: {
-      address: "0xe03B2642A5111aD0EFc0cbCe766498c2dd562Ae9",
-      decimals: 9
+      address: "0x4b6d036d0BC62A633aCca6d10956E9dbBB16748f",
+      decimals: 18
     },
     BC3M: {
       address: "0x2F123cF3F37CE3328CC9B5b8415f9EC5109b45e7",
@@ -1821,16 +1833,16 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x14Da7b27b2E0FedEfe0a664118b0c9bc68e2E9AF",
       decimals: 18
     },
+    BCUT: {
+      address: "0xBEF26Bd568e421D6708CCA55Ad6e35f8bfA0C406",
+      decimals: 18
+    },
     BD20: {
       address: "0x312d43881860807fA04b193d69744D087fC3308a",
       decimals: 18
     },
     BDP: {
-      address: "0xf3dcbc6D72a4E1892f7917b7C43b74131Df8480e",
-      decimals: 18
-    },
-    BDT: {
-      address: "0x4Efe8665e564bF454cCF5C90Ee16817F7485d5Cf",
+      address: "0x593114f03A0A575aece9ED675e52Ed68D2172B8c",
       decimals: 18
     },
     BEAM: {
@@ -1842,7 +1854,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     BEAR: {
-      address: "0x17837004eA685690b32dbEaD02a274Ec4333A26a",
+      address: "0x4bC2213Ee6C99dC38099690603F044980A4f5DBA",
       decimals: 18
     },
     BEARDY: {
@@ -1861,8 +1873,16 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x2aF1dF3AB0ab157e1E2Ad8F88A7D04fbea0c7dc6",
       decimals: 18
     },
+    BEECASINO: {
+      address: "0xcD8C163CC0eC3A53ce6BeC89e665FB97CCE51c42",
+      decimals: 9
+    },
     BEEP: {
       address: "0x9A0Df129E798438a8aD995368bd82BaA7EEe8913",
+      decimals: 18
+    },
+    BEFI: {
+      address: "0x8b9b95292f890DF47fFf5aC9Cbe93d5fC242bd51",
       decimals: 18
     },
     BEFY: {
@@ -1909,10 +1929,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x1B073382E63411E3BcfFE90aC1B9A43feFa1Ec6F",
       decimals: 8
     },
-    BET: {
-      address: "0x72BaB498fA50a33A03362d0024BB27EFbC50a7b7",
-      decimals: 18
-    },
     BETA: {
       address: "0xBe1a001FE942f96Eea22bA08783140B9Dcc09D28",
       decimals: 18
@@ -1926,7 +1942,11 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     BETS: {
-      address: "0xDA396B2eA32996F471e4434f2d7B8c3ABC352C62",
+      address: "0x17B61131183D29782239C831D7E8eF2dC9f2855D",
+      decimals: 9
+    },
+    BETZ: {
+      address: "0x134359b7C852c82E4ebDd16A61020E6b81Dd6A6b",
       decimals: 18
     },
     BEZOGE: {
@@ -1999,10 +2019,6 @@ export const GLOBAL_TOKEN_LIST = {
     },
     BIG: {
       address: "0xc8De43Bfe33FF496Fa14c270D9CB29Bda196B9B5",
-      decimals: 18
-    },
-    BIGCAP: {
-      address: "0xE29F1241E6015A4949cb7E3f07234BA794006181",
       decimals: 18
     },
     BIGF: {
@@ -2113,6 +2129,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xd23b160E4A0Db09cA35A79948E04Cf6eAfB5283a",
       decimals: 18
     },
+    BLENDR: {
+      address: "0x84018071282d4B2996272659D9C01cB08DD7327F",
+      decimals: 18
+    },
     BLEPE: {
       address: "0xF3617E8a04265160B9ee10253A2c78565571Cb76",
       decimals: 18
@@ -2145,13 +2165,13 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x2eA6CC1ac06fdC01b568fcaD8D842DEc3F2CE1aD",
       decimals: 18
     },
+    BLOBS: {
+      address: "0x39dE85301c78F4D623E5c05cDE2fD119a3a92cd9",
+      decimals: 9
+    },
     BLOCK: {
       address: "0x226d6d842D49b4D757bEf1632053a198D5D9c8aA",
       decimals: 18
-    },
-    "BLOCK-0": {
-      address: "0xBe1BeA3f6e5F29648fdC88b1622785a1666246e7",
-      decimals: 9
     },
     BLOCKS: {
       address: "0x8a6D4C8735371EBAF8874fBd518b56Edd66024eB",
@@ -2162,7 +2182,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     BLOX: {
-      address: "0x320eD4c7243E35A00F9Ca30a1aE60929d15eAE37",
+      address: "0xc9F00080d96cEA3Ef92D2E2e563d4cD41fB5Bb36",
       decimals: 18
     },
     BLT: {
@@ -2174,16 +2194,12 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     BLUE: {
-      address: "0x03475E14DE25908eD484EB99AD38D68cb6399807",
-      decimals: 9
+      address: "0x95D8Bf2F57cf973251972b496dC6B1d9C6b5bCe3",
+      decimals: 18
     },
     BLUESPARROW: {
-      address: "0x24cCeDEBF841544C9e6a62Af4E8c2fA6e5a46FdE",
+      address: "0x4D67EDef87a5fF910954899f4e5a0AaF107afd42",
       decimals: 9
-    },
-    BLUI: {
-      address: "0xe0c99ED6950ccb38347154aBD06E10eBa5A1f89a",
-      decimals: 18
     },
     BLUR: {
       address: "0x5283D291DBCF85356A21bA090E6db59121208b44",
@@ -2229,10 +2245,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x725C263e32c72dDC3A19bEa12C5a0479a81eE688",
       decimals: 18
     },
-    BMP: {
-      address: "0x01b23286FF60a543ec29366aE8D6B6274cA20541",
-      decimals: 18
-    },
     BMT: {
       address: "0xf028ADEe51533b1B47BEaa890fEb54a457f51E89",
       decimals: 18
@@ -2240,10 +2252,6 @@ export const GLOBAL_TOKEN_LIST = {
     BMX: {
       address: "0x986EE2B944c42D017F52Af21c4c69B84DBeA35d8",
       decimals: 18
-    },
-    BN: {
-      address: "0xe508364efad1f04572F052D76779D7407Dcff3d9",
-      decimals: 9
     },
     BNA: {
       address: "0x20910e5b5f087f6439DFcB0ddA4e27d1014Ac2b8",
@@ -2302,8 +2310,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     BOBO: {
-      address: "0x5888641e3e6cBeA6D84Ba81EDb217bD691d3bE38",
-      decimals: 9
+      address: "0xB90B2A35C65dBC466b04240097Ca756ad2005295",
+      decimals: 18
     },
     BOG: {
       address: "0x0BA74fb26Ca523f2dc22fa4318581CC2452eAbA1",
@@ -2365,6 +2373,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x04CB855A5E5c4e92DD90Bce82548669b4Fe88702",
       decimals: 18
     },
+    BOOM: {
+      address: "0x4c73c1C8c95De5674D53604b15d968485414CB32",
+      decimals: 18
+    },
     BOOP: {
       address: "0x8013266cb5c9dd48bE3Ad7D1CE832874d64B3Ce1",
       decimals: 18
@@ -2373,12 +2385,12 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x302CAe5dcf8f051d0177043C3438020b89b33218",
       decimals: 18
     },
+    BOPE: {
+      address: "0x599955AA9fBc197a1b717d8da6a7012CAFe70ab3",
+      decimals: 9
+    },
     BOR: {
       address: "0x3c9d6c1C73b31c837832c72E04D3152f051fc1A9",
-      decimals: 18
-    },
-    BORA: {
-      address: "0x26fb86579e371c7AEdc461b2DdEF0A8628c93d3B",
       decimals: 18
     },
     BORED: {
@@ -2392,10 +2404,6 @@ export const GLOBAL_TOKEN_LIST = {
     BORING: {
       address: "0xBC19712FEB3a26080eBf6f2F7849b417FdD792CA",
       decimals: 18
-    },
-    BORK: {
-      address: "0xF2d754EA7626f35090CDdf92893374bD1B2E5A39",
-      decimals: 9
     },
     BORZOI: {
       address: "0xB6dc73987848bA6CB3ce297562723C1A78f85Fce",
@@ -2457,6 +2465,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x0eC9F76202a7061eB9b3a7D6B59D36215A7e37da",
       decimals: 18
     },
+    BRAINERS: {
+      address: "0x5044d567F7B30891639d982A05726A6BFE8Bae6A",
+      decimals: 18
+    },
     BRC20: {
       address: "0x1e87d63D11d1C16052Bbca06d43bA4ceB4EE686C",
       decimals: 9
@@ -2502,7 +2514,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     BRIGHT: {
-      address: "0xBEaB712832112bd7664226db7CD025B153D3af55",
+      address: "0x5dD57Da40e6866C9FcC34F4b6DDC89F1BA740DfE",
       decimals: 18
     },
     BRISE: {
@@ -2532,10 +2544,6 @@ export const GLOBAL_TOKEN_LIST = {
     BROS: {
       address: "0x9Dcd367e2AFA8D6e5d6Cf0306094E3Eb7BBAaf4d",
       decimals: 18
-    },
-    BRRRRR: {
-      address: "0x91CdAcba4559Ade84daA1A51b6fbd94EC3F1202e",
-      decimals: 9
     },
     BRT: {
       address: "0xd578779dbC9252218E12d18D628e3cb27E4a56f2",
@@ -2594,7 +2602,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     BT: {
-      address: "0x6628606c321FaF52b7230A57b26c01B19aA68e82",
+      address: "0x997507cc49FBf0CD6ce5e1EE543218556fAFdEBc",
       decimals: 18
     },
     BTB: {
@@ -2613,6 +2621,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xE86DF1970055e9CaEe93Dae9B7D5fD71595d0e18",
       decimals: 18
     },
+    BTC2X: {
+      address: "0xD2AC55cA3Bbd2Dd1e9936eC640dCb4b745fDe759",
+      decimals: 18
+    },
     "BTC2X-FLI": {
       address: "0x0B498ff89709d3838a063f1dFA463091F9801c2b",
       decimals: 18
@@ -2628,10 +2640,6 @@ export const GLOBAL_TOKEN_LIST = {
     BTCP: {
       address: "0x723CbfC05e2cfcc71d3d89e770D32801A5eEf5Ab",
       decimals: 8
-    },
-    BTCPEP: {
-      address: "0x61F7FdAAE910f3Ed65Fb1a3aB59354E38B06cf8E",
-      decimals: 18
     },
     BTCPX: {
       address: "0x9C32185b81766a051E08dE671207b34466DD1021",
@@ -2652,10 +2660,6 @@ export const GLOBAL_TOKEN_LIST = {
     BTL: {
       address: "0x93e32efaFd24973d45f363A76D73ccB9Edf59986",
       decimals: 6
-    },
-    BTM: {
-      address: "0xC9D21E5A24110b67af31aF464edfDC2dAe5Ec7D5",
-      decimals: 18
     },
     BTO: {
       address: "0x36905Fc93280f52362A1CBAB151F25DC46742Fb5",
@@ -2718,15 +2722,15 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     BUIDL: {
-      address: "0x7b123f53421b1bF8533339BFBdc7C98aA94163db",
-      decimals: 18
+      address: "0x7712c34205737192402172409a8F7ccef8aA2AEc",
+      decimals: 6
     },
     BUILD: {
       address: "0x57b59f981730c6257dF57cF6F0D98283749A9Eeb",
       decimals: 18
     },
     BULL: {
-      address: "0x18c1074845C389907762a71242BFE271c9da2d9c",
+      address: "0xb418ded94300913FCCBeF784A49150f46f0fB827",
       decimals: 18
     },
     BULLET: {
@@ -2754,7 +2758,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     BURN: {
-      address: "0x52e7B23E1FabA6d83376725E2CcAD75eFBd8736E",
+      address: "0x97225fAe89B370e7721F961D1145e64dF56f2482",
       decimals: 18
     },
     BURP: {
@@ -2763,10 +2767,6 @@ export const GLOBAL_TOKEN_LIST = {
     },
     BUSD: {
       address: "0x4Fabb145d64652a948d72533023f6E7A623C7C53",
-      decimals: 18
-    },
-    BUSINESS: {
-      address: "0x8A4584F0Eefda8A9B459264dC7A0D62BBA9b5484",
       decimals: 18
     },
     BUSY: {
@@ -2785,6 +2785,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xa704662eCb62be83f88ca1a3b5277A381Cb32DCE",
       decimals: 18
     },
+    BVM: {
+      address: "0x069d89974f4edaBde69450f9cF5CF7D8Cbd2568D",
+      decimals: 18
+    },
     BWL: {
       address: "0xe0bd989ec7417374A1c0D9D4fb8b692d1a9E27eB",
       decimals: 10
@@ -2795,10 +2799,6 @@ export const GLOBAL_TOKEN_LIST = {
     },
     BWT: {
       address: "0xcA3Ea3061d638E02113aA960340c98343b5aCd62",
-      decimals: 18
-    },
-    BXB: {
-      address: "0xAAc88E48767988119b84dea3fc93ceEc012F3530",
       decimals: 18
     },
     BXBT: {
@@ -2873,6 +2873,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xe65cdB6479BaC1e22340E4E755fAE7E509EcD06c",
       decimals: 8
     },
+    CAB: {
+      address: "0x73af41fe7054057218E0EB07Fe43bA5f25c7D79F",
+      decimals: 18
+    },
     CAD: {
       address: "0x912529007Bc0d2a5464A6a211EBfE217DfB75DfF",
       decimals: 18
@@ -2914,8 +2918,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     CAL: {
-      address: "0x0A63AFff33B1Ed0D209762578D328B90Ea1E7A78",
-      decimals: 9
+      address: "0x20561172f791f915323241E885b4f7D5187c36E1",
+      decimals: 18
     },
     CALI: {
       address: "0xB8fA12f8409DA31A4fc43D15c4c78C33d8213B9B",
@@ -2945,6 +2949,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xF03D5fC6E08dE6Ad886fCa34aBF9a59ef633b78a",
       decimals: 18
     },
+    CARB: {
+      address: "0x1bC71108E898586068CAbA9ee09397a2d275C092",
+      decimals: 18
+    },
     CARD: {
       address: "0x954b890704693af242613edEf1B603825afcD708",
       decimals: 18
@@ -2959,10 +2967,6 @@ export const GLOBAL_TOKEN_LIST = {
     },
     CARTMAN: {
       address: "0x6d5777dCe2541175ADf6D49cAdD666F3Ab0Ac142",
-      decimals: 18
-    },
-    CASH: {
-      address: "0xf32cFbAf4000e6820a95B3A3fCdbF27FB4eFC9af",
       decimals: 18
     },
     CASINU: {
@@ -3001,8 +3005,16 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xC1534Fe936Be00369C7a827a6e731A233bd0ED34",
       decimals: 18
     },
+    CAVADA: {
+      address: "0x9377E3c3180DddfCDa4E4217eD21F2f7c3B235a0",
+      decimals: 6
+    },
     CAW: {
       address: "0xf3b9569F82B18aEf890De263B84189bd33EBe452",
+      decimals: 18
+    },
+    CBABY: {
+      address: "0xB813322CD994a2f7808c340eA12e0a2283a7a757",
       decimals: 18
     },
     CBAT: {
@@ -3022,7 +3034,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     CBK: {
-      address: "0xD85a6Ae55a7f33B0ee113C234d2EE308EdeAF7fD",
+      address: "0x2e19067Cbeb38d6554d31a1a83aefc4018A1688a",
       decimals: 18
     },
     CBM: {
@@ -3105,10 +3117,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xCdB37A4fBC2Da5b78aA4E41a432792f9533e85Cc",
       decimals: 18
     },
-    CDY: {
-      address: "0xcD152E2A8C19BBfC2c89c5d9B19e53AB17A29b2a",
-      decimals: 18
-    },
     CEEK: {
       address: "0xb056c38f6b7Dc4064367403E26424CD2c60655e1",
       decimals: 18
@@ -3122,8 +3130,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 4
     },
     CELL: {
-      address: "0x26c8AFBBFE1EBaca03C2bB082E69D0476Bffe099",
-      decimals: 18
+      address: "0x7F59B64C6Ee521C0d7E590CF8e4B843cAa236F96",
+      decimals: 0
     },
     CELO: {
       address: "0x3294395e62F4eB6aF3f1Fcf89f5602D90Fb3Ef69",
@@ -3145,10 +3153,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x08ba718F288c3b12B01146816bef9FA03cC635bc",
       decimals: 18
     },
-    CEP: {
-      address: "0x4168BbC34BaEa34e55721809911bcA5baAEF6ba6",
-      decimals: 18
-    },
     CERE: {
       address: "0x2dA719DB753dFA10a62E140f436E1d67F2ddB0d6",
       decimals: 10
@@ -3165,16 +3169,16 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x4Ddc2D193948926D02f9B1fE9e1daa0718270ED5",
       decimals: 8
     },
+    CETI: {
+      address: "0x1bFCe574dEFf725A3f483C334b790E25c8FA9779",
+      decimals: 18
+    },
     CEX: {
       address: "0xd01D133166820557db7138963BCD9009C54E4C33",
       decimals: 18
     },
     CFI: {
       address: "0x63b4f3e3fa4e438698CE330e365E831F7cCD1eF4",
-      decimals: 18
-    },
-    CFL365: {
-      address: "0xCD6Adc6b8Bd396E2D53cCD7D7257B4De55bE4fbe",
       decimals: 18
     },
     CFSH: {
@@ -3209,20 +3213,12 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x6B89B97169a797d94F057F4a0B01E2cA303155e4",
       decimals: 18
     },
-    CHAI: {
-      address: "0x06AF07097C9Eeb7fD685c692751D5C66dB49c215",
-      decimals: 18
-    },
     CHAIN: {
       address: "0xC4C2614E694cF534D407Ee49F8E44D125E4681c4",
       decimals: 18
     },
     CHAINS: {
       address: "0xa1F830AA68B53fD3eE3BB86D7F8254E604740C8b",
-      decimals: 18
-    },
-    CHAMP: {
-      address: "0x456125Cd98107ae0480Ba566f1b716D48Ba31453",
       decimals: 18
     },
     CHAMPZ: {
@@ -3250,7 +3246,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     CHAT: {
-      address: "0x442Bc47357919446eAbC18C7211E57a13d983469",
+      address: "0xBb3D7F42C58Abd83616Ad7C8C72473Ee46df2678",
       decimals: 18
     },
     CHB: {
@@ -3313,9 +3309,9 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x244748587F145c0571E92e85429D711d1B4Cc43a",
       decimals: 18
     },
-    CHOP: {
-      address: "0x875154c31b8858fDdA9c7Ccbed7EC15dC95943Ae",
-      decimals: 8
+    CHOPPY: {
+      address: "0xF938346D7117534222B48D09325A6B8162B3A9E7",
+      decimals: 9
     },
     CHOW: {
       address: "0x3E362038fD3d08887d498944D489aF7909619a9B",
@@ -3369,10 +3365,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x9F90B457Dea25eF802E38D470ddA7343691D8FE1",
       decimals: 18
     },
-    CIPHER: {
-      address: "0x9839675308f4a83e45f4B0C89B8fa264D68B7812",
-      decimals: 18
-    },
     CIRUS: {
       address: "0xA01199c61841Fce3b3daFB83FeFC1899715c8756",
       decimals: 18
@@ -3404,6 +3396,10 @@ export const GLOBAL_TOKEN_LIST = {
     CLB: {
       address: "0x0AD896863ce4Cd84f10a9D30D4f509cefFd53c84",
       decimals: 18
+    },
+    CLD: {
+      address: "0x38604d52d3A89B16a90053AE0c6D009504a9A5b8",
+      decimals: 10
     },
     CLEV: {
       address: "0x72953a5C32413614d24C29c84a66AE4B59581Bbf",
@@ -3441,9 +3437,9 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x3E828ac5C480069D4765654Fb4b8733b910b13b2",
       decimals: 18
     },
-    CLOAK: {
-      address: "0xb4622193ca7c7580aC0ECc09C3B7bD74AEf0318d",
-      decimals: 18
+    CLOSEDAI: {
+      address: "0x571d9b73DC04ed88B4e273E048C8d4848F83b779",
+      decimals: 9
     },
     CLOUD: {
       address: "0xf2dFDBE1ea71bbdcB5A4662A16dbf5e487BE3ebe",
@@ -3481,6 +3477,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x87869A9789291A6cEC99f3c3Ef2fF71fcEb12a8e",
       decimals: 9
     },
+    CMPT: {
+      address: "0x3d000462Fb9826804a45c0EA869b83b69587F2dB",
+      decimals: 18
+    },
     CNB: {
       address: "0xC538143202f3b11382D8606aae90a96b042a19DB",
       decimals: 18
@@ -3490,11 +3490,15 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     CND: {
-      address: "0xd4c435F5B09F855C3317c8524Cb1F586E42795fa",
+      address: "0xEc505C81D6a7567b5BDE804870b1038832fE6Da1",
       decimals: 18
     },
     CNFI: {
       address: "0xEABB8996eA1662cAd2f7fB715127852cd3262Ae9",
+      decimals: 18
+    },
+    CNFRG: {
+      address: "0xb6d78683a4E54B91031ACB41510BD8E144FED025",
       decimals: 18
     },
     CNG: {
@@ -3554,7 +3558,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     COFI: {
-      address: "0x1a23a6BfBAdB59fa563008c0fB7cf96dfCF34Ea1",
+      address: "0x3136eF851592aCf49CA4C825131E364170FA32b3",
       decimals: 18
     },
     COGE: {
@@ -3575,10 +3579,6 @@ export const GLOBAL_TOKEN_LIST = {
     },
     COLLAR: {
       address: "0x9783B81438C24848f85848f8df31845097341771",
-      decimals: 18
-    },
-    COLLIE: {
-      address: "0xB8A768Cd332e4461FCcFbdb1d0292cEFFbB2Bb8A",
       decimals: 18
     },
     COLR: {
@@ -3609,13 +3609,13 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x4Dd672e77c795844fe3A464eF8eF0FAAe617C8fB",
       decimals: 18
     },
+    CONAN: {
+      address: "0x85D19fb57CA7DA715695FCf347CA2169144523a7",
+      decimals: 9
+    },
     CONI: {
       address: "0x4561de8e0C2bbA725d38D266EF62426e62678d82",
       decimals: 18
-    },
-    CONTRAX: {
-      address: "0x7b9432881fFF2a9527cFc2EfB4D33FC0D7F8E861",
-      decimals: 8
     },
     CONV: {
       address: "0xc834Fa996fA3BeC7aAD3693af486ae53D8aA8B50",
@@ -3646,8 +3646,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     CORE: {
-      address: "0x62359Ed7505Efc61FF1D56fEF82158CcaffA23D7",
-      decimals: 18
+      address: "0x8b91f277501CF8322Ebe34F137DD35B384B353C7",
+      decimals: 9
     },
     COREDAO: {
       address: "0xf66Cd2f8755a21d3c8683a10269F795c0532Dd58",
@@ -3670,7 +3670,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     COT: {
-      address: "0x5CAc718A3AE330d361e39244BF9e67AB17514CE8",
+      address: "0x5c872500c00565505F3624AB435c222E558E9ff8",
       decimals: 18
     },
     COTI: {
@@ -3709,10 +3709,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xfAE4Ee59CDd86e3Be9e8b90b53AA866327D7c090",
       decimals: 18
     },
-    CPD: {
-      address: "0x9b31bb425D8263fA1b8B9d090b83CF0C31665355",
-      decimals: 18
-    },
     CPOOL: {
       address: "0x66761Fa41377003622aEE3c7675Fc7b5c1C2FaC5",
       decimals: 18
@@ -3730,8 +3726,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 8
     },
     CPU: {
-      address: "0x6D52DfeFb16BB9Cdc78bfCA09061e44574886626",
-      decimals: 18
+      address: "0x994Bf19E32584255D82896d1477488E87012f209",
+      decimals: 9
     },
     CQT: {
       address: "0xD417144312DbF50465b1C641d016962017Ef6240",
@@ -3753,6 +3749,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x64Df3aAB3b21cC275bB76c4A581Cf8B726478ee0",
       decimals: 18
     },
+    CRATE: {
+      address: "0xA1147413cbF11737efF228FB0073c5ce101E9D87",
+      decimals: 18
+    },
     CRAZY: {
       address: "0xaD5FdC8c3C18d50315331fCa7f66eFE5033F6C4C",
       decimals: 18
@@ -3761,16 +3761,12 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xd38b5bF25976378B7C33D39f508119545Ab90535",
       decimals: 18
     },
-    CRB: {
-      address: "0x2fd8BC03D9e827F77faC20B5130eE98B7F80149d",
-      decimals: 8
-    },
     CRDC: {
       address: "0xF81421fc15300c5a8CCa9aFE12F5CBAd502Fa756",
       decimals: 18
     },
     CRE: {
-      address: "0x162433c934aA74ba147E05150B1206b2C922f71d",
+      address: "0x41EA5d41EEACc2D5c4072260945118a13bb7EbCE",
       decimals: 18
     },
     CRE8: {
@@ -3779,6 +3775,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     CREAM: {
       address: "0x2ba592F78dB6436527729929AAf6c908497cB200",
+      decimals: 18
+    },
+    CREATOPY: {
+      address: "0x9d69A8cCb7Cbc03d3dbB2c4ab03c0C1FAd3E74b0",
       decimals: 18
     },
     CREDI: {
@@ -3791,6 +3791,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     CREMAT: {
       address: "0x8b9F7e9586633cA4ABffb1F746da8dAed7849cB2",
+      decimals: 18
+    },
+    CRET: {
+      address: "0x6d0bB9B6cE385e28EA4EBb7d76dCb3A1AaF7BC4b",
       decimals: 18
     },
     CRF: {
@@ -3829,6 +3833,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x678e840C640F619E17848045D23072844224dD37",
       decimals: 18
     },
+    CRTX: {
+      address: "0x36705E789d0D1Ba53Fd9bB93512722018b0a089e",
+      decimals: 9
+    },
     CRU: {
       address: "0x32a7C02e79c4ea1008dD6564b35F131428673c41",
       decimals: 18
@@ -3861,12 +3869,24 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xC31CEBf8F9E825d1D1244D73d0a65e44bD5210DB",
       decimals: 8
     },
+    CRYO: {
+      address: "0xf4308b0263723b121056938c2172868E408079D0",
+      decimals: 18
+    },
+    CRYPTIQ: {
+      address: "0xDA5fab7affC6dFFD24d60e23153D241a3D9f9603",
+      decimals: 18
+    },
     CRYPTO: {
       address: "0x586a7cFE21E55ec0E24f0bfB118F77fE4cA87bab",
       decimals: 18
     },
     CSETH: {
       address: "0x5d74468b69073f809D4FaE90AfeC439e69Bf6263",
+      decimals: 18
+    },
+    CSIX: {
+      address: "0x345887CdB19e12833eD376BBf8b8B38269F5F5C8",
       decimals: 18
     },
     CSM: {
@@ -3898,7 +3918,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     CTC: {
-      address: "0x00B7db6B4431e345eee5cc23D21E8dbC1d5cADA3",
+      address: "0xa3EE21C306A700E682AbCdfe9BaA6A08F3820419",
       decimals: 18
     },
     CTCN: {
@@ -3922,7 +3942,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     CTR: {
-      address: "0x923b83c26B3809d960fF80332Ed00aA46D7Ed375",
+      address: "0xb3Ad645dB386D7F6D753B2b9C3F4B853DA6890B8",
       decimals: 18
     },
     CTRL: {
@@ -3968,10 +3988,6 @@ export const GLOBAL_TOKEN_LIST = {
     CUP: {
       address: "0x3209d14Ff61766359E64aceFf91877cEC2AD968E",
       decimals: 18
-    },
-    CURVE: {
-      address: "0xeCbddf83687e9842837e08c5A650658f2260b376",
-      decimals: 9
     },
     CUSD: {
       address: "0xC285B7E09A4584D027E5BC36571785B515898246",
@@ -4077,6 +4093,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x14778860E937f509e651192a90589dE711Fb88a9",
       decimals: 18
     },
+    CYBONK: {
+      address: "0x9194337C06405623c0F374e63Fa1CC94e2788c58",
+      decimals: 18
+    },
     CYC: {
       address: "0x8861cfF2366C1128fd699B68304aD99a0764Ef9a",
       decimals: 18
@@ -4101,13 +4121,13 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x4a621d9f1b19296d1C0f87637b3A8D4978e9bf82",
       decimals: 18
     },
-    CYMI: {
-      address: "0x7449c93ABe66457e83B3799BCf1A99e92D58A93B",
-      decimals: 18
-    },
     CYOP: {
       address: "0x553531C45eABc2F3343D19885262ac784046FD5F",
       decimals: 18
+    },
+    CYPHER: {
+      address: "0x8110AF6BD2aF3f5c4586032ff813c8934451aBBe",
+      decimals: 9
     },
     CZ: {
       address: "0xc3960227e41c3F54E9b399cE216149dEa5315c34",
@@ -4189,6 +4209,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x682F3317a8dB21Ba205DC84a0B7BD5010333bda7",
       decimals: 18
     },
+    DAP: {
+      address: "0xBF72ee725f9B06DC564324774801aCEBAd061946",
+      decimals: 18
+    },
     DAPP: {
       address: "0x939B462ee3311f8926c047D2B576C389092b1649",
       decimals: 4
@@ -4215,10 +4239,6 @@ export const GLOBAL_TOKEN_LIST = {
     },
     DAVE: {
       address: "0x7f4c5447af6A96d8eeAEE1d932338cFc57890dbD",
-      decimals: 18
-    },
-    DAWAE: {
-      address: "0xBc953FCcBCC9E95DAFb35d46992cEe966AA972CD",
       decimals: 18
     },
     DAWG: {
@@ -4249,10 +4269,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x99F618EDcfEDCa1fCC8302e14Daa84802114a8c5",
       decimals: 9
     },
-    DBOX: {
-      address: "0x56c9D5F1E727de03643af220B5cE52DE23D4D973",
-      decimals: 18
-    },
     DBR: {
       address: "0xAD038Eb671c44b853887A7E32528FaB35dC5D710",
       decimals: 18
@@ -4271,6 +4287,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     DCARD: {
       address: "0x2F3d0d2317802A65FAAC6e4cd94067c37B4d4804",
+      decimals: 9
+    },
+    DCE: {
+      address: "0xAF6acA2769Be86b9910165bff78FEA643c086C61",
       decimals: 9
     },
     DCHF: {
@@ -4313,6 +4333,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x3A880652F47bFaa771908C07Dd8673A787dAEd3A",
       decimals: 18
     },
+    DEAI: {
+      address: "0x1495bc9e44Af1F8BCB62278D2bEC4540cF0C05ea",
+      decimals: 18
+    },
     DEAL: {
       address: "0x7A771A90B8F2a10aFd9A75B8E49D646d1139Bb98",
       decimals: 18
@@ -4332,6 +4356,14 @@ export const GLOBAL_TOKEN_LIST = {
     DEDE: {
       address: "0x9D7b68970d2be6dc93124477b4E2e1C9A6b180aA",
       decimals: 9
+    },
+    DEEPL: {
+      address: "0xd0bcB2c156a3507670f9BedC319a6409C41bA68E",
+      decimals: 9
+    },
+    DEFEND: {
+      address: "0x9511FF502f982643935a39206F98a6C18D4527CF",
+      decimals: 18
     },
     DEFI: {
       address: "0x6B0FaCA7bA905a86F221CEb5CA404f605e5b3131",
@@ -4371,10 +4403,6 @@ export const GLOBAL_TOKEN_LIST = {
     },
     DELTA: {
       address: "0x9EA3b5b4EC044b70375236A281986106457b20EF",
-      decimals: 18
-    },
-    DENA: {
-      address: "0x15F0EEDF9Ce24fc4b6826E590A8292CE5524a1DA",
       decimals: 18
     },
     DENCH: {
@@ -4449,6 +4477,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xde4EE8057785A7e8e800Db58F9784845A5C2Cbd6",
       decimals: 18
     },
+    DEXED: {
+      address: "0x6dD5F0038474dC29A0ADc6aD34d37B0Ba53E5435",
+      decimals: 9
+    },
     DEXIO: {
       address: "0xe2cfBBEDbcE1bd59B1B799C44282E6396D692b84",
       decimals: 18
@@ -4506,8 +4538,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 8
     },
     DFUND: {
-      address: "0x5E67e49a95B8cCC7a46b68bCdc1C35dc799ef9E0",
-      decimals: 9
+      address: "0xabc93B1C8FfA3A69F478068676360021BBaab4Bf",
+      decimals: 18
     },
     DFX: {
       address: "0x888888435FDe8e7d4c54cAb67f206e4199454c60",
@@ -4518,7 +4550,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     DG: {
-      address: "0x53C8395465A84955c95159814461466053DedEDE",
+      address: "0x4b520c812E8430659FC9f12f6d0c39026C83588D",
       decimals: 18
     },
     DGCS: {
@@ -4560,6 +4592,10 @@ export const GLOBAL_TOKEN_LIST = {
     DGX: {
       address: "0x4f3AfEC4E5a3F2A6a1A411DEF7D7dFe50eE057bF",
       decimals: 9
+    },
+    DHB: {
+      address: "0x99BB69Ee1BbFC7706C3ebb79b21C5B698fe58EC0",
+      decimals: 18
     },
     DHN: {
       address: "0x32462bA310E447eF34FF0D15BCE8613aa8C4A244",
@@ -4642,7 +4678,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     DIVA: {
-      address: "0x4B7fFCB2b92fB4890f22f62a52Fb7A180eaB818e",
+      address: "0xBFAbdE619ed5C4311811cF422562709710DB587d",
       decimals: 18
     },
     DIVER: {
@@ -4673,6 +4709,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x0000000DE40dfa9B17854cBC7869D80f9F98D823",
       decimals: 18
     },
+    DMAI: {
+      address: "0x05F72d4555E71eF3F5862627828FC2F830d3cCB1",
+      decimals: 18
+    },
     DMCC: {
       address: "0x148255a3b10666D9788Ec48BC61Ea3e48974bf2C",
       decimals: 18
@@ -4693,9 +4733,17 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xf058501585023d040eA9493134ED72C083553eED",
       decimals: 18
     },
+    DN: {
+      address: "0xC7937B44532bf4C0a1f0de3a46c79DdDb6dD169d",
+      decimals: 18
+    },
     DNA: {
       address: "0xef6344de1fcfC5F48c30234C16c1389e8CdC572C",
       decimals: 18
+    },
+    DNODE: {
+      address: "0x014337b35167b3711195361Bb85259009e50a8a4",
+      decimals: 9
     },
     DNT: {
       address: "0x0AbdAce70D3790235af448C88547603b945604ea",
@@ -4714,7 +4762,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     DODO: {
-      address: "0x43Dfc4159D86F3A37A5A4B3D4580b888ad7d4DDd",
+      address: "0x747E550a7B848acE786C3CFe754Aa78feBC8A022",
       decimals: 18
     },
     DOE: {
@@ -4722,8 +4770,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     DOG: {
-      address: "0x162bb2Bb5FB03976a69dD25bB9afcE6140dB1433",
-      decimals: 9
+      address: "0xBAac2B4491727D78D2b78815144570b9f2Fe8899",
+      decimals: 18
     },
     DOGB: {
       address: "0xb0f92f94d02A4d634FD394c1889Fe3cAb1FCffc7",
@@ -4810,8 +4858,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 9
     },
     DOKI: {
-      address: "0x9cEB84f92A0561fa3Cc4132aB9c0b76A59787544",
-      decimals: 18
+      address: "0x869DBe51Dc214fcb663604b0F7B548592F8C71f5",
+      decimals: 9
     },
     DOLA: {
       address: "0x865377367054516e17014CcdED1e7d814EDC9ce4",
@@ -4833,16 +4881,20 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x4208Aa4d7A9a10f4f8bb7f6400c1b2161D946969",
       decimals: 18
     },
+    DONGO: {
+      address: "0x8c213AE332274e6314Bf4cF989604e7f61162967",
+      decimals: 9
+    },
     DONUT: {
       address: "0xC0F9bD5Fa5698B6505F643900FFA515Ea5dF54A9",
       decimals: 18
     },
     DOP: {
-      address: "0x6bB61215298F296C55b19Ad842D3Df69021DA2ef",
+      address: "0x2a7CAd775fd9C5c43f996A948660fFc21b4e628c",
       decimals: 18
     },
     DORA: {
-      address: "0xbc4171f45EF0EF66E76F979dF021a34B46DCc81d",
+      address: "0x70b790d0948a760e80bc3f892b142F7779b538B2",
       decimals: 18
     },
     DORK: {
@@ -4866,8 +4918,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     DOUGH: {
-      address: "0xad32A8e6220741182940c5aBF610bDE99E737b2D",
-      decimals: 18
+      address: "0xFc116eA24F002F600e363bdce4b91715fe5e0392",
+      decimals: 9
     },
     DOV: {
       address: "0xac3211a5025414Af2866FF09c23FC18bc97e79b1",
@@ -4896,10 +4948,6 @@ export const GLOBAL_TOKEN_LIST = {
     DPR: {
       address: "0xf3AE5d769e153Ef72b4e3591aC004E89F48107a1",
       decimals: 18
-    },
-    DPRK: {
-      address: "0x5a0FCD6247F37154B6ab433ab72dc2AC7b3EBb8b",
-      decimals: 8
     },
     DPS: {
       address: "0xB7B1570e26315BAAD369b8EA0a943b7F140DB9eB",
@@ -4934,8 +4982,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     DRC: {
-      address: "0xd7f5CABdF696D7d1bf384D7688926A4bdB092c67",
-      decimals: 18
+      address: "0xa150Db9b1Fa65b44799d4dD949D922c0a33Ee606",
+      decimals: 0
     },
     DREAM: {
       address: "0xEBcF2FbE20e7bBBD5232EB186B85c143d362074e",
@@ -4953,9 +5001,13 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xE69D699cbcD79cB1B55F82cF36BF1A2836053562",
       decimals: 18
     },
-    DS: {
-      address: "0xB67bEB26eBeb0DCEec354aE0942256d03c01771b",
+    DROPS: {
+      address: "0xA562912e1328eEA987E04c2650EfB5703757850C",
       decimals: 18
+    },
+    DS: {
+      address: "0xAE9D553c85eEf99C0ef9169F0D49EF33F5275f94",
+      decimals: 9
     },
     DSETH: {
       address: "0x341c05c0E9b33C0E38d64de76516b2Ce970bB3BE",
@@ -4971,6 +5023,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     DSS: {
       address: "0x213C53C96A01a89E6Dcc5683cF16473203E17513",
+      decimals: 18
+    },
+    DSYNC: {
+      address: "0xf94e7d0710709388bCe3161C32B4eEA56d3f91CC",
       decimals: 18
     },
     DTUBE: {
@@ -5010,7 +5066,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     DUEL: {
-      address: "0x0e79de3a7eE59ABf6086c2138231B1f8EC8c638E",
+      address: "0x943Af2ece93118B973c95c2F698EE9D15002e604",
       decimals: 18
     },
     DUMMY: {
@@ -5058,11 +5114,15 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 8
     },
     DVT: {
-      address: "0x29FA1fee0F4F0Ab0e36eF7Ab8d7a35439eC6be75",
+      address: "0x74a85f68CD947D05585f76118E51b2Ed1484a838",
       decimals: 18
     },
     DWEB: {
       address: "0xE7f58A92476056627f9FdB92286778aBd83b285F",
+      decimals: 18
+    },
+    DWIF: {
+      address: "0xd775997452923437ca96065bA15Ed02F4a33Ed39",
       decimals: 18
     },
     DX: {
@@ -5109,6 +5169,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x9Cb2f26A23b8d89973F08c957C4d7cdf75CD341c",
       decimals: 6
     },
+    DZHV: {
+      address: "0x3419875B4D3Bca7F3FddA2dB7a476A79fD31B4fE",
+      decimals: 18
+    },
     DZOO: {
       address: "0xc97d6C52F3ADD91Fa1c5287a453d7444aECBca83",
       decimals: 18
@@ -5118,7 +5182,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     EARN: {
-      address: "0x12Ed0641242e4C6c220e3ca8F616E9d5470AC99a",
+      address: "0x0b61C4f33BCdEF83359ab97673Cb5961c6435F4E",
       decimals: 18
     },
     EBET: {
@@ -5142,8 +5206,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     ECO: {
-      address: "0x191557728e4d8CAa4Ac94f86af842148c0FA8F7E",
-      decimals: 8
+      address: "0x8dBF9A4c99580fC7Fd4024ee08f3994420035727",
+      decimals: 18
     },
     ECOREAL: {
       address: "0x7ECbb21346C501Fd07eb165E406120fA32381C16",
@@ -5210,7 +5274,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     EETH: {
-      address: "0x35fA164735182de50811E8e2E824cFb9B6118ac2",
+      address: "0xe46a1D19962Ea120765D3139c588fFd617bE04A8",
       decimals: 18
     },
     EEUR: {
@@ -5225,8 +5289,8 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x656C00e1BcD96f256F224AD9112FF426Ef053733",
       decimals: 18
     },
-    EFOLIO: {
-      address: "0xF3bF9B3EF3867d20a5eE51244f8b374B9d5E019E",
+    EFT: {
+      address: "0xf86cFCE1e746456135d7fACe48c2916D7D3cb676",
       decimals: 18
     },
     EGAME: {
@@ -5309,6 +5373,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x33E07f5055173cF8FeBedE8B21B12D1e2b523205",
       decimals: 18
     },
+    ELDG: {
+      address: "0xDDA31D354a519ecfB0bC2a536b5E7be147C0F7F4",
+      decimals: 18
+    },
     ELEC: {
       address: "0xD49ff13661451313cA1553fd6954BD1d9b6E02b9",
       decimals: 18
@@ -5346,8 +5414,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     ELON: {
-      address: "0xcE2B26bEC3c6945f0922a983f3cfA11cd79176F4",
-      decimals: 9
+      address: "0x761D38e5ddf6ccf6Cf7c55759d5210750B5D60F3",
+      decimals: 18
     },
     ELON20: {
       address: "0xEA18DC833653172BbE819fEb5320D9dA9f99799a",
@@ -5383,10 +5451,6 @@ export const GLOBAL_TOKEN_LIST = {
     },
     EMAX: {
       address: "0x15874d65e649880c2614e7a480cb7c9A55787FF6",
-      decimals: 18
-    },
-    EMBR: {
-      address: "0x1936aE42b59876192a2E263B3807343c448e3c85",
       decimals: 18
     },
     EMERALD: {
@@ -5449,10 +5513,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xF629cBd94d3791C9250152BD8dfBDF380E2a3B9c",
       decimals: 18
     },
-    ENO: {
-      address: "0x1C3d163219Bb74f430411b95D66b72056f366eC1",
-      decimals: 18
-    },
     ENOCH: {
       address: "0x4db57D585fa82Ca32d25086DDc069d899f08D455",
       decimals: 18
@@ -5509,10 +5569,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x280Df82DB83Abb0a4C734Bb02afC7985A1C8EAf2",
       decimals: 9
     },
-    EPHIAT: {
-      address: "0xE9F721E7419423f11863e83DbD710b5D6127b5b0",
-      decimals: 18
-    },
     EPIK: {
       address: "0x4da0C48376C277cdBd7Fc6FdC6936DEE3e4AdF75",
       decimals: 18
@@ -5527,6 +5583,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     EPOCH: {
       address: "0x97D0CfEB4FdE54B430307c9482d6f79C761Fe9B6",
+      decimals: 18
+    },
+    EQB: {
+      address: "0xfE80D611c6403f70e5B1b9B722D2B3510B740B2B",
       decimals: 18
     },
     EQUAD: {
@@ -5551,6 +5611,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     ERR: {
       address: "0x893c47bc1fF55c2269236AC7a4288681532161E0",
+      decimals: 18
+    },
+    ERRDB: {
+      address: "0x2907dCbC51191A5d7494077d1156FFfC34f110AB",
       decimals: 18
     },
     ERSDL: {
@@ -5581,10 +5645,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xA3c31927A092BD54eb9A0B5DfE01D9DB5028BD4f",
       decimals: 9
     },
-    ESPRO: {
-      address: "0x29C56E7CB9C840d2b2371b17e28BaB44AD3c3ead",
-      decimals: 18
-    },
     ESS: {
       address: "0xfc05987bd2be489ACCF0f509E44B0145d68240f7",
       decimals: 18
@@ -5605,6 +5665,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xFbE6F37d3db3fc939F665cfe21238c11a5447831",
       decimals: 9
     },
+    ETH2X: {
+      address: "0x65c4C0517025Ec0843C9146aF266A2C5a2D148A2",
+      decimals: 18
+    },
     "ETH2X-FLI": {
       address: "0xAa6E8127831c9DE45ae56bB1b0d4D4Da6e5665BD",
       decimals: 18
@@ -5622,15 +5686,15 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     ETHEREUM: {
-      address: "0x24249b5a869a445C9B0CE269a08d73c618dF9d21",
-      decimals: 8
+      address: "0xDC5E9445169C73Cf21e1da0B270e8433caC69959",
+      decimals: 9
     },
     ETHETF: {
       address: "0x91be752d438d5F804345b5AcB18DE0c431aD470F",
       decimals: 18
     },
-    ETHF: {
-      address: "0x730f8C56C709c5F5B4a6e91f98Fa7A7C410E990d",
+    ETHFI: {
+      address: "0xFe0c30065B384F05761f15d0CC899D4F9F9Cc0eB",
       decimals: 18
     },
     ETHINU: {
@@ -5639,10 +5703,6 @@ export const GLOBAL_TOKEN_LIST = {
     },
     ETHIX: {
       address: "0xFd09911130e6930Bf87F2B0554c44F400bD80D3e",
-      decimals: 18
-    },
-    ETHLINQ: {
-      address: "0x486c280024B5428459Ec3360f99183a61D41D9A3",
       decimals: 18
     },
     ETHM: {
@@ -5679,6 +5739,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     "EUR-C": {
       address: "0xf7790914Dc335B20Aa19D7c9C9171e14e278A134",
+      decimals: 18
+    },
+    EURA: {
+      address: "0x1a7e4e63778B4f12a199C062f3eFdD288afCBce8",
       decimals: 18
     },
     EURC: {
@@ -5765,10 +5829,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x7A939Bb714fd2A48EbeB1E495AA9aaa74BA9fA68",
       decimals: 18
     },
-    EWC: {
-      address: "0xcD74Cf66c43e45Abd5703f3642F73d0675D6AFF7",
-      decimals: 18
-    },
     EXD: {
       address: "0x02dE007D412266a2e0Fa9287C103474170F06560",
       decimals: 18
@@ -5837,6 +5897,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xCda2f16C6Aa895D533506B426AFF827b709c87F5",
       decimals: 18
     },
+    FAIR: {
+      address: "0x32ECa61dC25D0742F238ce523E66b68867625dAD",
+      decimals: 18
+    },
     FAKEAI: {
       address: "0x5AEf5bba19e6a1644805Bd4F5C93C8557b87c62c",
       decimals: 18
@@ -5873,12 +5937,8 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xC4136C364289cc5b42ACAE1442eA28c1e994aAB5",
       decimals: 18
     },
-    FBT: {
-      address: "0x4727a02269943b225A7de9ef28496f36d454B983",
-      decimals: 18
-    },
     FBX: {
-      address: "0x60BB16c4A931b1a0B8A7D945C651DD90f41D42Cf",
+      address: "0x5De597849Cf72c72f073e9085bDD0DadD8E6C199",
       decimals: 18
     },
     FCL: {
@@ -5918,8 +5978,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 8
     },
     FEG: {
-      address: "0x389999216860AB8E0175387A0c90E5c52522C945",
-      decimals: 9
+      address: "0xbededDf2eF49E87037c4fb2cA34d1FF3D3992A11",
+      decimals: 18
     },
     FEI: {
       address: "0x956F47F50A910163D8BF957Cf5846D573E7f87CA",
@@ -5961,8 +6021,8 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x1C9A2d6b33B4826757273D47ebEe0e2DddcD978B",
       decimals: 8
     },
-    FGATE: {
-      address: "0x97808Df7Afb14134d37a91576bDb8b95dFCD2E92",
+    FGPU: {
+      address: "0xC0b6aDDDE76BE6a09231edc12A5E3794C11f594F",
       decimals: 18
     },
     FI: {
@@ -6002,8 +6062,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     FIRE: {
-      address: "0xF921ae2DAC5fa128DC0F6168Bf153ea0943d2D43",
-      decimals: 8
+      address: "0x9B81686140e85d28C2236c307Dd49b422A663eDf",
+      decimals: 18
     },
     FIREBOT: {
       address: "0xD04202aBD9568A8A8798484CA1BD8778411f7103",
@@ -6014,7 +6074,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     FIT: {
-      address: "0x3c72fca8523686fd9e5740b0826FA4bB376E0241",
+      address: "0x9B01637302B6Adfc2C82678e2A8D680CFF6337B7",
       decimals: 18
     },
     FIWT: {
@@ -6038,11 +6098,11 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     FLC: {
-      address: "0x32C4ADB9cF57f972bc375129de91C897b4F364F1",
+      address: "0x102c776DDB30C754dEd4fDcC77A19230A60D4e4f",
       decimals: 18
     },
     FLEX: {
-      address: "0xb076BDa1ABc154DdB4CCd9Be45542A823aEE290E",
+      address: "0xe085FF62E049B5E3a8d12bc6DFFC2dfa329a8894",
       decimals: 18
     },
     FLEXUSD: {
@@ -6054,12 +6114,12 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     FLOKI: {
-      address: "0x67Cc621AB2d086a101Cff3340df0A065Ac75827c",
-      decimals: 18
+      address: "0xcf0C122c6b73ff809C693DB761e7BaeBe62b6a2E",
+      decimals: 9
     },
     FLOOR: {
-      address: "0xf59257E961883636290411c11ec5Ae622d19455e",
-      decimals: 9
+      address: "0x3B0fCCBd5DAE0570A70f1FB6D8D666a33c89d71e",
+      decimals: 18
     },
     FLP: {
       address: "0x3a1Bda28AdB5B0a812a7CF10A1950c920F79BcD3",
@@ -6067,6 +6127,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     FLRBRG: {
       address: "0x9138C8779A0Ac8a84D69617D5715BD8AFa23C650",
+      decimals: 18
+    },
+    FLT: {
+      address: "0x236501327e701692a281934230AF0b6BE8Df3353",
       decimals: 18
     },
     FLUID: {
@@ -6213,6 +6277,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x01824357D7D7EAF4677Bc17786aBd26CBdEc9Ad7",
       decimals: 18
     },
+    FOTTIE: {
+      address: "0xE3B9CfB8EA8a4F1279fBC28D3E15B4d2d86f18A0",
+      decimals: 9
+    },
     FOUR: {
       address: "0x4730fB1463A6F1F44AEB45F6c5c422427f37F4D0",
       decimals: 18
@@ -6258,7 +6326,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     FREE: {
-      address: "0x2F141Ce366a2462f02cEA3D12CF93E4DCa49e4Fd",
+      address: "0x4CD0c43B0D53bc318cc5342b77EB6f124E47f526",
       decimals: 18
     },
     FREECZ: {
@@ -6274,7 +6342,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     FRENS: {
-      address: "0x5C0217E4e126d501896594bEC409898A9AFc5970",
+      address: "0xD17c18979a45c0f3604331831c409F7bFf64D3C1",
       decimals: 18
     },
     FREQAI: {
@@ -6345,10 +6413,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x979aCA85bA37c675e78322ed5d97fa980B9Bdf00",
       decimals: 18
     },
-    FSNIPE: {
-      address: "0x987041FB536942bBc686ad7DBc7046D277881FeE",
-      decimals: 18
-    },
     FST: {
       address: "0x0E192d382a36De7011F795Acc4391Cd302003606",
       decimals: 18
@@ -6360,10 +6424,6 @@ export const GLOBAL_TOKEN_LIST = {
     FT: {
       address: "0xEe9E7Bb7E55bBc86414047B61D65c9C0d91fFBd0",
       decimals: 18
-    },
-    FTF: {
-      address: "0xa59eA1B2D012619A8b9ce16431894cF0BE516A73",
-      decimals: 9
     },
     FTG: {
       address: "0x3A4CaB3DcfaB144FE7eB2B5a3e288Cc03dC07659",
@@ -6410,12 +6470,12 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 8
     },
     FUND: {
-      address: "0x7d8d7c26179b7A6aebbF66A91C38ED92d5B4996b",
+      address: "0x66861D5f0Fbfb7b2711712fEF2172c560D08d0AB",
       decimals: 18
     },
-    FURIE: {
-      address: "0xDE171d5151668A330eCF5F6e882B98Aff5f3D24E",
-      decimals: 9
+    FUNG: {
+      address: "0x0e4e7F2AecF408AFF4f82f067677050239bdC58A",
+      decimals: 18
     },
     FUSDC: {
       address: "0x9d1089802eE608BA84C5c98211afE5f37F96B36C",
@@ -6430,8 +6490,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     FUSION: {
-      address: "0x6230f552A1c825D02E1140Ccc0d3f5EEEC81ca84",
-      decimals: 9
+      address: "0x9094C15f2F535a765E8a2dAc20b05148Be7044Cd",
+      decimals: 18
     },
     FUTURE: {
       address: "0xd4aE236a5080A09c0f7BD6E6B84919523573a43B",
@@ -6446,7 +6506,11 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     FWB: {
-      address: "0x35bD01FC9d6D5D81CA9E055Db88Dc49aa2c699A8",
+      address: "0x269877f972622D3c293FCa595c65cf34b7f527Ce",
+      decimals: 18
+    },
+    FWIF: {
+      address: "0xd298FE9fa71aD553e35997b19AF19FB435038521",
       decimals: 18
     },
     FWT: {
@@ -6513,8 +6577,12 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xd1d2Eb1B1e90B638588728b4130137D262C87cae",
       decimals: 8
     },
+    GAMBIT: {
+      address: "0x2aE21DE576E0Fe0367651dDCF76e04dD0608c076",
+      decimals: 18
+    },
     GAME: {
-      address: "0x63f88A2298a5c4AEE3c216Aa6D926B184a4b2437",
+      address: "0x7f716B4777169eBD8ff132AcFFf59399049A137b",
       decimals: 18
     },
     GAMER: {
@@ -6542,16 +6610,16 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     GATSBY: {
-      address: "0x5D0EbC4Ec5ac18d30512fb6287886245061B3Dbd",
-      decimals: 9
+      address: "0xE22910D04bDc9d55570f3BC52E786b49DddF37b4",
+      decimals: 18
     },
     GAURO: {
       address: "0x8cb73eB53FA81F808f704BEa15A677B6464A1f90",
       decimals: 9
     },
-    GB: {
-      address: "0x743494393d802Ac25C39d7882b10d7Fd08293686",
-      decimals: 18
+    GAUSS: {
+      address: "0x622984873c958e00aa0f004cbDd2B5301CF0b132",
+      decimals: 9
     },
     GBE: {
       address: "0x176BC22E1855Cd5cf5A840081C6c5b92b55E2210",
@@ -6593,10 +6661,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x301C755bA0fcA00B1923768Fffb3Df7f4E63aF31",
       decimals: 18
     },
-    GDO: {
-      address: "0x16F78145AD0B9Af58747e9A97EBd99175378bd3D",
-      decimals: 18
-    },
     GDT: {
       address: "0xc67B12049c2D0CF6e476BC64c7F82fc6C63cFFc5",
       decimals: 8
@@ -6610,7 +6674,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     GEC: {
-      address: "0x3001f57F8308b189EB412a64322Aad5eF9951290",
+      address: "0xe304283C3e60Cefaf7eA514007Cf4E8fdC3d869d",
       decimals: 18
     },
     GEEQ: {
@@ -6632,6 +6696,14 @@ export const GLOBAL_TOKEN_LIST = {
     GEM: {
       address: "0x9b17bAADf0f21F03e35249e0e59723F34994F806",
       decimals: 18
+    },
+    GEMAI: {
+      address: "0x3e5d4Ed373596f00A5Fc78cEb49994d9dc665aA9",
+      decimals: 9
+    },
+    GEMS: {
+      address: "0xEa55f9d4a1BCeA5E3e806f169f33f0092D5FB7f0",
+      decimals: 9
     },
     GEN: {
       address: "0xcae3fAA4B6cF660AEF18474074949BA0948bc025",
@@ -6670,8 +6742,12 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     GETH: {
-      address: "0x3802c218221390025BCEABBaD5D8C59F40eB74B8",
+      address: "0xdD69DB25F6D620A7baD3023c5d32761D353D3De9",
       decimals: 18
+    },
+    GEXC: {
+      address: "0xF1Dba5c1972778763409447d9aDEdabbBeB177C1",
+      decimals: 9
     },
     GF: {
       address: "0xAaEf88cEa01475125522e117BFe45cF32044E238",
@@ -6717,12 +6793,12 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x728f30fa2f100742C7949D1961804FA8E0B1387d",
       decimals: 18
     },
-    GIGA: {
-      address: "0xcB2B9B5b136Dc29fEB0548dFF315021B9b6c2bA0",
+    GIAC: {
+      address: "0x793A5D8b30Aab326F83d20a9370C827fEA8Fdc51",
       decimals: 18
     },
-    GINU: {
-      address: "0x74bE64B45D394FA57816c1950E94dBB8d7A7B306",
+    GIGA: {
+      address: "0x83249c6794BCa5a77Eb8c0AF9F1A86E055459cea",
       decimals: 9
     },
     GIV: {
@@ -6901,6 +6977,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x33C04Bed4533e31f2Afb8AC4a61A48Eda38C4fA0",
       decimals: 9
     },
+    GOS: {
+      address: "0xc4B7aF50644c661e270FBb8da770049C9FC0bBE1",
+      decimals: 18
+    },
     GOTG: {
       address: "0xceEB07Dd26b36287B6d109f0b06d7e8202Ce8c1D",
       decimals: 18
@@ -6917,12 +6997,20 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x8F8eD076e61A27DB72a5724ea0907A66fb0ddB32",
       decimals: 18
     },
-    GPBP: {
-      address: "0xe5ca70281149Be03Da30778fb5ec6183d339F7a5",
-      decimals: 9
+    GPT: {
+      address: "0xCdb4A8742ed7D0259b51E3454C46C9D6C48d5e88",
+      decimals: 18
     },
     GPTPLUS: {
       address: "0xeD9F6Aa6532869576211fD6367E3c328810fBeb3",
+      decimals: 18
+    },
+    GPU: {
+      address: "0x1258D60B224c0C5cD888D37bbF31aa5FCFb7e870",
+      decimals: 18
+    },
+    GPUBOT: {
+      address: "0xa069ADd2d093f9Df0e82Ab64Ec7dD0320CB4f65D",
       decimals: 18
     },
     GR: {
@@ -7058,8 +7146,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     GTC: {
-      address: "0xe138FDa441fC31B36171122397a8A11d6cd2c479",
-      decimals: 0
+      address: "0xB70835D7822eBB9426B56543E391846C107bd32C",
+      decimals: 18
     },
     GTCETH: {
       address: "0x36c833Eed0D376f75D1ff9dFDeE260191336065e",
@@ -7080,6 +7168,10 @@ export const GLOBAL_TOKEN_LIST = {
     GTM: {
       address: "0xE8B1e79D937c648Ce1fE96e6739ddb2714058a18",
       decimals: 18
+    },
+    GTROK: {
+      address: "0xd78cB66B3aFfd27569782737fa5B842277e1ADD7",
+      decimals: 9
     },
     GTRON: {
       address: "0x20bC71DdF242b88502d9819E02D45Ad0D4a586c8",
@@ -7110,11 +7202,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     GUM: {
-      address: "0x4f5fa8f2d12e5eB780f6082Dd656C565C48E0f24",
-      decimals: 18
-    },
-    GUPPI: {
-      address: "0x4341A2C412B1b7Bee50616de6E6e1172719C6351",
+      address: "0xa72332aF4a7efBCE221903e7A09175BE64F0400d",
       decimals: 18
     },
     GUSD: {
@@ -7127,6 +7215,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     GUY: {
       address: "0x4743a7a193cdF202035e9Bc6830A07f1607630C4",
+      decimals: 18
+    },
+    GVEC: {
+      address: "0xb2D007293a421471586D6BC3FBfEB1990fdFa2e6",
       decimals: 18
     },
     GW: {
@@ -7177,10 +7269,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xc6956b78e036b87Ba2aB9810BF081eb76EEDd17a",
       decimals: 18
     },
-    H2O: {
-      address: "0x0642026E7f0B6cCaC5925b4E7Fa61384250e1701",
-      decimals: 18
-    },
     HABIBI: {
       address: "0x8526Be2379E853d5Cf02f9823BB9690e1a6Ff9e2",
       decimals: 18
@@ -7212,6 +7300,10 @@ export const GLOBAL_TOKEN_LIST = {
     HAKKA: {
       address: "0x0E29e5AbbB5FD88e28b2d355774e73BD47dE3bcd",
       decimals: 18
+    },
+    HALVING: {
+      address: "0x665f4709940F557E9dDe63DF0FD9cF6425852b4D",
+      decimals: 9
     },
     HAMS: {
       address: "0x48c87cDacb6Bb6BF6E5Cd85D8ee5C847084c7410",
@@ -7258,7 +7350,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 9
     },
     HARAMBE: {
-      address: "0xADe6FDAba1643E4D1eeF68Da7170F234470938c6",
+      address: "0x255f1B39172f65dC6406b8bEE8b08155C45Fe1b6",
       decimals: 18
     },
     HART: {
@@ -7266,8 +7358,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     HASH: {
-      address: "0xA849cd6239906F23b63BA34441b73a5C6EbA8A00",
-      decimals: 18
+      address: "0x0C79E09497c9862479c9e6499c61342b5Fe3e6B2",
+      decimals: 9
     },
     HAUS: {
       address: "0xf2051511B9b121394FA75B8F7d4E7424337af687",
@@ -7290,7 +7382,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     HBOT: {
-      address: "0xf5AEd4F6a1Ad00f39Dd21febb6f400ea020030c2",
+      address: "0xE5097D9baeAFB89f9bcB78C9290d545dB5f9e9CB",
       decimals: 18
     },
     HBT: {
@@ -7302,7 +7394,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     HDAO: {
-      address: "0x74faaB6986560fD1140508e4266D8a7b87274Ffd",
+      address: "0xdaC657ffD44a3B9d8aba8749830Bf14BEB66fF2D",
       decimals: 18
     },
     HDOT: {
@@ -7312,10 +7404,6 @@ export const GLOBAL_TOKEN_LIST = {
     HDP: {
       address: "0xc4d5545392f5Fc57EBa3AF8981815669bb7E2A48",
       decimals: 4
-    },
-    HDR: {
-      address: "0x8CC5ABA81A610F4Fc01b42C83508CE7A59B8CC10",
-      decimals: 9
     },
     HDRN: {
       address: "0x3819f64f282bf135d62168C1e513280dAF905e06",
@@ -7345,6 +7433,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x584bC13c7D411c00c01A62e8019472dE68768430",
       decimals: 18
     },
+    HELGA: {
+      address: "0x78E3b2ee11950df78a35FD924E92fbB8d1403780",
+      decimals: 18
+    },
     HELLO: {
       address: "0x411099C0b413f4fedDb10Edf6a8be63BD321311C",
       decimals: 18
@@ -7365,17 +7457,9 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x04A020325024F130988782bd5276e53595e8d16E",
       decimals: 8
     },
-    HERMES: {
-      address: "0xDE6Cec925D3e76e2Cb94cf5805159244BA4CBb91",
-      decimals: 18
-    },
     HERO: {
       address: "0x524Ebc93BeEf838F70b4Ae54b675d3e971D5884E",
       decimals: 9
-    },
-    HETH: {
-      address: "0x5bBe36152d3CD3eB7183A82470b39b29EedF068B",
-      decimals: 18
     },
     HEX: {
       address: "0x2b591e99afE9f32eAA6214f7B7629768c40Eeb39",
@@ -7525,10 +7609,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xb1f136a74e18E4E2921feBbf25820d1Bb65B5647",
       decimals: 18
     },
-    HIPVP: {
-      address: "0x0C0725282cbF037e6781fE84E0361B01daA88DdF",
-      decimals: 16
-    },
     HIRENGA: {
       address: "0x1De852CD18323Bc5eBDa842b8EEF46C6E551aa47",
       decimals: 18
@@ -7546,8 +7626,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     HIT: {
-      address: "0x7995ab36bB307Afa6A683C24a25d90Dc1Ea83566",
-      decimals: 6
+      address: "0x74b1Af114274335598da72f5C6ed7b954a016EeD",
+      decimals: 18
     },
     HIUNDEAD: {
       address: "0x70d0ff0d3b3F5E69220c09bEFC70606Fa5F89293",
@@ -7557,12 +7637,20 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x5C0590cDE44569bf39ef79e859B367e39cB000F1",
       decimals: 18
     },
+    HIVE: {
+      address: "0xB08C567824cDCb530B9da4Adc3A3001EE2f170Ae",
+      decimals: 18
+    },
     HIXOKDKEKJCJDKSICND: {
       address: "0x2105465Ab589B74747B01AfdAF606d058Fb082BE",
       decimals: 18
     },
     HLTC: {
       address: "0x2c000c0093dE75a8fA2FccD3d97b314e20b431C3",
+      decimals: 18
+    },
+    HLX: {
+      address: "0x2614f29C39dE46468A921Fd0b41fdd99A01f2EDf",
       decimals: 18
     },
     HMQ: {
@@ -7622,7 +7710,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     HOLA: {
-      address: "0x5BffE8DdFF21cA52D8371B14a6c39D6ae3C5D2C7",
+      address: "0xB81914F05DAF95802Eb30726a399733e0696cd79",
       decimals: 18
     },
     HOLD: {
@@ -7681,6 +7769,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x5362Ca75aa3c0E714bc628296640C43dc5cb9ED6",
       decimals: 9
     },
+    HOSTAI: {
+      address: "0x07e128e823D2b9B22EdBdA43820aA1a72DE99613",
+      decimals: 18
+    },
     HOT: {
       address: "0x6c6EE5e31d828De241282B9606C8e98Ea48526E2",
       decimals: 18
@@ -7693,6 +7785,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x01E87d74B11f656A673a3E7c441425816213Eb0c",
       decimals: 18
     },
+    HOTKEY: {
+      address: "0x018DD3A0Dd7F213cc822076b3800816d3CE1ED86",
+      decimals: 18
+    },
     HOTT: {
       address: "0x382aC32e9ABE17F424a74E8cE0A92C0F18788f9a",
       decimals: 18
@@ -7702,7 +7798,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     HPO: {
-      address: "0xa0ED3C520dC0632657AD2EaaF19E26C4fD431a84",
+      address: "0xfE39C384D702914127a005523f9915ADDB9bd59b",
       decimals: 18
     },
     HPT: {
@@ -7733,8 +7829,16 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x6247C86B016Bc4d9aE141849C0a9Eb38C004B742",
       decimals: 18
     },
+    HTX: {
+      address: "0x61EC85aB89377db65762E234C946b5c25A56E99e",
+      decimals: 18
+    },
     HUB: {
       address: "0x6923F9B683111DCc0e20124e9A031dEeAE5DaD93",
+      decimals: 18
+    },
+    HUGE: {
+      address: "0xEC12BA5AC0F259e9ac6FC9A3bC23a76Ad2fDE5D9",
       decimals: 18
     },
     HUNDRED: {
@@ -7790,11 +7894,11 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 6
     },
     HYPE: {
-      address: "0x6706e05F3BAFdbA97dE268483BC3a54bf92A883C",
-      decimals: 9
+      address: "0x85225Ed797fd4128Ac45A992C46eA4681a7A15dA",
+      decimals: 18
     },
     HYPER: {
-      address: "0x69fa10Cac03047A47ff32d7CDdD6085ff1583d03",
+      address: "0xE2cfD7a01ec63875cd9Da6C7c1B7025166c2fA2F",
       decimals: 18
     },
     HYPR: {
@@ -7862,8 +7966,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 8
     },
     ICHI: {
-      address: "0x111111517e4929D3dcbdfa7CCe55d30d4B6BC4d6",
-      decimals: 18
+      address: "0x903bEF1736CDdf2A537176cf3C64579C3867A881",
+      decimals: 9
     },
     ICLICK: {
       address: "0xC819617f360f6347D222f260E9F4987cA1d0f879",
@@ -7879,10 +7983,6 @@ export const GLOBAL_TOKEN_LIST = {
     },
     ICONS: {
       address: "0x3F68e7B44e9bCB486C2FeAdB7A2289D9cdFC9088",
-      decimals: 18
-    },
-    ICRETH: {
-      address: "0xcCdAE12162566E3f29fEfA7Bf7F5b24C644493b5",
       decimals: 18
     },
     ICSA: {
@@ -7903,10 +8003,6 @@ export const GLOBAL_TOKEN_LIST = {
     },
     IDEA: {
       address: "0x5d3a4F62124498092Ce665f865E0b38fF6F5FbEa",
-      decimals: 18
-    },
-    IDEAS: {
-      address: "0x443b29fc978058Abe3Fc2f4c3c6b76c57fdecC02",
       decimals: 18
     },
     IDEX: {
@@ -7993,10 +8089,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x3656bD0f3f07623Bb7f429B390D208f894e44eCE",
       decimals: 18
     },
-    IGNT: {
-      address: "0xd12443D642D021Dc52D0AF8F5f6191e02d1E9419",
-      decimals: 18
-    },
     IHT: {
       address: "0xEda8B016efA8b1161208Cf041cD86972eeE0F31E",
       decimals: 18
@@ -8049,17 +8141,13 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x3392D8A60B77F8d3eAa4FB58F09d835bD31ADD29",
       decimals: 18
     },
-    INEDIBLE: {
-      address: "0x3486b751a36F731A1bEbFf779374baD635864919",
-      decimals: 18
-    },
     INETHX: {
       address: "0x57a5a0567187FF4A8dcC1A9bBa86155E355878F2",
       decimals: 18
     },
     INFRA: {
-      address: "0x013062189dc3dcc99e9Cee714c513033b8d99e3c",
-      decimals: 18
+      address: "0xe9EccDE9d26FCBB5e93F536CFC4510A7f46274f8",
+      decimals: 9
     },
     INJ: {
       address: "0xe28b3B32B6c345A34Ff64674606124Dd5Aceca30",
@@ -8077,10 +8165,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xB67718b98d52318240c52E71A898335da4A28c42",
       decimals: 6
     },
-    INNIT: {
-      address: "0x62A8C2818BD7034DC24CD22368C3E53E8eB47c18",
-      decimals: 18
-    },
     INNOVA: {
       address: "0xCA9D8EF4BA15Ae66347b3D22aFE2970B89980f88",
       decimals: 18
@@ -8091,6 +8175,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     INOSETH: {
       address: "0xfD07fD5EBEa6F24888a397997E262179Bf494336",
+      decimals: 18
+    },
+    INQU: {
+      address: "0x31Bd628c038f08537e0229f0D8c0a7b18B0CDa7B",
       decimals: 18
     },
     INRETH: {
@@ -8106,8 +8194,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     INSP: {
-      address: "0x186eF81fd8E77EEC8BfFC3039e7eC41D5FC0b457",
-      decimals: 18
+      address: "0x179f782d7FBE745f40b20e0c7dbB6205D43Fa4B9",
+      decimals: 9
     },
     INST: {
       address: "0x6f40d4A6237C257fff2dB00FA0510DeEECd303eb",
@@ -8129,10 +8217,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xA2762Ba628b962f93498D8893b6e4346140fe96D",
       decimals: 18
     },
-    INTD: {
-      address: "0xaEeb517E65501BCD72399D639A5D993661EFeB68",
-      decimals: 18
-    },
     INTERN: {
       address: "0x435998003CCB7ABeaA392494C89f7799FE241DB5",
       decimals: 18
@@ -8142,7 +8226,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 9
     },
     INU: {
-      address: "0xC76D53F988820fe70E01eCCb0248B312c2f1c7cA",
+      address: "0x795A7e7a0F6B84eE1F2BC9e70a74Dbbb49Cef9A3",
       decimals: 18
     },
     INUINU: {
@@ -8170,7 +8254,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     INX: {
-      address: "0xBBC7f7A6AADAc103769C66CBC69AB720f7F9Eae3",
+      address: "0x67f3086F7823eaF35f5aAADfB2E9b9c5B09578CF",
       decimals: 18
     },
     INXT: {
@@ -8220,6 +8304,14 @@ export const GLOBAL_TOKEN_LIST = {
     IQT: {
       address: "0x6dDa263994aAB33F5Ed612294E26f2A13DF0dA05",
       decimals: 18
+    },
+    IRYDE: {
+      address: "0x74fE27e70db10147F8B6b38b3C9d12BBdcf3b5AF",
+      decimals: 18
+    },
+    ISHI: {
+      address: "0x85E0b9D3E7e4dBa7E59090C533906d0e9211D8b6",
+      decimals: 9
     },
     ISHND: {
       address: "0x9e6b19874e97fe8E8CAD77f2c0AB5E7a693E5dbf",
@@ -8298,7 +8390,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     JACK: {
-      address: "0x575B57CA64d2De54fe78fAe6d952251bBb6d251a",
+      address: "0xf434908dCf8206691bb99cae9232d4833ec257D4",
       decimals: 18
     },
     JACY: {
@@ -8321,9 +8413,17 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xf3E07812eBC8604fdDB0AA35ff79a03F48f48948",
       decimals: 18
     },
+    JARVIS: {
+      address: "0xBD8FdDa057de7e0162b7A386BeC253844B5E07A5",
+      decimals: 18
+    },
     JASMY: {
       address: "0x7420B4b9a0110cdC71fB720908340C03F9Bc03EC",
       decimals: 18
+    },
+    JASON: {
+      address: "0x4D243E8F511045f0d5f9d0288BC628737b10c079",
+      decimals: 9
     },
     JAY: {
       address: "0xDA7C0810cE6F8329786160bb3d1734cf6661CA6E",
@@ -8354,7 +8454,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 9
     },
     JEFF: {
-      address: "0xF831938CaF837cd505dE196BBb408D81A06376ab",
+      address: "0x1a8B8e526D093476ac5C488a3eA057f8DE9C0dEe",
       decimals: 18
     },
     JESUS: {
@@ -8375,10 +8475,6 @@ export const GLOBAL_TOKEN_LIST = {
     },
     JFISH: {
       address: "0xCdeb595293511115d9D9d44B189Cc0Da4a08cfAf",
-      decimals: 18
-    },
-    JGBP: {
-      address: "0x7409856CAE628f5d578B285B45669b36E7005283",
       decimals: 18
     },
     JGN: {
@@ -8437,10 +8533,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x7e5981c2E072F53a0323D3d80bAca3e31fb1550c",
       decimals: 18
     },
-    JOY: {
-      address: "0x4E114d405b9Ba2F59524941733e505Ae03Fb1FB5",
-      decimals: 18
-    },
     JPEG: {
       address: "0xE80C0cd204D654CEbe8dd64A4857cAb6Be8345a3",
       decimals: 18
@@ -8481,12 +8573,12 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x01202C9a1aDfC1475c960C23bdf7530698330fA0",
       decimals: 18
     },
-    JUP: {
-      address: "0x4B1E80cAC91e2216EEb63e29B957eB91Ae9C2Be8",
+    JUICE: {
+      address: "0xdE5d2530A877871F6f0fc240b9fCE117246DaDae",
       decimals: 18
     },
-    JUSDC: {
-      address: "0xca9f9671765F8D1A7e19ae2639E01FFF730f0D9B",
+    JUP: {
+      address: "0x4B1E80cAC91e2216EEb63e29B957eB91Ae9C2Be8",
       decimals: 18
     },
     JUSTICE: {
@@ -8516,6 +8608,10 @@ export const GLOBAL_TOKEN_LIST = {
     KAERI: {
       address: "0x69Ed89ecd35082E031fE52b75123F801DB083306",
       decimals: 9
+    },
+    KAIJU: {
+      address: "0x4fE8d4775b7cB2546b9eE86182081CDF8f77B053",
+      decimals: 18
     },
     KAIROS: {
       address: "0x3Be65bd36C1aD28D33Acc1C9dD8338a2706cA000",
@@ -8557,10 +8653,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x2e85ae1C47602f7927bCabc2Ff99C40aA222aE15",
       decimals: 18
     },
-    KAWA: {
-      address: "0x5552E5a89A70cB2eF5AdBbC45a6BE442fE7160Ec",
-      decimals: 9
-    },
     KBC: {
       address: "0xA88920B4A35f7d0e81bc586cE1875036FCed9154",
       decimals: 18
@@ -8578,16 +8670,16 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     KEEP: {
-      address: "0x85Eee30c52B0b379b046Fb0F85F4f3Dc3009aFEC",
+      address: "0xBf40440703A3F7092b2e73c2F7868727275DBbda",
       decimals: 18
     },
     KEI: {
-      address: "0xF75C7a59bCD9bd207C4Ab1BEB0b32EEd3B6392f3",
-      decimals: 8
+      address: "0xac87d4Cbb82ce7F4bCF31dBDC0024306cfd3Ec5A",
+      decimals: 18
     },
     KEK: {
-      address: "0x67954768E721FAD0f0f21E33e874497C73ED6a82",
-      decimals: 18
+      address: "0xa6345ffAdfA23DFc9014bce72FF2fa8712e54231",
+      decimals: 9
     },
     KEKE: {
       address: "0xf7168c8AbB0ff80116413a8d95396BBdC318A3fF",
@@ -8607,6 +8699,14 @@ export const GLOBAL_TOKEN_LIST = {
     },
     KEN: {
       address: "0x2654e753424A9F02df31CfBc6c5af14a87b6caB5",
+      decimals: 18
+    },
+    KENDU: {
+      address: "0xaa95f26e30001251fb905d264Aa7b00eE9dF6C18",
+      decimals: 18
+    },
+    KEP: {
+      address: "0x8E3A59427B1D87Db234Dd4ff63B25E4BF94672f4",
       decimals: 18
     },
     KEPE: {
@@ -8729,6 +8829,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xbded8a4DC74A940EAb68703167dB89b1712B68ea",
       decimals: 9
     },
+    KMON: {
+      address: "0xc4170fd71ECed3C80baDca77f4e12E8AaC1e3436",
+      decimals: 18
+    },
     KNC: {
       address: "0xdeFA4e8a7bcBA345F687a2f1456F5Edd9CE97202",
       decimals: 18
@@ -8753,6 +8857,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x3541A5C1b04AdABA0B83F161747815cd7B1516bC",
       decimals: 18
     },
+    KNINE: {
+      address: "0x91fbB2503AC69702061f1AC6885759Fc853e6EaE",
+      decimals: 18
+    },
     KNS: {
       address: "0xf1264873436A0771E440E2b28072FAfcC5EEBd01",
       decimals: 18
@@ -8762,7 +8870,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     KOI: {
-      address: "0x8df5066Cf67D909eB67B82854cf54026d31fFFAE",
+      address: "0x9D14BcE1dADdf408d77295BB1be9b343814f44DE",
       decimals: 18
     },
     KOK: {
@@ -8838,8 +8946,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 6
     },
     KUKU: {
-      address: "0xc3071803B9d23460820B516673fd3Cec0415D0ED",
-      decimals: 9
+      address: "0x27206F5a9AFD0C51dA95F20972885545D3B33647",
+      decimals: 0
     },
     KUMA: {
       address: "0x48C276e8d03813224bb1e55F953adB6d02FD3E02",
@@ -8856,10 +8964,6 @@ export const GLOBAL_TOKEN_LIST = {
     KXA: {
       address: "0x2223bF1D7c19EF7C06DAB88938EC7B85952cCd89",
       decimals: 18
-    },
-    KYD: {
-      address: "0xD05292be8733C1b189820d042C9E2c3fBABb6966",
-      decimals: 9
     },
     KYOKO: {
       address: "0x14a32f050FACF226Ec60882398A9BF36d91DBaC2",
@@ -8883,10 +8987,6 @@ export const GLOBAL_TOKEN_LIST = {
     },
     LA: {
       address: "0xE50365f5D679CB98a1dd62D6F6e58e59321BcdDf",
-      decimals: 18
-    },
-    LAB: {
-      address: "0xAdbf092241F806AE43B0395BCa9E0eC83155816B",
       decimals: 18
     },
     LADYS: {
@@ -8917,6 +9017,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x3d2b66BC4f9D6388BD2d97B95b565BE1686aEfB3",
       decimals: 18
     },
+    LAN: {
+      address: "0xc01b1979e2244Dc94e67891df0Af4F7885e57fD4",
+      decimals: 18
+    },
     LARRY: {
       address: "0x5C99a6C14f8dC0c2C3655c64a2cef68FF9F771ba",
       decimals: 18
@@ -8945,10 +9049,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x2b867efD2dE4Ad2B583Ca0CB3dF9C4040Ef4D329",
       decimals: 9
     },
-    LBOT: {
-      address: "0x0ceccD54323B953a5464FDDEfc47171c397043F7",
-      decimals: 18
-    },
     LBP: {
       address: "0xa23C1194d421F252b4e6D5edcc3205F7650a4eBE",
       decimals: 18
@@ -8963,10 +9063,6 @@ export const GLOBAL_TOKEN_LIST = {
     },
     LBXC: {
       address: "0xfFE510a92434a0Df346C5E72a3494b043Cf249eB",
-      decimals: 18
-    },
-    LCNY: {
-      address: "0x7635B612792e4bFB7F2FA12a3E5d5A3f2e3C34BC",
       decimals: 18
     },
     LCS: {
@@ -9081,12 +9177,8 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xE59B14E43479dc30d77F553e4B5c6fC67e1F6CAF",
       decimals: 18
     },
-    LEXE: {
-      address: "0x53011E93F21EC7A74cdfBB7E6548F1ABCE306833",
-      decimals: 18
-    },
     LFG: {
-      address: "0x969786c4A8884013d1c9fF18dCCA2aeDbbBfAa8F",
+      address: "0x40a9A694197A0b4B92f2aAd48Da6bC1b6Ff194e9",
       decimals: 18
     },
     LFI: {
@@ -9118,27 +9210,15 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     LIFE: {
-      address: "0x6c936D4AE98E6d2172dB18c16C4b601C99918EE6",
+      address: "0x8640353CDc9778DEaB0dF45D12FB3013dEAC079C",
       decimals: 18
     },
     LIFT: {
       address: "0x513C3200F227ebB62e3B3d00B7a83779643a71CF",
       decimals: 18
     },
-    LIGHT: {
-      address: "0xCC0D1b36d88Fd8f5f26fd00e4E769e2Dab4E3e07",
-      decimals: 18
-    },
     LILA: {
       address: "0x96aDD417293a49E80f024734e96CFd8b355bCc14",
-      decimals: 18
-    },
-    LIM: {
-      address: "0x9CdaFB9FAe77E7C1bd7CF28C389008ca8daCF48c",
-      decimals: 18
-    },
-    LIME: {
-      address: "0x9D0B65a76274645B29e4cc41B8f23081fA09f4A3",
       decimals: 18
     },
     LIMEX: {
@@ -9146,7 +9226,11 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 8
     },
     LINA: {
-      address: "0xC05d14442A510De4D3d71a3d316585aA0CE32b50",
+      address: "0x3E9BC21C9b189C09dF3eF1B824798658d5011937",
+      decimals: 18
+    },
+    LINDA: {
+      address: "0x039D2E8f097331278BD6c1415D839310E0D5Ece4",
       decimals: 18
     },
     LINK: {
@@ -9169,16 +9253,12 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x27c57F84236780881BE694A18E149bB5bB78C21f",
       decimals: 18
     },
-    LIQS: {
-      address: "0x6D4695f7E8d7F9615314A743335702d7eAbA4575",
-      decimals: 18
-    },
     LISA: {
       address: "0xB94AcDF8662CD955F137E0C9c9fbA535c87b57B4",
       decimals: 18
     },
     LIT: {
-      address: "0xfd0205066521550D7d7AB19DA8F72bb004b4C341",
+      address: "0xb59490aB09A0f526Cc7305822aC65f2Ab12f9723",
       decimals: 18
     },
     LITH: {
@@ -9196,6 +9276,10 @@ export const GLOBAL_TOKEN_LIST = {
     LM: {
       address: "0xc064F4F215B6A1E4e7F39bD8530C4dE0fC43ee9D",
       decimals: 18
+    },
+    LMEOW: {
+      address: "0x1aE7e1d0ce06364CED9aD58225a1705b3e5DB92b",
+      decimals: 9
     },
     LMI: {
       address: "0xAf05Ce8A2Cef336006E933c02fc89887F5B3C726",
@@ -9225,8 +9309,16 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x08A1C30BBB26425c1031ee9E43FA0B9960742539",
       decimals: 6
     },
+    LNQ: {
+      address: "0xD4F4D0a10BcaE123bB6655E8Fe93a30d01eEbD04",
+      decimals: 18
+    },
     LOC: {
       address: "0x5e3346444010135322268a4630d2ED5F8D09446c",
+      decimals: 18
+    },
+    LOCAI: {
+      address: "0x56b8Be7C2D3ffE0D8D6fEB4d4eb4650c3Ea10BB6",
       decimals: 18
     },
     LOCG: {
@@ -9254,7 +9346,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     LONG: {
-      address: "0x0080428794a79a40ae03cf6E6C1D56bd5467a4A2",
+      address: "0xbe59baAd09B07086EE6C39BD0fC234c157C31ccc",
       decimals: 18
     },
     LOOKS: {
@@ -9278,7 +9370,11 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     LOOT: {
-      address: "0x721A1B990699eE9D90b6327FaaD0A3E840aE8335",
+      address: "0xe4129C7B229812212F88d1BD6a223C45622E6b85",
+      decimals: 9
+    },
+    LOOTER: {
+      address: "0x000000000a1c6659ac226dBB1C5BDC648DF72E9e",
       decimals: 18
     },
     LORDS: {
@@ -9350,8 +9446,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     LSD: {
-      address: "0xfAC77A24E52B463bA9857d6b758ba41aE20e31FF",
-      decimals: 18
+      address: "0x97D4F49eEb0E2c96d5EbAA71AB8418e563ecd9fd",
+      decimals: 9
     },
     LSDAI: {
       address: "0xe1A70B24E109F7A8b39806c554E123Efc6769E91",
@@ -9362,7 +9458,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     LSHARE: {
-      address: "0xD0f395AA1b49aD410B26f52348aEbCff109940E8",
+      address: "0x8E01397163b21F64ceC1f06cA6cC7d9aA8F718e9",
       decimals: 18
     },
     LSILVER: {
@@ -9377,9 +9473,17 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x9ed1439D328647BDb148c20316eA024c719a735b",
       decimals: 18
     },
+    LTAO: {
+      address: "0xBf7BC9E63635dC11b335D52b0349d0100A53A1a7",
+      decimals: 9
+    },
     LTO: {
       address: "0xd01409314aCb3b245CEa9500eCE3F6Fd4d70ea30",
       decimals: 8
+    },
+    LTS: {
+      address: "0x4F45aCFD7361e283170e28394bbE18395407e0F0",
+      decimals: 9
     },
     LTX: {
       address: "0xa393473d64d2F9F026B60b6Df7859A689715d092",
@@ -9394,8 +9498,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     LUCKY: {
-      address: "0x6B0956258fF7bd7645aa35369B55B61b8e6d6140",
-      decimals: 8
+      address: "0xD1c8fa30fded3E0031dC24C1646D74108b096cc2",
+      decimals: 9
     },
     LUCKYSLP: {
       address: "0x357c915D7c12dc506d13332Bb06C932aF13e99a0",
@@ -9416,6 +9520,10 @@ export const GLOBAL_TOKEN_LIST = {
     LUNA: {
       address: "0x416CdAF616a82d7Dd46e0dBF36e7d6fE412bc40e",
       decimals: 18
+    },
+    LUNAR: {
+      address: "0x3A645Ff83560231aAb0F9C830ba108b06C94e34A",
+      decimals: 9
     },
     LUNAT: {
       address: "0xE8438c23157De97BDe8BEdD2eeaBc8e7e44De18a",
@@ -9452,10 +9560,6 @@ export const GLOBAL_TOKEN_LIST = {
     LWC: {
       address: "0xa6a1Cc527d48585538b137E6Abc14B2a55489D11",
       decimals: 8
-    },
-    LYF: {
-      address: "0xc3dBD99da846ea38d34430D852795684a211428B",
-      decimals: 18
     },
     LYFE: {
       address: "0xd87de4cCef2c2FE651bc4d130cb1A365248f21fA",
@@ -9517,13 +9621,9 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x36F8d0D0573ae92326827C4a82Fe4CE4C244cAb6",
       decimals: 18
     },
-    MADAPE: {
-      address: "0x81EF51FcE2b14874CB840515faCf5BE667ea4d8F",
-      decimals: 18
-    },
     MAG: {
-      address: "0xb9d4B6DC1e1Ee3577CC442dE015CC11F238B35ed",
-      decimals: 18
+      address: "0x544d230f0362f3843fdA5CAa99b94cB2B336E384",
+      decimals: 9
     },
     MAGA: {
       address: "0xc9b6A17EbB43491635F603A01f8Bb3e4B5D22228",
@@ -9546,7 +9646,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     MAI: {
-      address: "0x24D73Bca2bD9c3a61E99dFc7cB86D3C379EbDEd7",
+      address: "0x7658b8CD4719080AD377DFE28DfC19c761A3CB75",
       decimals: 18
     },
     MAIL: {
@@ -9568,10 +9668,6 @@ export const GLOBAL_TOKEN_LIST = {
     MANDOX: {
       address: "0x7A8aDCf432EbCC2311B955d176ee4BFED13bB9A7",
       decimals: 9
-    },
-    MANE: {
-      address: "0x98Ce7f261E425AD0cA667e60675938dcffC1571A",
-      decimals: 18
     },
     MAP: {
       address: "0x9E976F211daea0D652912AB99b0Dc21a7fD728e4",
@@ -9610,8 +9706,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 9
     },
     MARVIN: {
-      address: "0x55a380d134d722006A5CE2d510562e1239D225B1",
-      decimals: 18
+      address: "0xE3f03cEF497c81D2B28A2faE63ae84b373028718",
+      decimals: 9
     },
     MASK: {
       address: "0x69af81e73A73B40adF4f3d4223Cd9b1ECE623074",
@@ -9631,6 +9727,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     MATCH: {
       address: "0xe0DcB3E02798D1c6a9650fe1381015ec34705153",
+      decimals: 18
+    },
+    MATE: {
+      address: "0x62126ec407eae34393ab88b1f5D57E8566E570Be",
       decimals: 18
     },
     MATH: {
@@ -9662,7 +9762,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     MAV: {
-      address: "0xbe1dBe6741fB988fb571AB1E28CfFB36e3C62629",
+      address: "0x7448c7456a97769F6cD04F1E83A4a23cCdC46aBD",
       decimals: 18
     },
     MAVIA: {
@@ -9674,11 +9774,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     MAX: {
-      address: "0xe7976c4Efc60d9f4C200Cc1bCEF1A1e3B02c73e7",
-      decimals: 18
-    },
-    MAXCAT: {
-      address: "0xB6A7a1d8f64fC6F984A6F3b52b7426F7b0aBAb5B",
+      address: "0x63f7B1b538a78cB699E5399621B3d2e047C40de4",
       decimals: 18
     },
     MAXI: {
@@ -9695,6 +9791,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     MAZI: {
       address: "0x5B8650Cd999B23cF39Ab12e3213fbC8709c7f5CB",
+      decimals: 18
+    },
+    MAZZE: {
+      address: "0x4A029F7bCf33AcB03547D8fA7be840347973e24e",
       decimals: 18
     },
     MBASE: {
@@ -9729,10 +9829,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x4e352cF164E64ADCBad318C3a1e222E9EBa4Ce42",
       decimals: 18
     },
-    MCBASE: {
-      address: "0x43a9C989597eFeAdf11Faec609Ad8df7d3C18cDb",
-      decimals: 18
-    },
     MCD: {
       address: "0xc66cDac744916AFb6811C71c277d88dE90cE8D5b",
       decimals: 18
@@ -9762,7 +9858,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 9
     },
     MCT: {
-      address: "0xBEE709aa42375acE642338F7f657ff859a19c9bC",
+      address: "0x6876EbA317272FE221C67405C5e8EB3B24535547",
       decimals: 18
     },
     MDA: {
@@ -9770,7 +9866,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     MDAI: {
-      address: "0xf6043bEa98B07F0bEa7813aeB22D0cb70C91C0c4",
+      address: "0xb549116Ac57b47C1B365A890e1D04FD547dFFf97",
       decimals: 18
     },
     MDEX: {
@@ -9794,7 +9890,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     MDX: {
-      address: "0x8eDc6F7d2F23C10653972E611f707ce0562d61B1",
+      address: "0x947AEb02304391f8fbE5B25D7D98D649b57b1788",
       decimals: 18
     },
     MEAN: {
@@ -9826,19 +9922,11 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     MEGA: {
-      address: "0x1892F6ff5FBE11c31158F8c6f6F6e33106c5B10E",
+      address: "0x99cFFb50aaD37D17955253F3a4070556b5127a0b",
       decimals: 18
     },
     MEGABOT: {
       address: "0x201b5B64438843553E3C3671810Ae671C93C685c",
-      decimals: 18
-    },
-    MEGODS: {
-      address: "0xc6980fA29A42e44852E29492268d9285d89c9DAc",
-      decimals: 18
-    },
-    MEL: {
-      address: "0xed0889F7E1c7C7267407222Be277e1f1Ef4d4892",
       decimals: 18
     },
     MELD: {
@@ -9857,20 +9945,12 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x42dbBd5ae373FEA2FC320F62d44C058522Bb3758",
       decimals: 18
     },
-    MEMAG: {
-      address: "0x6E39A587691b8c9D4341cE0A960998ED6F537AF6",
-      decimals: 18
-    },
-    MEMBOT: {
-      address: "0x9eac760d89805558D1A657b59beD313766e09E61",
-      decimals: 18
-    },
     MEMD: {
       address: "0x7a786DAC1f315C8A0e9962172AD8AE0C04d9c9b6",
       decimals: 18
     },
     MEME: {
-      address: "0x74B988156925937bD4E082f0eD7429Da8eAea8Db",
+      address: "0xb131f4A55907B10d1F0A50d8ab8FA09EC342cd74",
       decimals: 18
     },
     MEMEAI: {
@@ -9890,7 +9970,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     MEMES: {
-      address: "0xde0E9Bd25dc63A629f40E1eC7959B57726E94D88",
+      address: "0xf0f67DDb45c90946d717f2225910cB940C28AFaE",
       decimals: 18
     },
     MEMEX: {
@@ -9898,8 +9978,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     MEOW: {
-      address: "0x74d2d73B455540B037298c0e0925BC702AEDbE4a",
-      decimals: 9
+      address: "0x0eC78ED49C2D27b315D462d43B5BAB94d2C79bf8",
+      decimals: 18
     },
     MERC: {
       address: "0xa203eB78Fee91c8459C6d4eF3a899d8724Ee5B35",
@@ -9934,8 +10014,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     METAL: {
-      address: "0x294559FA758C88D639Fd085751e463FEe7806eab",
-      decimals: 18
+      address: "0x7ae075546e8042dC263FA0eb6519ce0a04EABB93",
+      decimals: 9
     },
     METAMEME: {
       address: "0x23A2164d482Fd2fec9C2d0B66528D42feE7b8817",
@@ -9965,10 +10045,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x24Ae2dA0f361AA4BE46b48EB19C91e02c5e4f27E",
       decimals: 18
     },
-    MEVFREE: {
-      address: "0x1936C91190E901B7dD55229A574AE22B58Ff498a",
-      decimals: 18
-    },
     MEZZ: {
       address: "0xC4c346eDc55504574cCEB00AA1091d22404A4bC3",
       decimals: 18
@@ -9979,6 +10055,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     MFC: {
       address: "0x337DD23d05c27bff099d3604938BFc23A9B25820",
+      decimals: 18
+    },
+    MFERS: {
+      address: "0xaD913DCD987fE54cE823E4b755F90598Cd62bb15",
       decimals: 18
     },
     MFG: {
@@ -10005,6 +10085,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x8765b1A0eb57ca49bE7EACD35b24A574D0203656",
       decimals: 18
     },
+    MGLS: {
+      address: "0xdA251891E21e6EDB0E6828E77621C7b98ea4E8ba",
+      decimals: 18
+    },
     MIC: {
       address: "0x285DB79fa7e0e89E822786F48A7c98C6c1dC1c7d",
       decimals: 18
@@ -10022,7 +10106,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     MILEI: {
-      address: "0x1a11Ea9d61588D756D9f1014c3Cf0D226aEdd279",
+      address: "0xb71Bdc7014F3740d0267d41D632cAB8371F8ba3C",
       decimals: 18
     },
     MILK: {
@@ -10081,10 +10165,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x09a3EcAFa817268f77BE1283176B946C4ff2E608",
       decimals: 18
     },
-    MIRL: {
-      address: "0x8770b7Dd89E5f759eE3b226e0C45e890f87dDc48",
-      decimals: 18
-    },
     MIS: {
       address: "0x024B6e7DC26F4d5579bDD936F8d7BC31f2339999",
       decimals: 18
@@ -10101,13 +10181,13 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x5d285F735998F36631F678FF41fb56A10A4d0429",
       decimals: 18
     },
-    MIXCOIN: {
-      address: "0xB3A58Eb551b5F80EC70B7f69aB7B664453271412",
-      decimals: 18
-    },
     MIXQ: {
       address: "0x3e452a416dAe9F0bF4BF69fA0bF529C2b7c7360f",
       decimals: 9
+    },
+    MK: {
+      address: "0x9FDFb933Ee990955D3219d4F892FD1F786b47C9B",
+      decimals: 18
     },
     MKR: {
       address: "0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2",
@@ -10117,16 +10197,16 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x4591DBfF62656E7859Afe5e45f6f47D3669fBB28",
       decimals: 18
     },
+    ML: {
+      address: "0x059956483753947536204e89bfaD909E1a434Cc6",
+      decimals: 18
+    },
     MLH: {
       address: "0xdf87270E04Bc5Ac140E93571D0DD0C6F4a058B41",
       decimals: 18
     },
     MLN: {
       address: "0xec67005c4E498Ec7f55E092bd1d35cbC47C91892",
-      decimals: 18
-    },
-    MLORD: {
-      address: "0x2Cc5C38ea9a58D360181852C9F5719b96407Ed1E",
       decimals: 18
     },
     MLP: {
@@ -10138,7 +10218,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     MM: {
-      address: "0x6B4c7A5e3f0B99FCD83e9c089BDDD6c7FCe5c611",
+      address: "0xC3c221fE28c33814c28c822b631fd76047eF1a63",
       decimals: 18
     },
     MMA: {
@@ -10241,6 +10321,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x1117aC6Ad6Cdf1A3BC543baD3B133724620522d5",
       decimals: 18
     },
+    MODAI: {
+      address: "0xAfa42B8ba6bA9dACE46Dae129a2a1EF54B73FA8B",
+      decimals: 18
+    },
     MODEX: {
       address: "0x4bceA5E4d0F6eD53cf45e7a28FebB2d3621D7438",
       decimals: 18
@@ -10285,6 +10369,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x275f5Ad03be0Fa221B4C6649B8AeE09a42D9412A",
       decimals: 18
     },
+    MONAI: {
+      address: "0x8C282C35B5E1088bb208991c151182A782637699",
+      decimals: 18
+    },
     MONE: {
       address: "0x24a5FE2C2240e58252CDFc43bB94ae67d2eAD218",
       decimals: 18
@@ -10310,7 +10398,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 8
     },
     MONKEYS: {
-      address: "0x9CE07410673206c693BCEC9b07710767637A564c",
+      address: "0xf2A22B900dde3ba18Ec2AeF67D4c8C1a0DAB6aAC",
       decimals: 9
     },
     MONKGG: {
@@ -10324,10 +10412,6 @@ export const GLOBAL_TOKEN_LIST = {
     "MONONOKE-INU": {
       address: "0x4da08a1Bff50BE96bdeD5C7019227164b49C2bFc",
       decimals: 9
-    },
-    MONTE: {
-      address: "0x318Ee488AF8881f9945B6d3D69e8B395Fb559bB1",
-      decimals: 18
     },
     MOOBIFI: {
       address: "0xBEEF8e0982874e0292E6C5751C5A4092b3e1BEEF",
@@ -10361,10 +10445,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x00c8555542158Fff0FEb892c8e000a8D1831762C",
       decimals: 18
     },
-    MORK: {
-      address: "0xf552b656022c218C26dAd43ad88881Fc04116F76",
-      decimals: 4
-    },
     MOROS: {
       address: "0xAb85fc558d722A2b7c040FfB77dB676Bd9e7D322",
       decimals: 18
@@ -10387,10 +10467,6 @@ export const GLOBAL_TOKEN_LIST = {
     },
     MOVE: {
       address: "0x3FA729B4548beCBAd4EaB6EF18413470e6D5324C",
-      decimals: 18
-    },
-    MP3: {
-      address: "0x018fb5Af9d015Af25592a014C4266a84143De7a0",
       decimals: 18
     },
     MPAY: {
@@ -10439,10 +10515,6 @@ export const GLOBAL_TOKEN_LIST = {
     },
     MRCH: {
       address: "0xBeD4AB0019ff361d83ddeB74883DAC8a70f5ea1e",
-      decimals: 18
-    },
-    MRPOTATO: {
-      address: "0x17Bb9F3572d0C69E017dcd048eC7304EEcC981c8",
       decimals: 18
     },
     MRSPEPE: {
@@ -10529,14 +10601,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x2F573070E6090b3264Fe707e2C9F201716F123c7",
       decimals: 18
     },
-    MUNCH: {
-      address: "0x944eeE930933BE5E23b690c8589021Ec8619a301",
-      decimals: 9
-    },
-    MUNITY: {
-      address: "0xe97F6dDE78b11B58cB3e394F15ab592Cb2ACd290",
-      decimals: 18
-    },
     MURATIAI: {
       address: "0x69C2fcAe7e30b429166BD616A322e32BeC036bCf",
       decimals: 18
@@ -10554,7 +10618,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 8
     },
     MUSK: {
-      address: "0x6069c9223e8a5DA1ec49ac5525d4BB757Af72Cd8",
+      address: "0x10f2Cf6EF155460C5B716080eB57928652867f2E",
       decimals: 18
     },
     MUSKX: {
@@ -10573,6 +10637,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x849C479D7A90Eb378dbD00E8f166371176244eb1",
       decimals: 9
     },
+    MUZZ: {
+      address: "0xef3dAa5fDa8Ad7aabFF4658f1F78061fd626B8f0",
+      decimals: 18
+    },
     MV: {
       address: "0xAE788F80F2756A86aa2F410C651F2aF83639B95b",
       decimals: 18
@@ -10589,16 +10657,16 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xCBe7142F5c16755D8683BA329EFA1ABF7b54482d",
       decimals: 8
     },
+    MVERSE: {
+      address: "0xf67366e83cc9B115Ef8cCA93baeD1f03E6d3ca9A",
+      decimals: 18
+    },
     MVI: {
       address: "0x72e364F2ABdC788b7E918bc238B21f109Cd634D7",
       decimals: 18
     },
     MVL: {
       address: "0xA849EaaE994fb86Afa73382e9Bd88c2B6b18Dc71",
-      decimals: 18
-    },
-    MVRS: {
-      address: "0xBEDE1F59Fa4412556fEF69f1B9969F2003E3f8c1",
       decimals: 18
     },
     MX: {
@@ -10616,10 +10684,6 @@ export const GLOBAL_TOKEN_LIST = {
     MXNT: {
       address: "0xed03Ed872159e199065401b6d0D487d78d9464AA",
       decimals: 6
-    },
-    MXRBOT: {
-      address: "0x6995923FAA52F1D0Cd3ed7870Eb273ebB1b0970b",
-      decimals: 18
     },
     MXT: {
       address: "0x6251E725CD45Fb1AF99354035a414A2C0890B929",
@@ -10673,16 +10737,16 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x03D1E72765545729A035e909eDd9371a405f77Fb",
       decimals: 18
     },
+    NAKA: {
+      address: "0xfaE30394A76796dc3DF37c2714f5Fc12083DFDb0",
+      decimals: 18
+    },
     NAMX: {
       address: "0xEdA43FA2F35EA174a7E9b73658b18a7dA00ADf38",
       decimals: 18
     },
-    NANDI: {
-      address: "0x38F679F8E8116cd5D6a700E442dfaa8e7B8697B5",
-      decimals: 9
-    },
     NAO: {
-      address: "0xd049206fB408a611E543791F2d8F102a8bC253dc",
+      address: "0x72f713D11480DCF08b37E1898670e736688D218d",
       decimals: 18
     },
     NAOS: {
@@ -10712,6 +10776,10 @@ export const GLOBAL_TOKEN_LIST = {
     NAVYSEAL: {
       address: "0x34DF29Dd880e9fe2cec0f85f7658B75606fB2870",
       decimals: 9
+    },
+    NBET: {
+      address: "0x5972a9689eE53481aD6301d60E1e15092754fFA3",
+      decimals: 8
     },
     NBT: {
       address: "0x446F2A8A39Cc730ef378Be759A3c57f1a3fE824c",
@@ -10761,6 +10829,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x3f2D4708F75DE6Fb60B687fEd326697634774dEb",
       decimals: 18
     },
+    NEONAI: {
+      address: "0x391fb9429d8685D5D0F14A185fC0820C6aC2817E",
+      decimals: 9
+    },
     NEPE: {
       address: "0x0D99482bB2c436B7183e7BD474cd65fA8711C8Ec",
       decimals: 18
@@ -10790,11 +10862,15 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     NEURAL: {
-      address: "0xf2041Be4EA84599818799eeD882389a8a30d2226",
-      decimals: 9
+      address: "0x32B053F2CBA79F80ada5078cb6b305da92BDe6e1",
+      decimals: 18
     },
     NEURONI: {
       address: "0x922e2708462c7a3d014D8344F7C4d92b27ECf332",
+      decimals: 18
+    },
+    NEUY: {
+      address: "0xa80505c408C4DEFD9522981cD77e026f5a49FE63",
       decimals: 18
     },
     NEWO: {
@@ -10825,6 +10901,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x0abD596070bE270F04Eb446128B3dC04969E7d29",
       decimals: 18
     },
+    NEXUSAI: {
+      address: "0xe96EdD48CF0c6e930cE55F171A721017b28E0F08",
+      decimals: 9
+    },
     NEZUKO: {
       address: "0x049715C70fDbdD2be4814f76a53Dc3D6F4367756",
       decimals: 18
@@ -10845,12 +10925,8 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x8E0fE2947752BE0d5ACF73aaE77362Daf79cB379",
       decimals: 18
     },
-    NFTE: {
-      address: "0x8c223a82E07feCB49D602150d7C2B3A4c9630310",
-      decimals: 18
-    },
     NFTL: {
-      address: "0xe7F72Bc0252cA7B16dBb72eEee1AfcDb2429F2DD",
+      address: "0x3c8D2FCE49906e11e71cB16Fa0fFeB2B16C29638",
       decimals: 18
     },
     NFTS: {
@@ -10862,7 +10938,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     NFTY: {
-      address: "0x3085154623F51b00Dedfc6Ceeb5197277A66B17B",
+      address: "0xE1D7C7a4596B038CEd2A84bF65B8647271C53208",
       decimals: 18
     },
     NGC: {
@@ -10870,7 +10946,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     NGL: {
-      address: "0x2653891204F463fb2a2F4f412564b19e955166aE",
+      address: "0x12652C6d93FDB6F4f37d48A8687783C782BB0d10",
       decimals: 18
     },
     NGM: {
@@ -10883,6 +10959,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     NHT: {
       address: "0x84342e932797FC62814189f01F0Fb05F52519708",
+      decimals: 18
+    },
+    NHUB: {
+      address: "0xfF055FF1EC9AA85F14E757d769f9D52d023f2E3b",
       decimals: 18
     },
     NIFT: {
@@ -10909,16 +10989,12 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x8DF4197669Cf7aF9fd29d768C932251a0C2e3E94",
       decimals: 18
     },
-    NIOCTIB: {
-      address: "0x99cf786dad3C68019f9919D153A3F1F949A18171",
-      decimals: 9
-    },
     NIOX: {
       address: "0xc813EA5e3b48BEbeedb796ab42A30C5599b01740",
       decimals: 4
     },
     NITRO: {
-      address: "0x0335A7610D817aeCA1bEBbEfbd392ecC2eD587B8",
+      address: "0x55c5Bd14EC3b3E24FD8c5e8B8EB9a52E876E5A06",
       decimals: 18
     },
     NIZA: {
@@ -10938,7 +11014,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     NMT: {
-      address: "0xd81b71cBb89B2800CDb000AA277Dc1491dc923C3",
+      address: "0x03AA6298F1370642642415EDC0db8b957783e8D6",
       decimals: 18
     },
     NNT: {
@@ -10990,7 +11066,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 8
     },
     NOVA: {
-      address: "0xD0b3A986FfF305854a7238A8e099Cce1ced01a3d",
+      address: "0x82967568A57625675b260Ebab1294038C9ACcC6e",
       decimals: 18
     },
     NOW: {
@@ -11029,6 +11105,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x1416946162B1C2c871A73B07E932D2fB6C932069",
       decimals: 18
     },
+    NS: {
+      address: "0x30672AE2680c319ec1028B69670A4a786baA0f35",
+      decimals: 9
+    },
     NSBT: {
       address: "0x9D79d5B61De59D882ce90125b18F74af650acB93",
       decimals: 6
@@ -11047,10 +11127,6 @@ export const GLOBAL_TOKEN_LIST = {
     },
     NSURE: {
       address: "0x20945cA1df56D237fD40036d47E866C7DcCD2114",
-      decimals: 18
-    },
-    NTB: {
-      address: "0xbE393AA534F82c0ffAC31BF06A23e283AcB3352B",
       decimals: 18
     },
     NTO: {
@@ -11134,7 +11210,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     OASIS: {
-      address: "0xF0Dc9fc0669f068e04aD79f7d70618D3f9Aad439",
+      address: "0xa74a05B17d72E9B0781d973e7963dfAACd266B94",
       decimals: 18
     },
     OATH: {
@@ -11149,6 +11225,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xBb3A8FD6Ec4bF0FDc6Cd2739b1e41192D12B1873",
       decimals: 18
     },
+    OBLUE: {
+      address: "0xEdb73D4ED90bE7A49D06d0D940055e6d181d22fa",
+      decimals: 18
+    },
     OBOT: {
       address: "0xeDADeB5fAa413e6c8623461849DFD0B7C3790c32",
       decimals: 18
@@ -11158,7 +11238,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     OBTC: {
-      address: "0xfF770E4c68e35DB85c6e0E89a43750eC02bDB2AC",
+      address: "0xbFbA57800bce200915499078289299C86Af4A379",
       decimals: 18
     },
     OBX: {
@@ -11201,6 +11281,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x7240aC91f01233BaAf8b064248E80feaA5912BA3",
       decimals: 18
     },
+    OCW: {
+      address: "0x26c75c7d815efe6bF5a6decd17d20D1fdad96A08",
+      decimals: 18
+    },
     ODDZ: {
       address: "0xCd2828fc4D8E8a0eDe91bB38CF64B1a81De65Bf6",
       decimals: 18
@@ -11220,10 +11304,6 @@ export const GLOBAL_TOKEN_LIST = {
     OETH: {
       address: "0x856c4Efb76C1D1AE02e20CEB03A2A6a08b0b8dC3",
       decimals: 18
-    },
-    OFI: {
-      address: "0x419E35E3515c2fDB652C898bF7A0B21FB20497dC",
-      decimals: 9
     },
     OGGY: {
       address: "0x7e877b99897D514da01bD1d177E693EC639961Af",
@@ -11254,7 +11334,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     OHM: {
-      address: "0x383518188C0C6d7730D91b2c03a03C837814a899",
+      address: "0x64aa3364F17a4D01c6f1751Fd97C2BD3D7e7f1D5",
       decimals: 9
     },
     OHMI: {
@@ -11288,10 +11368,6 @@ export const GLOBAL_TOKEN_LIST = {
     OKB: {
       address: "0x75231F58b43240C9718Dd58B4967c5114342a86c",
       decimals: 18
-    },
-    OKEN: {
-      address: "0xD971a3f840359ac4A23a9e75038934855E5Ed8D5",
-      decimals: 9
     },
     OKIKU: {
       address: "0x7199f1DFfE926c8FD36567D8Df6F41EdB01bf632",
@@ -11337,6 +11413,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xbd89b8D708809E7022135313683663911826977E",
       decimals: 18
     },
+    OMEGA: {
+      address: "0x339e6C8d204B1aaA3Fb74Bc7ba15B9FB6648B7d2",
+      decimals: 9
+    },
     OMG: {
       address: "0xd26114cd6EE289AccF82350c8d8487fedB8A0C07",
       decimals: 18
@@ -11350,7 +11430,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 9
     },
     OMNI: {
-      address: "0x3ce1848F4ace979D31f7eD1921Ee0B2689Fce5A5",
+      address: "0x9e20461bc2c4c980f62f1B279D71734207a6A356",
       decimals: 18
     },
     OMNIA: {
@@ -11375,6 +11455,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     ONEICHI: {
       address: "0x4db2c02831c9ac305FF9311Eb661f80f1dF61e07",
+      decimals: 18
+    },
+    ONI: {
+      address: "0x378878Af3228D23891dE306cb2b123d837d0dcF1",
       decimals: 18
     },
     ONIC: {
@@ -11417,6 +11501,14 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x69D9905B2e5f6F5433212b7F3c954433F23C1572",
       decimals: 18
     },
+    OOOI: {
+      address: "0xd7b675CD5c84A13d1d0f84509345530f6421b57C",
+      decimals: 18
+    },
+    OPC: {
+      address: "0x2A8bf9e7c91C6E3237095e07Eb3dEFBcE358dF00",
+      decimals: 18
+    },
     OPCAT: {
       address: "0xDaA7699352AC8709f3D2fD092226d3DD7DA40474",
       decimals: 18
@@ -11449,6 +11541,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xc0804A4eaE02Fdf7516F55A12990D282640A4961",
       decimals: 18
     },
+    OPMND: {
+      address: "0x87Fd01183BA0235e1568995884a78F61081267ef",
+      decimals: 18
+    },
     OPOE: {
       address: "0x33CAF58D14d7cd284cc2D7F2bc878D2D63C8956A",
       decimals: 8
@@ -11470,11 +11566,15 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     ORACLE: {
-      address: "0x208BCf9CD1D694D1D3C630362E517940e3724D80",
-      decimals: 9
+      address: "0x57B49219614859176Ddb029298486B6c30193Cbd",
+      decimals: 18
     },
     ORAI: {
       address: "0x4c11249814f11b9346808179Cf06e71ac328c1b5",
+      decimals: 18
+    },
+    ORAIX: {
+      address: "0x2d869aE129e308F94Cc47E66eaefb448CEe0d03e",
       decimals: 18
     },
     ORAO: {
@@ -11483,6 +11583,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     ORB: {
       address: "0x3C917054e03485808137EB306eAFA8DA0Ab695cd",
+      decimals: 18
+    },
+    ORBK: {
+      address: "0xCe6E54DaA1ea95fb3530859d69D4bdb978dd821b",
       decimals: 18
     },
     ORBN: {
@@ -11550,8 +11654,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     ORT: {
-      address: "0x5c59a5B139B0538CB106D775a022caD98Dd14b5a",
-      decimals: 18
+      address: "0xFe1b621235227bFa14eD81be2Ba4E5e4447B52c0",
+      decimals: 9
     },
     OS: {
       address: "0x6100dd79fCAA88420750DceE3F735d168aBcB771",
@@ -11573,16 +11677,16 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xf1C9acDc66974dFB6dEcB12aA385b9cD01190E38",
       decimals: 18
     },
-    OSMO: {
-      address: "0xE44ac096D96b7918afc0d98cB18D40c5CA5868aB",
-      decimals: 18
-    },
     OSQTH: {
       address: "0xf1B99e3E573A1a9C5E6B2Ce818b617F0E664E86B",
       decimals: 18
     },
     OST: {
       address: "0x2C4e8f2D746113d0696cE89B35F0d8bF88E0AEcA",
+      decimals: 18
+    },
+    OT: {
+      address: "0x257508Ca6341337dd243d54AFD964e19375B4AF9",
       decimals: 18
     },
     OTACON: {
@@ -11618,7 +11722,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     OX: {
-      address: "0x78a0A62Fba6Fb21A83FE8a3433d44C73a4017A6f",
+      address: "0xba0Dda8762C24dA9487f5FA026a9B64b695A07Ea",
       decimals: 18
     },
     OXL: {
@@ -11627,6 +11731,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     OXN: {
       address: "0x9012744B7A564623b6C3E40b144fc196bdeDf1A9",
+      decimals: 18
+    },
+    OXOLD: {
+      address: "0x78a0A62Fba6Fb21A83FE8a3433d44C73a4017A6f",
       decimals: 18
     },
     OXT: {
@@ -11683,6 +11791,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     PAD: {
       address: "0xea7Cc765eBC94C4805e3BFf28D7E4aE48D06468A",
+      decimals: 18
+    },
+    PADRE: {
+      address: "0xB36cF340a35f9860D0Bb59AFb0355580f0000DAD",
       decimals: 18
     },
     PAF: {
@@ -11749,10 +11861,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x7aE1D57b58fA6411F32948314BadD83583eE0e8C",
       decimals: 18
     },
-    PAPI: {
-      address: "0x693C216aA181EbF776730d16C7ba06842548415E",
-      decimals: 18
-    },
     PAR: {
       address: "0x68037790A0229e9Ce6EaA8A99ea92964106C4703",
       decimals: 18
@@ -11773,8 +11881,12 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x04E3A2932Bfe7b669C9f18df44b2B0A0ee681C19",
       decimals: 18
     },
+    PATEX: {
+      address: "0xFD4f2Caf941B6d737382DCe420b368DE3FC7f2D4",
+      decimals: 18
+    },
     PAW: {
-      address: "0x1AA51bc7eb181ce48CE626Bf62f8956Fa9555136",
+      address: "0xDc63269eA166b70d4780b3A11F5C825C2b761B01",
       decimals: 18
     },
     PAWTH: {
@@ -11801,10 +11913,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x8EF47555856f6Ce2E0cd7C36AeF4FAb317d2e2E2",
       decimals: 18
     },
-    PB: {
-      address: "0x996Ca7e71C37D70132889e29d17d2e44427A03Dc",
-      decimals: 18
-    },
     PBLUI: {
       address: "0xf79C22713F3912Be20a324034A91B11E2958A37e",
       decimals: 9
@@ -11818,7 +11926,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     PBTC: {
-      address: "0x62199B909FB8B8cf870f97BEf2cE6783493c4908",
+      address: "0x5228a22e72ccC52d415EcFd199F99D0665E7733b",
       decimals: 18
     },
     PBTC35A: {
@@ -11830,7 +11938,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     PC: {
-      address: "0x4F311C430540db1d64e635EB55f969F1660B2016",
+      address: "0xe1eC350ea16D1DdAFF57F31387B2d9708Eb7ce28",
       decimals: 9
     },
     PCE: {
@@ -11843,6 +11951,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     PCT: {
       address: "0x414AC1853329b3704DF0caF7749Cd296C7f3b750",
+      decimals: 18
+    },
+    PDA: {
+      address: "0x0D3CbED3f69EE050668ADF3D9Ea57241cBa33A2B",
       decimals: 18
     },
     PDEX: {
@@ -11862,7 +11974,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     PDX: {
-      address: "0x6a8fee0E33Cb65a7E8D21BadCA62E87639ef74B3",
+      address: "0x8b8aa7777E18408c07b0eD52cA3dD5bDab34Eb7E",
       decimals: 18
     },
     PEAK: {
@@ -11897,10 +12009,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x808507121B80c02388fAd14726482e061B8da827",
       decimals: 18
     },
-    PENGYX: {
-      address: "0x3AeFF9536CED04e4443908Cb0ceBAC952a5550C3",
-      decimals: 18
-    },
     PEOPLE: {
       address: "0x7A58c0Be72BE218B41C608b7Fe7C5bB630736C71",
       decimals: 18
@@ -11910,15 +12018,11 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 9
     },
     PEPE: {
-      address: "0xA57Ed6E54be8125BBE45D6cA330E45EbB71ef11e",
+      address: "0x4A27e9aAb8F8bA9de06766C8476eD1D16494E35F",
       decimals: 18
     },
     PEPE20: {
       address: "0x0305f515fa978cf87226cf8A9776D25bcfb2Cc0B",
-      decimals: 18
-    },
-    PEPEAI: {
-      address: "0x8d008CAC1a5CB08aC962b1e34E977B79ABEee88D",
       decimals: 18
     },
     PEPEBEAST: {
@@ -11937,10 +12041,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x8BCbef61ACd66537362f38167F11875134FfcD63",
       decimals: 18
     },
-    PEPEGPT: {
-      address: "0x636d585F40A7a445dA7403FCf92E03F89dc3eBd0",
-      decimals: 18
-    },
     PEPEINU: {
       address: "0x8DC2906De0D7409c3CaCe9482fBffD566639c593",
       decimals: 18
@@ -11953,8 +12053,12 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xDDd5592CF4759313C649eB4e624a79541Ed222ed",
       decimals: 18
     },
+    PEPI: {
+      address: "0xb2cb83e8e1B326373B7F1068d10C50eBfa04F070",
+      decimals: 9
+    },
     PEPINU: {
-      address: "0x0981d9774a59a703dB85f5EaA23672283EA31106",
+      address: "0x68f108FB7141FFe36B832c5c225D9e7e474BD664",
       decimals: 18
     },
     PEPPA: {
@@ -12005,6 +12109,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xf6719e1A8fcBB1B9c290019E37e004966A8916C9",
       decimals: 18
     },
+    PGENZ: {
+      address: "0x2D17B511A85B401980CC0FEd15A8D57FDb8EEc60",
+      decimals: 18
+    },
     PHA: {
       address: "0x6c5bA91642F10282b576d91922Ae6448C9d52f4E",
       decimals: 18
@@ -12023,10 +12131,6 @@ export const GLOBAL_TOKEN_LIST = {
     },
     PHONON: {
       address: "0x758B4684BE769E92eeFeA93f60DDA0181eA303Ec",
-      decimals: 18
-    },
-    PHTK: {
-      address: "0x1FEE5588cb1De19c70B6aD5399152D8C643FAe7b",
       decimals: 18
     },
     PHTR: {
@@ -12050,15 +12154,11 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     PICKLE: {
-      address: "0x429881672B9AE42b8EbA0E26cD9C73711b891Ca5",
+      address: "0x3eC15c4745e21ab3831D1f51c492e3b5582d6239",
       decimals: 18
     },
     PIER: {
       address: "0x87E75025d6607564Ad005088Ab549DD76CA2cE48",
-      decimals: 18
-    },
-    PIF: {
-      address: "0xB30F5d11b94efBBfDeaa4de38eDFFCeEc0bE6513",
       decimals: 18
     },
     PIGGY: {
@@ -12066,8 +12166,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     PIKA: {
-      address: "0xa9D54F37EbB99f83B603Cc95fc1a5f3907AacCfd",
-      decimals: 18
+      address: "0xD1e64bcc904Cfdc19d0FABA155a9EdC69b4bcdAe",
+      decimals: 9
     },
     PINCHI: {
       address: "0xf4CCcfDA0781ae019a9D4e1853DCd3E288Daaa89",
@@ -12138,11 +12238,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     PLA: {
-      address: "0x3a4f40631a4f906c2BaD353Ed06De7A5D3fCb430",
-      decimals: 18
-    },
-    PLANB: {
-      address: "0xe77f82f288A6a7EB4Ac295a86FccB1F6D240499B",
+      address: "0x0198f46f520F33cd4329bd4bE380a25a90536CD5",
       decimals: 18
     },
     PLANET: {
@@ -12154,8 +12250,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     PLEB: {
-      address: "0xe19f85c920B572cA48942315B06D6cAc86585c87",
-      decimals: 18
+      address: "0x740a5aC14D0096c81d331aDC1611cF2FD28AE317",
+      decimals: 9
     },
     PLOT: {
       address: "0x72F020f8f3E8fd9382705723Cd26380f8D0c66Bb",
@@ -12177,12 +12273,8 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x6cD079F296c10EB84A64239b893D4EdfA2E1d779",
       decimals: 18
     },
-    PLSD: {
-      address: "0x34F0915a5f15a66Eba86F6a58bE1A471FB7836A7",
-      decimals: 12
-    },
     PLT: {
-      address: "0x0944D5848BD9F60A34Ba92aEa300d4286696Eb76",
+      address: "0x553Afe6468949E0685959022217336717dF5Fbe8",
       decimals: 18
     },
     PLU: {
@@ -12269,10 +12361,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x0a693a301215aad39D83A32A5b5279f2D238851b",
       decimals: 18
     },
-    POGEX: {
-      address: "0xAEd8077B25c88AF2e711aBdcc24ef9389B028876",
-      decimals: 18
-    },
     POINTS: {
       address: "0xd7C1EB0fe4A30d3B2a846C04aa6300888f087A5F",
       decimals: 18
@@ -12301,10 +12389,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xD478161C952357F05f0292B56012Cd8457F1cfbF",
       decimals: 18
     },
-    POLL: {
-      address: "0x4b0f027d0b694Aae2761ED2d426295d4f949F5d0",
-      decimals: 18
-    },
     POLS: {
       address: "0x83e6f1E41cdd28eAcEB20Cb649155049Fac3D5Aa",
       decimals: 18
@@ -12315,10 +12399,6 @@ export const GLOBAL_TOKEN_LIST = {
     },
     POND: {
       address: "0x57B946008913B82E4dF85f501cbAeD910e58D26C",
-      decimals: 18
-    },
-    POOF: {
-      address: "0x888ceA2BBDD5D47a4032cf63668D7525C74af57A",
       decimals: 18
     },
     POOH: {
@@ -12334,11 +12414,15 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     POP: {
-      address: "0xD0Cd466b34A24fcB2f87676278AF2005Ca8A78c4",
-      decimals: 18
+      address: "0x265F542C1E78068F13d87C6fE0df54f3e9562a48",
+      decimals: 9
     },
     POPE: {
       address: "0xA15865D9de09CB96aAa3A9081B3dFC8481f07d33",
+      decimals: 18
+    },
+    PORA: {
+      address: "0xdD4cE03B97085e5023D3a5FBff6e4f2c4DffB7c3",
       decimals: 18
     },
     PORK: {
@@ -12351,6 +12435,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     PORT3: {
       address: "0xb4357054c3dA8D46eD642383F03139aC7f090343",
+      decimals: 18
+    },
+    PORTAL: {
+      address: "0x1Bbe973BeF3a977Fc51CbED703E8ffDEfE001Fed",
       decimals: 18
     },
     PORTX: {
@@ -12369,12 +12457,8 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x15a3081B541e8daD25C4A5E0C4C4B4E8d105b2E8",
       decimals: 18
     },
-    POVCHAIN: {
-      address: "0x29de166064E1f9467B70bd561e516564A5A9ba3c",
-      decimals: 9
-    },
     POW: {
-      address: "0x43Ab765ee05075d78AD8aa79dcb1978CA3079258",
+      address: "0xcB27E0b9530D5107302e3e0691Dd0f64FAf498B0",
       decimals: 18
     },
     POWER: {
@@ -12417,6 +12501,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xd4fa1460F537bb9085d22C7bcCB5DD450Ef28e3a",
       decimals: 8
     },
+    PRAI: {
+      address: "0x0e6D98de664A28a32B584c72E606Ff7DeA898Dc6",
+      decimals: 18
+    },
     PRARE: {
       address: "0x2C2f7e7C5604D162d75641256b80F1Bf6f4dC796",
       decimals: 18
@@ -12427,6 +12515,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     PRE: {
       address: "0xEC213F83defB583af3A000B1c0ada660b1902A0F",
+      decimals: 18
+    },
+    PREME: {
+      address: "0x7d0C49057c09501595A8ce23b773BB36A40b521F",
       decimals: 18
     },
     PREMIA: {
@@ -12483,10 +12575,6 @@ export const GLOBAL_TOKEN_LIST = {
     },
     PROM: {
       address: "0xfc82bb4ba86045Af6F327323a46E80412b91b27d",
-      decimals: 18
-    },
-    PROME: {
-      address: "0x75459A499a79ccD7C5Fae3201738F9E4677D69E4",
       decimals: 18
     },
     PROMPTIDE: {
@@ -12626,7 +12714,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     PULSE: {
-      address: "0x52A047Ee205701895Ee06A375492490EC9C597cE",
+      address: "0xDC7d16B1E7C54f35a67aF95d5A6eECAEC27B2a62",
       decimals: 18
     },
     PUMLX: {
@@ -12649,16 +12737,16 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xaf6a1125D4cc55a4110dc63CD2Ff6e005AfB8676",
       decimals: 18
     },
+    PUPPIES: {
+      address: "0xCF91b70017eABDE82c9671E30e5502D312eA6eb2",
+      decimals: 9
+    },
     PURE: {
       address: "0x2904b9b16652d7d0408EcCfA23A19D4A3358230f",
       decimals: 18
     },
     PURSE: {
       address: "0x95987b0cdC7F65d989A30B3B7132a38388c548Eb",
-      decimals: 18
-    },
-    PUSD: {
-      address: "0x466a756E9A7401B5e2444a3fCB3c2C12FBEa0a54",
       decimals: 18
     },
     PUSH: {
@@ -12685,10 +12773,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x9B44793a0177C84DD01AD81137db696531902871",
       decimals: 18
     },
-    PVPBOT: {
-      address: "0x6a36481aF18289f80Af4a1B21e4f6d323faBc712",
-      decimals: 9
-    },
     PWR: {
       address: "0xd9Dcd611beD2be9A4700C725a3810870B9BfF094",
       decimals: 18
@@ -12713,10 +12797,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x3408636A7825E894ac5521cA55494F89F96DF240",
       decimals: 18
     },
-    PYPY: {
-      address: "0xa60B6c2537078B903e3E965D4e36b7280B0b53A9",
-      decimals: 9
-    },
     PYR: {
       address: "0x430EF9263E76DAE63c84292C3409D61c598E9682",
       decimals: 18
@@ -12729,6 +12809,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x9ABFc0f085C82Ec1Be31D30843965FCC63053fFe",
       decimals: 9
     },
+    QAI: {
+      address: "0xCb21311d3B91b5324F6C11B4f5A656fcAcBff122",
+      decimals: 18
+    },
     QANX: {
       address: "0xAAA9214F675316182Eaa21C85f0Ca99160CC3AAA",
       decimals: 18
@@ -12740,10 +12824,6 @@ export const GLOBAL_TOKEN_LIST = {
     QDT: {
       address: "0x4e432A62733a7ee38Ad2e16b3cc0731457eA5B55",
       decimals: 4
-    },
-    QETH: {
-      address: "0x93ef1Ea305D11A9b2a3EbB9bB4FCc34695292E7d",
-      decimals: 18
     },
     QI: {
       address: "0x559b7bfC48a5274754b08819F75C5F27aF53D53b",
@@ -12777,6 +12857,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xa71d0588EAf47f12B13cF8eC750430d21DF04974",
       decimals: 18
     },
+    QORPO: {
+      address: "0x22514fFb0d7232a56F0c24090E7B68f179FAA940",
+      decimals: 18
+    },
     QR: {
       address: "0xCcDb064a41AFcD432BCEa6F6d0D1E7c371d0B002",
       decimals: 9
@@ -12787,10 +12871,6 @@ export const GLOBAL_TOKEN_LIST = {
     },
     QRX: {
       address: "0x6e0daDE58D2d89eBBe7aFc384e3E4f15b70b14D8",
-      decimals: 18
-    },
-    QSP: {
-      address: "0x99ea4dB9EE77ACD40B119BD1dC4E33e1C070b80d",
       decimals: 18
     },
     QTCON: {
@@ -12812,6 +12892,10 @@ export const GLOBAL_TOKEN_LIST = {
     QUAD: {
       address: "0xAB2A7B5876D707e0126B3A75EF7781c77c8877EE",
       decimals: 18
+    },
+    QUANTUM: {
+      address: "0x7086e014fd59e66567a986e7b401a5810c2361Ce",
+      decimals: 9
     },
     QUARTZ: {
       address: "0xbA8A621b4a54e61C442F5Ec623687e2a942225ef",
@@ -12886,7 +12970,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     RAIN: {
-      address: "0x71Fc1F555a39E0B698653AB0b475488EC3c34D57",
+      address: "0xe3944AB788A60ca266f1eEc3C26925b95f6370aD",
       decimals: 18
     },
     RAINI: {
@@ -12902,7 +12986,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     RAKE: {
-      address: "0x8928f8D41377856Ddf099D23B260375d178e5677",
+      address: "0x6553565EaC5DAa9BfC5E2892B36291634c9B2ad6",
       decimals: 18
     },
     RAMBE: {
@@ -12917,24 +13001,16 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x6431FA4B812a2DCC062A38CB55cc7D18135AdEAd",
       decimals: 18
     },
-    RAP: {
-      address: "0xB1e4A5f70090947e6Ad3fa2Dc648cBa7B6F913E9",
-      decimals: 18
-    },
     RAPTOR: {
       address: "0xD115A61A25c059c78cD34b97Fab7aB25dfC84BC3",
       decimals: 9
     },
     RARE: {
-      address: "0x93dfaf57D986B9cA77Df9376c50878E013D9c7C8",
+      address: "0xba5BDe662c17e2aDFF1075610382B9B691296350",
       decimals: 18
     },
     RARI: {
       address: "0xFca59Cd816aB1eaD66534D82bc21E7515cE441CF",
-      decimals: 18
-    },
-    RAS: {
-      address: "0x19dd1Cc08a8Bdb124a3f57A364f1D72b7a19C3EF",
       decimals: 18
     },
     RAT: {
@@ -12953,10 +13029,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x7E84c0890CA316458d41497146B2176F6A226277",
       decimals: 18
     },
-    RAVEN: {
-      address: "0x43aF0944b34ad466DceA7FC8f77AAfc6a4Ec70fa",
-      decimals: 18
-    },
     RAZE: {
       address: "0x5Eaa69B29f99C84Fe5dE8200340b4e9b4Ab38EaC",
       decimals: 18
@@ -12967,10 +13039,6 @@ export const GLOBAL_TOKEN_LIST = {
     },
     RBC: {
       address: "0x3330BFb7332cA23cd071631837dC289B09C33333",
-      decimals: 18
-    },
-    RBET: {
-      address: "0xB16ADA27e4bc05bC7b113D0B0fd4962Fe1ce2813",
       decimals: 18
     },
     RBH: {
@@ -12989,12 +13057,20 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x6123B0049F904d730dB3C36a31167D9d4121fA6B",
       decimals: 18
     },
+    RBT: {
+      address: "0x902169D471B62f22FfADc690cA292ec454D0b260",
+      decimals: 18
+    },
     RBX: {
       address: "0x3Ba925fdeAe6B46d0BB4d424D829982Cb2F7309e",
       decimals: 18
     },
     RCBETH: {
       address: "0xE38149abc673a117ABeB8Af7D1fF3d0D1aA5aF15",
+      decimals: 18
+    },
+    RCE: {
+      address: "0xBE579B687fd9cD4fd6cB85ABC8Fbe069ab0be2CB",
       decimals: 18
     },
     RCG: {
@@ -13038,8 +13114,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     RED: {
-      address: "0xC744df3419A8c9Bd4D6b9852A503eb1C5308A326",
-      decimals: 18
+      address: "0xd5dC24c9Ef8a21E6D7CAa603f9502e4A0dc7fE8a",
+      decimals: 9
     },
     REDDIT: {
       address: "0x86Eab36585EDDb7a949a0B4771BA733D942A8AA7",
@@ -13049,12 +13125,12 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xFE3E6a25e6b192A42a44ecDDCd13796471735ACf",
       decimals: 18
     },
-    REFLEX: {
-      address: "0x2F09757B222642C649f1f9d80798b0123fA18Ba9",
-      decimals: 18
+    REF: {
+      address: "0xD62BaA6f3C579316b2798262A219B367c549C7DC",
+      decimals: 9
     },
     REKT: {
-      address: "0x4F8b986ECFFe7beD5dBEb2B49310fB00CA85a539",
+      address: "0xEc33d722d014C02cf4efb46d68098E98E027C364",
       decimals: 18
     },
     REL: {
@@ -13089,13 +13165,13 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x49849C98ae39Fff122806C06791Fa73784FB3675",
       decimals: 18
     },
-    RENDOGE: {
-      address: "0x3832d2F059E55934220881F831bE501D180671A7",
-      decimals: 8
-    },
     RENQ: {
       address: "0xff8C479134A18918059493243943150776cF8CF2",
       decimals: 18
+    },
+    RENT: {
+      address: "0xE13Cf110176e0dd6590536CD391b8a3522475F82",
+      decimals: 9
     },
     REP: {
       address: "0x221657776846890989a759BA2973e427DfF5C9bB",
@@ -13108,10 +13184,6 @@ export const GLOBAL_TOKEN_LIST = {
     RESET: {
       address: "0xB70eAF5d316192881Aac8786c90B7907b83F02e8",
       decimals: 18
-    },
-    RET: {
-      address: "0xD7394087E1DBBE477FE4F1CF373B9Ac9459565fF",
-      decimals: 8
     },
     RETH: {
       address: "0x9559Aaa82d9649C7A7b220E7c461d2E74c9a3593",
@@ -13226,7 +13298,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     RING: {
-      address: "0x9469D013805bFfB7D3DEBe5E7839237e535ec483",
+      address: "0xc092A137df3cF2B9e5971ba1874D26487C12626d",
       decimals: 18
     },
     RINIA: {
@@ -13252,6 +13324,10 @@ export const GLOBAL_TOKEN_LIST = {
     RIWA: {
       address: "0xF482d79AE6e8725C199213Fc909D6bc30dF62815",
       decimals: 9
+    },
+    RIZO: {
+      address: "0x74E9FEe3Fcb56BcCAC22e726cCe7a78cA90185E1",
+      decimals: 18
     },
     RJV: {
       address: "0xa1f410f13B6007fCa76833ee7eb58478D47Bc5Ef",
@@ -13330,7 +13406,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     ROCK: {
-      address: "0x85516e8862aB543EA15972B7809256efEC0696ea",
+      address: "0xB5C457dDB4cE3312a6C5a2b056a1652bd542a208",
       decimals: 18
     },
     ROCKI: {
@@ -13373,14 +13449,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x2DAf397bE543cB416ff09A7F48eE5505b074BEde",
       decimals: 18
     },
-    ROSO: {
-      address: "0xc3d222685f1ACACDdD4bF8aE566a288702252F0d",
-      decimals: 18
-    },
-    ROULETTEBO: {
-      address: "0x0c29fF5e5f27ed032eAB2A97aa489E9c6dA5A4a8",
-      decimals: 18
-    },
     ROUTE: {
       address: "0x16ECCfDbb4eE1A85A33f3A9B21175Cd7Ae753dB4",
       decimals: 18
@@ -13393,12 +13461,20 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x7eaF9C89037e4814DC0d9952Ac7F888C784548DB",
       decimals: 18
     },
+    ROYALE: {
+      address: "0x44D03e7ee25CaeE19172EadDf5fbFbFF07990C7E",
+      decimals: 18
+    },
     RPG: {
       address: "0x1f16D41f9B3dB03b462BDD6c92245ee708D1C103",
       decimals: 18
     },
     RPGMAI: {
       address: "0x96362879529C15C484EaBc861c435940e7AF22bb",
+      decimals: 18
+    },
+    RPILL: {
+      address: "0x43fe2B0c5485C10e772a1843e32a7642AcE5B88C",
       decimals: 18
     },
     RPK: {
@@ -13465,8 +13541,16 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xbE33F57f41a20b2f00DEc91DcC1169597f36221F",
       decimals: 18
     },
+    RUNIC: {
+      address: "0xeb4F5c4bF62faC1be7e4BEf9c7C055BF1C52241D",
+      decimals: 18
+    },
     RUNNER: {
       address: "0x834e7FDc574cC0c95857da38190B453A3666387E",
+      decimals: 18
+    },
+    RUSD: {
+      address: "0x65D72AA8DA931F047169112fcf34f52DbaAE7D18",
       decimals: 18
     },
     RUSH: {
@@ -13485,12 +13569,12 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xf282484234D905D7229a6C22A0e46bb4b0363eE0",
       decimals: 9
     },
-    RVST: {
-      address: "0x120a3879da835A5aF037bB2d1456beBd6B54d4bA",
+    RVSL: {
+      address: "0x6AA3EcEC75ceb388d2E929814EaD4Fc4CD0648fC",
       decimals: 18
     },
-    RVUSD: {
-      address: "0x84777600c51996B2ce92a514FF2583B7d7C2239b",
+    RVST: {
+      address: "0x120a3879da835A5aF037bB2d1456beBd6B54d4bA",
       decimals: 18
     },
     RWA: {
@@ -13498,11 +13582,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     RYOSHI: {
-      address: "0x777E2ae845272a2F540ebf6a3D03734A5a8f618e",
-      decimals: 18
-    },
-    RZR: {
-      address: "0xa3a80559bbC1989654e6b8385f5001Fa1333332f",
+      address: "0x65E9ED59a6c03e97aE984B6C4ff912448eBD3566",
       decimals: 18
     },
     S4F: {
@@ -13534,7 +13614,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     SAI: {
-      address: "0x89d24A6b4CcB1B6fAA2625fE562bDD9a23260359",
+      address: "0x5eA49FF332b7AD99C486347c1c2BcC73d1e22b9b",
       decimals: 18
     },
     SAIKO: {
@@ -13550,8 +13630,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     SAITAMA: {
-      address: "0x930ae5999210724248b36265e8D3696128115946",
-      decimals: 8
+      address: "0xCE3f08e664693ca792caCE4af1364D5e220827B2",
+      decimals: 9
     },
     SAITO: {
       address: "0xFa14Fa6958401314851A17d6C5360cA29f74B57B",
@@ -13581,6 +13661,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xE04F47FF45576249bc5083DFDf987e03d0550113",
       decimals: 18
     },
+    SAMBO: {
+      address: "0x0D827543d120F49F0614cA1CB2fa18f96ac817f0",
+      decimals: 18
+    },
     SAN: {
       address: "0x7C5A0CE9267ED19B22F8cae653F198e3E8daf098",
       decimals: 18
@@ -13594,8 +13678,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     SANSHU: {
-      address: "0xc73C167E7a4Ba109e4052f70D5466D0C312A344D",
-      decimals: 9
+      address: "0x0026dFbd8DBb6f8D0c88303CC1B1596409Fda542",
+      decimals: 18
     },
     SAO: {
       address: "0x3EF389f264e07fFF3106A3926F2a166d1393086F",
@@ -13633,10 +13717,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x4e4990E997e1dF3f6b39Ff49384E2E7E99BC55fE",
       decimals: 18
     },
-    SAUDIPEPE: {
-      address: "0x8ACee0fCeE91cedAD1c5013F031762C814740587",
-      decimals: 18
-    },
     SAVM: {
       address: "0x15e6E0D4ebeAC120F9a97e71FaA6a0235b85ED12",
       decimals: 18
@@ -13665,9 +13745,13 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xE35009059cb55ded065027e9832A2c564AFF7512",
       decimals: 18
     },
+    SCALE: {
+      address: "0x8A0a9b663693A22235B896f70a229C4A22597623",
+      decimals: 18
+    },
     SCAN: {
-      address: "0xA8DFdFDF9D288e909a96178e15731A6f4048A7aa",
-      decimals: 9
+      address: "0x10703cA5e253306e2ABABD68e963198be8887c81",
+      decimals: 18
     },
     SCAPE: {
       address: "0x6C6e2C5a4EB108A1F3c985d5A7F4f233483e952F",
@@ -13683,6 +13767,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     SCCN: {
       address: "0xdfdDF7a69716124Bc346bA556d4b9f9E74C4A8Bc",
+      decimals: 18
+    },
+    SCHRODI: {
+      address: "0x35cA1E5A9B1c09Fa542Fa18D1Ba4D61c8eDfF852",
       decimals: 18
     },
     SCHRODINGE: {
@@ -13765,6 +13853,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x537edD52ebcb9F48ff2f8a28c51FCdB9D6a6E0D4",
       decimals: 18
     },
+    SDOLA: {
+      address: "0xb45ad160634c528Cc3D2926d9807104FA3157305",
+      decimals: 18
+    },
     SDT: {
       address: "0x73968b9a57c6E53d41345FD57a6E6ae27d6CDB2F",
       decimals: 18
@@ -13804,6 +13896,10 @@ export const GLOBAL_TOKEN_LIST = {
     SEND: {
       address: "0x3f14920c99BEB920Afa163031c4e47a3e03B3e4A",
       decimals: 0
+    },
+    SENDEX: {
+      address: "0xb93746dc7A8bf5E381FFB278085B1F62bd0A1fC8",
+      decimals: 9
     },
     SENSO: {
       address: "0xC19B6A4Ac7C7Cc24459F08984Bbd09664af17bD1",
@@ -13881,6 +13977,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xdDF7Fd345D54ff4B40079579d4C4670415DbfD0A",
       decimals: 18
     },
+    SGR: {
+      address: "0x478156DeAbfAc918369044D52A6BdB5Cc5597994",
+      decimals: 8
+    },
     SGT: {
       address: "0xa0e7626287Bd02Cbe3531C65148261Bf0c0Ed98b",
       decimals: 18
@@ -13925,6 +14025,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xebB82c932759B515B2efc1CfBB6BF2F6dbaCe404",
       decimals: 18
     },
+    SHARX: {
+      address: "0x81994DfBBE69c9e03226C2ebe62f7352DC3DB812",
+      decimals: 18
+    },
     SHEB: {
       address: "0x6930450a416252c7206fBCe76c01ECC850A36Cb9",
       decimals: 9
@@ -13945,12 +14049,16 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x5fE72ed557d8a02FFf49B3B826792c765d5cE162",
       decimals: 18
     },
+    SHFL: {
+      address: "0x8881562783028F5c1BCB985d2283D5E170D88888",
+      decimals: 18
+    },
     SHFT: {
       address: "0xb17C88bDA07D28B3838E0c1dE6a30eAfBCF52D85",
       decimals: 18
     },
     SHI: {
-      address: "0xaD996A45fd2373ed0B10Efa4A8eCB9de445A4302",
+      address: "0x243cACb4D5fF6814AD668C3e225246efA886AD5a",
       decimals: 18
     },
     SHIA: {
@@ -13958,7 +14066,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     SHIB: {
-      address: "0xfcaF0e4498E78d65526a507360F755178b804Ba8",
+      address: "0x95aD61b0a150d79219dCF64E1E6Cc01f0B64C4cE",
       decimals: 18
     },
     SHIB05: {
@@ -14006,11 +14114,11 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     SHIDO: {
-      address: "0x72c60bFffEF18dCa51db32b52b819A951b6Ddbed",
+      address: "0xe2512A2f19F0388aD3D7A5263eaA82AcD564827b",
       decimals: 18
     },
     SHIELD: {
-      address: "0xd8B90D2e680ea535eAcCe1b025c998B347892f68",
+      address: "0xcf4C68Db4C2FA0bf58dF07B14f45cE7709a716AC",
       decimals: 18
     },
     SHIH: {
@@ -14035,10 +14143,6 @@ export const GLOBAL_TOKEN_LIST = {
     },
     SHINO: {
       address: "0xE9287543684f440b2f29983A3472987bF7b0ed12",
-      decimals: 18
-    },
-    SHINU: {
-      address: "0x0d229c3FF2d76E4b88Ca4F9d3D3353F4545EC53F",
       decimals: 18
     },
     "SHIRYO-INU": {
@@ -14085,6 +14189,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xbB4f3aD7a2cf75d8EfFc4f6D7BD21d95F06165ca",
       decimals: 18
     },
+    SHU: {
+      address: "0xe485E2f1bab389C08721B291f6b59780feC83Fd7",
+      decimals: 18
+    },
     SHUB: {
       address: "0x0A6c7D5B442DdF53d963581D87932F25743dd3a0",
       decimals: 18
@@ -14095,6 +14203,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     SIDUS: {
       address: "0x549020a9Cb845220D66d3E9c6D9F9eF61C981102",
+      decimals: 18
+    },
+    SIFU: {
+      address: "0x8DD09822E83313adCA54c75696aE80C5429697Ff",
       decimals: 18
     },
     SIFY: {
@@ -14165,10 +14277,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xd38BB40815d2B0c2d2c866e0c72c5728ffC76dd9",
       decimals: 18
     },
-    SJM: {
-      address: "0x4448d67EA26a2Eaf286bc1045005f4CF15aaBa11",
-      decimals: 9
-    },
     SKEB: {
       address: "0x6D614686550B9E1c1DF4b2cD8f91C9D4df66C810",
       decimals: 18
@@ -14185,6 +14293,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x048Fe49BE32adfC9ED68C37D32B5ec9Df17b3603",
       decimals: 18
     },
+    SKOL: {
+      address: "0xB369dACa21eE035312176Eb8Cf9d88ce97E0aA95",
+      decimals: 18
+    },
     SKRIMP: {
       address: "0xec6d73557937974077911a0B6fDc436b0ff70296",
       decimals: 18
@@ -14199,10 +14311,6 @@ export const GLOBAL_TOKEN_LIST = {
     },
     SKYRIM: {
       address: "0x2610F0bFC21EF389fe4D03CFB7De9ac1E6C99D6E",
-      decimals: 18
-    },
-    SLEEPEE: {
-      address: "0x80CD73baDb406eA36B9a7CDeb8df06AeFa7E12d9",
       decimals: 18
     },
     SLG: {
@@ -14236,6 +14344,10 @@ export const GLOBAL_TOKEN_LIST = {
     SLURP: {
       address: "0xBbC25E2A2948Df4abf61a138f570CE6C4E729fB1",
       decimals: 18
+    },
+    SMAI20: {
+      address: "0x02a97Fd243B8301BCd6bA3a87693162d6bD130BD",
+      decimals: 9
     },
     SMART: {
       address: "0xce20BB92CCF9BbF5091ef85649E71E552819AD8c",
@@ -14281,16 +14393,16 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x76dbCba41e11784BFA95cE30e529fA533C3fA4aD",
       decimals: 18
     },
-    SMTX: {
-      address: "0x102203517ce35AC5Cab9a2cda80DF03f26c7419b",
-      decimals: 18
-    },
     SMTY: {
       address: "0xbF776e4FCa664D791C4Ee3A71e2722990E003283",
       decimals: 18
     },
     SMUDGE: {
       address: "0x516e2758b044433371076a48127b8CFa7b0bDb43",
+      decimals: 18
+    },
+    SMURFCAT: {
+      address: "0xfF836A5821E69066c87E268bC51b849FaB94240C",
       decimals: 18
     },
     SNAIL: {
@@ -14321,8 +14433,12 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xaeC2E87E0A235266D9C5ADc9DEb4b2E29b54D009",
       decimals: 0
     },
+    SNIBBU: {
+      address: "0xAeE9bA9CE49fe810417A36408e34D9962b653E78",
+      decimals: 9
+    },
     SNM: {
-      address: "0x46d0DAc0926fa16707042CAdC23F1EB4141fe86B",
+      address: "0x77571a64342667f7818520eF004b2b91F47a266b",
       decimals: 18
     },
     SNN: {
@@ -14333,48 +14449,32 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xfe9A29aB92522D14Fc65880d817214261D8479AE",
       decimals: 18
     },
-    SNP: {
-      address: "0x6911F552842236bd9E8ea8DDBB3fb414e2C5FA9d",
-      decimals: 18
-    },
     SNS: {
       address: "0xEa4a2327E75252517535fd013b7C6706609819DB",
       decimals: 18
     },
     SNT: {
-      address: "0x744d70FDBE2Ba4CF95131626614a1763DF805B9E",
+      address: "0x78bA134C3ACe18e69837b01703d07f0db6FB0A60",
       decimals: 18
     },
     SNX: {
       address: "0xC011a73ee8576Fb46F5E1c5751cA3B9Fe0af2a6F",
       decimals: 18
     },
-    SOAPS: {
-      address: "0xa2c798f6456E4928f1E029C971007A09416A3db0",
-      decimals: 9
+    SOAI: {
+      address: "0xe8196181c5fe192B83C5cA34BE910d93D691d935",
+      decimals: 18
     },
     SOB: {
       address: "0x54dA724e13d64619A36e1Ee6f4bF92D5a410da41",
       decimals: 9
     },
-    SOBA: {
-      address: "0x65032604Dab202aFf9ADf89300CdB4bD0d059F55",
-      decimals: 18
-    },
     SOC: {
       address: "0x3250577E12b9469915C1Fa3a71C22817Ca44C4D9",
       decimals: 18
     },
-    SOCIO: {
-      address: "0xC6979Ff406F6cD88908009A80fAc0fa7CC1D4fBd",
-      decimals: 9
-    },
     SOCKS: {
       address: "0x23B608675a2B2fB1890d3ABBd85c5775c51691d5",
-      decimals: 18
-    },
-    SODO: {
-      address: "0x0038e74ff4DAd34404E74B0cB96dB8Ca26EFC24d",
       decimals: 18
     },
     SOFI: {
@@ -14433,10 +14533,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xd1cD47746B8e72359b28C1c84a4F6a19dc1A0ee5",
       decimals: 18
     },
-    SONICBOT: {
-      address: "0xB167b290D172eb33e221309592Df0C042ab9DcDD",
-      decimals: 9
-    },
     SONIK: {
       address: "0x9F891b5ECbd89DD8A5Ee4d1D80EfC3fE78b306CB",
       decimals: 18
@@ -14448,10 +14544,6 @@ export const GLOBAL_TOKEN_LIST = {
     SOON: {
       address: "0x574D22E2555cAc0ce71e44778f6De2e7487aE229",
       decimals: 18
-    },
-    SOOOOOOOOO: {
-      address: "0x1494951b4656075E473843161c4fF0201A235cec",
-      decimals: 9
     },
     SOP: {
       address: "0xa8388b8334BEB4840D65eD80F858B080dFFD7e2B",
@@ -14470,8 +14562,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     SOUL: {
-      address: "0x992D339532A9C42F1b0E59A57e95F38da38c66F6",
-      decimals: 18
+      address: "0x75858677e27C930FB622759FeafFeE2b754Af07F",
+      decimals: 8
     },
     SOURCE: {
       address: "0x7118057ff0F4Fd0994fb9d2D94de8231d5cca79E",
@@ -14482,7 +14574,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     SOV: {
-      address: "0xbdab72602e9AD40FC6a6852CAf43258113B8F7a5",
+      address: "0x2C5BC2Ba3614fD27FCc7022eA71d9172E2632c16",
       decimals: 18
     },
     SOY: {
@@ -14537,10 +14629,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x3A0b022f32b3191D44E5847da12dc0B63fb07C91",
       decimals: 18
     },
-    SPGBB: {
-      address: "0x64551fA4093c2D6c298cf1792740F884084a8F69",
-      decimals: 18
-    },
     SPH: {
       address: "0xA0CF46eb152656C7090e769916eb44a138aaa406",
       decimals: 18
@@ -14554,20 +14642,12 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     SPIDER: {
-      address: "0xe70E1D6A2E971ff6DEBc21DD2540064c25C9Bc0D",
+      address: "0xa599ab9ee3837BE7c5F7b8abf0CE10bC49A2B779",
       decimals: 18
-    },
-    SPIDERCAT: {
-      address: "0xf1b4Cb8Ab3146edD856Ed696c199a9a647178854",
-      decimals: 8
     },
     SPILLWAYS: {
       address: "0x8790f2fc7Ca2e7Db841307FB3f4e72a03Baf7b47",
       decimals: 18
-    },
-    SPIRAL: {
-      address: "0x01792e1548Dc317bDE6123fe92da1Fe6d7311C3c",
-      decimals: 9
     },
     SPIZ: {
       address: "0xa7A5c1058194Af8F00c187adB7FcC0c95f1C6c2d",
@@ -14598,8 +14678,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     SPOT: {
-      address: "0xC1f33e0cf7e40a67375007104B929E49a581bafE",
-      decimals: 9
+      address: "0x53020F42f6Da51B50cf6E23e45266ef223122376",
+      decimals: 18
     },
     SPR: {
       address: "0x85b6ACaBa696B9E4247175274F8263F99b4B9180",
@@ -14635,6 +14715,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     SQGL: {
       address: "0x8d137e3337eb1B58A222Fef2B2Cc7C423903d9cf",
+      decimals: 18
+    },
+    SQT: {
+      address: "0x09395a2A58DB45db0da254c7EAa5AC469D8bDc85",
       decimals: 18
     },
     SQUID: {
@@ -14730,7 +14814,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     STAR: {
-      address: "0x6953f27dB0701E22616e701DbA91acC2E4B6DecA",
+      address: "0xB299751B088336E165dA313c33e3195B8c6663A6",
       decimals: 18
     },
     STARL: {
@@ -14774,12 +14858,12 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     STC: {
-      address: "0x15B543e986b8c34074DFc9901136d9355a537e7E",
-      decimals: 18
+      address: "0x19Ae49B9F38dD836317363839A5f6bfBFA7e319A",
+      decimals: 9
     },
-    STEALTH: {
-      address: "0xB18F98822C22492Bd6b77D19cae9367f3D60fcBf",
-      decimals: 8
+    STELAI: {
+      address: "0x30c81d711253cF61804BC86d223051cb960D5878",
+      decimals: 9
     },
     STEM: {
       address: "0xF96287Ea71ABb5c8c58961C7A3Cd3982A505E264",
@@ -14874,7 +14958,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     STRDY: {
-      address: "0x59276455177429ae2af1cc62B77AE31B34EC3890",
+      address: "0xaeB3607eC434454ceB308f5Cd540875efb54309A",
       decimals: 18
     },
     STREAMERINU: {
@@ -14886,11 +14970,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     STRK: {
-      address: "0x74232704659ef37c08995e386A2E26cc27a8d7B1",
-      decimals: 18
-    },
-    STRM: {
-      address: "0x0eDF9bc41Bbc1354c70e2107F80C42caE7FBBcA8",
+      address: "0xCa14007Eff0dB1f8135f4C25B34De49AB0d42766",
       decimals: 18
     },
     STRNGR: {
@@ -14904,6 +14984,10 @@ export const GLOBAL_TOKEN_LIST = {
     STRP: {
       address: "0x97872EAfd79940C7b24f7BCc1EADb1457347ADc9",
       decimals: 18
+    },
+    STRUMP: {
+      address: "0x7039cd6D7966672F194E8139074C3D5c4e6DCf65",
+      decimals: 9
     },
     STSW: {
       address: "0x1C98B54d673C026C8286bADCa3E840aaf72931a3",
@@ -14935,6 +15019,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     SUB: {
       address: "0x8D75959f1E61EC2571aa72798237101F084DE63a",
+      decimals: 18
+    },
+    SUBF: {
+      address: "0x564A80d0123Bdd750fb6A9993834968fc595C09A",
       decimals: 18
     },
     SUDO: {
@@ -14997,8 +15085,16 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x0B452278223D3954F4AC050949D7998e373e7E43",
       decimals: 18
     },
+    SVEC: {
+      address: "0x66d5c66E7C83E0682d947176534242c9f19b3365",
+      decimals: 9
+    },
     SVETH: {
       address: "0x6733F0283711F225A447e759D859a70b0c0Fd2bC",
+      decimals: 18
+    },
+    SVPN: {
+      address: "0xc668695dcbCf682dE106Da94bDE65c9bc79362d3",
       decimals: 18
     },
     SWAG: {
@@ -15086,7 +15182,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     SX: {
-      address: "0x99fE3B1391503A1bC1788051347A1324bff41452",
+      address: "0xbe9F61555F50DD6167f2772e9CF7519790d96624",
       decimals: 18
     },
     SXP: {
@@ -15121,6 +15217,14 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xbc6E06778708177a18210181b073DA747C88490a",
       decimals: 18
     },
+    SYNTHAI: {
+      address: "0x86B5e2642D094078ad7Fe4e0a61f1f4eB4e3280c",
+      decimals: 9
+    },
+    SYNTX: {
+      address: "0x794fceE2C16e9495c3f590958b1209400751Ba80",
+      decimals: 18
+    },
     T: {
       address: "0xCdF7028ceAB81fA0C6971208e83fa7872994beE5",
       decimals: 18
@@ -15135,6 +15239,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     TADPOLE: {
       address: "0xeCd48F326e70388D993694De59B4542cE8aF7649",
+      decimals: 18
+    },
+    TAH: {
+      address: "0xEfB20cd759f617AB59b758A1f06De02FeB5E8Bd5",
       decimals: 18
     },
     TAI: {
@@ -15153,20 +15261,56 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x12b6893cE26Ea6341919FE289212ef77e51688c8",
       decimals: 18
     },
+    TAOBOT: {
+      address: "0x49fb8ad7578148E17c3eF0C344CE23A66ed372C4",
+      decimals: 18
+    },
     TAONU: {
       address: "0x4e9fcD48Af4738e3bF1382009dC1e93eBFCE698F",
+      decimals: 18
+    },
+    TAOP: {
+      address: "0x72CDB56E9d96c64fb52E8cdEdA7475F3AA843f59",
+      decimals: 18
+    },
+    TAOS: {
+      address: "0xE94E8E29Bd3dB22917E83D019af7baBDF8b9adf6",
+      decimals: 9
+    },
+    TAOSHARD: {
+      address: "0x693170bd3c37DCD46168d8b399AA7551A32de2aF",
+      decimals: 18
+    },
+    TAOVM: {
+      address: "0x49e1cc8D19e4C52bDe82412f900f35ea5E9B5901",
+      decimals: 18
+    },
+    TAOX: {
+      address: "0x6b96c78D4472031F1fBed2d1C4Bd3895e9212344",
       decimals: 18
     },
     TAPROOT: {
       address: "0x07B701aC44Aacb03d8Bed42eb85Ec38210bDf513",
       decimals: 6
     },
+    TARGET: {
+      address: "0xE9e07Fb66976ae5E40cc5f33674725320917B239",
+      decimals: 18
+    },
     TAROT: {
       address: "0x837d904A3799c0769079BE9ecbadDF1aBD4cCD6e",
       decimals: 18
     },
+    TAS: {
+      address: "0x64D5fEa7d2d600918b76159285994d6ed218F264",
+      decimals: 18
+    },
     TATE: {
       address: "0xa589d8868607b8d79eE4288ce192796051263b64",
+      decimals: 18
+    },
+    TATSU: {
+      address: "0x92F419fB7a750aeD295B0ddF536276bf5a40124F",
       decimals: 18
     },
     TAU: {
@@ -15176,6 +15320,10 @@ export const GLOBAL_TOKEN_LIST = {
     TAXHAVENINU: {
       address: "0x664C6E221c77313307467B121528ad563107bD01",
       decimals: 9
+    },
+    TBANK: {
+      address: "0x95CcffaE3Eb8767D4a941Ec43280961dde89F4dE",
+      decimals: 18
     },
     TBC: {
       address: "0x03042ae6fcFd53E3A0BAa1FaB5Ce70E0cb74E6fb",
@@ -15196,6 +15344,10 @@ export const GLOBAL_TOKEN_LIST = {
     TBTC: {
       address: "0x18084fbA666a33d37592fA2633fD49a74DD93a88",
       decimals: 18
+    },
+    TCARD: {
+      address: "0x3E156234501c41A041a178fF547E295609c4769A",
+      decimals: 9
     },
     TCP: {
       address: "0x06576eB3B212d605B797dC15523d9Dc9F4F66DB4",
@@ -15253,6 +15405,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x52662717e448be36Cb54588499D5A8328BD95292",
       decimals: 18
     },
+    TEQ: {
+      address: "0x23150e1dB43A04AE1Ea993B76Dd3C37156cAbe0F",
+      decimals: 18
+    },
     TERA: {
       address: "0x009668A9691e456972c8ec4Cc84e99486308b84D",
       decimals: 18
@@ -15295,6 +15451,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     TGC: {
       address: "0x25B4f5D4C314bCD5d7962734936C957B947cb7CF",
+      decimals: 18
+    },
+    TGR: {
+      address: "0xc7026a20a640Bc71B9074F7aed52A00cD9147091",
       decimals: 18
     },
     TGT: {
@@ -15413,10 +15573,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xF19308F923582A6f7c465e5CE7a9Dc1BEC6665B1",
       decimals: 18
     },
-    TITR: {
-      address: "0x857d4d47a707Cb4E409e14Ac63b2e79114aCD102",
-      decimals: 18
-    },
     TIUSD: {
       address: "0x6EFF556748Ee452CbDaf31bcb8c76A28651509bd",
       decimals: 18
@@ -15465,13 +15621,17 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x9d3D07439069C9bbC8d626397cf98CB343aC0a72",
       decimals: 18
     },
+    TNODE: {
+      address: "0xb831717E73Dba259CE632B54cFe233D5Ead60A1a",
+      decimals: 18
+    },
     TNT: {
       address: "0x08f5a9235B08173b7569F83645d2c7fB55e8cCD8",
       decimals: 8
     },
     TOAD: {
-      address: "0xBfB2b6870501a6Ff17121D676A0A45a38c9eeD1e",
-      decimals: 9
+      address: "0x01e1d7cBD3Bc0EB1030485F33708421011459459",
+      decimals: 18
     },
     TOILET: {
       address: "0x344D6117Ae0984F3afDd23E593f92d95A83dcD0E",
@@ -15499,14 +15659,6 @@ export const GLOBAL_TOKEN_LIST = {
     },
     TOKO: {
       address: "0xa0F0546Eb5E3eE7e8cfC5DA12e5949F3AE622675",
-      decimals: 18
-    },
-    TOKU: {
-      address: "0x9eEC1A4814323a7396c938bc86aeC46b97F1BD82",
-      decimals: 18
-    },
-    TOL: {
-      address: "0xd07D9Fe2d2cc067015E2b4917D24933804f42cFA",
       decimals: 18
     },
     TOM: {
@@ -15577,10 +15729,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x77a90B04d64189d4D09508612C09219bC6816BdC",
       decimals: 9
     },
-    TOTM: {
-      address: "0x6FF1BFa14A57594a5874B37ff6AC5efbD9F9599A",
-      decimals: 18
-    },
     TOTO: {
       address: "0x973E00Eee6d180b5A0Eb08cE3047AC4eA7A45CD5",
       decimals: 9
@@ -15613,6 +15761,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x4161725D019690a3E0de50f6bE67b07a86A9fAe1",
       decimals: 4
     },
+    TPU: {
+      address: "0xD9812F24f34e0d727bbf6Ea7caAEe05B7f7a2603",
+      decimals: 18
+    },
     TPY: {
       address: "0x968Cbe62c830A0Ccf4381614662398505657A2A9",
       decimals: 8
@@ -15629,12 +15781,16 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x9F7fC686CfD64aA5Ae15b351d03071e91533094b",
       decimals: 18
     },
+    TRACK: {
+      address: "0xda558A295e8D2C1438F7b4806e283940dec7e6Db",
+      decimals: 9
+    },
     TRACKR: {
       address: "0x7E6F60e237c34307D516EF80218c2b04BcCbCA40",
       decimals: 18
     },
     TRADE: {
-      address: "0x6F87D756DAf0503d08Eb8993686c7Fc01Dc44fB1",
+      address: "0x6e5970DBd6fc7eb1f29C6D2eDF2bC4c36124C0C1",
       decimals: 18
     },
     TRAVA: {
@@ -15649,16 +15805,28 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x88dF592F8eb5D7Bd38bFeF7dEb0fBc02cf3778a0",
       decimals: 18
     },
+    TRDG: {
+      address: "0x92a42Db88Ed0F02c71D439e55962Ca7CAB0168b5",
+      decimals: 9
+    },
+    TRDM: {
+      address: "0xc8DFb57d83bF561457b1A3f6CE22956BB554bCab",
+      decimals: 18
+    },
     TREAT: {
       address: "0xFbD5fD3f85e9f4c5E8B40EEC9F8B8ab1cAAa146b",
       decimals: 18
     },
     TREE: {
-      address: "0xfBbE098EE65238E4D9f771404eDddcBF89Cd689b",
+      address: "0xBa25B2281214300E4e649feAd9A6d6acD25f1c0a",
       decimals: 18
     },
     TRENDAI: {
       address: "0x6fc73113fC1aFaB4C28d3DD4c537A1DA6045d47D",
+      decimals: 18
+    },
+    TRENDGURU: {
+      address: "0x559BaBc46A6Ab52FD11b2790bCe01F0A434a8B4e",
       decimals: 18
     },
     TRENDX: {
@@ -15678,15 +15846,11 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     TRIBE: {
-      address: "0xc7283b66Eb1EB5FB86327f08e1B5816b0720212B",
+      address: "0xdeADFACE8503399Df4b083ef42FA8e02fd39dEAd",
       decimals: 18
     },
     TRIBL: {
       address: "0x6988A804C74Fd04F37DA1EA4781CEa68c9C00F86",
-      decimals: 18
-    },
-    TRIBOT: {
-      address: "0x18e2190303d6454dEAa5bA5529EA0100F99723a3",
       decimals: 18
     },
     TRIO: {
@@ -15713,12 +15877,16 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x490e3f4af13e1616EC97A8C6600c1061a8D0253e",
       decimals: 18
     },
+    TRSCT: {
+      address: "0xfe98796e0AF4aBAbd716508429E51fF9ac1bb4d5",
+      decimals: 9
+    },
     TRU: {
       address: "0xf65B5C5104c4faFD4b709d9D60a185eAE063276c",
       decimals: 18
     },
     TRUCK: {
-      address: "0x3F48cCE3EAbb02304F7Cc16FD7a35F3A2df7BE8e",
+      address: "0xAb5D6508E4726141D29c6074Ab366aFa03f4Ec8D",
       decimals: 18
     },
     TRUMATIC: {
@@ -15730,8 +15898,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     TRUMP: {
-      address: "0xD015422879A1308ba557510345E944B912b9aB73",
-      decimals: 18
+      address: "0x576e2BeD8F7b46D34016198911Cdf9886f78bea7",
+      decimals: 9
     },
     TRUTH: {
       address: "0xAF75d880b3128981D1fEd3292Fc02E3FB37Acd53",
@@ -15752,6 +15920,10 @@ export const GLOBAL_TOKEN_LIST = {
     TRYC: {
       address: "0x0000000005c6B7C1fd10915a05f034F90d524D6E",
       decimals: 6
+    },
+    TSA: {
+      address: "0xf02c2dC9b3cB7F1ba21CCd82dFf4ebC92da8996F",
+      decimals: 18
     },
     TSC: {
       address: "0x617eAD3c59Ded3ea1BB17881118Cf310144b450f",
@@ -15774,7 +15946,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     TT: {
-      address: "0xdF906f6FD89ce60c16bAEd3C96CEB08BCA65AD82",
+      address: "0x1E053D89E08c24aA2CE5C5B4206744Dc2D7BD8F5",
       decimals: 18
     },
     TTF: {
@@ -15787,6 +15959,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     TUF: {
       address: "0x6f8b23296394d20eC048FbDec8eBc0CA90f5c8f1",
+      decimals: 18
+    },
+    TUNA: {
+      address: "0xaDD353fb2e2c563383FF3272a500f3e7134DAfe4",
       decimals: 18
     },
     TUNE: {
@@ -15826,8 +16002,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 9
     },
     TX: {
-      address: "0x7B18E5d77622Ba37173801f77745a0654dF825fF",
-      decimals: 18
+      address: "0x8954D907520532c1f0d89d42569232Fd0f995Fdf",
+      decimals: 8
     },
     TXA: {
       address: "0x4463e6A3dEd0dBE3F6e15bC8420dFc55e5FeA830",
@@ -15862,8 +16038,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     TYPE: {
-      address: "0xeaf61FC150CD5c3BeA75744e830D916E60EA5A9F",
-      decimals: 4
+      address: "0x443459D45c30A03f90037d011CbE22e2183d3b12",
+      decimals: 18
     },
     TYRANT: {
       address: "0x8EE325AE3E54e83956eF2d5952d3C8Bc1fa6ec27",
@@ -15878,7 +16054,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     U: {
-      address: "0x8cC379A292a47Cb8406Fb1bd8a6D98f442275f0e",
+      address: "0xb7be27ba608641f0B6F152c8B432757F3685d2B0",
       decimals: 18
     },
     U0N1: {
@@ -15985,6 +16161,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x90DE74265a416e1393A450752175AED98fe11517",
       decimals: 18
     },
+    UDX: {
+      address: "0xce3ee7435a5bEdBE73b92f39828b0CFD9D0FF568",
+      decimals: 18
+    },
     UEFN: {
       address: "0xfeFF7B68bC540826dA22b296C82a4b8b6B845f41",
       decimals: 18
@@ -16019,6 +16199,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     UGAS: {
       address: "0x8716Fc5Da009D3A208f0178b637a50F4ef42400F",
+      decimals: 18
+    },
+    UGOLD: {
+      address: "0xA6089DBfED19D1bCd43146BbDCa2b8f9d9f84A9A",
       decimals: 18
     },
     UGT: {
@@ -16126,8 +16310,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     UNI: {
-      address: "0x2730d6FdC86C95a74253BefFaA8306B40feDecbb",
-      decimals: 8
+      address: "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+      decimals: 18
     },
     UNIBOT: {
       address: "0xf819d9Cb1c2A819Fd991781A822dE3ca8607c3C9",
@@ -16135,10 +16319,6 @@ export const GLOBAL_TOKEN_LIST = {
     },
     UNIC: {
       address: "0x94E0BAb2F6Ab1F19F4750E42d7349f2740513aD5",
-      decimals: 18
-    },
-    UNICHAD: {
-      address: "0x099f8d9e004cE139c6F46572ea99c0DB71889A78",
       decimals: 18
     },
     UNIDX: {
@@ -16163,6 +16343,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     UNIT: {
       address: "0x1E241521f4767853B376C2Fe795a222a07D588eE",
+      decimals: 18
+    },
+    UNITAO: {
+      address: "0x19EfA7D0FC88FfE461D1091F8cBe56DC2708a84f",
       decimals: 18
     },
     UNITYBOT: {
@@ -16294,7 +16478,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     USDE: {
-      address: "0x4c9EDD5852cd905f086C759E8383e09bff1E68B3",
+      address: "0x1d00E86748573C322f4cc41518AA0e77BD912Eb4",
       decimals: 18
     },
     USDEBT: {
@@ -16318,7 +16502,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     USDP: {
-      address: "0x1456688345527bE1f37E9e627DA0837D6f08C925",
+      address: "0x8E870D67F660D95d5be530380D0eC0bd388289E1",
       decimals: 18
     },
     USDS: {
@@ -16397,6 +16581,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xa58a4f5c4Bb043d2CC1E170613B74e767c94189B",
       decimals: 18
     },
+    UTX: {
+      address: "0x958A03181806cb8807beF40e864e55f89B3393D3",
+      decimals: 18
+    },
     UU: {
       address: "0x9d67D207b0cbDBd6Dc50F465555cc777Bd51159e",
       decimals: 18
@@ -16416,6 +16604,10 @@ export const GLOBAL_TOKEN_LIST = {
     UWBTC: {
       address: "0x3aF5Ba94C29a8407785f5f6d90eF5d69a8EB2436",
       decimals: 8
+    },
+    UWON: {
+      address: "0x438e48ed4ce6beECF503D43b9dbD3C30d516e7FD",
+      decimals: 18
     },
     UWOW: {
       address: "0x63E28547f0997E8Ab265b24B7e5dF302F3498Ff3",
@@ -16437,6 +16629,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xe7aE6D0C56CACaf007b7e4d312f9af686a9E9a04",
       decimals: 18
     },
+    VABT: {
+      address: "0x905A1810b6f8C611b7E966D2573f0888CB4390d2",
+      decimals: 8
+    },
     VACHI: {
       address: "0x337AF08bb6980Ecb68389C5ed8876D08643aBF8a",
       decimals: 18
@@ -16446,7 +16642,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     VAI: {
-      address: "0xD13cfD3133239a3c73a9E535A5c4DadEE36b395c",
+      address: "0xdD23410f1FFF27279c7314Ff4735e71852084dDf",
       decimals: 18
     },
     VAL: {
@@ -16474,15 +16670,11 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     VAULT: {
-      address: "0xc0a22849Fa6122594E605aEC943413734137daab",
+      address: "0x7F9b09f4717072CF4DC18b95D1b09E2B30C76790",
       decimals: 18
     },
     VBNT: {
       address: "0x48Fb253446873234F2fEBbF9BdeAA72d9d387f94",
-      decimals: 18
-    },
-    VBUCK: {
-      address: "0x9F1c9741cB9BCb2aDC062F23E2ed90c3Eb47cB80",
       decimals: 18
     },
     VCG: {
@@ -16517,10 +16709,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xEd3D4e446A96dC3b181B64B75c3c70dA41dC3CBe",
       decimals: 18
     },
-    VDT: {
-      address: "0x5922c10653143F7eB8C0733563eDE65e2E4E618E",
-      decimals: 18
-    },
     VEC: {
       address: "0x1BB9b64927e0C5e207C9DB4093b3738Eef5D8447",
       decimals: 9
@@ -16530,7 +16718,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 0
     },
     VEE: {
-      address: "0x7616113782AaDAB041d7B10d474F8A0c04EFf258",
+      address: "0x340D2bdE5Eb28c1eed91B2f790723E3B160613B7",
       decimals: 18
     },
     VEGA: {
@@ -16577,12 +16765,16 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x249cA82617eC3DfB2589c4c17ab7EC9765350a18",
       decimals: 18
     },
+    VES: {
+      address: "0x1f557FB2aa33Dce484902695cA1374F413875519",
+      decimals: 18
+    },
     VEST: {
       address: "0x1f19f83fC9a25F3C861260143E36c17706257986",
       decimals: 18
     },
     VETH: {
-      address: "0x4Bc3263Eb5bb2Ef7Ad9aB6FB68be80E43b43801F",
+      address: "0x38D64ce1Bdf1A9f24E0Ec469C9cAde61236fB4a0",
       decimals: 18
     },
     VETME: {
@@ -16637,6 +16829,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x5D6310984776583f58d29E45340f14AD3E8BBb98",
       decimals: 18
     },
+    VIRTU: {
+      address: "0x102dC1840f0C3C179670f21fa63597E82df34e60",
+      decimals: 18
+    },
     VIRTUAL: {
       address: "0x44ff8620b8cA30902395A7bD3F2407e1A091BF73",
       decimals: 18
@@ -16655,6 +16851,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     "VITA-FAST": {
       address: "0x6034e0d6999741f07cb6Fb1162cBAA46a1D33d36",
+      decimals: 18
+    },
+    VITALEK: {
+      address: "0xF5264e1673c9365e7c5D4d1D8B440BbF131Ff435",
       decimals: 18
     },
     VITE: {
@@ -16717,14 +16917,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x6d57B2E05F26C26b549231c866bdd39779e4a488",
       decimals: 18
     },
-    VNXLU: {
-      address: "0x00fC270C9cc13e878Ab5363D00354bebF6f05C15",
-      decimals: 18
-    },
-    VOCARE: {
-      address: "0x4eb5124D04227f1AaB771A37E131e62f17C4ffdc",
-      decimals: 18
-    },
     VOICE: {
       address: "0x2e2364966267B5D7D2cE6CD9A9B5bD19d9C7C6A9",
       decimals: 18
@@ -16734,8 +16926,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     VOLT: {
-      address: "0xfFbF315f70E458e49229654DeA4cE192d26f9b25",
-      decimals: 18
+      address: "0x7f792db54B0e580Cdc755178443f0430Cf799aCa",
+      decimals: 9
     },
     VOLTA: {
       address: "0x9b06F3C5de42D4623D7A2Bd940EC735103c68A76",
@@ -16745,12 +16937,12 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x1BBf25e71EC48B84d773809B4bA55B6F4bE946Fb",
       decimals: 18
     },
-    VPAD: {
-      address: "0x51FE2E572e97BFEB1D719809d743Ec2675924EDc",
-      decimals: 18
-    },
     VPP: {
       address: "0x5EeAA2DCb23056F4E8654a349E57eBE5e76b5e6e",
+      decimals: 18
+    },
+    VPS: {
+      address: "0x00B78238925C320159023C2AC9ef89dA8f16D007",
       decimals: 18
     },
     VR: {
@@ -16778,7 +16970,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     VS: {
-      address: "0x63a60C5469379149757Cc3e58453202eBDB7e933",
+      address: "0xF4CC8237Fc85F54b64975142EC71A9554ecf4c61",
       decimals: 18
     },
     VSG: {
@@ -16825,6 +17017,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x7D29A64504629172a429e64183D6673b9dAcbFCe",
       decimals: 18
     },
+    W8BIT: {
+      address: "0xbc6378FAae98Fb2207Bb6c35c0f8Ce5846FD4C6c",
+      decimals: 18
+    },
     WACME: {
       address: "0xDF4Ef6EE483953fE3B84ABd08C6A060445c01170",
       decimals: 8
@@ -16850,8 +17046,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     WAGYU: {
-      address: "0x13630DA53Ac2F3004E6E2a127546935Ad932f92F",
-      decimals: 9
+      address: "0xf76C15cbf1fA9D60a7Af39e660D6d7c62ef8021E",
+      decimals: 18
     },
     WAIT: {
       address: "0x2559813BBb508C4C79e9CCCE4703Bcb1f149EDd7",
@@ -16877,6 +17073,14 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xEDB171C18cE90B633DB442f2A6F72874093b49Ef",
       decimals: 18
     },
+    WAND: {
+      address: "0x239015dE0F0121F2c80134558deCbBA75eA056c6",
+      decimals: 18
+    },
+    WANNA: {
+      address: "0xa76cec201e939660F8afb1FB8d5865D069dF0750",
+      decimals: 18
+    },
     WAR: {
       address: "0x983d8edB44Ca96c0595f3c456ebdD47855911f34",
       decimals: 18
@@ -16893,6 +17097,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x0c572544a4Ee47904d54aaA6A970AF96B6f00E1b",
       decimals: 18
     },
+    WASD: {
+      address: "0xbDcD291C32e06bBf2d7B1fFc823959E3258E3583",
+      decimals: 9
+    },
     WASH: {
       address: "0x19cc7AcBe3365e5597D5cB411623112fa70050f3",
       decimals: 18
@@ -16907,6 +17115,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     WAVES: {
       address: "0x1cF4592ebfFd730c7dc92c1bdFFDfc3B9EfCf29a",
+      decimals: 18
+    },
+    WAVX: {
+      address: "0xE2808d7298F0d4111eA1773D3320F5D80eaB83E8",
       decimals: 18
     },
     WAX: {
@@ -16929,10 +17141,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xa2E3356610840701BDf5611a53974510Ae27E2e1",
       decimals: 18
     },
-    WBOT: {
-      address: "0xf9c5CE0C5FA29B487B7329bb92d8e473C386f82B",
-      decimals: 9
-    },
     WBRGE: {
       address: "0x6602E9319f2c5eC0Ba31ffcdc4301d7Ef03b709E",
       decimals: 18
@@ -16953,6 +17161,14 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x506B8f75BDeF0Edac36B0A6f9CF313485E4341b0",
       decimals: 18
     },
+    WCC: {
+      address: "0x7D7513BBa1Af295574C24bBE425873D0c431Ff9F",
+      decimals: 18
+    },
+    WCD: {
+      address: "0x79349edD0B8E83ffaa1AF2E6BA0C8CE87731C267",
+      decimals: 9
+    },
     WCELL: {
       address: "0x18E5F92103d1B34623738Ee79214B1659f2eE109",
       decimals: 18
@@ -16964,6 +17180,10 @@ export const GLOBAL_TOKEN_LIST = {
     WCHI: {
       address: "0x6DC02164d75651758aC74435806093E421b64605",
       decimals: 8
+    },
+    WCT: {
+      address: "0xd488321EF57aB16B4f334558b1FC4e0213c82DB1",
+      decimals: 18
     },
     WCX: {
       address: "0xC014186Cf1Ba36032aaEc7f96088f09eb3934347",
@@ -17025,6 +17245,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x8A001303158670E284950565164933372807cD48",
       decimals: 18
     },
+    WFCA: {
+      address: "0xae4533189C7281501F04bA4b7c37e3ADeD402902",
+      decimals: 18
+    },
     WFIO: {
       address: "0xbEA269038Eb75BdAB47a9C04D0F5c572d94b93D5",
       decimals: 9
@@ -17035,6 +17259,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     WFNB: {
       address: "0x7016C6f4dBa9A9a48a47A2FE73A1b9271432D1d5",
+      decimals: 18
+    },
+    WFO: {
+      address: "0x97D2FC7d16BC34121c3311f2e2E05D298c19956f",
       decimals: 18
     },
     WFTM: {
@@ -17076,6 +17304,10 @@ export const GLOBAL_TOKEN_LIST = {
     WHRH: {
       address: "0x2DC917b722184ECE1dCb9Bb9DDDfB1D63CcD25EB",
       decimals: 18
+    },
+    WIFPEPEMOG: {
+      address: "0x0f0bbAF936f7aDA2acA5b80BED7b655758d66950",
+      decimals: 9
     },
     WIGGER: {
       address: "0x170dEC83C7753AaAD20c01a0016b5A2E143990d4",
@@ -17190,7 +17422,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 9
     },
     WOLF: {
-      address: "0x8365332d4bAf69BC24CA2401B90c3853ab9F818e",
+      address: "0x9c7D4Fb43919DEf524C1a9d92FE836169eAF0615",
       decimals: 18
     },
     WOLVERINU: {
@@ -17246,8 +17478,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     WPC: {
-      address: "0x6F620EC89B8479e97A6985792d0c64F237566746",
-      decimals: 18
+      address: "0xC7C53760375530E5AF29Fded5E13989325299382",
+      decimals: 9
     },
     WPCI: {
       address: "0x3C2A309d9005433c1BC2C92EF1bE06489e5bf258",
@@ -17317,16 +17549,28 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
       decimals: 18
     },
+    WSTLINK: {
+      address: "0x911D86C72155c33993d594B0Ec7E6206B4C803da",
+      decimals: 18
+    },
     WSTOR: {
       address: "0x50B275a15E4F5004AA96F972a30E6A9C718b203f",
       decimals: 18
     },
     WTAO: {
-      address: "0x77E06c9eCCf2E797fd462A92B6D7642EF85b0A44",
-      decimals: 9
+      address: "0x70b02a7d6D86c8Ed2193d3C167468ebae28b9538",
+      decimals: 18
     },
     WTC: {
       address: "0xb7cB1C96dB6B22b0D3d9536E0108d062BD488F74",
+      decimals: 18
+    },
+    WTF: {
+      address: "0x730BCBe5Cdc1a3061Dfe700774b7B8dd1d4173DB",
+      decimals: 18
+    },
+    WTIA: {
+      address: "0x6aD2d2C22Bb58eA94Be18Cff11EF67e8bb97B652",
       decimals: 18
     },
     WTK: {
@@ -17369,6 +17613,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x9Ab70e92319f0b9127df78868Fd3655fB9f1E322",
       decimals: 18
     },
+    WX: {
+      address: "0x2817CECf94465a9F7beCF43d9b7c8025e88A4213",
+      decimals: 18
+    },
     WXRP: {
       address: "0x39fBBABf11738317a448031930706cd3e612e1B9",
       decimals: 18
@@ -17386,8 +17634,8 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     X: {
-      address: "0xaFe53EEa0cfE20198328890B69107D5Fd8159A77",
-      decimals: 9
+      address: "0xaBeC00542D141BDdF58649bfe860C6449807237c",
+      decimals: 18
     },
     "X-MASS": {
       address: "0x19f8Ed44aa2f5580D44CA6Ed2a0E9bb33a08922D",
@@ -17449,6 +17697,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x68749665FF8D2d112Fa859AA293F07A622782F38",
       decimals: 6
     },
+    XAV: {
+      address: "0x1dB06f39c14d813d7b1CCB275A93f5b052DE1cac",
+      decimals: 18
+    },
     XB: {
       address: "0x33E80a92a9Ea73dD02f6e732D1702d58c68388cA",
       decimals: 2
@@ -17464,10 +17716,6 @@ export const GLOBAL_TOKEN_LIST = {
     XCAD: {
       address: "0x7659CE147D0e714454073a5dd7003544234b6Aa0",
       decimals: 18
-    },
-    XCATGE: {
-      address: "0xc608557D966F6b7568E5c9345285f0c8C90A96a2",
-      decimals: 9
     },
     XCCX: {
       address: "0x7df4122D3eAE29FC8Fb6BE58D9177e8E560Be4Fb",
@@ -17573,6 +17821,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x4aa41bC1649C9C3177eD16CaaA11482295fC7441",
       decimals: 18
     },
+    XFOUR: {
+      address: "0xEb4628418e1AcBBa62Bc72C9b7a53B1865ff283D",
+      decimals: 18
+    },
     XFT: {
       address: "0x76BC677d444f1E9d57dAf5187ee2b7dC852745aE",
       decimals: 18
@@ -17580,10 +17832,6 @@ export const GLOBAL_TOKEN_LIST = {
     XFUND: {
       address: "0x892A6f9dF0147e5f079b0993F486F9acA3c87881",
       decimals: 9
-    },
-    XGF: {
-      address: "0xfa26384dddA8176c74dB700Bb0CDa50c559E9977",
-      decimals: 18
     },
     XGPT: {
       address: "0x51FE05eAc152494908ff1EbbD50e116e960BaF64",
@@ -17617,10 +17865,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x8c4E7f814d40f8929F9112C5D09016F923d34472",
       decimals: 18
     },
-    XLM: {
-      address: "0x3ffDDe70f128de8A5c8b116142d79889d6d5a551",
-      decimals: 9
-    },
     XLOTTO: {
       address: "0xFD8B38d453Ff6448e1a348f9B153e6873B6CA1Ce",
       decimals: 18
@@ -17653,6 +17897,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x0f8c45B896784A1E408526B9300519ef8660209c",
       decimals: 8
     },
+    XNK: {
+      address: "0x722a89F1b925fE41883978219c2176AECc7D6699",
+      decimals: 18
+    },
     XNL: {
       address: "0x06A00715E6F92210Af9d7680B584931FAF71A833",
       decimals: 18
@@ -17663,6 +17911,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     XNOVA: {
       address: "0xdB8ad3c6D7F9F364d59af9A62C3139cF5C6bE88E",
+      decimals: 18
+    },
+    XODEX: {
+      address: "0xb81408a1cC2f4be70a6a3178D351ca95A77C5A06",
       decimals: 18
     },
     XOR: {
@@ -17701,13 +17953,21 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xD7EFB00d12C2c13131FD319336Fdf952525dA2af",
       decimals: 4
     },
+    XRAI: {
+      address: "0x890a60B4450484847380BdDCa0C3C3ee2ff0DFBE",
+      decimals: 18
+    },
+    XRGB: {
+      address: "0x5cc5E64AB764A0f1E97F23984E20fD4528356a6a",
+      decimals: 18
+    },
     XRISE: {
       address: "0xA58A83361936471B50e2d1C7f99d422E6D73d397",
       decimals: 18
     },
     XRP: {
-      address: "0xb1C064C3f2908F741C9dEA4AFC5773238B53e6cc",
-      decimals: 9
+      address: "0x07E0EDf8ce600FB51d44F51E3348D77D67F298ae",
+      decimals: 8
     },
     XRP20: {
       address: "0xE4aB0bE415e277d82C38625B72BD7DeA232C2E7d",
@@ -17723,10 +17983,6 @@ export const GLOBAL_TOKEN_LIST = {
     },
     XRUNE: {
       address: "0x69fa0feE221AD11012BAb0FdB45d444D3D2Ce71c",
-      decimals: 18
-    },
-    XS: {
-      address: "0xd139a81D8422bb2ee1f21Ce0301e6e28e7696425",
       decimals: 18
     },
     XSGD: {
@@ -17759,6 +18015,10 @@ export const GLOBAL_TOKEN_LIST = {
     },
     XTP: {
       address: "0x6368e1E18c4C419DDFC608A0BEd1ccb87b9250fc",
+      decimals: 18
+    },
+    XTREME: {
+      address: "0x000000000503BE77A5ED27bef2C19943A8B5AE73",
       decimals: 18
     },
     XUDO: {
@@ -17801,6 +18061,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x55296f69f40Ea6d20E478533C15A6B08B654E758",
       decimals: 18
     },
+    XYXYX: {
+      address: "0x382E57cA8e4c4DB9649884ca77B0a355692D14AC",
+      decimals: 18
+    },
     XYZ: {
       address: "0x618679dF9EfCd19694BB1daa8D00718Eacfa2883",
       decimals: 18
@@ -17808,6 +18072,10 @@ export const GLOBAL_TOKEN_LIST = {
     YAE: {
       address: "0x4eE438be38F8682ABB089F2BFeA48851C5E71EAF",
       decimals: 18
+    },
+    YAK: {
+      address: "0xe842E272a18625319CC36F64eB9f97E5ad0c32AF",
+      decimals: 9
     },
     YAM: {
       address: "0x0AaCfbeC6a24756c20D41914F2caba817C0d8521",
@@ -17881,10 +18149,6 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x28cb7e841ee97947a86B06fA4090C8451f64c0be",
       decimals: 18
     },
-    YFO: {
-      address: "0xAc0C8dA4A4748d8d821A0973d00b157aA78C473D",
-      decimals: 18
-    },
     YFX: {
       address: "0xF55a93b613D172b86c2Ba3981a849DaE2aeCDE2f",
       decimals: 18
@@ -17929,9 +18193,9 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0xb92ba0A6a843379499770dE82Aa936d6bA0fd8CA",
       decimals: 18
     },
-    YOUC: {
-      address: "0x3D371413dd5489F3A04C07c0C2CE369c20986ceb",
-      decimals: 10
+    YOURAI: {
+      address: "0xC5bA042BF8832999b17c9036E8212f49DCE0501A",
+      decimals: 18
     },
     YOYO: {
       address: "0x4A88eBF6F76b04f5e0e71a351A22e573f636aFFE",
@@ -17943,10 +18207,6 @@ export const GLOBAL_TOKEN_LIST = {
     },
     YUKKY: {
       address: "0x37F678aD6221a0FD71CDa0eCa19C8802F4CABF44",
-      decimals: 18
-    },
-    YUNA: {
-      address: "0x2F6f397332B0F8b4536430bCC97980aA838f62f9",
       decimals: 18
     },
     YUP: {
@@ -18041,6 +18301,10 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x50Eec6D765792dCfB0913C8403ef2A12e1B861a6",
       decimals: 18
     },
+    ZAI: {
+      address: "0x68449870EEa84453044Bd430822827E21Fd8F101",
+      decimals: 18
+    },
     ZAM: {
       address: "0xd373576a9e738F37Dc6882328358Ff69c4cAf4c6",
       decimals: 18
@@ -18060,10 +18324,6 @@ export const GLOBAL_TOKEN_LIST = {
     ZARP: {
       address: "0xb755506531786C8aC63B756BaB1ac387bACB0C04",
       decimals: 18
-    },
-    ZAT: {
-      address: "0x6311FCFEF61E75e11c6E78949D7849f3b07e3A15",
-      decimals: 9
     },
     ZBU: {
       address: "0x8f9b4525681F3Ea6E43b8E0a57BFfF86c0A1dd2e",
@@ -18101,6 +18361,14 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x0257fFD7eA2eBba4aAA090C7AdBDD032A08c1F74",
       decimals: 18
     },
+    ZEN: {
+      address: "0x3bBBB6a231d0a1a12c6b79Ba5BC2Ed6358Db5160",
+      decimals: 18
+    },
+    ZEND: {
+      address: "0xb2606492712D311be8f41d940AFE8CE742A52D44",
+      decimals: 18
+    },
     ZENF: {
       address: "0xE9b7B5D5e8d2BCC78884F9F9099bfA42A9e5c1A5",
       decimals: 18
@@ -18122,7 +18390,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     ZERO: {
-      address: "0xF0939011a9bb95c3B791f0cb546377Ed2693a574",
+      address: "0xB0Ed33f79D89541dfdCb04A8f04Bc2c6be025eCC",
       decimals: 18
     },
     ZETA: {
@@ -18138,7 +18406,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 18
     },
     ZEUS: {
-      address: "0xa53F9dD70055113e13176e291eDDb773f85B2650",
+      address: "0x6ef460EB3563CfCc73F8147B0A77DAFFeE71F867",
       decimals: 18
     },
     ZIG: {
@@ -18158,7 +18426,11 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 9
     },
     ZION: {
-      address: "0x3DA434F76226b9489ED4277eb6fDccdf03FF190e",
+      address: "0x2e4e1093b4E80E3CC73c92264715CA984bAD7e55",
+      decimals: 18
+    },
+    ZK: {
+      address: "0xC71B5F631354BE6853eFe9C3Ab6b9590F8302e81",
       decimals: 18
     },
     ZKB: {
@@ -18169,13 +18441,17 @@ export const GLOBAL_TOKEN_LIST = {
       address: "0x9BD69bC59118cE0FBce9B03551A765a779bD25Cf",
       decimals: 18
     },
+    ZKHIVE: {
+      address: "0x750C3A0A0cE9984EeB8C5D146DFF024B584E5E33",
+      decimals: 18
+    },
     ZKITTY: {
       address: "0x7DF18E4eFD6e6f73cfb462937dAC40FE42533016",
       decimals: 18
     },
     ZKP: {
-      address: "0x909E34d3f6124C324ac83DccA84b74398a6fa173",
-      decimals: 18
+      address: "0x09637E374Ec5baB8C9e9654a97C9593e3038c5B3",
+      decimals: 9
     },
     ZKT: {
       address: "0x76fcA1adb104770B38581B64d55e67fA5A0f3966",
@@ -18198,7 +18474,7 @@ export const GLOBAL_TOKEN_LIST = {
       decimals: 6
     },
     ZOO: {
-      address: "0x09F098B155D561Fc9F7BcCc97038b7e3d20bAF74",
+      address: "0x0c08638473CAfbCa3beb113616A1871F4bfaD4f9",
       decimals: 18
     },
     ZOOA: {
@@ -18243,6 +18519,14 @@ export const GLOBAL_TOKEN_LIST = {
     },
     ZW: {
       address: "0x52d30b949BdBc63780E5A263CF436d4Df983Fe58",
+      decimals: 18
+    },
+    ZYN: {
+      address: "0x58cB30368ceB2d194740b144EAB4c2da8a917Dcb",
+      decimals: 18
+    },
+    ZYPTO: {
+      address: "0x7A65CB87F596Caf31a4932f074c59c0592bE77D7",
       decimals: 18
     },
     ZYX: {
