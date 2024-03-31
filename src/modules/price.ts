@@ -2,23 +2,49 @@ import { CoinGeckoClient } from "coingecko-api-v3";
 import Decimal from "decimal.js";
 import { AbstractProvider, getAddress } from "ethers";
 import { USD } from "../utils/constants";
+import { Logger } from "../utils/logger";
 import { Base } from "./base";
+import "dotenv/config";
 
 export class Price extends Base {
   private readonly client: CoinGeckoClient;
+  private readonly apiKey: string | undefined;
+  private readonly isDemo: boolean = false;
+
+  private readonly CG_DEMO_API_KEY = "x_cg_demo_api_key";
 
   constructor(provider: AbstractProvider) {
     super(provider);
 
-    this.client = new CoinGeckoClient({
+    const { COINGECKO_API_KEY: apiKey, COINGECKO_DEMO_API_KEY: demoApiKey } = process.env;
+    const options = {
       timeout: 10000,
       autoRetry: true
-    });
+    };
+
+    if (apiKey) {
+      this.client = new CoinGeckoClient(options, apiKey);
+    } else {
+      if (demoApiKey) {
+        Logger.warning("WARNING: Using CoinGecko demo API key");
+        Logger.warning();
+
+        this.isDemo = true;
+      }
+
+      this.client = new CoinGeckoClient(options);
+    }
+
+    this.apiKey = apiKey ?? demoApiKey;
   }
 
   public async getETHPrice() {
     // eslint-disable-next-line camelcase
-    const price = await this.client.simplePrice({ ids: "ethereum", vs_currencies: USD });
+    const options = { ids: "ethereum", vs_currencies: USD };
+    // eslint-disable-next-line camelcase
+    const extraOptions = this.isDemo ? { x_cg_demo_api_key: this.apiKey } : {};
+
+    const price = await this.client.simplePrice({ ...options, ...extraOptions });
 
     return new Decimal(price.ethereum.usd);
   }
@@ -38,12 +64,17 @@ export class Price extends Base {
   }
 
   private getPrice(addresses: string[]) {
-    return this.client.simpleTokenPrice({
+    // eslint-disable-next-line camelcase
+    const options = {
       id: "ethereum",
       // eslint-disable-next-line camelcase
       contract_addresses: addresses.join(","),
       // eslint-disable-next-line camelcase
       vs_currencies: USD
-    });
+    };
+    // eslint-disable-next-line camelcase
+    const extraOptions = this.isDemo ? { x_cg_demo_api_key: this.apiKey } : {};
+
+    return this.client.simpleTokenPrice({ ...options, ...extraOptions } as any);
   }
 }

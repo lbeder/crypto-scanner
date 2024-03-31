@@ -10,7 +10,7 @@ import { zipWith } from "lodash";
 import yargs, { Argv } from "yargs";
 import { Logger } from "./utils/logger";
 
-const VERSION = "6.3.0";
+const VERSION = "6.4.0";
 
 const main = async () => {
   let scanner: Scanner;
@@ -35,7 +35,7 @@ const main = async () => {
           default: "http://localhost:8545"
         },
         price: {
-          description: "Query prices using Coingecko",
+          description: "Query prices using CoinGecko",
           type: "boolean",
           alias: "p",
           default: false

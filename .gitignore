@@ -29,5 +29,8 @@ bower_components
 .DS_Store
 Thumbs.db
 
+.env*
+!.env.template
+
 dist/
 build/

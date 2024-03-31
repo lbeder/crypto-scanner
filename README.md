@@ -64,9 +64,19 @@ Options:
       --version            Show version number                                                                 [boolean]
       --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
-  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -p, --price              Query prices using CoinGecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
                                                                                               [boolean] [default: false]
+```
+
+The tool uses the CoinGecko API free tier by default, but if you can provide you own API key via the `COINGECKO_API_KEY` or the `COINGECKO_DEMO_API_KEY` environment variables:
+
+```sh
+COINGECKO_API_KEY=[API_KEY] crypto-scanner scan
+
+# or
+
+COINGECKO_DEMO_API_KEY=[API_KEY] crypto-scanner scan
 ```
 
 ### Scan
@@ -80,7 +90,7 @@ Options:
       --help                  Show help                                                                        [boolean]
       --version               Show version number                                                              [boolean]
       --provider-url          Web3 provider's URL                            [string] [default: "http://localhost:8545"]
-  -p, --price                 Query prices using Coingecko                                    [boolean] [default: false]
+  -p, --price                 Query prices using CoinGecko                                    [boolean] [default: false]
   -g, --global-token-list     Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
                                                                                               [boolean] [default: false]
   -r, --csv                   The CSV reports output directory (optional)                                       [string]
@@ -103,7 +113,7 @@ Options:
       --version            Show version number                                                                 [boolean]
       --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
-  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -p, --price              Query prices using CoinGecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
                                                                                               [boolean] [default: false]
 ```
@@ -125,7 +135,7 @@ Options:
       --version            Show version number                                                                 [boolean]
       --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
-  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -p, --price              Query prices using CoinGecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
                                                                                               [boolean] [default: false]
 ```
@@ -142,7 +152,7 @@ Options:
       --version            Show version number                                                                 [boolean]
       --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
-  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -p, --price              Query prices using CoinGecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
                                                                                               [boolean] [default: false]
 ```
@@ -159,7 +169,7 @@ Options:
       --version            Show version number                                                                 [boolean]
       --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
-  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -p, --price              Query prices using CoinGecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
                                                                                               [boolean] [default: false]
   -o, --output             The output file path                                                      [string] [required]
@@ -177,7 +187,7 @@ Options:
       --version            Show version number                                                                 [boolean]
       --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
-  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -p, --price              Query prices using CoinGecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
                                                                                               [boolean] [default: false]
   -i, --input              The input file path                                                       [string] [required]
@@ -198,7 +208,7 @@ Options:
       --version            Show version number                                                                 [boolean]
       --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
-  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -p, --price              Query prices using CoinGecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
                                                                                               [boolean] [default: false]
 ```
@@ -215,7 +225,7 @@ Options:
       --version            Show version number                                                                 [boolean]
       --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
-  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -p, --price              Query prices using CoinGecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
                                                                                               [boolean] [default: false]
 ```
@@ -236,7 +246,7 @@ Options:
       --version            Show version number                                                                 [boolean]
       --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
-  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -p, --price              Query prices using CoinGecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
                                                                                               [boolean] [default: false]
 ```
@@ -253,7 +263,7 @@ Options:
       --version            Show version number                                                                 [boolean]
       --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
-  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -p, --price              Query prices using CoinGecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
                                                                                               [boolean] [default: false]
       --name               The name of the ledger                                                    [string] [required]
@@ -271,7 +281,7 @@ Options:
       --version            Show version number                                                                 [boolean]
       --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
-  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -p, --price              Query prices using CoinGecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
                                                                                               [boolean] [default: false]
       --name               The name of the ledger                                                    [string] [required]
@@ -293,7 +303,7 @@ Options:
       --version            Show version number                                                                 [boolean]
       --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
-  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -p, --price              Query prices using CoinGecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
                                                                                               [boolean] [default: false]
 ```
@@ -310,7 +320,7 @@ Options:
       --version            Show version number                                                                 [boolean]
       --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
-  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -p, --price              Query prices using CoinGecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
                                                                                               [boolean] [default: false]
       --name               The name of the ledger                                                    [string] [required]
@@ -330,7 +340,7 @@ Options:
       --version            Show version number                                                                 [boolean]
       --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
-  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -p, --price              Query prices using CoinGecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
                                                                                               [boolean] [default: false]
       --name               The name of the ledger                                                    [string] [required]
@@ -353,7 +363,7 @@ Options:
       --version            Show version number                                                                 [boolean]
       --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
-  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -p, --price              Query prices using CoinGecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
                                                                                               [boolean] [default: false]
 ```
@@ -370,7 +380,7 @@ Options:
       --version            Show version number                                                                 [boolean]
       --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
-  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -p, --price              Query prices using CoinGecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
                                                                                               [boolean] [default: false]
       --symbol             The symbol of the token                                                   [string] [required]
@@ -390,7 +400,7 @@ Options:
       --version            Show version number                                                                 [boolean]
       --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
-  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -p, --price              Query prices using CoinGecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
                                                                                               [boolean] [default: false]
       --symbol             The symbol of the token                                                   [string] [required]
@@ -413,7 +423,7 @@ Options:
       --version            Show version number                                                                 [boolean]
       --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
-  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -p, --price              Query prices using CoinGecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
                                                                                               [boolean] [default: false]
 ```
@@ -430,7 +440,7 @@ Options:
       --version            Show version number                                                                 [boolean]
       --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
-  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -p, --price              Query prices using CoinGecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
                                                                                               [boolean] [default: false]
       --name               The name of the asset                                                     [string] [required]
@@ -451,7 +461,7 @@ Options:
       --version            Show version number                                                                 [boolean]
       --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
-  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -p, --price              Query prices using CoinGecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
                                                                                               [boolean] [default: false]
       --name               The name of the asset                                                     [string] [required]
@@ -472,7 +482,7 @@ Options:
       --version            Show version number                                                                 [boolean]
       --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
       --provider-url       Web3 provider's URL                               [string] [default: "http://localhost:8545"]
-  -p, --price              Query prices using Coingecko                                       [boolean] [default: false]
+  -p, --price              Query prices using CoinGecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
                                                                                               [boolean] [default: false]
       --name               The name of the asset                                                     [string] [required]
