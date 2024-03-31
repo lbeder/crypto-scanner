@@ -40,7 +40,9 @@ export class Scanner {
   private token: Token;
   private price?: Price;
 
-  private static readonly PRICE_QUERY_BATCH_SIZE = 20;
+  // Unfortunately, Coingecko no longer supports batch queries for free tier API.
+  private static readonly PRICE_QUERY_BATCH_SIZE = 1;
+
   private static readonly CSV_ADDRESSES_REPORT = "addresses.csv";
   private static readonly CSV_PRICES_REPORT = "prices.csv";
   private static readonly CSV_TOTALS_REPORT = "totals.csv";
@@ -206,6 +208,12 @@ export class Scanner {
 
   public async scan({ csvOutputDir, verbose, showEmptyAddresses, aggregateAssets }: ScanOptions) {
     if (this.db.isGlobalTokenListEnabled()) {
+      if (this.price) {
+        throw new Error(
+          "Due to the latest Coingecko's batch query restriction, fetching prices for the global token list is no longer supported"
+        );
+      }
+
       if (verbose) {
         Logger.warning("WARNING: Using the global token list in verbose mode isn't recommended!");
         Logger.warning();

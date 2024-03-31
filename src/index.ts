@@ -10,7 +10,7 @@ import { zipWith } from "lodash";
 import yargs, { Argv } from "yargs";
 import { Logger } from "./utils/logger";
 
-const VERSION = "6.2.0";
+const VERSION = "6.3.0";
 
 const main = async () => {
   let scanner: Scanner;
