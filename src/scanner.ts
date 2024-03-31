@@ -237,6 +237,7 @@ export class Scanner {
 
     const addressCount = Object.values(ledgers).reduce((res, addresses) => res + addresses.length, 0);
     const tokenCount = Object.keys(tokens).length;
+
     const multiBar = new CliProgress.MultiBar(
       {
         format: "{label} | {bar} {percentage}% | ETA: {eta}s | {value}/{total}",
@@ -246,7 +247,7 @@ export class Scanner {
     );
 
     const ledgerBar = multiBar.create(addressCount, 0);
-    const tokenBar = multiBar.create(tokenCount, 0);
+    const tokenBar = tokenCount > 0 ? multiBar.create(tokenCount, 0) : undefined;
 
     let addressIndex = 0;
 
@@ -270,7 +271,7 @@ export class Scanner {
         for (const [tokenIndex, [symbol, token]] of Object.entries(tokens).entries()) {
           const { address: tokenAddress, decimals } = token;
 
-          tokenBar.update(tokenIndex, { label: `${Scanner.formatLabel(symbol)} | ${tokenAddress}` });
+          tokenBar?.update(tokenIndex, { label: `${Scanner.formatLabel(symbol)} | ${tokenAddress}` });
 
           if (totalAmounts[symbol] === undefined) {
             totalAmounts[symbol] = new Decimal(0);
@@ -303,7 +304,7 @@ export class Scanner {
     }
 
     ledgerBar.update(addressCount, { label: "Finished" });
-    tokenBar.update(tokenCount, { label: "Finished" });
+    tokenBar?.update(tokenCount, { label: "Finished" });
 
     multiBar.stop();
 
@@ -663,7 +664,7 @@ export class Scanner {
   }
 
   private static formatLabel(label: string) {
-    return `${padEnd(truncate(label, { length: 20 }), 22)}`;
+    return `${padEnd(truncate(label, { length: 10 }), 14)}`;
   }
 
   private async fetchPrices(): Promise<Record<string, Decimal>> {
