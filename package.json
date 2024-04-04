@@ -1,6 +1,6 @@
 {
   "name": "crypto-scanner",
-  "version": "6.4.0",
+  "version": "6.5.0",
   "description": "Crypto Scanner is a privacy-oriented tool used to track ETH and token balances across multiple addresses and groups (ledgers)",
   "author": "Leonid Beder",
   "license": "MIT",

@@ -344,7 +344,7 @@ Options:
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
                                                                                               [boolean] [default: false]
       --name               The name of the ledger                                                    [string] [required]
-      --data               The address (or multiple addresses) to remove                           [array] [default: []]
+      --addresses          The address (or multiple addresses) to remove                           [array] [default: []]
 ```
 
 ### Token Management

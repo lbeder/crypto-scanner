@@ -10,7 +10,7 @@ import { zipWith } from "lodash";
 import yargs, { Argv } from "yargs";
 import { Logger } from "./utils/logger";
 
-const VERSION = "6.4.0";
+const VERSION = "6.5.0";
 
 const main = async () => {
   let scanner: Scanner;
@@ -258,14 +258,14 @@ const main = async () => {
                 type: "string",
                 required: true
               },
-              data: {
+              addresses: {
                 description: "The address (or multiple addresses) to remove",
                 type: "array",
                 default: []
               }
             },
-            ({ name, data }) => {
-              scanner.removeAddresses(name, data as string[]);
+            ({ name, addresses }) => {
+              scanner.removeAddresses(name, addresses as string[]);
             }
           )
       )
