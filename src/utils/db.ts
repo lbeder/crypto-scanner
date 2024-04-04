@@ -2,6 +2,7 @@ import crypto from "crypto";
 import fs from "fs";
 import path from "path";
 import { getAddress, isAddress } from "ethers";
+import { fromPairs, sortBy, toPairs } from "lodash";
 import { GLOBAL_TOKEN_LIST } from "../data/tokens";
 import { ETH, USD } from "./constants";
 
@@ -82,6 +83,11 @@ export class DB {
 
     try {
       data = JSON.parse(DB.decrypt(fs.readFileSync(this.path, "utf8"), password)) as Data;
+
+      // Sort the data
+      data.ledgers = this.sort(data.ledgers);
+      data.tokens = this.sort(data.tokens);
+      data.assets = this.sort(data.assets);
     } catch {
       throw new Error("Invalid password");
     }
@@ -371,5 +377,9 @@ export class DB {
     const encryptedDB = DB.encrypt(this.data, this.password);
 
     fs.writeFileSync(this.path, encryptedDB, "utf8");
+  }
+
+  private sort<T>(list: Record<string, T>) {
+    return fromPairs(sortBy(toPairs(list), 0));
   }
 }
