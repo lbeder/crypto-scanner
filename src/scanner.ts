@@ -27,7 +27,7 @@ type LedgerAddressAmounts = Record<string, NamedAmounts>;
 interface ScanOptions {
   csvOutputDir?: string;
   verbose: boolean | undefined;
-  showEmptyAddresses: boolean;
+  hideSmallAddresses: boolean | number | string;
   aggregateAssets: boolean;
 }
 
@@ -206,7 +206,7 @@ export class Scanner {
     }
   }
 
-  public async scan({ csvOutputDir, verbose, showEmptyAddresses, aggregateAssets }: ScanOptions) {
+  public async scan({ csvOutputDir, verbose, hideSmallAddresses, aggregateAssets }: ScanOptions) {
     if (this.db.isGlobalTokenListEnabled()) {
       if (this.price) {
         throw new Error(
@@ -268,8 +268,22 @@ export class Scanner {
         ledgerBar.update(addressIndex++, { label: `${Scanner.formatLabel(name)} | ${address}` });
 
         const ethBalance = await this.balance.getBalance(address);
-        if (showEmptyAddresses || !ethBalance.isZero()) {
+
+        // Determine if we should hide this address based on hideSmallAddresses logic
+        let shouldHideAddress = false;
+        if (hideSmallAddresses) {
+          if (typeof hideSmallAddresses === "number") {
+            // Hide addresses with balance <= specified amount
+            shouldHideAddress = ethBalance.lte(hideSmallAddresses);
+          } else {
+            // Hide empty addresses (equivalent to old showEmptyAddresses = false)
+            shouldHideAddress = ethBalance.isZero();
+          }
+        }
+
+        if (!shouldHideAddress) {
           set(ledgerAddressAmounts, [name, address, ETH], ethBalance);
+
           notes[address] = note;
         }
 

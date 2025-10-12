@@ -91,11 +91,29 @@ const main = async () => {
             type: "boolean",
             alias: "v"
           },
-          "show-empty-addresses": {
-            description: "Show empty addresses",
-            alias: "e",
-            type: "boolean",
-            default: false
+          "hide-small-addresses": {
+            description:
+              // eslint-disable-next-line max-len
+              "Hide addresses with balance less than or equal to the specified amount (in ETH). If no amount is specified, hides empty addresses. Using -h without parameters is equivalent to -h true.",
+            alias: "h",
+            type: "string",
+            default: "false",
+            coerce: (arg) => {
+              if (arg === undefined) {
+                return true;
+              }
+
+              if (arg === "false" || arg === "0") {
+                return false;
+              }
+
+              const num = parseFloat(arg);
+              if (!isNaN(num)) {
+                return num;
+              }
+
+              return arg;
+            }
           },
           "aggregate-assets": {
             description:
@@ -106,8 +124,8 @@ const main = async () => {
             default: false
           }
         },
-        async ({ csv, verbose, showEmptyAddresses, aggregateAssets }) => {
-          await scanner.scan({ csvOutputDir: csv, verbose, showEmptyAddresses, aggregateAssets });
+        async ({ csv, verbose, hideSmallAddresses, aggregateAssets }) => {
+          await scanner.scan({ csvOutputDir: csv, verbose, hideSmallAddresses, aggregateAssets });
         }
       )
       .command(
