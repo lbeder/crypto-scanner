@@ -13,7 +13,7 @@ Decimal.prototype.toCSV = function (this: Decimal) {
 
 Decimal.prototype.toCSVAmount = function (this: Decimal) {
   const abs = this.abs();
-  
+
   if (!abs.isZero() && abs.lessThan(new Decimal(1))) {
     if (abs.lessThan(new Decimal(0.0001))) {
       if (this.greaterThan(new Decimal(0))) {
