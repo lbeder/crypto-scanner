@@ -13,7 +13,7 @@ import { Logger } from "./utils/logger";
 
 interface ScannerOptions {
   path: string;
-  providerUrl: string;
+  rpc: string;
   password: string;
   price: boolean;
   globalTokenList: boolean;
@@ -47,8 +47,8 @@ export class Scanner {
   private static readonly CSV_PRICES_REPORT = "prices.csv";
   private static readonly CSV_TOTALS_REPORT = "totals.csv";
 
-  constructor({ path, providerUrl, password, price, globalTokenList }: ScannerOptions) {
-    this.provider = new JsonRpcProvider(providerUrl);
+  constructor({ path, rpc, password, price, globalTokenList }: ScannerOptions) {
+    this.provider = new JsonRpcProvider(rpc);
 
     this.balance = new Balance(this.provider);
     this.token = new Token(this.provider);

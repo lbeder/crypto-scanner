@@ -29,7 +29,7 @@ const main = async () => {
           type: "string",
           default: path.join(path.resolve(os.homedir(), ".crypto-scanner/"), "db")
         },
-        "provider-url": {
+        rpc: {
           description: "Web3 provider's URL",
           type: "string",
           default: "http://localhost:8545"
@@ -47,7 +47,7 @@ const main = async () => {
           default: false
         }
       })
-      .middleware(async ({ path: dbPath, providerUrl, price, globalTokenList }) => {
+      .middleware(async ({ path: dbPath, rpc, price, globalTokenList }) => {
         const { password } = await inquirer.prompt([
           {
             type: "password",
@@ -74,7 +74,7 @@ const main = async () => {
 
         Logger.info();
 
-        scanner = new Scanner({ path: dbPath, providerUrl, password, price, globalTokenList });
+        scanner = new Scanner({ path: dbPath, rpc, password, price, globalTokenList });
       })
       .command(
         "scan",
