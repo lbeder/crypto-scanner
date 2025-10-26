@@ -122,18 +122,31 @@ const main = async () => {
             alias: "a",
             type: "boolean",
             default: false
+          },
+          ledger: {
+            description: "Scan only specific ledger",
+            type: "string",
+            alias: "l",
+            requiresArg: true
           }
         },
-        async ({ csv, verbose, hideSmallAddresses, aggregateAssets }) => {
-          await scanner.scan({ csvOutputDir: csv, verbose, hideSmallAddresses, aggregateAssets });
+        async ({ csv, verbose, hideSmallAddresses, aggregateAssets, ledger }) => {
+          await scanner.scan({ csvOutputDir: csv, verbose, hideSmallAddresses, aggregateAssets, ledger });
         }
       )
       .command(
         "list",
         "List all the ledgers, addresses, tokens, and assets",
-        () => {},
-        () => {
-          scanner.showDB();
+        {
+          ledger: {
+            description: "List only specific ledger",
+            type: "string",
+            alias: "l",
+            requiresArg: true
+          }
+        },
+        ({ ledger }) => {
+          scanner.showDB(ledger);
         }
       )
       .command("db", "DB management functions", (yargs: Argv) =>

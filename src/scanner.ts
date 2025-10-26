@@ -29,6 +29,7 @@ interface ScanOptions {
   verbose: boolean | undefined;
   hideSmallAddresses: boolean | number | string;
   aggregateAssets: boolean;
+  ledger?: string;
 }
 
 export const DEFAULT_SYMBOL_PRICE = 1;
@@ -145,13 +146,22 @@ export class Scanner {
     Logger.info(`Removed ${name}`);
   }
 
-  public showDB() {
+  public showDB(ledger?: string) {
     Logger.title("DB");
 
     Logger.info(`Version: ${this.db.getVersion()}`);
     Logger.info();
 
-    const ledgers = this.db.getLedgers();
+    let ledgers = this.db.getLedgers();
+
+    // Filter by specific ledger if provided
+    if (ledger) {
+      if (!ledgers[ledger]) {
+        throw new Error(`Ledger '${ledger}' not found`);
+      }
+      ledgers = { [ledger]: ledgers[ledger] };
+    }
+
     if (!isEmpty(ledgers)) {
       Logger.title("Ledgers");
 
@@ -206,7 +216,7 @@ export class Scanner {
     }
   }
 
-  public async scan({ csvOutputDir, verbose, hideSmallAddresses, aggregateAssets }: ScanOptions) {
+  public async scan({ csvOutputDir, verbose, hideSmallAddresses, aggregateAssets, ledger }: ScanOptions) {
     if (this.db.isGlobalTokenListEnabled()) {
       if (this.price) {
         throw new Error(
@@ -234,7 +244,16 @@ export class Scanner {
     const ledgerAddressAmounts: LedgerAddressAmounts = {};
     const ledgerAmounts: NamedAmounts = {};
 
-    const ledgers = this.db.getLedgers();
+    let ledgers = this.db.getLedgers();
+
+    // Filter by specific ledger if provided
+    if (ledger) {
+      if (!ledgers[ledger]) {
+        throw new Error(`Ledger '${ledger}' not found`);
+      }
+      ledgers = { [ledger]: ledgers[ledger] };
+    }
+
     const tokens = this.db.getTokens();
     const notes: Record<string, string> = {};
 

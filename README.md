@@ -102,6 +102,7 @@ Options:
   -a, --aggregate-assets      Aggregate custom-priced assets in totals (e.g., if an asset has a custom price of 3 ETH
                               per unit, then instead of showing it separately, we will aggregate its amount with the
                               total ETH amount)                                               [boolean] [default: false]
+  -l, --ledger                Scan only specific ledger                                                         [string]
 ```
 
 ### List
@@ -114,11 +115,12 @@ List all the ledgers, addresses, tokens, and assets
 Options:
       --help               Show help                                                                           [boolean]
       --version            Show version number                                                                 [boolean]
-      --path               DB URL                                             [string] [default: "~/.crypto-scanner/db"]
+      --path               DB URL                                 [string] [default: "/Users/leonid/.crypto-scanner/db"]
       --rpc                Web3 provider's URL                               [string] [default: "http://localhost:8545"]
   -p, --price              Query prices using CoinGecko                                       [boolean] [default: false]
   -g, --global-token-list  Use global token list (derived from https://tokens.coingecko.com/ethereum/all.json)
                                                                                               [boolean] [default: false]
+  -l, --ledger             List only specific ledger                                                            [string]
 ```
 
 ### DB
